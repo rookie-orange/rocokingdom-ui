@@ -34,6 +34,24 @@ importers:
         specifier: 'catalog:'
         version: 0.1.24(@types/node@25.9.2)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.0))(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.0)
 
+  packages/shared:
+    devDependencies:
+      '@types/node':
+        specifier: ^25.6.2
+        version: 25.9.2
+      '@typescript/native-preview':
+        specifier: 7.0.0-dev.20260509.2
+        version: 7.0.0-dev.20260509.2
+      bumpp:
+        specifier: ^11.1.0
+        version: 11.1.0
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vite-plus:
+        specifier: 'catalog:'
+        version: 0.1.24(@types/node@25.9.2)(jiti@2.7.0)(typescript@6.0.3)(vite@8.0.16(@types/node@25.9.2)(jiti@2.7.0)(yaml@2.9.0))(yaml@2.9.0)
+
   packages/tokens:
     devDependencies:
       '@types/node':
