@@ -8,6 +8,10 @@
     "build": "tsc && vp build",
     "preview": "vp preview"
   },
+  "dependencies": {
+    "@rocokingdom-ui/tokens": "workspace:*",
+    "rocokingdom-ui": "workspace:*"
+  },
   "devDependencies": {
     "typescript": "~6.0.2",
     "vite": "catalog:",

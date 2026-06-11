@@ -1,6 +1,22 @@
-# vite-plus-starter
+# ui
 
-A starter for creating a Vite Plus project.
+Rocokingdom UI components.
+
+## Button
+
+```ts
+import { buttonClassName, createButton } from 'ui'
+import 'tokens/css'
+import 'ui/button.css'
+
+const button = createButton({
+  label: 'Start Quest',
+  variant: 'primary',
+  size: 'md',
+})
+```
+
+The first button implementation is framework-agnostic: use the exported class names and CSS directly, or wrap `buttonClassName` in React/Vue/Svelte components later.
 
 ## Development
 

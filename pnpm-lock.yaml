@@ -23,6 +23,13 @@ importers:
         version: 0.1.24(@types/node@25.9.2)(jiti@2.7.0)(typescript@6.0.3)(vite@8.0.16(@types/node@25.9.2)(jiti@2.7.0)(yaml@2.9.0))(yaml@2.9.0)
 
   apps/website:
+    dependencies:
+      '@rocokingdom-ui/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
+      rocokingdom-ui:
+        specifier: workspace:*
+        version: link:../../packages/ui
     devDependencies:
       typescript:
         specifier: ~6.0.2
@@ -72,9 +79,9 @@ importers:
 
   packages/ui:
     dependencies:
-      website:
+      '@rocokingdom-ui/tokens':
         specifier: workspace:*
-        version: link:../../apps/website
+        version: link:../tokens
     devDependencies:
       '@types/node':
         specifier: ^25.6.2

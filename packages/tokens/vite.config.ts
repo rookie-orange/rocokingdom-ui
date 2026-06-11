@@ -2,10 +2,15 @@ import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
   pack: {
-    dts: {
-      tsgo: true,
+    dts: true,
+  },
+  run: {
+    tasks: {
+      build: {
+        command: 'vp pack && node scripts/build-css.mjs',
+        cache: false,
+      },
     },
-    exports: true,
   },
   lint: {
     options: {

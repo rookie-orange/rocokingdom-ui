@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["es2023"],
+    "lib": ["es2023", "dom"],
     "moduleDetection": "force",
     "module": "nodenext",
     "moduleResolution": "nodenext",
+    "paths": {
+      "@rocokingdom-ui/tokens": ["../tokens/src/index.ts"]
+    },
     "resolveJsonModule": true,
     "types": ["node"],
     "strict": true,

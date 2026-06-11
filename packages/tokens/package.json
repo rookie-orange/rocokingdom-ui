@@ -1,7 +1,7 @@
 {
-  "name": "tokens",
+  "name": "@rocokingdom-ui/tokens",
   "version": "0.0.0",
-  "description": "A starter for creating a TypeScript package.",
+  "description": "Material and world-building design tokens for rocokingdom-ui.",
   "homepage": "https://github.com/author/library#readme",
   "bugs": {
     "url": "https://github.com/author/library/issues"
@@ -18,13 +18,16 @@
   "type": "module",
   "exports": {
     ".": "./dist/index.mjs",
+    "./css": "./dist/tokens.css",
+    "./css/light": "./dist/light.css",
+    "./css/dark": "./dist/dark.css",
+    "./tokens.json": "./dist/tokens.json",
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "vp pack",
     "dev": "vp pack --watch",
     "test": "vp test",
     "check": "vp check",

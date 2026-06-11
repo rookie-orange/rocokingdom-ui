@@ -1,0 +1,17 @@
+export const material = {
+  paper: '#f6f3ec',
+  paperRaised: '#fffaf1',
+  paperPressed: '#ebe6dc',
+  paperShadow: '#d5cfbf',
+  paperEdge: '#c7bda9',
+  stone: '#2c2e31',
+  stoneRaised: '#34373b',
+  stonePressed: '#252729',
+  stoneShadow: '#1d1f22',
+  stoneEdge: '#4a4d51',
+  gold: '#e6c26d',
+  goldRaised: '#f1d88a',
+  goldPressed: '#d1a94f',
+  goldShadow: '#ba9448',
+  goldEdge: '#8f6b2c',
+} as const
