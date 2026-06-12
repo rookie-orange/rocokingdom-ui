@@ -1,7 +1,7 @@
 {
   "name": "@rocokingdom-ui/tokens",
   "version": "0.0.0",
-  "description": "Material and world-building design tokens for rocokingdom-ui.",
+  "description": "Direct design token values for rocokingdom-ui.",
   "homepage": "https://github.com/author/library#readme",
   "bugs": {
     "url": "https://github.com/author/library/issues"
@@ -19,9 +19,6 @@
   "exports": {
     ".": "./dist/index.mjs",
     "./css": "./dist/tokens.css",
-    "./css/light": "./dist/light.css",
-    "./css/dark": "./dist/dark.css",
-    "./tokens.json": "./dist/tokens.json",
     "./package.json": "./package.json"
   },
   "publishConfig": {

@@ -1,33 +1,17 @@
 import { expect, test } from 'vite-plus/test'
-import {
-  buttonClassName,
-  buttonCss,
-  buttonSizes,
-  buttonTokens,
-  buttonVariants,
-} from '../src/index.ts'
+import { buttonClassName, buttonCss } from '../src/index.ts'
 
-test('creates stable button class names', () => {
-  expect(buttonClassName()).toBe('rk-button rk-button--primary rk-button--md')
-  expect(
-    buttonClassName({
-      variant: 'secondary',
-      size: 'lg',
-      pressed: true,
-      className: 'quest-action',
-    }),
-  ).toBe('rk-button rk-button--secondary rk-button--lg rk-button--pressed quest-action')
+test('exports a single button class', () => {
+  expect(buttonClassName).toBe('rk-button')
 })
 
-test('exposes button variants, sizes, and material tokens', () => {
-  expect(buttonVariants).toEqual(['primary', 'secondary', 'gold', 'ghost'])
-  expect(buttonSizes).toEqual(['sm', 'md', 'lg'])
-  expect(buttonTokens.variant.primary.background).toBe('#f6f3ec')
-  expect(buttonTokens.variant.secondary.background).toBe('#2c2e31')
-})
-
-test('exports button CSS using token variables', () => {
-  expect(buttonCss).toContain('.rk-button--primary')
-  expect(buttonCss).toContain('var(--rk-button-variant-primary-background, #f6f3ec)')
-  expect(buttonCss).toContain('border-bottom-width: var(--rk-button-base-bottom-edge, 4px);')
+test('exports minimal button CSS', () => {
+  expect(buttonCss).toContain('.rk-button')
+  expect(buttonCss).toContain('background-color: var(--gold, #e7bf67);')
+  expect(buttonCss).toContain('color: var(--ink, #222222);')
+  expect(buttonCss).toContain('border: 0;')
+  expect(buttonCss).toContain('border-radius: 999px;')
+  expect(buttonCss).toContain('background-color 160ms ease')
+  expect(buttonCss).toContain('filter: brightness(1.08);')
+  expect(buttonCss).toContain('transform: scale(0.98);')
 })

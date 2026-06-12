@@ -1,21 +1,18 @@
-export * from './component/index.ts'
-export * from './css.ts'
-export * from './primitive/index.ts'
-export * from './semantic/index.ts'
-export * from './theme/index.ts'
+export const paper = '#f4f0e8'
+export const stone = '#242628'
+export const ink = '#222222'
+export const gold = '#e7bf67'
 
-import { component } from './component/index.ts'
-import { primitive } from './primitive/index.ts'
-import { semantic } from './semantic/index.ts'
-import { themes } from './theme/index.ts'
-
-export const tokenPrefix = 'rk'
-
-export const tokens = {
-  primitive,
-  semantic,
-  component,
-  themes,
+export const colors = {
+  paper,
+  stone,
+  ink,
+  gold,
 } as const
 
-export type Tokens = typeof tokens
+export const tokensCss = `:root {
+  --paper: ${paper};
+  --stone: ${stone};
+  --ink: ${ink};
+  --gold: ${gold};
+}`

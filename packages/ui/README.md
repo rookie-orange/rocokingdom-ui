@@ -5,18 +5,17 @@ Rocokingdom UI components.
 ## Button
 
 ```ts
-import { buttonClassName, createButton } from 'ui'
-import 'tokens/css'
-import 'ui/button.css'
+import { tokensCss } from '@rocokingdom-ui/tokens'
+import { buttonCss, createButton } from 'rocokingdom-ui'
 
-const button = createButton({
-  label: 'Start Quest',
-  variant: 'primary',
-  size: 'md',
-})
+const style = document.createElement('style')
+style.textContent = `${tokensCss}\n\n${buttonCss}`
+document.head.append(style)
+
+const button = createButton('Start')
 ```
 
-The first button implementation is framework-agnostic: use the exported class names and CSS directly, or wrap `buttonClassName` in React/Vue/Svelte components later.
+The button uses one class: `rk-button`.
 
 ## Development
 

@@ -1,30 +1,39 @@
 # tokens
 
-Material-first design tokens for `rocokingdom-ui`.
+Four direct color values for `rocokingdom-ui`.
 
-The token language follows the visual direction of a fantasy game UI: mostly neutral paper and stone surfaces, gold brand accents, low-saturation magic state colors, and rarity colors for creatures/items.
+```css
+:root {
+  --paper: #f4f0e8;
+  --stone: #242628;
+  --ink: #222222;
+  --gold: #e7bf67;
+}
+```
 
 ## Usage
 
 ```ts
-import { cssVar, tokens } from 'tokens'
+import { gold, paper, tokensCss } from '@rocokingdom-ui/tokens'
 
-const paper = tokens.primitive.material.paper
-const buttonBg = cssVar('button.variant.primary.background')
+const pageBackground = paper
+const buttonBackground = gold
 ```
 
 ```ts
-import 'tokens/css'
+const style = document.createElement('style')
+style.textContent = tokensCss
+document.head.append(style)
 ```
-
-Set `data-rk-theme="dark"` on a root element to switch global semantic theme variables.
 
 ## Structure
 
-- `primitive`: neutral, gold, magic, rarity, material, spacing, radius, typography, motion.
-- `semantic`: surface, text, border, and state aliases.
-- `component`: button, dialog, and drawer tokens.
-- `themes`: light and dark semantic theme maps.
+- `paper`
+- `stone`
+- `ink`
+- `gold`
+- `colors`
+- `tokensCss`
 
 ## Development
 

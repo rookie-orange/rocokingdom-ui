@@ -6,8 +6,8 @@ const uiSource = new URL('../../packages/ui/src/index.ts', import.meta.url).path
 export default defineConfig({
   resolve: {
     alias: {
-      tokens: tokensSource,
-      ui: uiSource,
+      '@rocokingdom-ui/tokens': tokensSource,
+      'rocokingdom-ui': uiSource,
     },
   },
 })

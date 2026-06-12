@@ -1,42 +1,19 @@
 import { expect, test } from 'vite-plus/test'
-import {
-  createThemeCss,
-  createTokensCss,
-  cssVar,
-  material,
-  rarity,
-  semantic,
-  tokens,
-} from '../src/index.ts'
+import { colors, gold, ink, paper, stone, tokensCss } from '../src/index.ts'
 
-test('exposes material-first primitive tokens', () => {
-  expect(material.paper).toBe('#f6f3ec')
-  expect(material.stone).toBe('#2c2e31')
-  expect(material.goldShadow).toBe('#ba9448')
-  expect(rarity.legendary).toBe('#f7c24f')
+test('exports four direct color values', () => {
+  expect(paper).toBe('#f4f0e8')
+  expect(stone).toBe('#242628')
+  expect(ink).toBe('#222222')
+  expect(gold).toBe('#e7bf67')
+  expect(colors).toEqual({ paper, stone, ink, gold })
 })
 
-test('builds semantic and component tokens from the game UI language', () => {
-  expect(semantic.surface.dialogHeader).toBe('#252729')
-  expect(tokens.component.button.variant.primary.background).toBe('#f6f3ec')
-  expect(tokens.component.button.variant.secondary.color).toBe('#f7f5ef')
-})
-
-test('creates CSS variable references', () => {
-  expect(cssVar('material.paper')).toBe('var(--rk-material-paper)')
-  expect(cssVar('button.variant.primary.background', '#f6f3ec')).toBe(
-    'var(--rk-button-variant-primary-background, #f6f3ec)',
-  )
-})
-
-test('creates CSS for base tokens and themes', () => {
-  const css = createTokensCss()
-
-  expect(css).toContain('--rk-material-paper: #f6f3ec;')
-  expect(css).toContain('--rk-rarity-legendary: #f7c24f;')
-  expect(css).toContain(':root, [data-rk-theme="light"]')
-  expect(css).toContain('[data-rk-theme="dark"]')
-  expect(createThemeCss('dark', { selector: '.preview' })).toContain(
-    '.preview {\n  --rk-surface-canvas: #1a1b1d;',
-  )
+test('exports the root color css', () => {
+  expect(tokensCss).toBe(`:root {
+  --paper: #f4f0e8;
+  --stone: #242628;
+  --ink: #222222;
+  --gold: #e7bf67;
+}`)
 })

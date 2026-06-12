@@ -1,39 +1,6 @@
 import './style.css'
-import { createTokensCss } from '@rocokingdom-ui/tokens'
-import {
-  buttonClassName,
-  buttonCss,
-  buttonSizes,
-  buttonVariants,
-  createButton,
-  type ButtonSize,
-  type ButtonVariant,
-} from 'rocokingdom-ui'
-
-const variantCopy: Record<ButtonVariant, { readonly label: string; readonly title: string }> = {
-  primary: {
-    title: 'Paper',
-    label: 'Start Quest',
-  },
-  secondary: {
-    title: 'Stone',
-    label: 'Open Drawer',
-  },
-  gold: {
-    title: 'Gold',
-    label: 'Claim Reward',
-  },
-  ghost: {
-    title: 'Ghost',
-    label: 'Cancel',
-  },
-}
-
-const sizeCopy: Record<ButtonSize, string> = {
-  sm: 'Small',
-  md: 'Medium',
-  lg: 'Large',
-}
+import { colors, tokensCss } from '@rocokingdom-ui/tokens'
+import { buttonCss, createButton } from 'rocokingdom-ui'
 
 injectDesignSystemStyles()
 
@@ -47,92 +14,53 @@ app.innerHTML = `
   <main class="showcase">
     <section class="showcase__shell">
       <header class="showcase__header">
-        <p class="showcase__eyebrow">Rocokingdom UI</p>
-        <h1>Button System</h1>
+        <p>Rocokingdom UI</p>
+        <h1>Button</h1>
       </header>
 
-      <div class="showcase__body">
-        <section class="showcase__section" aria-labelledby="variant-title">
-          <div class="section-heading">
-            <h2 id="variant-title">Variants</h2>
-            <button class="${buttonClassName({ variant: 'secondary', size: 'sm' })}" type="button">Stone Action</button>
-          </div>
-          <div class="button-grid" id="variant-buttons"></div>
-        </section>
+      <section class="showcase__section" aria-labelledby="colors-title">
+        <h2 id="colors-title">Colors</h2>
+        <div class="palette-grid" aria-label="Colors">
+          <article class="palette-swatch palette-swatch--paper">
+            <span></span>
+            <strong>paper</strong>
+          </article>
+          <article class="palette-swatch palette-swatch--stone">
+            <span></span>
+            <strong>stone</strong>
+          </article>
+          <article class="palette-swatch palette-swatch--ink">
+            <span></span>
+            <strong>ink</strong>
+          </article>
+          <article class="palette-swatch palette-swatch--gold">
+            <span></span>
+            <strong>gold</strong>
+          </article>
+        </div>
+      </section>
 
-        <section class="showcase__section" aria-labelledby="size-title">
-          <div class="section-heading">
-            <h2 id="size-title">Sizes</h2>
-          </div>
-          <div class="button-row" id="size-buttons"></div>
-        </section>
-
-        <section class="showcase__section showcase__section--stone" aria-labelledby="state-title">
-          <div class="section-heading">
-            <h2 id="state-title">States</h2>
-          </div>
-          <div class="button-row" id="state-buttons"></div>
-        </section>
-      </div>
+      <section class="showcase__section" aria-labelledby="button-title">
+        <h2 id="button-title">Button</h2>
+        <div class="button-row" id="button-row"></div>
+      </section>
     </section>
   </main>
 `
 
-const variantButtons = document.querySelector<HTMLDivElement>('#variant-buttons')
-const sizeButtons = document.querySelector<HTMLDivElement>('#size-buttons')
-const stateButtons = document.querySelector<HTMLDivElement>('#state-buttons')
+const buttonRow = document.querySelector<HTMLDivElement>('#button-row')
 
-if (!variantButtons || !sizeButtons || !stateButtons) {
-  throw new Error('Missing button showcase containers.')
+if (!buttonRow) {
+  throw new Error('Missing button container.')
 }
 
-for (const variant of buttonVariants) {
-  const card = document.createElement('article')
-  card.className = 'button-card'
-  card.innerHTML = `
-    <p class="button-card__kicker">${variant}</p>
-    <h3>${variantCopy[variant].title}</h3>
-  `
-  card.append(
-    createButton({
-      label: variantCopy[variant].label,
-      variant,
-      size: 'md',
-    }),
-  )
-  variantButtons.append(card)
-}
+for (const color of Object.keys(colors)) {
+  const button = createButton(color)
 
-for (const size of buttonSizes) {
-  sizeButtons.append(
-    createButton({
-      label: sizeCopy[size],
-      variant: 'primary',
-      size,
-    }),
-  )
+  button.style.backgroundColor = `var(--${color})`
+  button.style.color = color === 'stone' || color === 'ink' ? 'var(--paper)' : 'var(--ink)'
+  buttonRow.append(button)
 }
-
-stateButtons.append(
-  createButton({
-    label: 'Pressed',
-    variant: 'gold',
-    size: 'md',
-    pressed: true,
-  }),
-  createButton({
-    label: 'Disabled',
-    variant: 'primary',
-    size: 'md',
-    disabled: true,
-  }),
-  createButton({
-    label: 'Stone Disabled',
-    variant: 'secondary',
-    size: 'md',
-    disabled: true,
-  }),
-)
 
 function injectDesignSystemStyles() {
   const styleId = 'rk-design-system-styles'
@@ -140,7 +68,7 @@ function injectDesignSystemStyles() {
     document.querySelector<HTMLStyleElement>(`#${styleId}`) ?? document.createElement('style')
 
   style.id = styleId
-  style.textContent = `${createTokensCss()}\n\n${buttonCss}`
+  style.textContent = `${tokensCss}\n\n${buttonCss}`
 
   if (!style.parentElement) {
     document.head.append(style)

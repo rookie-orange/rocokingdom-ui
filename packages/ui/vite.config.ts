@@ -6,7 +6,7 @@ const tokensSource = fileURLToPath(new URL('../tokens/src/index.ts', import.meta
 export default defineConfig({
   resolve: {
     alias: {
-      tokens: tokensSource,
+      '@rocokingdom-ui/tokens': tokensSource,
     },
   },
   pack: {
