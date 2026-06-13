@@ -5,14 +5,12 @@ Rocokingdom UI components.
 ## Button
 
 ```ts
-import { tokensCss } from '@rocokingdom-ui/tokens'
-import { buttonCss, createButton } from 'rocokingdom-ui'
+import 'rocokingdom-ui/style.css'
+import { Button } from 'rocokingdom-ui'
 
-const style = document.createElement('style')
-style.textContent = `${tokensCss}\n\n${buttonCss}`
-document.head.append(style)
-
-const button = createButton('Start')
+export function App() {
+  return <Button>Start</Button>
+}
 ```
 
 The button uses one class: `rk-button`.
@@ -34,5 +32,5 @@ vp test
 - Build the library:
 
 ```bash
-vp pack
+vp run build
 ```

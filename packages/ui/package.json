@@ -19,13 +19,14 @@
   "exports": {
     ".": "./dist/index.mjs",
     "./button": "./dist/button/index.mjs",
-    "./button.css": "./dist/button.css",
+    "./style.css": "./dist/style.css",
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
+    "build": "vp pack",
     "dev": "vp pack --watch",
     "test": "vp test",
     "check": "vp check",
@@ -36,9 +37,17 @@
   },
   "devDependencies": {
     "@types/node": "^25.6.2",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "@typescript/native-preview": "7.0.0-dev.20260509.2",
     "bumpp": "^11.1.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "typescript": "^6.0.3",
     "vite-plus": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:"
   }
 }

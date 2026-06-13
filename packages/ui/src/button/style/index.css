@@ -1,0 +1,23 @@
+.rk-button {
+  appearance: none;
+  background-color: var(--gold, #ffc65f);
+  border: 0;
+  border-radius: 9999px;
+  color: var(--ink, #222222);
+  cursor: pointer;
+  padding: 10px 18px;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    filter 160ms ease,
+    transform 120ms ease;
+}
+
+.rk-button:hover {
+  filter: brightness(1.08);
+}
+
+.rk-button:active {
+  filter: brightness(0.9);
+  transform: scale(0.94);
+}

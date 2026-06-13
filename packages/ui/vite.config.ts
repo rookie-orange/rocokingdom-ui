@@ -1,25 +1,17 @@
-import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite-plus'
-
-const tokensSource = fileURLToPath(new URL('../tokens/src/index.ts', import.meta.url))
+import { tokenVarsPlugin } from './build/token-vars-plugin.ts'
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      '@rocokingdom-ui/tokens': tokensSource,
-    },
-  },
   pack: {
-    entry: ['src/index.ts', 'src/button/index.ts'],
+    entry: ['src/index.ts', 'src/button/index.tsx', 'src/style.ts'],
     dts: true,
-  },
-  run: {
-    tasks: {
-      build: {
-        command: 'vp pack && node scripts/build-css.mjs',
-        cache: false,
-      },
+    css: {
+      fileName: 'style.css',
     },
+    deps: {
+      neverBundle: ['react', 'react/jsx-runtime'],
+    },
+    plugins: [tokenVarsPlugin()],
   },
   lint: {
     options: {

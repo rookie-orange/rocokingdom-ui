@@ -2,9 +2,10 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["es2023", "dom"],
+    "jsx": "react-jsx",
     "moduleDetection": "force",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "paths": {
       "@rocokingdom-ui/tokens": ["../tokens/src/index.ts"]
     },
