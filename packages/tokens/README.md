@@ -1,23 +1,26 @@
 # tokens
 
-Four direct color values for `rocokingdom-ui`.
+Material color values for `rocokingdom-ui`.
 
 ## Usage
 
 ```ts
-import { gold, paper } from '@rocokingdom-ui/tokens'
+import { paper, primary } from '@rocokingdom-ui/tokens'
 
 const pageBackground = paper
-const buttonBackground = gold
+const buttonBackground = primary
 ```
 
 ## Structure
 
 - `paper`
 - `stone`
-- `ink`
-- `gold`
+- `primary`
+- `onPaper`
+- `onStone`
+- `onPrimary`
 - `colors`
+- `cssVariables`
 
 ## Development
 

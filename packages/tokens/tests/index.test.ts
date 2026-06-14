@@ -1,20 +1,32 @@
 import { expect, test } from 'vite-plus/test'
-import { colors, gold, ink, paper, seedToken, stone } from '../src/index.ts'
+import {
+  colors,
+  cssVariables,
+  onPaper,
+  onPrimary,
+  onStone,
+  paper,
+  primary,
+  stone,
+} from '../src/index.ts'
 
-test('exports four direct color values', () => {
+test('exports material and foreground color values', () => {
   expect(paper).toBe('#f4f0e8')
   expect(stone).toBe('#242628')
-  expect(ink).toBe('#222222')
-  expect(gold).toBe('#FFC65F')
-  expect(colors).toEqual({ paper, stone, ink, gold })
+  expect(primary).toBe('#ffc65f')
+  expect(onPaper).toBe('#222222')
+  expect(onStone).toBe('#f4f0e8')
+  expect(onPrimary).toBe('#242628')
+  expect(colors).toEqual({ onPaper, onPrimary, onStone, paper, primary, stone })
 })
 
-test('exports seed tokens for component themes', () => {
-  expect(seedToken).toMatchObject({
-    colorBgContainer: paper,
-    colorBorder: stone,
-    colorPrimary: gold,
-    colorText: ink,
-    colorTextLightSolid: paper,
+test('exports css variable names for theme authors', () => {
+  expect(cssVariables).toEqual({
+    onPaper: '--rk-on-paper',
+    onPrimary: '--rk-on-primary',
+    onStone: '--rk-on-stone',
+    paper: '--rk-paper',
+    primary: '--rk-primary',
+    stone: '--rk-stone',
   })
 })

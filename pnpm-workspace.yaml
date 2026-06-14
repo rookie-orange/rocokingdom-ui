@@ -16,8 +16,7 @@ catalog:
   '@types/react': ^19.2.17
   '@types/react-dom': ^19.2.3
   '@tsdown/css': ^0.22.2
-  '@vanilla-extract/css': ^1.20.1
-  '@vanilla-extract/vite-plugin': ^5.2.2
+  clsx: ^2.1.1
 overrides:
   vite: 'catalog:'
   vitest: 'catalog:'
@@ -28,7 +27,3 @@ peerDependencyRules:
   allowedVersions:
     vite: '*'
     vitest: '*'
-onlyBuiltDependencies:
-  - esbuild
-allowBuilds:
-  esbuild: set this to true or false

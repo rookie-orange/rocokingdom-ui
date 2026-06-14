@@ -1,0 +1,87 @@
+.button {
+  appearance: none;
+  align-items: center;
+  background: var(--rk-button-material);
+  border: 1px solid var(--rk-button-material);
+  border-radius: 9999px;
+  color: var(--rk-button-on-material);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.4;
+  min-height: 40px;
+  padding: 0 18px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    filter 160ms ease,
+    transform 120ms ease;
+  user-select: none;
+}
+
+.default {
+  --rk-button-material: var(--rk-primary);
+  --rk-button-on-material: var(--rk-on-primary);
+}
+
+.paper {
+  --rk-button-material: var(--rk-paper);
+  --rk-button-on-material: var(--rk-on-paper);
+}
+
+.stone {
+  --rk-button-material: var(--rk-stone);
+  --rk-button-on-material: var(--rk-on-stone);
+}
+
+.button:hover {
+  filter: brightness(1.08);
+}
+
+.button:active {
+  filter: brightness(0.9);
+  transform: scale(0.96) translateY(4px);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  opacity: 0.48;
+  transform: none;
+}
+
+.small {
+  min-height: 32px;
+  padding-inline: 14px;
+}
+
+.middle {
+  min-height: 40px;
+}
+
+.large {
+  min-height: 48px;
+  padding-inline: 22px;
+}
+
+.solid {
+  background: var(--rk-button-material);
+  border-color: var(--rk-button-material);
+  color: var(--rk-button-on-material);
+}
+
+.outline {
+  background: transparent;
+  border-color: var(--rk-button-material);
+  color: var(--rk-button-material);
+}
+
+.text {
+  background: transparent;
+  border-color: transparent;
+  color: var(--rk-button-material);
+  padding-inline: 8px;
+}

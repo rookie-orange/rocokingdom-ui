@@ -1,27 +1,28 @@
 export const paper = '#f4f0e8'
 export const stone = '#242628'
-export const ink = '#222222'
-export const gold = '#FFC65F'
+export const primary = '#ffc65f'
+
+export const onPaper = '#222222'
+export const onStone = '#f4f0e8'
+export const onPrimary = '#242628'
 
 export const colors = {
+  onPaper,
+  onPrimary,
+  onStone,
   paper,
+  primary,
   stone,
-  ink,
-  gold,
 } as const
 
-export const seedToken = {
-  colorBgContainer: paper,
-  colorBorder: stone,
-  colorPrimary: gold,
-  colorText: ink,
-  colorTextLightSolid: paper,
-  borderRadius: 9999,
-  controlHeight: 40,
-  fontSize: 14,
-  lineHeight: 1.4,
-  motionDurationFast: '120ms',
-  motionDurationMid: '160ms',
+export const cssVariables = {
+  onPaper: '--rk-on-paper',
+  onPrimary: '--rk-on-primary',
+  onStone: '--rk-on-stone',
+  paper: '--rk-paper',
+  primary: '--rk-primary',
+  stone: '--rk-stone',
 } as const
 
-export type SeedToken = typeof seedToken
+export type ColorName = keyof typeof colors
+export type CssVariableName = keyof typeof cssVariables

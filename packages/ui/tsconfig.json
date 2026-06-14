@@ -6,9 +6,6 @@
     "moduleDetection": "force",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "paths": {
-      "@rocokingdom-ui/tokens": ["../tokens/src/index.ts"]
-    },
     "types": ["node"],
     "strict": true,
     "noUnusedLocals": true,

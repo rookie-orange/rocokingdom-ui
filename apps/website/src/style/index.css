@@ -1,6 +1,9 @@
 :root {
-  color: #222222;
-  background: #f4f0e8;
+  --rk-primary: #6ee7b7;
+  --rk-on-primary: #10201a;
+
+  color: var(--rk-on-paper);
+  background: var(--rk-paper);
   font-family: system-ui, sans-serif;
 }
 
@@ -33,13 +36,13 @@ p {
 }
 
 .showcase__header {
-  background: #242628;
-  color: #f4f0e8;
+  background: var(--rk-stone);
+  color: var(--rk-on-stone);
   padding: 32px;
 }
 
 .showcase__header p {
-  color: #ffc65f;
+  color: var(--rk-primary);
   font-weight: 700;
 }
 
@@ -50,7 +53,7 @@ p {
 }
 
 .showcase__section {
-  border: 1px solid #242628;
+  border: 1px solid var(--rk-stone);
   margin-top: 24px;
   padding: 24px;
 }
