@@ -2,7 +2,10 @@ import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
   pack: {
-    entry: ['src/index.ts'],
+    entry: {
+      index: 'src/index.ts',
+      style: 'src/style.ts',
+    },
     dts: true,
     css: {
       fileName: 'style.css',

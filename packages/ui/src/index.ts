@@ -1,4 +1,4 @@
-import './style.css'
-
-export { Button, buttonPrefixCls } from './button/index.tsx'
-export type { ButtonProps } from './button/index.tsx'
+export { Button, buttonPrefixCls } from './button'
+export type { ButtonProps } from './button'
+export { RocoProvider } from './provider'
+export type { RocoProviderColors, RocoProviderProps } from './provider'

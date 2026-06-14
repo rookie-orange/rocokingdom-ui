@@ -6,16 +6,25 @@ Rocokingdom UI components.
 
 ```ts
 import 'rocokingdom-ui/style.css'
-import { Button } from 'rocokingdom-ui'
+import { Button, RocoProvider } from 'rocokingdom-ui'
 
 export function App() {
-  return <Button>Start</Button>
+  return (
+    <RocoProvider
+      colors={{
+        primary: '#6ee7b7',
+        onPrimary: '#10201a',
+      }}
+    >
+      <Button>Start</Button>
+    </RocoProvider>
+  )
 }
 ```
 
 The button uses the root class `rk-button`.
 
-Theme colors are plain CSS variables:
+Colors are plain CSS variables:
 
 ```css
 :root {
@@ -27,6 +36,10 @@ Theme colors are plain CSS variables:
   --rk-on-primary: #242628;
 }
 ```
+
+You can override them with CSS, or set them on the document root with `RocoProvider`.
+`RocoProvider` does not render a wrapper element.
+In React Server Components, render `RocoProvider` from a client component.
 
 ## Development
 
