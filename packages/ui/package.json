@@ -16,9 +16,14 @@
     "dist"
   ],
   "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
-    ".": "./dist/index.mjs",
-    "./button": "./dist/button/index.mjs",
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
     "./style.css": "./dist/style.css",
     "./package.json": "./package.json"
   },
@@ -26,20 +31,22 @@
     "access": "public"
   },
   "scripts": {
-    "build": "vp pack",
+    "build": "vp pack && vp build",
     "dev": "vp pack --watch",
     "test": "vp test",
     "check": "vp check",
     "prepublishOnly": "vp run build"
   },
   "dependencies": {
-    "@rocokingdom-ui/tokens": "workspace:*"
+    "@rocokingdom-ui/tokens": "workspace:*",
+    "@vanilla-extract/css": "catalog:"
   },
   "devDependencies": {
     "@types/node": "^25.6.2",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@typescript/native-preview": "7.0.0-dev.20260509.2",
+    "@vanilla-extract/vite-plugin": "catalog:",
     "bumpp": "^11.1.0",
     "react": "catalog:",
     "react-dom": "catalog:",

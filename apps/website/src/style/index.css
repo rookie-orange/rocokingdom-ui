@@ -1,6 +1,6 @@
 :root {
-  color: var(--ink);
-  background: var(--paper);
+  color: #222222;
+  background: #f4f0e8;
   font-family: system-ui, sans-serif;
 }
 
@@ -33,13 +33,13 @@ p {
 }
 
 .showcase__header {
-  background: var(--stone);
-  color: var(--paper);
+  background: #242628;
+  color: #f4f0e8;
   padding: 32px;
 }
 
 .showcase__header p {
-  color: var(--gold);
+  color: #ffc65f;
   font-weight: 700;
 }
 
@@ -50,7 +50,7 @@ p {
 }
 
 .showcase__section {
-  border: 1px solid var(--stone);
+  border: 1px solid #242628;
   margin-top: 24px;
   padding: 24px;
 }
@@ -60,48 +60,15 @@ p {
   margin-bottom: 16px;
 }
 
-.palette-grid {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.palette-swatch {
-  border: 1px solid var(--stone);
-  padding: 12px;
-}
-
-.palette-swatch span {
-  border: 1px solid var(--stone);
-  display: block;
-  min-height: 72px;
-}
-
-.palette-swatch strong {
-  display: block;
-  margin-top: 12px;
-}
-
-.palette-swatch--paper span {
-  background: var(--paper);
-}
-
-.palette-swatch--stone span {
-  background: var(--stone);
-}
-
-.palette-swatch--ink span {
-  background: var(--ink);
-}
-
-.palette-swatch--gold span {
-  background: var(--gold);
-}
-
 .button-row {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.showcase__danger-button {
+  background: #f87171;
+  color: #220808;
 }
 
 @media (max-width: 640px) {
@@ -115,9 +82,5 @@ p {
 
   .showcase__header h1 {
     font-size: 36px;
-  }
-
-  .palette-grid {
-    grid-template-columns: 1fr;
   }
 }

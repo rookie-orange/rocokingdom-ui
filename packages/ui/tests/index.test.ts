@@ -1,66 +1,116 @@
 import { expect, test } from 'vite-plus/test'
-import { readFile } from 'node:fs/promises'
-import { colors } from '@rocokingdom-ui/tokens'
-import { createTokenVarsCss } from '../build/token-vars-plugin.ts'
-import { Button, buttonPrefixCls } from '../src/index.ts'
+import { createElement } from 'react'
+import { renderToString } from 'react-dom/server'
+import packageJson from '../package.json' with { type: 'json' }
+import {
+  Button,
+  ConfigProvider,
+  buttonPrefixCls,
+  defaultSeedToken,
+  derivativeToken,
+  mergeComponentToken,
+  mergeToken,
+} from '../src/index.ts'
 
 test('exports a single button prefix class', () => {
   expect(buttonPrefixCls).toBe('rk-button')
 })
 
-test('exports a React button component with modern class name slots', () => {
-  expect(Button({ children: 'Start' })).toMatchObject({
-    props: {
+test('renders a React button component with modern class name slots', () => {
+  const html = renderToString(
+    createElement(Button, {
       children: 'Start',
-      className: 'rk-button',
-      type: 'button',
-    },
-    type: 'button',
-  })
-
-  expect(
-    Button({ children: 'Start', className: 'custom-button', rootClassName: 'app-button' }),
-  ).toMatchObject({
-    props: {
-      className: 'rk-button app-button custom-button',
-    },
-  })
-
-  expect(Button({ children: 'Start', prefixCls: 'app-prefix' })).toMatchObject({
-    props: {
-      className: 'app-prefix',
-    },
-  })
-})
-
-test('keeps button CSS next to the button component', async () => {
-  const buttonCss = await readFile(
-    new URL('../src/button/style/index.css', import.meta.url),
-    'utf8',
+      className: 'custom-button',
+      rootClassName: 'app-button',
+    }),
   )
 
-  expect(buttonCss).toContain('.rk-button')
-  expect(buttonCss).toContain('background-color: var(--gold, #ffc65f);')
-  expect(buttonCss).toContain('color: var(--ink, #222222);')
-  expect(buttonCss).toContain('border: 0;')
-  expect(buttonCss).toContain('border-radius: 9999px;')
-  expect(buttonCss).toContain('background-color 160ms ease')
-  expect(buttonCss).toContain('filter: brightness(1.08);')
-  expect(buttonCss).toContain('transform: scale(0.94);')
+  expect(html).toContain('<button')
+  expect(html).toContain('rk-button')
+  expect(html).toContain('app-button')
+  expect(html).toContain('custom-button')
+  expect(html).toContain('type="button"')
 })
 
-test('aggregates generated token variables and component styles in one style entry', async () => {
-  const styleEntry = await readFile(new URL('../src/style.ts', import.meta.url), 'utf8')
+test('renders button variants without runtime style registration', () => {
+  const html = renderToString(
+    createElement(Button, {
+      children: 'Outline',
+      size: 'large',
+      variant: 'outline',
+    }),
+  )
 
-  expect(styleEntry).toContain("import 'virtual:rocokingdom-ui-token-vars.css'")
-  expect(styleEntry).toContain("import './button/style/index.css'")
+  expect(html).toContain('rk-button')
+  expect(html).toContain('Outline')
 })
 
-test('generates CSS variables from the tokens package', () => {
-  const tokenVarsCss = createTokenVarsCss()
+test('derives component tokens from ui-owned seed tokens', () => {
+  const seed = mergeToken()
+  const token = derivativeToken(seed)
 
-  expect(tokenVarsCss).toContain(`--paper: ${colors.paper.toLowerCase()};`)
-  expect(tokenVarsCss).toContain(`--stone: ${colors.stone.toLowerCase()};`)
-  expect(tokenVarsCss).toContain(`--ink: ${colors.ink.toLowerCase()};`)
-  expect(tokenVarsCss).toContain(`--gold: ${colors.gold.toLowerCase()};`)
+  expect(token.buttonBg).toBe(seed.colorPrimary)
+  expect(token.buttonColor).toBe(seed.colorTextLightSolid)
+  expect(token.buttonHeight).toBe(seed.controlHeight)
+})
+
+test('lets ConfigProvider override tokens through css variables', () => {
+  const html = renderToString(
+    createElement(
+      ConfigProvider,
+      {
+        theme: {
+          components: {
+            Button: {
+              buttonPaddingInline: 24,
+            },
+          },
+          token: {
+            colorPrimary: '#00ff88',
+            colorText: '#001a10',
+            controlHeight: 48,
+          },
+        },
+      },
+      createElement(Button, { children: 'Themed' }),
+    ),
+  )
+
+  expect(html).toContain('rocokingdom-ui')
+  expect(html).toContain('--rk-color-primary:#00ff88')
+  expect(html).toContain('--rk-color-text:#001a10')
+  expect(html).toContain('--rk-button-height:48px')
+  expect(html).toContain('--rk-button-padding-inline:24px')
+})
+
+test('merges component-level token overrides after derivative tokens', () => {
+  const seed = mergeToken({ colorPrimary: '#123456' })
+  const token = mergeComponentToken(derivativeToken(seed), {
+    Button: {
+      buttonBg: '#654321',
+    },
+  })
+
+  expect(token.colorPrimary).toBe('#123456')
+  expect(token.buttonBg).toBe('#654321')
+})
+
+test('merges partial theme tokens with defaults', () => {
+  expect(mergeToken({ colorPrimary: '#123456' })).toMatchObject({
+    ...defaultSeedToken,
+    colorPrimary: '#123456',
+  })
+})
+
+test('only exposes the package root as the public component entry', () => {
+  expect(packageJson.exports).toEqual({
+    '.': {
+      types: './dist/index.d.mts',
+      import: './dist/index.mjs',
+    },
+    './style.css': './dist/style.css',
+    './package.json': './package.json',
+  })
+  expect(packageJson.exports).not.toHaveProperty('./button')
+  expect(packageJson.sideEffects).toEqual(['**/*.css'])
 })

@@ -6,14 +6,18 @@ Rocokingdom UI components.
 
 ```ts
 import 'rocokingdom-ui/style.css'
-import { Button } from 'rocokingdom-ui'
+import { Button, ConfigProvider } from 'rocokingdom-ui'
 
 export function App() {
-  return <Button>Start</Button>
+  return (
+    <ConfigProvider theme={{ token: { colorPrimary: '#6ee7b7' } }}>
+      <Button>Start</Button>
+    </ConfigProvider>
+  )
 }
 ```
 
-The button uses one class: `rk-button`.
+The button uses the root class `rk-button`.
 
 ## Development
 

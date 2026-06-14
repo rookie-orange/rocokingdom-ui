@@ -12,9 +12,8 @@
     "allowImportingTsExtensions": true,
     "paths": {
       "@rocokingdom-ui/tokens": ["../../packages/tokens/src/index.ts"],
-      "rocokingdom-ui/style.css": ["../../packages/ui/src/style.ts"],
-      "rocokingdom-ui": ["../../packages/ui/src/index.ts"],
-      "rocokingdom-ui/button": ["../../packages/ui/src/button/index.tsx"]
+      "rocokingdom-ui/style.css": ["../../packages/ui/src/style.css.ts"],
+      "rocokingdom-ui": ["../../packages/ui/src/index.ts"]
     },
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
