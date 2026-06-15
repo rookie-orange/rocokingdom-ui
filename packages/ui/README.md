@@ -6,7 +6,7 @@ Rocokingdom UI components.
 
 ```ts
 import 'rocokingdom-ui/style.css'
-import { Button, RocoProvider } from 'rocokingdom-ui'
+import { Button, ButtonNormal, RocoProvider } from 'rocokingdom-ui'
 
 export function App() {
   return (
@@ -17,12 +17,15 @@ export function App() {
       }}
     >
       <Button>Start</Button>
+      <ButtonNormal>Classic</ButtonNormal>
     </RocoProvider>
   )
 }
 ```
 
-The button uses the root class `rk-button`.
+The SVG-backed button uses the root class `rk-button`. The previous capsule
+button remains available as `ButtonNormal` with the root class
+`rk-button-normal`.
 
 Colors are plain CSS variables:
 

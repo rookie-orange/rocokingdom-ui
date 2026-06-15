@@ -1,20 +1,21 @@
 .button {
   appearance: none;
   align-items: center;
-  background: transparent;
-  border: 0;
+  background: var(--rk-button-material);
+  border: 1px solid var(--rk-button-material);
+  border-radius: 9999px;
   color: var(--rk-button-on-material);
   cursor: pointer;
   display: inline-flex;
   font: inherit;
-  font-weight: 800;
+  font-weight: 700;
   justify-content: center;
-  line-height: 1;
-  min-height: 44px;
-  min-width: 160px;
-  padding: 0 34px;
-  position: relative;
+  line-height: 1.4;
+  min-height: 40px;
+  padding: 0 18px;
   transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
     color 160ms ease,
     filter 160ms ease,
     transform 120ms ease;
@@ -53,65 +54,34 @@
 }
 
 .small {
-  min-height: 36px;
-  min-width: 124px;
-  padding-inline: 28px;
+  min-height: 32px;
+  padding-inline: 14px;
 }
 
 .middle {
-  min-height: 44px;
+  min-height: 40px;
 }
 
 .large {
-  min-height: 56px;
-  min-width: 192px;
-  padding-inline: 42px;
+  min-height: 48px;
+  padding-inline: 22px;
 }
 
 .solid {
+  background: var(--rk-button-material);
+  border-color: var(--rk-button-material);
   color: var(--rk-button-on-material);
 }
 
 .outline {
+  background: transparent;
+  border-color: var(--rk-button-material);
   color: var(--rk-button-material);
 }
 
 .text {
+  background: transparent;
+  border-color: transparent;
   color: var(--rk-button-material);
-  min-width: auto;
-  padding-inline: 12px;
-}
-
-.shape {
-  color: var(--rk-button-material);
-  height: 100%;
-  inset: 0;
-  overflow: visible;
-  pointer-events: none;
-  position: absolute;
-  width: 100%;
-  z-index: 0;
-}
-
-.shapeSurface {
-  fill: currentColor;
-  stroke: rgb(0 0 0 / 0.14);
-  stroke-width: 1.2;
-}
-
-.outline .shapeSurface {
-  fill: rgb(255 255 255 / 0);
-  stroke: currentColor;
-  stroke-width: 2.5;
-}
-
-.text .shape {
-  display: none;
-}
-
-.content {
-  display: inline-flex;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
+  padding-inline: 8px;
 }

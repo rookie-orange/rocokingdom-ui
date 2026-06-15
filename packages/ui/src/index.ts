@@ -1,4 +1,6 @@
 export { Button, buttonPrefixCls } from './button'
 export type { ButtonProps } from './button'
+export { ButtonNormal, buttonNormalPrefixCls } from './button-normal'
+export type { ButtonNormalProps } from './button-normal'
 export { RocoProvider } from './provider'
 export type { RocoProviderColors, RocoProviderProps } from './provider'

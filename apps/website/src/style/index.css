@@ -68,9 +68,9 @@ p {
   gap: 12px;
 }
 
-.showcase__danger-button {
-  background: #f87171;
-  color: #220808;
+.button-row .showcase__danger-button {
+  --rk-button-material: #f87171;
+  --rk-button-on-material: #220808;
 }
 
 @media (max-width: 640px) {
