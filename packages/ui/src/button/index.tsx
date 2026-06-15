@@ -4,7 +4,7 @@ import styles from './button.module.css'
 
 export const buttonPrefixCls = 'rk-button'
 const buttonShapePath =
-  'M82 3H282C323 3 353 21 353 49C353 76 323 96 296 97H82C38 97 10 78 10 50C10 22 38 3 82 3Z'
+  'M84 6H276C319 6 346 23 346 50C346 77 319 94 276 94H84C41 94 14 77 14 50C14 23 41 6 84 6Z'
 
 export type ButtonMaterial = 'default' | 'paper' | 'stone'
 export type ButtonSize = 'small' | 'middle' | 'large'
@@ -48,6 +48,7 @@ export function Button({
         preserveAspectRatio="none"
         viewBox="0 0 360 100"
       >
+        <path className={styles.shapeShadow} d={buttonShapePath} />
         <path className={styles.shapeSurface} d={buttonShapePath} />
       </svg>
       <span className={styles.content}>{children}</span>

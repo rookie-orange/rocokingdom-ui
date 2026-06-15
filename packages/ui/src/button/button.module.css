@@ -99,10 +99,19 @@
   stroke-width: 1.2;
 }
 
+.shapeShadow {
+  fill: rgb(0 0 0 / 0.36);
+  transform: translate(2px, 5px);
+}
+
 .outline .shapeSurface {
   fill: rgb(255 255 255 / 0);
   stroke: currentColor;
   stroke-width: 2.5;
+}
+
+.outline .shapeShadow {
+  display: none;
 }
 
 .text .shape {
