@@ -6,13 +6,16 @@ import {
   Button,
   ButtonNormal,
   RocoProvider,
+  RocoShape,
   buttonNormalPrefixCls,
   buttonPrefixCls,
+  rocoShapePrefixCls,
 } from '../src/index.ts'
 
 test('exports a single button prefix class', () => {
   expect(buttonPrefixCls).toBe('rk-button')
   expect(buttonNormalPrefixCls).toBe('rk-button-normal')
+  expect(rocoShapePrefixCls).toBe('rk-roco-shape')
 })
 
 test('renders an svg-backed React button component with css module classes', () => {
@@ -34,6 +37,30 @@ test('renders an svg-backed React button component with css module classes', () 
   expect(html).toContain('app-button')
   expect(html).toContain('custom-button')
   expect(html).toContain('type="button"')
+})
+
+test('renders the reusable roco shape component', () => {
+  const html = renderToString(
+    createElement(RocoShape, {
+      className: 'custom-shape',
+      rootClassName: 'app-shape',
+      variant: 'outline',
+    }),
+  )
+
+  expect(html).toContain('rk-roco-shape')
+  expect(html).toContain('app-shape')
+  expect(html).toContain('custom-shape')
+  expect(html).toContain('<svg')
+  expect(html).toContain('<path')
+  expect(html.match(/<path/g)).toHaveLength(3)
+})
+
+test('renders solid roco shape without a stroke layer', () => {
+  const html = renderToString(createElement(RocoShape))
+
+  expect(html).toContain('rk-roco-shape')
+  expect(html.match(/<path/g)).toHaveLength(2)
 })
 
 test('renders the previous capsule button as button normal', () => {

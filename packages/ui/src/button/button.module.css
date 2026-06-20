@@ -1,4 +1,6 @@
 .button {
+  --rk-button-height: 44px;
+
   appearance: none;
   align-items: center;
   background: transparent;
@@ -10,7 +12,7 @@
   font-weight: 800;
   justify-content: center;
   line-height: 1;
-  min-height: 44px;
+  min-height: var(--rk-button-height);
   min-width: 160px;
   padding: 0 34px;
   position: relative;
@@ -53,17 +55,19 @@
 }
 
 .small {
-  min-height: 36px;
+  --rk-button-height: 36px;
+
   min-width: 124px;
   padding-inline: 28px;
 }
 
 .middle {
-  min-height: 44px;
+  --rk-button-height: 44px;
 }
 
 .large {
-  min-height: 56px;
+  --rk-button-height: 56px;
+
   min-width: 192px;
   padding-inline: 42px;
 }
@@ -82,36 +86,11 @@
   padding-inline: 12px;
 }
 
-.shape {
+.button .shape {
   color: var(--rk-button-material);
-  height: 100%;
   inset: 0;
-  overflow: visible;
-  pointer-events: none;
   position: absolute;
-  width: 100%;
   z-index: 0;
-}
-
-.shapeSurface {
-  fill: currentColor;
-  stroke: rgb(0 0 0 / 0.14);
-  stroke-width: 1.2;
-}
-
-.shapeShadow {
-  fill: rgb(0 0 0 / 0.36);
-  transform: translate(2px, 5px);
-}
-
-.outline .shapeSurface {
-  fill: rgb(255 255 255 / 0);
-  stroke: currentColor;
-  stroke-width: 2.5;
-}
-
-.outline .shapeShadow {
-  display: none;
 }
 
 .text .shape {

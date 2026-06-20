@@ -1,0 +1,91 @@
+.shape {
+  color: currentColor;
+  display: block;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  position: relative;
+  width: 100%;
+}
+
+.layer {
+  display: flex;
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.fill {
+  color: currentColor;
+}
+
+.withShadow .fill {
+  filter: drop-shadow(
+    var(--rk-roco-shape-shadow-x, 0) var(--rk-roco-shape-shadow-y, 2px)
+      var(--rk-roco-shape-shadow-blur, 0) var(--rk-roco-shape-shadow, rgb(0 0 0 / 0.5))
+  );
+}
+
+.stroke {
+  color: currentColor;
+}
+
+.edge {
+  aspect-ratio: 158 / 246;
+  display: block;
+  flex: 0 0 auto;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: auto;
+}
+
+.center {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fill .center {
+  background: currentColor;
+  margin-inline: -1px;
+}
+
+.cap {
+  fill: currentColor;
+}
+
+.curve {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: var(--rk-roco-shape-curve-stroke-width, var(--rk-roco-shape-stroke-width, 1px));
+}
+
+.stroke .center {
+  overflow: visible;
+  position: relative;
+  z-index: 0;
+}
+
+.stroke .edge {
+  overflow: visible;
+  z-index: 1;
+}
+
+.centerLine {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: butt;
+  stroke-width: var(--rk-roco-shape-outline-stroke-width, 2px);
+}
+
+.outline .curve,
+.outline .centerLine {
+  stroke-width: var(
+    --rk-roco-shape-outline-curve-stroke-width,
+    var(--rk-roco-shape-outline-stroke-width, 2px)
+  );
+}
