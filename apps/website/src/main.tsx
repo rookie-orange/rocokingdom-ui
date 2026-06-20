@@ -26,9 +26,13 @@ function App() {
         <section aria-labelledby="button-title" className="showcase__section">
           <h2 id="button-title">Button</h2>
           <div className="button-row">
-            <Button material="paper">确定</Button>
-            <Button>Default</Button>
-            <Button material="paper">Paper</Button>
+            <Button size="small" material="paper" shadow>
+              确定
+            </Button>
+            <Button shadow>Default</Button>
+            <Button size="large" material="paper" shadow>
+              Paper
+            </Button>
             <Button material="stone">Stone</Button>
             <Button variant="outline">Outline</Button>
             <Button variant="text">Text</Button>

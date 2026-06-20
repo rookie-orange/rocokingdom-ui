@@ -21,6 +21,11 @@ const decorativeFontCss = readFileSync(
   new URL('../src/decorative-font.css', import.meta.url),
   'utf8',
 )
+const buttonCss = readFileSync(new URL('../src/button/button.module.css', import.meta.url), 'utf8')
+const buttonNormalCss = readFileSync(
+  new URL('../src/button-normal/button-normal.module.css', import.meta.url),
+  'utf8',
+)
 
 test('exports a single button prefix class', () => {
   expect(buttonPrefixCls).toBe('rk-button')
@@ -56,6 +61,17 @@ test('passes the optional shadow prop from button to its shape', () => {
 
   expect(defaultHtml).not.toContain('withShadow')
   expect(shadowHtml).toContain('withShadow')
+})
+
+test('pins button sizes with explicit heights in flex rows', () => {
+  expect(buttonCss).toContain('box-sizing: border-box;')
+  expect(buttonCss).toContain('height: var(--rk-button-height);')
+  expect(buttonCss).not.toContain('min-height: var(--rk-button-height);')
+  expect(buttonNormalCss).toContain('box-sizing: border-box;')
+  expect(buttonNormalCss).toContain('height: 32px;')
+  expect(buttonNormalCss).toContain('height: 40px;')
+  expect(buttonNormalCss).toContain('height: 48px;')
+  expect(buttonNormalCss).not.toContain('min-height:')
 })
 
 test('renders the reusable roco shape component', () => {

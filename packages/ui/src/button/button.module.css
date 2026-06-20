@@ -10,6 +10,7 @@
   align-items: center;
   background: transparent;
   border: 0;
+  box-sizing: border-box;
   color: var(--rk-button-on-material);
   cursor: pointer;
   display: inline-flex;
@@ -18,7 +19,7 @@
   font-size: var(--rk-button-font-size);
   font-weight: var(--rk-button-font-weight);
   justify-content: center;
-  min-height: var(--rk-button-height);
+  height: var(--rk-button-height);
   min-width: var(--rk-button-min-width);
   padding: 2px var(--rk-button-padding-inline);
   position: relative;
@@ -62,17 +63,17 @@
 
 .small {
   --rk-button-font-size: 12px;
-  --rk-button-height: 32px;
+  --rk-button-height: 24px;
   --rk-button-padding-inline: 14px;
 }
 
 .middle {
-  --rk-button-height: 40px;
+  --rk-button-height: 32px;
 }
 
 .large {
   --rk-button-font-size: 16px;
-  --rk-button-height: 48px;
+  --rk-button-height: 40px;
   --rk-button-padding-inline: 22px;
 }
 

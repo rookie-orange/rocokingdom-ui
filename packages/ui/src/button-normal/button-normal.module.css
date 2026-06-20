@@ -6,6 +6,7 @@
   background: var(--rk-button-material);
   border: 1px solid var(--rk-button-material);
   border-radius: 9999px;
+  box-sizing: border-box;
   color: var(--rk-button-on-material);
   cursor: pointer;
   display: inline-flex;
@@ -14,7 +15,7 @@
   font-weight: 700;
   justify-content: center;
   line-height: 1.4;
-  min-height: 40px;
+  height: 40px;
   padding: 0 18px;
   transition:
     background-color 160ms ease,
@@ -57,16 +58,16 @@
 }
 
 .small {
-  min-height: 32px;
+  height: 24px;
   padding-inline: 14px;
 }
 
 .middle {
-  min-height: 40px;
+  height: 32px;
 }
 
 .large {
-  min-height: 48px;
+  height: 40px;
   padding-inline: 22px;
 }
 
