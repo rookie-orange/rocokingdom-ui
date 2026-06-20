@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Roco Kingdom Sans';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/roco-kingdom-sans.ttf') format('truetype');
+}
+
+:root {
+  --rk-font-family-base: 'Roco Kingdom Sans', system-ui, sans-serif;
+}

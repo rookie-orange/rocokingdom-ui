@@ -5,4 +5,7 @@
   --rk-on-paper: #222222;
   --rk-on-stone: #f4f0e8;
   --rk-on-primary: #242628;
+  --rk-font-family-base: system-ui, sans-serif;
+  --rk-font-family-rune: var(--rk-font-family-base);
+  --rk-font-family-decorative: var(--rk-font-family-rune);
 }

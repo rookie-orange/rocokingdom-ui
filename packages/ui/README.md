@@ -6,7 +6,9 @@ Rocokingdom UI components.
 
 ```ts
 import 'rocokingdom-ui/style.css'
-import { Button, ButtonNormal, RocoProvider, RocoShape } from 'rocokingdom-ui'
+import 'rocokingdom-ui/font.css'
+import 'rocokingdom-ui/decorative-font.css'
+import { Button, ButtonNormal, RocoProvider, RocoShape, RuneText } from 'rocokingdom-ui'
 
 export function App() {
   return (
@@ -16,8 +18,9 @@ export function App() {
         onPrimary: '#10201a',
       }}
     >
-      <Button>Start</Button>
+      <Button shadow>Start</Button>
       <ButtonNormal>Classic</ButtonNormal>
+      <RuneText>START</RuneText>
       <RocoShape style={{ color: '#ffc65f', height: 44, width: 180 }} />
     </RocoProvider>
   )
@@ -31,6 +34,24 @@ button remains available as `ButtonNormal` with the root class
 `RocoShape` renders the reusable stretched shape behind the SVG-backed button.
 Set its `color`, `width`, and `height` from CSS or inline styles. The left and
 right arcs keep their aspect ratio while the center segment stretches.
+
+`Button` does not render a shadow by default. Pass `shadow` to enable the
+shape shadow.
+
+Button sizing can be customized with CSS variables:
+
+```css
+.my-button {
+  --rk-button-font-family: var(--rk-font-family-base, inherit);
+  --rk-button-height: 40px;
+  --rk-button-min-width: auto;
+  --rk-button-padding-inline: 18px;
+  --rk-button-text-padding-inline: 8px;
+  --rk-button-font-size: 14px;
+  --rk-button-font-weight: 700;
+  --rk-button-line-height: 1.4;
+}
+```
 
 Colors are plain CSS variables:
 
@@ -48,6 +69,66 @@ Colors are plain CSS variables:
 You can override them with CSS, or set them on the document root with `RocoProvider`.
 `RocoProvider` does not render a wrapper element.
 In React Server Components, render `RocoProvider` from a client component.
+
+Fonts are opt-in. The base style entry defines font variables with system
+fallbacks, but it does not load font files.
+
+Import the regular font at the app level when you want Rocokingdom UI
+components to use it:
+
+```ts
+import 'rocokingdom-ui/font.css'
+```
+
+Import the decorative font only when you use decorative text:
+
+```ts
+import 'rocokingdom-ui/decorative-font.css'
+import { RuneText } from 'rocokingdom-ui'
+
+export function LogoText() {
+  return <RuneText>ROCO</RuneText>
+}
+```
+
+`font.css` registers `Roco Kingdom Sans` and sets `--rk-font-family-base`.
+`decorative-font.css` registers `Roco Kingdom Rune` and sets
+`--rk-font-family-rune` plus `--rk-font-family-decorative`.
+
+You can also host the font files yourself and point the variables at your own
+font-family names:
+
+```css
+@font-face {
+  font-family: 'My Roco Sans';
+  src: url('/fonts/roco-kingdom-sans.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'My Roco Rune';
+  src: url('/fonts/roco-kingdom-rune.ttf') format('truetype');
+}
+
+:root {
+  --rk-font-family-base: 'My Roco Sans', system-ui, sans-serif;
+  --rk-font-family-rune: 'My Roco Rune', var(--rk-font-family-base);
+  --rk-font-family-decorative: var(--rk-font-family-rune);
+}
+```
+
+`Button` uses `--rk-font-family-base` by default. `RuneText` uses the
+decorative font and renders a `span`; change the element with `as`.
+
+Rune text typography can be customized with CSS variables:
+
+```css
+.logo-text {
+  --rk-rune-text-font-family: var(--rk-font-family-decorative);
+  --rk-rune-text-font-size: 24px;
+  --rk-rune-text-font-weight: 400;
+  --rk-rune-text-line-height: 1;
+}
+```
 
 ## Development
 

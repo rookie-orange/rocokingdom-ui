@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Roco Kingdom Rune';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/roco-kingdom-rune.ttf') format('truetype');
+}
+
+:root {
+  --rk-font-family-rune: 'Roco Kingdom Rune', var(--rk-font-family-base, system-ui, sans-serif);
+  --rk-font-family-decorative: var(--rk-font-family-rune);
+}

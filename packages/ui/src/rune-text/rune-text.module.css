@@ -1,0 +1,16 @@
+.text {
+  --rk-rune-text-color: currentColor;
+  --rk-rune-text-font-family: var(--rk-font-family-decorative, var(--rk-font-family-rune, inherit));
+  --rk-rune-text-font-size: inherit;
+  --rk-rune-text-font-weight: 400;
+  --rk-rune-text-letter-spacing: 0;
+  --rk-rune-text-line-height: inherit;
+
+  color: var(--rk-rune-text-color);
+  display: inline;
+  font-family: var(--rk-rune-text-font-family);
+  font-size: var(--rk-rune-text-font-size);
+  font-weight: var(--rk-rune-text-font-weight);
+  letter-spacing: var(--rk-rune-text-letter-spacing);
+  line-height: var(--rk-rune-text-line-height);
+}

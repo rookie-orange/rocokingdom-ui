@@ -3,7 +3,7 @@
   --rk-on-primary: #10201a;
 
   color: var(--rk-on-paper);
-  font-family: system-ui, sans-serif;
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
 }
 
 * {

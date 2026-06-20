@@ -1,4 +1,6 @@
 .button {
+  --rk-button-normal-font-family: var(--rk-font-family-base, inherit);
+
   appearance: none;
   align-items: center;
   background: var(--rk-button-material);
@@ -8,6 +10,7 @@
   cursor: pointer;
   display: inline-flex;
   font: inherit;
+  font-family: var(--rk-button-normal-font-family);
   font-weight: 700;
   justify-content: center;
   line-height: 1.4;

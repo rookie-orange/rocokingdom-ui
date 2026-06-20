@@ -1,5 +1,10 @@
 .button {
-  --rk-button-height: 44px;
+  --rk-button-font-family: var(--rk-font-family-base, inherit);
+  --rk-button-font-size: 14px;
+  --rk-button-font-weight: 400;
+  --rk-button-height: 40px;
+  --rk-button-min-width: auto;
+  --rk-button-padding-inline: 18px;
 
   appearance: none;
   align-items: center;
@@ -9,12 +14,13 @@
   cursor: pointer;
   display: inline-flex;
   font: inherit;
-  font-weight: 800;
+  font-family: var(--rk-button-font-family);
+  font-size: var(--rk-button-font-size);
+  font-weight: var(--rk-button-font-weight);
   justify-content: center;
-  line-height: 1;
   min-height: var(--rk-button-height);
-  min-width: 160px;
-  padding: 0 34px;
+  min-width: var(--rk-button-min-width);
+  padding: 2px var(--rk-button-padding-inline);
   position: relative;
   transition:
     color 160ms ease,
@@ -55,21 +61,19 @@
 }
 
 .small {
-  --rk-button-height: 36px;
-
-  min-width: 124px;
-  padding-inline: 28px;
+  --rk-button-font-size: 12px;
+  --rk-button-height: 32px;
+  --rk-button-padding-inline: 14px;
 }
 
 .middle {
-  --rk-button-height: 44px;
+  --rk-button-height: 40px;
 }
 
 .large {
-  --rk-button-height: 56px;
-
-  min-width: 192px;
-  padding-inline: 42px;
+  --rk-button-font-size: 16px;
+  --rk-button-height: 48px;
+  --rk-button-padding-inline: 22px;
 }
 
 .solid {
@@ -83,7 +87,7 @@
 .text {
   color: var(--rk-button-material);
   min-width: auto;
-  padding-inline: 12px;
+  padding-inline: var(--rk-button-text-padding-inline, 8px);
 }
 
 .button .shape {

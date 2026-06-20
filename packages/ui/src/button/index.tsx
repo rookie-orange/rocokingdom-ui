@@ -13,6 +13,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   material?: ButtonMaterial
   prefixCls?: string
   rootClassName?: string
+  shadow?: boolean
   size?: ButtonSize
   variant?: ButtonVariant
 }
@@ -23,6 +24,7 @@ export function Button({
   material = 'default',
   prefixCls = buttonPrefixCls,
   rootClassName,
+  shadow = false,
   size = 'middle',
   type = 'button',
   variant = 'solid',
@@ -40,7 +42,11 @@ export function Button({
 
   return (
     <button className={resolvedClassName} type={type} {...props}>
-      <RocoShape className={styles.shape} variant={variant === 'outline' ? 'outline' : 'solid'} />
+      <RocoShape
+        className={styles.shape}
+        shadow={shadow}
+        variant={variant === 'outline' ? 'outline' : 'solid'}
+      />
       <span className={styles.content}>{children}</span>
     </button>
   )

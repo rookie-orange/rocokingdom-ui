@@ -19,7 +19,7 @@ const rocoShapeEdgePath =
 const rocoShapeEdgeFillPath =
   'M0.0332642 0.499313C9.53326 0.999313 47.0333 0.999313 88.0333 16.4993C129.033 31.9993 163.533 63.4993 156.033 141.999C148.533 220.499 82.5333 230.499 66.5333 235.999C50.5333 241.499 15.0333 243.999 0.0332642 244.999Z'
 
-type RocoShapeEdgeProps = {
+interface RocoShapeEdgeProps {
   part: 'fill' | 'stroke'
   side: 'left' | 'right'
 }
@@ -43,7 +43,7 @@ function RocoShapeEdge({ part, side }: RocoShapeEdgeProps) {
   )
 }
 
-type RocoShapeLayerProps = {
+interface RocoShapeLayerProps {
   className: string
   part: 'fill' | 'stroke'
 }
@@ -84,7 +84,7 @@ export function RocoShape({
   className,
   prefixCls = rocoShapePrefixCls,
   rootClassName,
-  shadow = true,
+  shadow = false,
   variant = 'solid',
   ...props
 }: RocoShapeProps) {

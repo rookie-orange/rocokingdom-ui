@@ -11,6 +11,8 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "paths": {
+      "rocokingdom-ui/decorative-font.css": ["../../packages/ui/src/decorative-font.css"],
+      "rocokingdom-ui/font.css": ["../../packages/ui/src/font.css"],
       "rocokingdom-ui/style.css": ["../../packages/ui/src/style.css"],
       "rocokingdom-ui": ["../../packages/ui/src/index.ts"]
     },

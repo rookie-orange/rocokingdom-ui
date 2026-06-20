@@ -24,6 +24,10 @@
       "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
     },
+    "./decorative-font.css": "./dist/decorative-font.css",
+    "./font.css": "./dist/font.css",
+    "./fonts/roco-kingdom-rune.ttf": "./dist/fonts/roco-kingdom-rune.ttf",
+    "./fonts/roco-kingdom-sans.ttf": "./dist/fonts/roco-kingdom-sans.ttf",
     "./style.css": "./dist/style.css",
     "./package.json": "./package.json"
   },

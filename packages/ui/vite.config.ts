@@ -13,6 +13,11 @@ export default defineConfig({
       minify: true,
       splitting: false,
     },
+    copy: [
+      { from: 'src/font.css', to: 'dist' },
+      { from: 'src/decorative-font.css', to: 'dist' },
+      { from: 'src/fonts/*.ttf', to: 'dist/fonts' },
+    ],
     deps: {
       neverBundle: ['react', 'react/jsx-runtime'],
     },

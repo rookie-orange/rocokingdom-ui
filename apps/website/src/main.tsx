@@ -1,8 +1,10 @@
 import './style/index.css'
 import 'rocokingdom-ui/style.css'
+import 'rocokingdom-ui/font.css'
+import 'rocokingdom-ui/decorative-font.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Button, ButtonNormal } from 'rocokingdom-ui'
+import { Button, ButtonNormal, RuneText } from 'rocokingdom-ui'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 
@@ -16,7 +18,9 @@ function App() {
       <section className="showcase__shell">
         <header className="showcase__header">
           <p>Rocokingdom UI</p>
-          <h1>Button</h1>
+          <h1>
+            <RuneText>Button</RuneText>
+          </h1>
         </header>
 
         <section aria-labelledby="button-title" className="showcase__section">
