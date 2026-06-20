@@ -4,13 +4,19 @@ import 'rocokingdom-ui/font.css'
 import 'rocokingdom-ui/decorative-font.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Button, ButtonNormal, RuneText } from 'rocokingdom-ui'
+import { Button, ButtonNormal, RadioGroup, RuneText } from 'rocokingdom-ui'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 
 if (!app) {
   throw new Error('Missing #app root.')
 }
+
+const radioOptions = [
+  { label: '草系', value: 'grass' },
+  { label: '水系', value: 'water' },
+  { label: '火系', value: 'fire' },
+]
 
 function App() {
   return (
@@ -50,6 +56,11 @@ function App() {
             <ButtonNormal variant="outline">Outline</ButtonNormal>
             <ButtonNormal variant="text">Text</ButtonNormal>
           </div>
+        </section>
+
+        <section aria-labelledby="radio-group-title" className="showcase__section">
+          <h2 id="radio-group-title">Radio Group</h2>
+          <RadioGroup aria-label="Pet element" defaultValue="water" options={radioOptions} />
         </section>
       </section>
     </main>

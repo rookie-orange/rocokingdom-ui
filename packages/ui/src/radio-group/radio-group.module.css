@@ -1,0 +1,45 @@
+.group {
+  --rk-radio-group-active-scale: 1.1;
+  --rk-radio-group-gap: 10px;
+  --rk-radio-group-focus-color: var(--rk-primary);
+
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--rk-radio-group-gap);
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.option {
+  --rk-button-min-width: var(--rk-radio-group-option-min-width, auto);
+
+  flex: 0 0 auto;
+  transform-origin: center;
+  transition:
+    color 160ms ease,
+    filter 160ms ease,
+    transform 180ms ease;
+}
+
+.option:focus-visible {
+  outline: 2px solid var(--rk-radio-group-focus-color);
+  outline-offset: 2px;
+}
+
+.active {
+  transform: scale(var(--rk-radio-group-active-scale));
+  z-index: 1;
+}
+
+.inactive {
+  transform: scale(1);
+  z-index: 0;
+}

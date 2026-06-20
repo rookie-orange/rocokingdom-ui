@@ -8,7 +8,7 @@ Rocokingdom UI components.
 import 'rocokingdom-ui/style.css'
 import 'rocokingdom-ui/font.css'
 import 'rocokingdom-ui/decorative-font.css'
-import { Button, ButtonNormal, RocoProvider, RocoShape, RuneText } from 'rocokingdom-ui'
+import { Button, ButtonNormal, RadioGroup, RocoProvider, RocoShape, RuneText } from 'rocokingdom-ui'
 
 export function App() {
   return (
@@ -20,6 +20,13 @@ export function App() {
     >
       <Button shadow>Start</Button>
       <ButtonNormal>Classic</ButtonNormal>
+      <RadioGroup
+        defaultValue="paper"
+        options={[
+          { label: 'Stone', value: 'stone' },
+          { label: 'Paper', value: 'paper' },
+        ]}
+      />
       <RuneText>START</RuneText>
       <RocoShape style={{ color: '#ffc65f', height: 44, width: 180 }} />
     </RocoProvider>
@@ -30,6 +37,12 @@ export function App() {
 The SVG-backed button uses the root class `rk-button`. The previous capsule
 button remains available as `ButtonNormal` with the root class
 `rk-button-normal`.
+
+`RadioGroup` renders a set of `Button` options with `role="radiogroup"`.
+Inactive options use the stone material by default and the active option uses
+paper. Change them with `inactiveMaterial` and `activeMaterial`, or tune the
+button look further with `inactiveVariant`, `activeVariant`, `size`, and
+`buttonProps`.
 
 `RocoShape` renders the reusable stretched shape behind the SVG-backed button.
 Set its `color`, `width`, and `height` from CSS or inline styles. The left and

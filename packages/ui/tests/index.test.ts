@@ -6,11 +6,13 @@ import packageJson from '../package.json' with { type: 'json' }
 import {
   Button,
   ButtonNormal,
+  RadioGroup,
   RocoProvider,
   RocoShape,
   RuneText,
   buttonNormalPrefixCls,
   buttonPrefixCls,
+  radioGroupPrefixCls,
   runeTextPrefixCls,
   rocoShapePrefixCls,
 } from '../src/index.ts'
@@ -26,10 +28,15 @@ const buttonNormalCss = readFileSync(
   new URL('../src/button-normal/button-normal.module.css', import.meta.url),
   'utf8',
 )
+const radioGroupCss = readFileSync(
+  new URL('../src/radio-group/radio-group.module.css', import.meta.url),
+  'utf8',
+)
 
 test('exports a single button prefix class', () => {
   expect(buttonPrefixCls).toBe('rk-button')
   expect(buttonNormalPrefixCls).toBe('rk-button-normal')
+  expect(radioGroupPrefixCls).toBe('rk-radio-group')
   expect(rocoShapePrefixCls).toBe('rk-roco-shape')
   expect(runeTextPrefixCls).toBe('rk-rune-text')
 })
@@ -124,6 +131,68 @@ test('renders the previous capsule button as button normal', () => {
   expect(html).toContain('app-button')
   expect(html).toContain('custom-button')
   expect(html).toContain('type="button"')
+})
+
+test('renders a button-backed radio group with default active and inactive materials', () => {
+  const html = renderToString(
+    createElement(RadioGroup, {
+      activeButtonClassName: 'selected-button',
+      buttonClassName: 'option-button',
+      className: 'custom-radio-group',
+      inactiveButtonClassName: 'idle-button',
+      name: 'pet',
+      options: [
+        { label: 'Stone', value: 'stone' },
+        { label: 'Paper', value: 'paper' },
+      ],
+      rootClassName: 'app-radio-group',
+      value: 'paper',
+    }),
+  )
+
+  expect(html).toContain('role="radiogroup"')
+  expect(html).toContain('rk-radio-group')
+  expect(html).toContain('app-radio-group')
+  expect(html).toContain('custom-radio-group')
+  expect(html).toContain('role="radio"')
+  expect(html).toContain('aria-checked="true"')
+  expect(html).toContain('aria-checked="false"')
+  expect(html).toContain('selected-button')
+  expect(html).toContain('idle-button')
+  expect(html).toContain('option-button')
+  expect(html).toContain('paper')
+  expect(html).toContain('stone')
+  expect(html).toContain('type="hidden"')
+  expect(html).toContain('name="pet"')
+  expect(html).toContain('value="paper"')
+})
+
+test('lets radio group button styles be customized', () => {
+  const html = renderToString(
+    createElement(RadioGroup, {
+      activeMaterial: 'default',
+      activeVariant: 'outline',
+      inactiveMaterial: 'paper',
+      inactiveVariant: 'text',
+      options: [
+        { label: 'Fire', value: 'fire' },
+        { label: 'Water', value: 'water' },
+      ],
+      value: 'fire',
+    }),
+  )
+
+  expect(html).toContain('default')
+  expect(html).toContain('outline')
+  expect(html).toContain('paper')
+  expect(html).toContain('text')
+})
+
+test('animates the selected radio group button scale', () => {
+  expect(radioGroupCss).toContain('--rk-radio-group-active-scale: 1.08;')
+  expect(radioGroupCss).toContain('transition:')
+  expect(radioGroupCss).toContain('transform 180ms ease')
+  expect(radioGroupCss).toContain('transform: scale(var(--rk-radio-group-active-scale));')
 })
 
 test('renders a color variable provider without extra markup', () => {
