@@ -4,7 +4,7 @@ import styles from './button.module.css'
 
 export const buttonPrefixCls = 'rk-button'
 const buttonShapePath =
-  'M84 6H276C319 6 346 23 346 50C346 77 319 94 276 94H84C41 94 14 77 14 50C14 23 41 6 84 6Z'
+  'M70.518 6H289.482C292.901 6.18 306.398 6.18 321.154 11.759C335.911 17.337 348.328 28.675 345.629 56.928C342.929 85.182 319.175 88.781 313.416 90.761C307.658 92.74 294.88 93.64 289.482 94H70.518C67.099 93.82 53.602 93.82 38.846 88.241C24.089 82.663 11.672 71.325 14.371 43.072C17.071 14.818 40.825 11.219 46.584 9.239C52.342 7.26 65.12 6.36 70.518 6Z'
 
 export type ButtonMaterial = 'default' | 'paper' | 'stone'
 export type ButtonSize = 'small' | 'middle' | 'large'
