@@ -14,6 +14,7 @@ import {
   Modal,
   ModalClose,
   RadioGroup,
+  RadioItem,
   RocoProvider,
   RocoShape,
   RuneText,
@@ -29,13 +30,10 @@ export function App() {
     >
       <Button shadow>Start</Button>
       <ButtonNormal>Classic</ButtonNormal>
-      <RadioGroup
-        defaultValue="paper"
-        options={[
-          { label: 'Stone', value: 'stone' },
-          { label: 'Paper', value: 'paper' },
-        ]}
-      />
+      <RadioGroup defaultValue="paper">
+        <RadioItem value="stone">Stone</RadioItem>
+        <RadioItem value="paper">Paper</RadioItem>
+      </RadioGroup>
       <Modal
         headerRuneText="NOTICE"
         title="提示"
@@ -59,11 +57,12 @@ The SVG-backed button uses the root class `rk-button`. The previous capsule
 button remains available as `ButtonNormal` with the root class
 `rk-button-normal`.
 
-`RadioGroup` renders a set of `Button` options with `role="radiogroup"`.
-Inactive options use the stone material by default and the active option uses
-paper. Change them with `inactiveMaterial` and `activeMaterial`, or tune the
-button look further with `inactiveVariant`, `activeVariant`, `size`, and
-`buttonProps`.
+`RadioGroup` and `RadioItem` render a compound radio control with
+`role="radiogroup"` and `role="radio"`. Inactive items use the stone material by
+default and the active item uses paper. Change them at the group level with
+`inactiveMaterial` and `activeMaterial`, or customize each `RadioItem` directly
+with `className`, `style`, `material`, `activeMaterial`, `inactiveMaterial`,
+`variant`, `shadow`, and size props.
 
 `RocoShape` renders the reusable stretched shape behind the SVG-backed button.
 Set its `color`, `width`, and `height` from CSS or inline styles. The left and

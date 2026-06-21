@@ -4,11 +4,10 @@ export { ButtonNormal, buttonNormalPrefixCls } from './button-normal'
 export type { ButtonNormalProps } from './button-normal'
 export { Modal, ModalClose, modalPrefixCls } from './modal'
 export type { ModalCloseProps, ModalProps } from './modal'
-export { RadioGroup, radioGroupPrefixCls } from './radio-group'
+export { RadioGroup, RadioItem, radioGroupPrefixCls, radioItemPrefixCls } from './radio-group'
 export type {
-  RadioGroupButtonProps,
+  RadioItemProps,
   RadioGroupMaterial,
-  RadioGroupOption,
   RadioGroupOrientation,
   RadioGroupProps,
   RadioGroupSize,

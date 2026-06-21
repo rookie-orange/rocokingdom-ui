@@ -9,6 +9,7 @@ import {
   Modal,
   ModalClose,
   RadioGroup,
+  RadioItem,
   RocoProvider,
   RocoShape,
   RuneText,
@@ -16,6 +17,7 @@ import {
   buttonPrefixCls,
   modalPrefixCls,
   radioGroupPrefixCls,
+  radioItemPrefixCls,
   runeTextPrefixCls,
   rocoShapePrefixCls,
 } from '../src/index.ts'
@@ -35,6 +37,10 @@ const radioGroupCss = readFileSync(
   new URL('../src/radio-group/radio-group.module.css', import.meta.url),
   'utf8',
 )
+const radioGroupSource = readFileSync(
+  new URL('../src/radio-group/index.tsx', import.meta.url),
+  'utf8',
+)
 const modalSource = readFileSync(new URL('../src/modal/index.tsx', import.meta.url), 'utf8')
 const modalCss = readFileSync(new URL('../src/modal/modal.module.css', import.meta.url), 'utf8')
 
@@ -43,6 +49,7 @@ test('exports a single button prefix class', () => {
   expect(buttonNormalPrefixCls).toBe('rk-button-normal')
   expect(modalPrefixCls).toBe('rk-modal')
   expect(radioGroupPrefixCls).toBe('rk-radio-group')
+  expect(radioItemPrefixCls).toBe('rk-radio-item')
   expect(rocoShapePrefixCls).toBe('rk-roco-shape')
   expect(runeTextPrefixCls).toBe('rk-rune-text')
 })
@@ -139,33 +146,49 @@ test('renders the previous capsule button as button normal', () => {
   expect(html).toContain('type="button"')
 })
 
-test('renders a button-backed radio group with default active and inactive materials', () => {
+test('renders a compound radio group with default active and inactive materials', () => {
   const html = renderToString(
-    createElement(RadioGroup, {
-      activeButtonClassName: 'selected-button',
-      buttonClassName: 'option-button',
-      className: 'custom-radio-group',
-      inactiveButtonClassName: 'idle-button',
-      name: 'pet',
-      options: [
-        { label: 'Stone', value: 'stone' },
-        { label: 'Paper', value: 'paper' },
-      ],
-      rootClassName: 'app-radio-group',
-      value: 'paper',
-    }),
+    createElement(
+      RadioGroup,
+      {
+        className: 'custom-radio-group',
+        name: 'pet',
+        rootClassName: 'app-radio-group',
+        value: 'paper',
+      },
+      createElement(
+        RadioItem,
+        {
+          className: 'option-item',
+          inactiveClassName: 'idle-item',
+          value: 'stone',
+        },
+        'Stone',
+      ),
+      createElement(
+        RadioItem,
+        {
+          activeClassName: 'selected-item',
+          className: 'option-item',
+          value: 'paper',
+        },
+        'Paper',
+      ),
+    ),
   )
 
   expect(html).toContain('role="radiogroup"')
   expect(html).toContain('rk-radio-group')
+  expect(html).toContain('rk-radio-item')
   expect(html).toContain('app-radio-group')
   expect(html).toContain('custom-radio-group')
   expect(html).toContain('role="radio"')
   expect(html).toContain('aria-checked="true"')
   expect(html).toContain('aria-checked="false"')
-  expect(html).toContain('selected-button')
-  expect(html).toContain('idle-button')
-  expect(html).toContain('option-button')
+  expect(html).toContain('selected-item')
+  expect(html).toContain('idle-item')
+  expect(html).toContain('option-item')
+  expect(html).not.toContain('rk-button')
   expect(html).toContain('paper')
   expect(html).toContain('stone')
   expect(html).toContain('type="hidden"')
@@ -173,32 +196,52 @@ test('renders a button-backed radio group with default active and inactive mater
   expect(html).toContain('value="paper"')
 })
 
-test('lets radio group button styles be customized', () => {
+test('lets radio group item styles be customized', () => {
   const html = renderToString(
-    createElement(RadioGroup, {
-      activeMaterial: 'default',
-      activeVariant: 'outline',
-      inactiveMaterial: 'paper',
-      inactiveVariant: 'text',
-      options: [
-        { label: 'Fire', value: 'fire' },
-        { label: 'Water', value: 'water' },
-      ],
-      value: 'fire',
-    }),
+    createElement(
+      RadioGroup,
+      {
+        activeMaterial: 'default',
+        activeVariant: 'outline',
+        inactiveMaterial: 'paper',
+        inactiveVariant: 'text',
+        value: 'fire',
+      },
+      createElement(RadioItem, { style: { minWidth: 96 }, value: 'fire' }, 'Fire'),
+      createElement(
+        RadioItem,
+        {
+          className: 'water-item',
+          inactiveMaterial: 'stone',
+          value: 'water',
+        },
+        'Water',
+      ),
+    ),
   )
 
   expect(html).toContain('default')
   expect(html).toContain('outline')
-  expect(html).toContain('paper')
+  expect(html).toContain('stone')
   expect(html).toContain('text')
+  expect(html).toContain('water-item')
+  expect(html).toContain('style="min-width:96px"')
 })
 
-test('animates the selected radio group button scale', () => {
+test('implements radio items without the shared button component', () => {
+  expect(radioGroupSource).not.toContain("from '../button'")
+  expect(radioGroupSource).toContain("import { RocoShape } from '../roco-shape'")
+  expect(radioGroupSource).toContain('export function RadioItem')
+})
+
+test('animates the selected radio item with the modal spring scale', () => {
   expect(radioGroupCss).toContain('--rk-radio-group-active-scale: 1.08;')
-  expect(radioGroupCss).toContain('transition:')
-  expect(radioGroupCss).toContain('transform 180ms ease')
-  expect(radioGroupCss).toContain('transform: scale(var(--rk-radio-group-active-scale));')
+  expect(radioGroupCss).toContain('@keyframes rk-radio-item-spring-scale')
+  expect(radioGroupCss).toContain('transform: scale(0.9);')
+  expect(radioGroupCss).toContain('transform: scaleY(0.9) scaleX(1.2);')
+  expect(radioGroupCss).toContain('transform: scaleY(1.1) scaleX(0.9);')
+  expect(radioGroupCss).toContain('transform: scale(var(--rk-radio-item-active-scale));')
+  expect(radioGroupCss).toContain('@media (prefers-reduced-motion: reduce)')
 })
 
 test('renders a radix-backed modal trigger on the server', () => {
@@ -236,7 +279,8 @@ test('styles modal as an overlayed game dialog with optional regions', () => {
   expect(modalCss).toContain(".content[data-state='closed'] .panel")
   expect(modalCss).toContain('@keyframes rk-modal-panel-in')
   expect(modalCss).toContain('transform: scale(0.9);')
-  expect(modalCss).toContain('scale(1.04)')
+  expect(modalCss).toContain('transform: scaleY(0.9) scaleX(1.2);')
+  expect(modalCss).toContain('transform: scaleY(1.1) scaleX(0.9);')
   expect(modalCss).not.toContain('scale(1.014)')
   expect(modalCss).not.toContain('scale(1.003)')
   expect(modalCss).not.toContain('calc(-50% +')

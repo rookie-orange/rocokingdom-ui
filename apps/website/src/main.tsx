@@ -4,19 +4,21 @@ import 'rocokingdom-ui/font.css'
 import 'rocokingdom-ui/decorative-font.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Button, ButtonNormal, Modal, ModalClose, RadioGroup, RuneText } from 'rocokingdom-ui'
+import {
+  Button,
+  ButtonNormal,
+  Modal,
+  ModalClose,
+  RadioGroup,
+  RadioItem,
+  RuneText,
+} from 'rocokingdom-ui'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 
 if (!app) {
   throw new Error('Missing #app root.')
 }
-
-const radioOptions = [
-  { label: '草系', value: 'grass' },
-  { label: '水系', value: 'water' },
-  { label: '火系', value: 'fire' },
-]
 
 const guidanceCopy = [
   '1. 本游戏是一款玩法简单、单局耗时中等的精灵收集类开放世界游戏，适用于年满12周岁及以上的用户，建议未成年人在家长监护下使用游戏产品。',
@@ -66,7 +68,11 @@ function App() {
 
         <section aria-labelledby="radio-group-title" className="showcase__section">
           <h2 id="radio-group-title">Radio Group</h2>
-          <RadioGroup aria-label="Pet element" defaultValue="water" options={radioOptions} />
+          <RadioGroup aria-label="Pet element" defaultValue="water" activeMaterial="default">
+            <RadioItem value="grass">草系</RadioItem>
+            <RadioItem value="water">水系</RadioItem>
+            <RadioItem value="fire">火系</RadioItem>
+          </RadioGroup>
         </section>
 
         <section aria-labelledby="modal-title" className="showcase__section">
