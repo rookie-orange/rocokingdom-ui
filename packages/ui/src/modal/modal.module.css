@@ -48,7 +48,7 @@
 }
 
 .content[data-state='open'] .panel {
-  animation: rk-modal-panel-in var(--rk-modal-content-enter-duration, 300ms) ease-out;
+  animation: rk-modal-panel-in var(--rk-modal-content-enter-duration, 260ms) linear;
 }
 
 .content[data-state='closed'] .panel {
@@ -264,12 +264,12 @@
     transform: scale(0.9);
   }
 
-  40% {
+  20% {
     opacity: 1;
     transform: scaleY(0.9) scaleX(1.2);
   }
 
-  80% {
+  60% {
     opacity: 1;
     transform: scaleY(1.1) scaleX(0.9);
   }
