@@ -42,6 +42,7 @@
     "prepublishOnly": "vp run build"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "catalog:",
     "clsx": "catalog:"
   },
   "devDependencies": {

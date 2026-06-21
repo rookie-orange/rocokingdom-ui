@@ -8,7 +8,16 @@ Rocokingdom UI components.
 import 'rocokingdom-ui/style.css'
 import 'rocokingdom-ui/font.css'
 import 'rocokingdom-ui/decorative-font.css'
-import { Button, ButtonNormal, RadioGroup, RocoProvider, RocoShape, RuneText } from 'rocokingdom-ui'
+import {
+  Button,
+  ButtonNormal,
+  Modal,
+  ModalClose,
+  RadioGroup,
+  RocoProvider,
+  RocoShape,
+  RuneText,
+} from 'rocokingdom-ui'
 
 export function App() {
   return (
@@ -27,6 +36,18 @@ export function App() {
           { label: 'Paper', value: 'paper' },
         ]}
       />
+      <Modal
+        headerRuneText="NOTICE"
+        title="提示"
+        trigger={<Button shadow>Open modal</Button>}
+        footer={
+          <ModalClose asChild>
+            <Button material="paper">确定</Button>
+          </ModalClose>
+        }
+      >
+        更新完成！请手动重启游戏...
+      </Modal>
       <RuneText>START</RuneText>
       <RocoShape style={{ color: '#ffc65f', height: 44, width: 180 }} />
     </RocoProvider>
@@ -50,6 +71,13 @@ right arcs keep their aspect ratio while the center segment stretches.
 
 `Button` does not render a shadow by default. Pass `shadow` to enable the
 shape shadow.
+
+`Modal` is backed by Radix Dialog and keeps the Rocokingdom game-panel styling
+in this package. Pass `header={false}` to hide the visible header, `closable={false}`
+to hide the close button, and omit `footer` when no action area is needed.
+Pass `headerRuneText` with short English copy to render the faint decorative
+RuneText layer behind the modal title. Footer actions can close the dialog with
+`ModalClose asChild`.
 
 Button sizing can be customized with CSS variables:
 
@@ -140,6 +168,15 @@ Rune text typography can be customized with CSS variables:
   --rk-rune-text-font-size: 24px;
   --rk-rune-text-font-weight: 400;
   --rk-rune-text-line-height: 1;
+}
+```
+
+Modal header rune text can be tuned with CSS variables:
+
+```css
+.my-modal {
+  --rk-modal-header-rune-text-color: color-mix(in srgb, var(--rk-on-stone) 18%, var(--rk-stone));
+  --rk-modal-header-rune-text-font-size: 28px;
 }
 ```
 

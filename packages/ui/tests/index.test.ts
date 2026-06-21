@@ -6,12 +6,15 @@ import packageJson from '../package.json' with { type: 'json' }
 import {
   Button,
   ButtonNormal,
+  Modal,
+  ModalClose,
   RadioGroup,
   RocoProvider,
   RocoShape,
   RuneText,
   buttonNormalPrefixCls,
   buttonPrefixCls,
+  modalPrefixCls,
   radioGroupPrefixCls,
   runeTextPrefixCls,
   rocoShapePrefixCls,
@@ -32,10 +35,13 @@ const radioGroupCss = readFileSync(
   new URL('../src/radio-group/radio-group.module.css', import.meta.url),
   'utf8',
 )
+const modalSource = readFileSync(new URL('../src/modal/index.tsx', import.meta.url), 'utf8')
+const modalCss = readFileSync(new URL('../src/modal/modal.module.css', import.meta.url), 'utf8')
 
 test('exports a single button prefix class', () => {
   expect(buttonPrefixCls).toBe('rk-button')
   expect(buttonNormalPrefixCls).toBe('rk-button-normal')
+  expect(modalPrefixCls).toBe('rk-modal')
   expect(radioGroupPrefixCls).toBe('rk-radio-group')
   expect(rocoShapePrefixCls).toBe('rk-roco-shape')
   expect(runeTextPrefixCls).toBe('rk-rune-text')
@@ -195,6 +201,47 @@ test('animates the selected radio group button scale', () => {
   expect(radioGroupCss).toContain('transform: scale(var(--rk-radio-group-active-scale));')
 })
 
+test('renders a radix-backed modal trigger on the server', () => {
+  const html = renderToString(
+    createElement(Modal, {
+      footer: createElement(
+        ModalClose,
+        { asChild: true },
+        createElement(Button, { children: '确定', material: 'paper' }),
+      ),
+      title: '提示',
+      trigger: createElement(Button, { children: 'Open modal' }),
+    }),
+  )
+
+  expect(html).toContain('Open modal')
+})
+
+test('supports optional modal header rune text behind the title', () => {
+  expect(modalSource).toContain("import { RuneText } from '../rune-text'")
+  expect(modalSource).toContain('headerRuneText?: ReactNode')
+  expect(modalSource).toContain('headerRuneTextClassName?: string')
+  expect(modalSource).toContain('const hasHeaderRuneText = hasContent(headerRuneText)')
+  expect(modalSource).toContain('hasCustomHeader || hasTitle || hasHeaderRuneText || closable')
+  expect(modalSource).toContain('<RuneText')
+  expect(modalSource).toContain('aria-hidden="true"')
+  expect(modalSource).toContain('`${prefixCls}-header-rune-text`')
+})
+
+test('styles modal as an overlayed game dialog with optional regions', () => {
+  expect(modalCss).toContain('.overlay')
+  expect(modalCss).toContain('backdrop-filter: blur(2px) saturate(0.85);')
+  expect(modalCss).toContain('--rk-modal-width: 680px;')
+  expect(modalCss).toContain(".overlay[data-state='open']")
+  expect(modalCss).toContain(".content[data-state='closed']")
+  expect(modalCss).toContain('@keyframes rk-modal-content-in')
+  expect(modalCss).toContain('@media (prefers-reduced-motion: reduce)')
+  expect(modalCss).toContain('.header')
+  expect(modalCss).toContain('.headerRuneText')
+  expect(modalCss).toContain('.footer')
+  expect(modalCss).toContain('.visuallyHidden')
+})
+
 test('renders a color variable provider without extra markup', () => {
   const html = renderToString(
     createElement(
@@ -257,4 +304,10 @@ test('only exposes root components and manual style/font entries', () => {
   })
   expect(packageJson.exports).not.toHaveProperty('./button')
   expect(packageJson.sideEffects).toEqual(['**/*.css'])
+})
+
+test('uses radix dialog as the modal interaction primitive', () => {
+  expect(packageJson.dependencies).toMatchObject({
+    '@radix-ui/react-dialog': 'catalog:',
+  })
 })

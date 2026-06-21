@@ -2,6 +2,8 @@ export { Button, buttonPrefixCls } from './button'
 export type { ButtonProps } from './button'
 export { ButtonNormal, buttonNormalPrefixCls } from './button-normal'
 export type { ButtonNormalProps } from './button-normal'
+export { Modal, ModalClose, modalPrefixCls } from './modal'
+export type { ModalCloseProps, ModalProps } from './modal'
 export { RadioGroup, radioGroupPrefixCls } from './radio-group'
 export type {
   RadioGroupButtonProps,
