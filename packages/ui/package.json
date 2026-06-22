@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "catalog:",
+    "@radix-ui/react-select": "catalog:",
     "clsx": "catalog:"
   },
   "devDependencies": {

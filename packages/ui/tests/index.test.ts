@@ -6,6 +6,14 @@ import packageJson from '../package.json' with { type: 'json' }
 import {
   Button,
   ButtonNormal,
+  Drawer,
+  DrawerClose,
+  Panel,
+  Select,
+  SideNav,
+  SideNavHeader,
+  SideNavItem,
+  SideNavList,
   Modal,
   ModalClose,
   RadioGroup,
@@ -15,6 +23,14 @@ import {
   RuneText,
   buttonNormalPrefixCls,
   buttonPrefixCls,
+  drawerPrefixCls,
+  panelPrefixCls,
+  selectItemPrefixCls,
+  selectPrefixCls,
+  sideNavHeaderPrefixCls,
+  sideNavItemPrefixCls,
+  sideNavListPrefixCls,
+  sideNavPrefixCls,
   modalPrefixCls,
   radioGroupPrefixCls,
   radioItemPrefixCls,
@@ -43,10 +59,29 @@ const radioGroupSource = readFileSync(
 )
 const modalSource = readFileSync(new URL('../src/modal/index.tsx', import.meta.url), 'utf8')
 const modalCss = readFileSync(new URL('../src/modal/modal.module.css', import.meta.url), 'utf8')
+const panelCss = readFileSync(new URL('../src/panel/panel.module.css', import.meta.url), 'utf8')
+const drawerCss = readFileSync(new URL('../src/drawer/drawer.module.css', import.meta.url), 'utf8')
+const drawerSource = readFileSync(new URL('../src/drawer/index.tsx', import.meta.url), 'utf8')
+const radixDialogSource = readFileSync(new URL('../src/radix-dialog.ts', import.meta.url), 'utf8')
+const sideNavCss = readFileSync(
+  new URL('../src/side-nav/side-nav.module.css', import.meta.url),
+  'utf8',
+)
+const selectCss = readFileSync(new URL('../src/select/select.module.css', import.meta.url), 'utf8')
+const selectSource = readFileSync(new URL('../src/select/index.tsx', import.meta.url), 'utf8')
 
 test('exports a single button prefix class', () => {
   expect(buttonPrefixCls).toBe('rk-button')
   expect(buttonNormalPrefixCls).toBe('rk-button-normal')
+  expect(drawerPrefixCls).toBe('rk-drawer')
+  expect(DrawerClose).toBeTruthy()
+  expect(panelPrefixCls).toBe('rk-panel')
+  expect(selectPrefixCls).toBe('rk-select')
+  expect(selectItemPrefixCls).toBe('rk-select-item')
+  expect(sideNavPrefixCls).toBe('rk-side-nav')
+  expect(sideNavHeaderPrefixCls).toBe('rk-side-nav-header')
+  expect(sideNavListPrefixCls).toBe('rk-side-nav-list')
+  expect(sideNavItemPrefixCls).toBe('rk-side-nav-item')
   expect(modalPrefixCls).toBe('rk-modal')
   expect(radioGroupPrefixCls).toBe('rk-radio-group')
   expect(radioItemPrefixCls).toBe('rk-radio-item')
@@ -144,6 +179,104 @@ test('renders the previous capsule button as button normal', () => {
   expect(html).toContain('app-button')
   expect(html).toContain('custom-button')
   expect(html).toContain('type="button"')
+})
+
+test('renders a reusable curved panel', () => {
+  const html = renderToString(
+    createElement(
+      Panel,
+      {
+        className: 'custom-panel',
+        contentClassName: 'panel-content',
+        curve: 'left',
+        curveInset: 112,
+        material: 'stone',
+        rootClassName: 'app-panel',
+      },
+      'Announcements',
+    ),
+  )
+
+  expect(html).toContain('rk-panel')
+  expect(html).toContain('app-panel')
+  expect(html).toContain('custom-panel')
+  expect(html).toContain('panel-content')
+  expect(html).toContain('stone')
+  expect(html).toContain('left')
+  expect(html).toContain('<svg')
+  expect(html).toContain('<path')
+  expect(html).toContain('--rk-panel-curve-inset:112px')
+  expect(html).toContain('Announcements')
+})
+
+test('styles panel curves with svg shape padding insets', () => {
+  expect(panelCss).toContain('.curved')
+  expect(panelCss).toContain('.shapePath')
+  expect(panelCss).toContain('fill: currentColor;')
+  expect(panelCss).toContain('.left .content')
+  expect(panelCss).toContain('.right .content')
+  expect(panelCss).toContain('var(--rk-panel-curve-inset)')
+})
+
+test('renders side nav rail and stack primitives', () => {
+  const html = renderToString(
+    createElement(
+      SideNav,
+      {
+        'aria-label': 'Activity',
+        className: 'custom-nav',
+        rootClassName: 'app-nav',
+        variant: 'rail',
+      },
+      createElement(SideNavHeader, {
+        eyebrow: '活动',
+        icon: '*',
+        title: '推荐',
+      }),
+      createElement(
+        SideNavList,
+        {
+          className: 'custom-list',
+          rootClassName: 'app-list',
+        },
+        createElement(
+          SideNavItem,
+          {
+            active: true,
+            badge: true,
+            icon: '!',
+            rootClassName: 'app-item',
+          },
+          '绩点大赛',
+        ),
+      ),
+    ),
+  )
+
+  expect(html).toContain('rk-side-nav')
+  expect(html).toContain('rk-side-nav-header')
+  expect(html).toContain('rk-side-nav-list')
+  expect(html).toContain('rk-side-nav-item')
+  expect(html).toContain('data-variant="rail"')
+  expect(html).toContain('aria-current="page"')
+  expect(html).toContain('data-state="active"')
+  expect(html).toContain('app-nav')
+  expect(html).toContain('custom-nav')
+  expect(html).toContain('app-list')
+  expect(html).toContain('custom-list')
+  expect(html).toContain('app-item')
+  expect(html).toContain('活动')
+  expect(html).toContain('推荐')
+  expect(html).toContain('绩点大赛')
+})
+
+test('styles side nav as icon rail and text stack variants', () => {
+  expect(sideNavCss).toContain('.rail')
+  expect(sideNavCss).toContain('.stack')
+  expect(sideNavCss).toContain('.rail .item')
+  expect(sideNavCss).toContain('.rail .itemLabel')
+  expect(sideNavCss).toContain('.active')
+  expect(sideNavCss).toContain('--rk-side-nav-item-height')
 })
 
 test('renders a compound radio group with default active and inactive materials', () => {
@@ -260,6 +393,71 @@ test('renders a radix-backed modal trigger on the server', () => {
   expect(html).toContain('Open modal')
 })
 
+test('renders a radix-backed drawer trigger on the server', () => {
+  const html = renderToString(
+    createElement(Drawer, {
+      children: 'Drawer body',
+      title: '公告',
+      trigger: createElement(Button, { children: 'Open drawer' }),
+    }),
+  )
+
+  expect(html).toContain('Open drawer')
+})
+
+test('uses radix dialog for drawer behavior and defaults right drawer to a left curve', () => {
+  expect(radixDialogSource).toContain("import * as Dialog from '@radix-ui/react-dialog'")
+  expect(drawerSource).toContain("return 'left'")
+  expect(drawerSource).toContain('<Panel')
+  expect(drawerSource).toContain('RadixDialogClose')
+  expect(drawerSource).toContain('innerClassName')
+  expect(drawerSource).toContain('styles.panelContent')
+  expect(drawerCss).toContain('.panelContent')
+  expect(drawerCss).toContain('.inner')
+  expect(drawerCss).toContain('var(--rk-drawer-curve-inset, 96px)')
+  expect(drawerCss).toContain(".content[data-state='open'].right")
+  expect(drawerCss).toContain('transform: translateX(100%);')
+  expect(drawerCss).toContain('@media (prefers-reduced-motion: reduce)')
+})
+
+test('renders a radix-backed select trigger on the server', () => {
+  const html = renderToString(
+    createElement(Select, {
+      ariaLabel: '待机设置',
+      defaultValue: '10',
+      options: [
+        { label: '10分钟', value: '10' },
+        { label: '20分钟', value: '20' },
+      ],
+      placeholder: '选择时间',
+    }),
+  )
+
+  expect(html).toContain('rk-select')
+  expect(html).toContain('role="combobox"')
+  expect(html).toContain('aria-label="待机设置"')
+  expect(html).toContain('10分钟')
+})
+
+test('uses radix select and animates select content with scale', () => {
+  expect(selectSource).toContain("import * as RadixSelect from '@radix-ui/react-select'")
+  expect(selectSource).toContain("position={props.position ?? 'popper'}")
+  expect(selectSource).toContain("align={props.align ?? 'start'}")
+  expect(selectSource).toContain('sideOffset={props.sideOffset ?? 8}')
+  expect(selectSource).toContain('contentShellClassName')
+  expect(selectSource).not.toContain('scrollHeight')
+  expect(selectSource).not.toContain('ResizeObserver')
+  expect(selectCss).toContain('.contentShell')
+  expect(selectCss).toContain(".content[data-state='open'] .contentShell")
+  expect(selectCss).toContain('@keyframes rk-select-content-in')
+  expect(selectCss).toContain('transform: scaleY(0);')
+  expect(selectCss).toContain('transform: scaleY(1);')
+  expect(selectCss).not.toContain('--rk-select-content-height')
+  expect(selectCss).not.toContain('opacity: 0;')
+  expect(selectCss).not.toContain('opacity: 1;')
+  expect(selectCss).toContain('@media (prefers-reduced-motion: reduce)')
+})
+
 test('supports optional modal header rune text behind the title', () => {
   expect(modalSource).toContain("import { RuneText } from '../rune-text'")
   expect(modalSource).toContain('headerRuneText?: ReactNode')
@@ -271,7 +469,7 @@ test('supports optional modal header rune text behind the title', () => {
   expect(modalSource).toContain('`${prefixCls}-header-rune-text`')
 })
 
-test('styles modal as an overlayed game dialog with optional regions', () => {
+test('styles modal as an overlayed dialog with optional regions', () => {
   expect(modalCss).toContain('.overlay')
   expect(modalCss).not.toContain('backdrop-filter:')
   expect(modalCss).toContain('--rk-modal-width: 680px;')

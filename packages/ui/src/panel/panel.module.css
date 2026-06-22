@@ -1,0 +1,63 @@
+.panel {
+  --rk-panel-background: var(--rk-paper);
+  --rk-panel-color: var(--rk-on-paper);
+  --rk-panel-curve-inset: 88px;
+  --rk-panel-padding: 28px;
+  --rk-panel-radius: 7px;
+
+  background: var(--rk-panel-background);
+  border-radius: var(--rk-panel-radius);
+  color: var(--rk-panel-color);
+  display: block;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.paper {
+  --rk-panel-background: var(--rk-paper);
+  --rk-panel-color: var(--rk-on-paper);
+}
+
+.stone {
+  --rk-panel-background: var(--rk-stone);
+  --rk-panel-color: var(--rk-on-stone);
+}
+
+.curved {
+  background: transparent;
+  border-radius: 0;
+}
+
+.shape {
+  color: var(--rk-panel-background);
+  display: block;
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+.shapePath {
+  fill: currentColor;
+}
+
+.content {
+  min-height: inherit;
+  min-width: 0;
+  padding: var(--rk-panel-padding);
+  position: relative;
+  z-index: 1;
+}
+
+.left .content,
+.both .content {
+  padding-inline-start: max(var(--rk-panel-padding), var(--rk-panel-curve-inset));
+}
+
+.right .content,
+.both .content {
+  padding-inline-end: max(var(--rk-panel-padding), var(--rk-panel-curve-inset));
+}

@@ -1,0 +1,220 @@
+.nav {
+  --rk-side-nav-gap: 14px;
+  --rk-side-nav-width: 320px;
+
+  color: var(--rk-on-stone);
+  display: flex;
+  flex-direction: column;
+  gap: var(--rk-side-nav-gap);
+  min-width: 0;
+  width: var(--rk-side-nav-width);
+}
+
+.rail {
+  --rk-side-nav-gap: 18px;
+  --rk-side-nav-width: 96px;
+
+  align-items: center;
+}
+
+.stack {
+  align-items: stretch;
+}
+
+.header {
+  align-items: center;
+  color: var(--rk-stone);
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  min-height: var(--rk-side-nav-header-height, 72px);
+  min-width: min(100%, var(--rk-side-nav-header-min-width, 232px));
+  padding: 8px 24px 8px 16px;
+  position: relative;
+}
+
+.headerShape {
+  color: currentColor;
+  inset: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.headerIcon {
+  color: var(--rk-primary);
+  display: inline-grid;
+  flex: 0 0 auto;
+  font-size: var(--rk-side-nav-header-icon-size, 48px);
+  line-height: 1;
+  min-width: 0;
+  place-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.headerText {
+  color: var(--rk-on-stone);
+  display: grid;
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
+  font-weight: 900;
+  line-height: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.headerEyebrow {
+  color: var(--rk-primary);
+  font-size: var(--rk-side-nav-header-eyebrow-size, 16px);
+  overflow-wrap: anywhere;
+}
+
+.headerTitle {
+  font-size: var(--rk-side-nav-header-title-size, 24px);
+  overflow-wrap: anywhere;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rk-side-nav-list-gap, 14px);
+  min-width: 0;
+}
+
+.item {
+  --rk-side-nav-item-background: rgb(0 0 0 / 0.72);
+  --rk-side-nav-item-color: var(--rk-on-stone);
+  --rk-side-nav-item-height: 64px;
+  --rk-side-nav-item-icon-size: 30px;
+  --rk-side-nav-item-radius: 8px;
+
+  appearance: none;
+  align-items: center;
+  background: var(--rk-side-nav-item-background);
+  border: 0;
+  border-radius: var(--rk-side-nav-item-radius);
+  color: var(--rk-side-nav-item-color);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
+  font-size: var(--rk-side-nav-item-font-size, 20px);
+  font-weight: 900;
+  gap: 12px;
+  height: var(--rk-side-nav-item-height);
+  justify-content: flex-start;
+  line-height: 1;
+  min-width: 0;
+  padding: 0 22px;
+  position: relative;
+  text-align: start;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    filter 160ms ease,
+    transform 120ms ease;
+  user-select: none;
+  width: 100%;
+}
+
+.item:hover {
+  filter: brightness(1.08);
+}
+
+.item:active {
+  transform: translateY(2px);
+}
+
+.item:focus-visible {
+  outline: 3px solid var(--rk-primary);
+  outline-offset: 2px;
+}
+
+.item:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  opacity: 0.5;
+  transform: none;
+}
+
+.active {
+  --rk-side-nav-item-background: var(--rk-paper);
+  --rk-side-nav-item-color: var(--rk-on-paper);
+}
+
+.itemIcon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  font-size: var(--rk-side-nav-item-icon-size);
+  height: var(--rk-side-nav-item-icon-size);
+  line-height: 1;
+  place-items: center;
+  width: var(--rk-side-nav-item-icon-size);
+}
+
+.itemLabel {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemBadge {
+  align-items: center;
+  background: var(--rk-side-nav-badge-background, #d94b4b);
+  border-radius: var(--rk-side-nav-badge-radius, 3px);
+  color: var(--rk-side-nav-badge-color, white);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 900;
+  justify-content: center;
+  line-height: 1;
+  min-height: 18px;
+  min-width: 18px;
+  padding: 2px 5px;
+}
+
+.itemBadgeDot {
+  height: 14px;
+  min-height: 14px;
+  min-width: 14px;
+  padding: 0;
+  position: absolute;
+  right: -4px;
+  top: -4px;
+  width: 14px;
+}
+
+.rail .list {
+  align-items: center;
+}
+
+.rail .item {
+  --rk-side-nav-item-height: 64px;
+  --rk-side-nav-item-icon-size: 38px;
+  --rk-side-nav-item-radius: 999px;
+
+  aspect-ratio: 1;
+  border-radius: var(--rk-side-nav-item-radius);
+  justify-content: center;
+  padding: 0;
+  width: var(--rk-side-nav-item-height);
+}
+
+.rail .itemLabel {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.rail .header {
+  margin-inline-start: -8px;
+}

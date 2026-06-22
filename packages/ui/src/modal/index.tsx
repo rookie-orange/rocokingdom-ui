@@ -1,16 +1,25 @@
-import * as Dialog from '@radix-ui/react-dialog'
 import type { ComponentPropsWithoutRef, CSSProperties, ReactElement, ReactNode } from 'react'
 import { clsx } from 'clsx'
+import {
+  RadixDialogClose,
+  RadixDialogContent,
+  RadixDialogDescription,
+  RadixDialogOverlay,
+  RadixDialogPortal,
+  RadixDialogRoot,
+  RadixDialogTitle,
+  RadixDialogTrigger,
+} from '../radix-dialog'
 import { RuneText } from '../rune-text'
 import styles from './modal.module.css'
 
 export const modalPrefixCls = 'rk-modal'
-export const ModalClose = Dialog.Close
+export const ModalClose = RadixDialogClose
 
-type DialogRootProps = ComponentPropsWithoutRef<typeof Dialog.Root>
-export type ModalCloseProps = ComponentPropsWithoutRef<typeof Dialog.Close>
+type DialogRootProps = ComponentPropsWithoutRef<typeof RadixDialogRoot>
+export type ModalCloseProps = ComponentPropsWithoutRef<typeof RadixDialogClose>
 type DialogContentProps = Omit<
-  ComponentPropsWithoutRef<typeof Dialog.Content>,
+  ComponentPropsWithoutRef<typeof RadixDialogContent>,
   'children' | 'className'
 >
 
@@ -100,13 +109,13 @@ export function Modal({
   }
 
   const closeButton = closable ? (
-    <Dialog.Close
+    <RadixDialogClose
       aria-label={closeLabel}
       className={clsx(`${prefixCls}-close`, styles.close, closeClassName)}
       type="button"
     >
       <span aria-hidden="true" className={styles.closeIcon} />
-    </Dialog.Close>
+    </RadixDialogClose>
   ) : null
 
   const descriptionProps =
@@ -115,13 +124,13 @@ export function Modal({
       : ({ 'aria-describedby': undefined } as const)
 
   return (
-    <Dialog.Root {...rootProps}>
-      {trigger ? <Dialog.Trigger asChild>{trigger}</Dialog.Trigger> : null}
-      <Dialog.Portal>
-        <Dialog.Overlay
+    <RadixDialogRoot {...rootProps}>
+      {trigger ? <RadixDialogTrigger asChild>{trigger}</RadixDialogTrigger> : null}
+      <RadixDialogPortal>
+        <RadixDialogOverlay
           className={clsx(`${prefixCls}-overlay`, styles.overlay, overlayClassName)}
         />
-        <Dialog.Content
+        <RadixDialogContent
           {...contentProps}
           {...descriptionProps}
           className={clsx(prefixCls, styles.content, rootClassName, contentClassName)}
@@ -144,27 +153,27 @@ export function Modal({
                 ) : null}
                 {hasCustomHeader ? (
                   <>
-                    <Dialog.Title className={styles.visuallyHidden}>
+                    <RadixDialogTitle className={styles.visuallyHidden}>
                       {titleForAssistiveTech}
-                    </Dialog.Title>
+                    </RadixDialogTitle>
                     <div className={clsx(`${prefixCls}-header-content`, styles.headerContent)}>
                       {header}
                     </div>
                   </>
                 ) : (
-                  <Dialog.Title
+                  <RadixDialogTitle
                     className={clsx(`${prefixCls}-title`, styles.title, titleClassName)}
                   >
                     {titleForAssistiveTech}
-                  </Dialog.Title>
+                  </RadixDialogTitle>
                 )}
                 {closeButton}
               </header>
             ) : (
               <>
-                <Dialog.Title className={styles.visuallyHidden}>
+                <RadixDialogTitle className={styles.visuallyHidden}>
                   {titleForAssistiveTech}
-                </Dialog.Title>
+                </RadixDialogTitle>
                 {closeButton ? (
                   <div className={clsx(`${prefixCls}-floating-close`, styles.floatingClose)}>
                     {closeButton}
@@ -175,7 +184,7 @@ export function Modal({
 
             <div className={clsx(`${prefixCls}-body`, styles.body, bodyClassName)}>
               {hasDescription ? (
-                <Dialog.Description
+                <RadixDialogDescription
                   className={clsx(
                     `${prefixCls}-description`,
                     styles.description,
@@ -183,7 +192,7 @@ export function Modal({
                   )}
                 >
                   {description}
-                </Dialog.Description>
+                </RadixDialogDescription>
               ) : null}
               {children}
             </div>
@@ -194,8 +203,8 @@ export function Modal({
               {footer}
             </footer>
           ) : null}
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+        </RadixDialogContent>
+      </RadixDialogPortal>
+    </RadixDialogRoot>
   )
 }

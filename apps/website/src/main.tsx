@@ -7,6 +7,13 @@ import { createRoot } from 'react-dom/client'
 import {
   Button,
   ButtonNormal,
+  Drawer,
+  Panel,
+  Select,
+  SideNav,
+  SideNavHeader,
+  SideNavItem,
+  SideNavList,
   Modal,
   ModalClose,
   RadioGroup,
@@ -25,6 +32,8 @@ const guidanceCopy = [
   '2. 本游戏为三维卡通风格，画面丰富，色彩鲜明，配乐轻快活泼。游戏基于洛克王国IP的架空奇幻世界观展开剧情，玩家扮演一名魔法世界的学院新生，在旅途中结识精灵伙伴，逐步了解世界。',
   '3. 根据国家相关要求，游戏中有用户实名认证系统，未通过实名认证的用户不可进入游戏。',
 ]
+
+const noticeItems = ['已知问题&调整优化', '本周更新公告', '违规行为处罚公告', '公平游戏公约']
 
 function App() {
   return (
@@ -73,6 +82,51 @@ function App() {
             <RadioItem value="water">水系</RadioItem>
             <RadioItem value="fire">火系</RadioItem>
           </RadioGroup>
+        </section>
+
+        <section aria-labelledby="ui-title" className="showcase__section">
+          <h2 id="ui-title">UI Primitives</h2>
+          <div className="showcase__ui">
+            <SideNav aria-label="公告菜单" rootClassName="showcase__side-nav">
+              <SideNavHeader eyebrow="公告" icon="!" title="通知" />
+              <SideNavList>
+                {noticeItems.map((item, index) => (
+                  <SideNavItem active={index === 0} badge={index === 1} icon="*" key={item}>
+                    {item}
+                  </SideNavItem>
+                ))}
+              </SideNavList>
+            </SideNav>
+
+            <Panel curve="left" material="stone" rootClassName="showcase__panel">
+              <h3>已知问题&调整优化</h3>
+              <p>这里是可复用的弧形面板，适合公告、任务详情和设置页。</p>
+              <div className="button-row">
+                <Drawer
+                  description="右侧抽屉默认使用左侧弧形边。"
+                  size={720}
+                  title="公告抽屉"
+                  trigger={<Button material="paper">打开 Drawer</Button>}
+                >
+                  <div className="showcase__drawer-copy">
+                    <h3>已知问题&调整优化</h3>
+                    <p>Drawer 复用 Radix Dialog 的交互能力，视觉外壳来自 Panel。</p>
+                  </div>
+                </Drawer>
+
+                <Select
+                  ariaLabel="待机设置"
+                  defaultValue="10"
+                  options={[
+                    { label: '10分钟', value: '10' },
+                    { label: '20分钟', value: '20' },
+                    { label: '30分钟', value: '30' },
+                    { label: '永不', value: 'never' },
+                  ]}
+                />
+              </div>
+            </Panel>
+          </div>
         </section>
 
         <section aria-labelledby="modal-title" className="showcase__section">
