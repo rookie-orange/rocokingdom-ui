@@ -48,11 +48,11 @@
 }
 
 .content[data-state='open'] .panel {
-  animation: rk-modal-panel-in var(--rk-modal-content-enter-duration, 260ms) linear;
+  animation: rk-modal-panel-in var(--rk-modal-content-enter-duration, 300ms) linear;
 }
 
 .content[data-state='closed'] .panel {
-  animation: rk-modal-panel-out var(--rk-modal-content-exit-duration, 160ms) ease-in;
+  animation: rk-modal-panel-out var(--rk-modal-content-exit-duration, 300ms) ease-in;
 }
 
 .header {
@@ -261,17 +261,17 @@
 @keyframes rk-modal-panel-in {
   0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0);
   }
 
-  20% {
+  50% {
     opacity: 1;
-    transform: scaleY(0.9) scaleX(1.2);
+    transform: scale(1);
   }
 
-  60% {
+  75% {
     opacity: 1;
-    transform: scaleY(1.1) scaleX(0.9);
+    transform: scaleY(0.9) scaleX(1.1);
   }
 
   100% {
@@ -288,7 +288,7 @@
 
   to {
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.9);
   }
 }
 
