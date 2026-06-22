@@ -45,6 +45,7 @@ export interface DrawerProps extends Omit<DialogRootProps, 'children'> {
   descriptionClassName?: string
   innerClassName?: string
   material?: PanelMaterial
+  overlay?: boolean
   overlayClassName?: string
   panelClassName?: string
   panelProps?: DrawerPanelProps
@@ -94,6 +95,7 @@ export function Drawer({
   descriptionClassName,
   innerClassName,
   material = 'stone',
+  overlay = false,
   overlayClassName,
   panelClassName,
   panelProps,
@@ -125,7 +127,12 @@ export function Drawer({
       {trigger ? <RadixDialogTrigger asChild>{trigger}</RadixDialogTrigger> : null}
       <RadixDialogPortal>
         <RadixDialogOverlay
-          className={clsx(`${prefixCls}-overlay`, styles.overlay, overlayClassName)}
+          className={clsx(
+            `${prefixCls}-overlay`,
+            styles.overlay,
+            overlay && styles.overlayVisible,
+            overlayClassName,
+          )}
         />
         <RadixDialogContent
           {...contentProps}

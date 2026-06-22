@@ -1,15 +1,19 @@
 .overlay {
-  background: rgb(0 0 0 / 0.48);
+  background: transparent;
   inset: 0;
   position: fixed;
   z-index: var(--rk-drawer-z-index, 1000);
 }
 
-.overlay[data-state='open'] {
+.overlayVisible {
+  background: rgb(0 0 0 / 0.48);
+}
+
+.overlayVisible[data-state='open'] {
   animation: rk-drawer-overlay-in var(--rk-drawer-overlay-enter-duration, 160ms) ease-out;
 }
 
-.overlay[data-state='closed'] {
+.overlayVisible[data-state='closed'] {
   animation: rk-drawer-overlay-out var(--rk-drawer-overlay-exit-duration, 120ms) ease-in;
 }
 
@@ -59,7 +63,8 @@
 }
 
 .content[data-state='closed'].right {
-  animation: rk-drawer-right-out var(--rk-drawer-exit-duration, 180ms) ease-in;
+  animation: rk-drawer-right-out
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
 }
 
 .content[data-state='open'].left {
@@ -67,7 +72,8 @@
 }
 
 .content[data-state='closed'].left {
-  animation: rk-drawer-left-out var(--rk-drawer-exit-duration, 180ms) ease-in;
+  animation: rk-drawer-left-out
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
 }
 
 .content[data-state='open'].top {
@@ -75,7 +81,8 @@
 }
 
 .content[data-state='closed'].top {
-  animation: rk-drawer-top-out var(--rk-drawer-exit-duration, 180ms) ease-in;
+  animation: rk-drawer-top-out
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
 }
 
 .content[data-state='open'].bottom {
@@ -83,7 +90,17 @@
 }
 
 .content[data-state='closed'].bottom {
-  animation: rk-drawer-bottom-out var(--rk-drawer-exit-duration, 180ms) ease-in;
+  animation: rk-drawer-bottom-out
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
+}
+
+.content[data-state='open'] .panel {
+  animation: rk-drawer-panel-in var(--rk-drawer-content-enter-duration, 300ms) linear;
+}
+
+.content[data-state='closed'] .panel {
+  animation: rk-drawer-panel-out
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
 }
 
 .panel {
@@ -92,7 +109,24 @@
 
   flex: 1 1 auto;
   min-height: 0;
+  transform-origin: center;
   width: 100%;
+}
+
+.right .panel {
+  transform-origin: right center;
+}
+
+.left .panel {
+  transform-origin: left center;
+}
+
+.top .panel {
+  transform-origin: center top;
+}
+
+.bottom .panel {
+  transform-origin: center bottom;
 }
 
 .panelContent {
@@ -235,49 +269,83 @@
 
 @keyframes rk-drawer-right-in {
   from {
-    transform: translateX(100%);
+    transform: translateX(50%);
   }
 }
 
 @keyframes rk-drawer-right-out {
   to {
-    transform: translateX(100%);
+    opacity: 0;
   }
 }
 
 @keyframes rk-drawer-left-in {
   from {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 
 @keyframes rk-drawer-left-out {
   to {
-    transform: translateX(-100%);
+    opacity: 0;
   }
 }
 
 @keyframes rk-drawer-top-in {
   from {
-    transform: translateY(-100%);
+    transform: translateY(-50%);
   }
 }
 
 @keyframes rk-drawer-top-out {
   to {
-    transform: translateY(-100%);
+    opacity: 0;
   }
 }
 
 @keyframes rk-drawer-bottom-in {
   from {
-    transform: translateY(100%);
+    transform: translateY(50%);
   }
 }
 
 @keyframes rk-drawer-bottom-out {
   to {
-    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes rk-drawer-panel-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+  }
+
+  75% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rk-drawer-panel-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1);
   }
 }
 
@@ -285,7 +353,9 @@
   .overlay[data-state='open'],
   .overlay[data-state='closed'],
   .content[data-state='open'],
-  .content[data-state='closed'] {
+  .content[data-state='closed'],
+  .content[data-state='open'] .panel,
+  .content[data-state='closed'] .panel {
     animation-duration: 1ms;
     animation-timing-function: linear;
   }
