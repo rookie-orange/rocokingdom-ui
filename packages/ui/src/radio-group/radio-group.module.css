@@ -68,6 +68,36 @@
   --rk-radio-item-on-material: var(--rk-on-stone);
 }
 
+.primary {
+  --rk-radio-item-material: var(--rk-primary);
+  --rk-radio-item-on-material: var(--rk-on-primary);
+}
+
+.primarySoft {
+  --rk-radio-item-material: var(--rk-primary-soft);
+  --rk-radio-item-on-material: var(--rk-on-primary-soft);
+}
+
+.primaryMuted {
+  --rk-radio-item-material: var(--rk-primary-muted);
+  --rk-radio-item-on-material: var(--rk-on-primary-muted);
+}
+
+.primaryStrong {
+  --rk-radio-item-material: var(--rk-primary-strong);
+  --rk-radio-item-on-material: var(--rk-on-primary-strong);
+}
+
+.success {
+  --rk-radio-item-material: var(--rk-success);
+  --rk-radio-item-on-material: var(--rk-on-success);
+}
+
+.danger {
+  --rk-radio-item-material: var(--rk-danger);
+  --rk-radio-item-on-material: var(--rk-on-danger);
+}
+
 .small {
   --rk-radio-item-font-size: 12px;
   --rk-radio-item-height: 24px;

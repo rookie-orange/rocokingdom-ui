@@ -52,6 +52,10 @@ const buttonNormalCss = readFileSync(
   new URL('../src/button-normal/button-normal.module.css', import.meta.url),
   'utf8',
 )
+const buttonNormalSource = readFileSync(
+  new URL('../src/button-normal/index.tsx', import.meta.url),
+  'utf8',
+)
 const radioGroupCss = readFileSync(
   new URL('../src/radio-group/radio-group.module.css', import.meta.url),
   'utf8',
@@ -76,6 +80,10 @@ const sideNavCss = readFileSync(
 )
 const selectCss = readFileSync(new URL('../src/select/select.module.css', import.meta.url), 'utf8')
 const selectSource = readFileSync(new URL('../src/select/index.tsx', import.meta.url), 'utf8')
+const rocoShapeCss = readFileSync(
+  new URL('../src/roco-shape/roco-shape.module.css', import.meta.url),
+  'utf8',
+)
 
 test('exports a single button prefix class', () => {
   expect(buttonPrefixCls).toBe('rk-button')
@@ -134,6 +142,16 @@ test('maps material presets to base background and foreground variables', () => 
   expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary);')
   expect(materialCss).toContain('--rk-material-background: var(--rk-stone);')
   expect(materialCss).toContain('--rk-material-color: var(--rk-on-stone);')
+  expect(materialCss).toContain('--rk-material-background: var(--rk-primary-soft);')
+  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary-soft);')
+  expect(materialCss).toContain('--rk-material-background: var(--rk-primary-muted);')
+  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary-muted);')
+  expect(materialCss).toContain('--rk-material-background: var(--rk-primary-strong);')
+  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary-strong);')
+  expect(materialCss).toContain('--rk-material-background: var(--rk-success);')
+  expect(materialCss).toContain('--rk-material-color: var(--rk-on-success);')
+  expect(materialCss).toContain('--rk-material-background: var(--rk-danger);')
+  expect(materialCss).toContain('--rk-material-color: var(--rk-on-danger);')
 })
 
 test('renders an svg-backed React button component with css module classes', () => {
@@ -164,6 +182,31 @@ test('uses material as the button root color primitive', () => {
   expect(buttonSource).not.toContain('<button className={resolvedClassName}')
   expect(buttonCss).toContain('--rk-button-material: var(--rk-material-background);')
   expect(buttonCss).toContain('--rk-button-on-material: var(--rk-material-color);')
+})
+
+test('supports semantic materials for lightweight controls', () => {
+  expect(buttonNormalSource).toContain("import type { MaterialPreset } from '../material'")
+  expect(buttonNormalCss).toContain('--rk-button-material: var(--rk-primary-soft);')
+  expect(buttonNormalCss).toContain('--rk-button-on-material: var(--rk-on-primary-soft);')
+  expect(buttonNormalCss).toContain('--rk-button-material: var(--rk-primary-muted);')
+  expect(buttonNormalCss).toContain('--rk-button-on-material: var(--rk-on-primary-muted);')
+  expect(buttonNormalCss).toContain('--rk-button-material: var(--rk-primary-strong);')
+  expect(buttonNormalCss).toContain('--rk-button-on-material: var(--rk-on-primary-strong);')
+  expect(buttonNormalCss).toContain('--rk-button-material: var(--rk-success);')
+  expect(buttonNormalCss).toContain('--rk-button-on-material: var(--rk-on-success);')
+  expect(buttonNormalCss).toContain('--rk-button-material: var(--rk-danger);')
+  expect(buttonNormalCss).toContain('--rk-button-on-material: var(--rk-on-danger);')
+  expect(radioGroupSource).toContain("import type { MaterialPreset } from '../material'")
+  expect(radioGroupCss).toContain('--rk-radio-item-material: var(--rk-primary-soft);')
+  expect(radioGroupCss).toContain('--rk-radio-item-on-material: var(--rk-on-primary-soft);')
+  expect(radioGroupCss).toContain('--rk-radio-item-material: var(--rk-primary-muted);')
+  expect(radioGroupCss).toContain('--rk-radio-item-on-material: var(--rk-on-primary-muted);')
+  expect(radioGroupCss).toContain('--rk-radio-item-material: var(--rk-primary-strong);')
+  expect(radioGroupCss).toContain('--rk-radio-item-on-material: var(--rk-on-primary-strong);')
+  expect(radioGroupCss).toContain('--rk-radio-item-material: var(--rk-success);')
+  expect(radioGroupCss).toContain('--rk-radio-item-on-material: var(--rk-on-success);')
+  expect(radioGroupCss).toContain('--rk-radio-item-material: var(--rk-danger);')
+  expect(radioGroupCss).toContain('--rk-radio-item-on-material: var(--rk-on-danger);')
 })
 
 test('passes the optional shadow prop from button to its shape', () => {
@@ -215,6 +258,10 @@ test('renders roco shape shadow only when enabled', () => {
 
   expect(html).toContain('withShadow')
   expect(html.match(/<path/g)).toHaveLength(2)
+  expect(baseStyleCss).toContain('--rk-shadow-soft-color: rgb(36 38 40 / 0.08);')
+  expect(baseStyleCss).toContain('--rk-shadow-color: rgb(36 38 40 / 0.16);')
+  expect(baseStyleCss).toContain('--rk-shadow-strong-color: rgb(36 38 40 / 0.32);')
+  expect(rocoShapeCss).toContain('var(--rk-roco-shape-shadow, var(--rk-shadow-strong-color))')
 })
 
 test('renders the previous capsule button as button normal', () => {
@@ -556,6 +603,9 @@ test('uses radix select and animates select content with scale', () => {
   expect(selectSource).not.toContain('scrollHeight')
   expect(selectSource).not.toContain('ResizeObserver')
   expect(selectCss).toContain('.contentShell')
+  expect(selectCss).toContain(
+    'box-shadow: 0 4px 0 var(--rk-select-shadow-color, var(--rk-shadow-color));',
+  )
   expect(selectCss).toContain(".content[data-state='open'] .contentShell")
   expect(selectCss).toContain('@keyframes rk-select-content-in')
   expect(selectCss).toContain('transform: scaleY(0);')
@@ -564,6 +614,12 @@ test('uses radix select and animates select content with scale', () => {
   expect(selectCss).not.toContain('opacity: 0;')
   expect(selectCss).not.toContain('opacity: 1;')
   expect(selectCss).toContain('@media (prefers-reduced-motion: reduce)')
+})
+
+test('uses effect tokens for component shadows', () => {
+  expect(drawerCss).toContain(
+    'drop-shadow(0 3px 0 var(--rk-drawer-close-shadow-color, var(--rk-shadow-strong-color)))',
+  )
 })
 
 test('supports optional modal header rune text behind the title', () => {
@@ -604,7 +660,11 @@ test('renders a color variable provider without extra markup', () => {
       {
         colors: {
           onPrimary: '#10201a',
+          onPrimaryStrong: '#fff8df',
           primary: '#6ee7b7',
+          primaryStrong: '#276948',
+          shadowColor: 'rgb(20 30 40 / 0.2)',
+          shadowStrongColor: 'rgb(20 30 40 / 0.4)',
         },
       },
       createElement(Button, {
@@ -616,6 +676,10 @@ test('renders a color variable provider without extra markup', () => {
   expect(html).not.toContain('<div')
   expect(html).not.toContain('--rk-primary:#6ee7b7')
   expect(html).not.toContain('--rk-on-primary:#10201a')
+  expect(html).not.toContain('--rk-primary-strong:#276948')
+  expect(html).not.toContain('--rk-on-primary-strong:#fff8df')
+  expect(html).not.toContain('--rk-shadow-color:rgb(20 30 40 / 0.2)')
+  expect(html).not.toContain('--rk-shadow-strong-color:rgb(20 30 40 / 0.4)')
   expect(html).toContain('Scoped')
 })
 

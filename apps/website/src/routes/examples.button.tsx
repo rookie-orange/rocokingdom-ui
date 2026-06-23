@@ -17,12 +17,24 @@ export function ActionBar() {
 }`
 
 function ButtonExamplePage() {
+  const materials = [
+    'default',
+    'primary',
+    'primarySoft',
+    'primaryMuted',
+    'primaryStrong',
+    'paper',
+    'stone',
+    'success',
+    'danger',
+  ] as const
+
   return (
     <ExampleShell
       code={buttonCode}
-      description="Button 使用 RocoShape 作为底形，支持四种材质、三种尺寸、solid/outline/text 变体、阴影和禁用状态。"
+      description="Button 使用 RocoShape 作为底形，支持多种语义材质、三种尺寸、solid/outline/text 变体、阴影和禁用状态。"
       highlights={[
-        'material 覆盖 default、primary、paper、stone。',
+        'material 覆盖 default、primary、primarySoft、primaryMuted、primaryStrong、paper、stone 以及状态色。',
         'size 覆盖 small、middle、large。',
         'variant 覆盖 solid、outline、text，并展示 shadow 与 disabled。',
       ]}
@@ -35,7 +47,7 @@ function ButtonExamplePage() {
       >
         <PreviewSurface>
           <div className="grid gap-8">
-            {(['default', 'primary', 'paper', 'stone'] as const).map((material) => (
+            {materials.map((material) => (
               <div className="flex flex-wrap items-center gap-4" key={material}>
                 <span className="w-20 text-sm font-black uppercase text-stone/60">{material}</span>
                 <Button material={material} shadow>

@@ -1,6 +1,6 @@
 # tokens
 
-Material color values for `rocokingdom-ui`.
+Design token values for `rocokingdom-ui`.
 
 ## Usage
 
@@ -16,11 +16,26 @@ const buttonBackground = primary
 - `paper`
 - `stone`
 - `primary`
+- `primarySoft`
+- `primaryMuted`
+- `primaryStrong`
+- `success`
+- `danger`
 - `onPaper`
 - `onStone`
 - `onPrimary`
+- `onPrimarySoft`
+- `onPrimaryMuted`
+- `onPrimaryStrong`
+- `onSuccess`
+- `onDanger`
 - `colors`
 - `cssVariables`
+- `shadowSoftColor`
+- `shadowColor`
+- `shadowStrongColor`
+- `effects`
+- `effectVariables`
 
 ## Development
 

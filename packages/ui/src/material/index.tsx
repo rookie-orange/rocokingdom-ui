@@ -4,7 +4,16 @@ import styles from './material.module.css'
 
 export const materialPrefixCls = 'rk-material'
 
-export type MaterialPreset = 'default' | 'paper' | 'primary' | 'stone'
+export type MaterialPreset =
+  | 'danger'
+  | 'default'
+  | 'paper'
+  | 'primary'
+  | 'primaryMuted'
+  | 'primarySoft'
+  | 'primaryStrong'
+  | 'stone'
+  | 'success'
 
 interface MaterialStyle extends CSSProperties {
   '--rk-material-background'?: string

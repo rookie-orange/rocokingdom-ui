@@ -1,12 +1,25 @@
 @import 'tailwindcss';
 
 :root {
-  --paper: #f4f0e8;
-  --stone: #242628;
-  --primary: #ffc65f;
-  --on-paper: #222222;
-  --on-stone: #f4f0e8;
-  --on-primary: #242628;
+  --paper: var(--rk-paper, #f4f0e8);
+  --stone: var(--rk-stone, #242628);
+  --primary: var(--rk-primary, #ffc65f);
+  --primary-soft: var(--rk-primary-soft, #fff1cf);
+  --primary-muted: var(--rk-primary-muted, #f7d56f);
+  --primary-strong: var(--rk-primary-strong, #d89522);
+  --success: var(--rk-success, #2f9e66);
+  --danger: var(--rk-danger, #d94b4b);
+  --on-paper: var(--rk-on-paper, #222222);
+  --on-stone: var(--rk-on-stone, #f4f0e8);
+  --on-primary: var(--rk-on-primary, #242628);
+  --on-primary-soft: var(--rk-on-primary-soft, #2b2414);
+  --on-primary-muted: var(--rk-on-primary-muted, #2b2414);
+  --on-primary-strong: var(--rk-on-primary-strong, #fff9ec);
+  --on-success: var(--rk-on-success, #f3fff8);
+  --on-danger: var(--rk-on-danger, #fff6f4);
+  --shadow-soft-color: var(--rk-shadow-soft-color, rgb(36 38 40 / 0.08));
+  --shadow-color: var(--rk-shadow-color, rgb(36 38 40 / 0.16));
+  --shadow-strong-color: var(--rk-shadow-strong-color, rgb(36 38 40 / 0.32));
 
   color: var(--on-paper);
   font-family: var(--rk-font-family-base);
@@ -18,9 +31,22 @@
   --color-paper: var(--paper);
   --color-stone: var(--stone);
   --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-muted: var(--primary-muted);
+  --color-primary-strong: var(--primary-strong);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
   --color-on-paper: var(--on-paper);
   --color-on-stone: var(--on-stone);
   --color-on-primary: var(--on-primary);
+  --color-on-primary-soft: var(--on-primary-soft);
+  --color-on-primary-muted: var(--on-primary-muted);
+  --color-on-primary-strong: var(--on-primary-strong);
+  --color-on-success: var(--on-success);
+  --color-on-danger: var(--on-danger);
+  --color-shadow-soft: var(--shadow-soft-color);
+  --color-shadow: var(--shadow-color);
+  --color-shadow-strong: var(--shadow-strong-color);
   --font-roco: var(--rk-font-family-base);
 }
 

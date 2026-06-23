@@ -22,7 +22,7 @@ function MaterialExamplePage() {
       code={materialCode}
       description="Material 是颜色表面原语，负责把 Rocokingdom 色板或自定义色值注入到任意元素。"
       highlights={[
-        'material 覆盖 default、primary、paper、stone。',
+        'material 覆盖 default、primary、primarySoft、primaryMuted、primaryStrong、paper、stone 以及状态色。',
         'as 可切换渲染元素。',
         'background 和 color 可用于一次性自定义表面。',
       ]}
@@ -32,9 +32,21 @@ function MaterialExamplePage() {
       <ExampleSection title="预设材质">
         <PreviewSurface>
           <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
-            {(['default', 'primary', 'paper', 'stone'] as const).map((material) => (
+            {(
+              [
+                'default',
+                'primary',
+                'primarySoft',
+                'primaryMuted',
+                'primaryStrong',
+                'paper',
+                'stone',
+                'success',
+                'danger',
+              ] as const
+            ).map((material) => (
               <Material
-                className="min-h-36 rounded-lg border border-black/10 p-5 shadow-[0_6px_0_rgb(36_38_40_/_0.1)]"
+                className="min-h-36 rounded-lg border border-black/10 p-5 shadow-[0_6px_0_var(--shadow-soft-color)]"
                 key={material}
                 material={material}
               >
@@ -54,7 +66,7 @@ function MaterialExamplePage() {
             <Material
               as="button"
               background="#2f7dd1"
-              className="rounded-lg p-5 text-left shadow-[0_6px_0_rgb(15_48_80_/_0.3)]"
+              className="rounded-lg p-5 text-left shadow-[0_6px_0_var(--shadow-strong-color)]"
               color="#f7fbff"
               type="button"
             >
@@ -64,7 +76,7 @@ function MaterialExamplePage() {
             <Material
               as="article"
               background="#f7d56f"
-              className="rounded-lg p-5 shadow-[0_6px_0_rgb(99_76_15_/_0.18)]"
+              className="rounded-lg p-5 shadow-[0_6px_0_var(--shadow-color)]"
               color="#2b2414"
             >
               <span className="block font-roco text-2xl font-black leading-none">宠物档案</span>

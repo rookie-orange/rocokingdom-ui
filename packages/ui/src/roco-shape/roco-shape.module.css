@@ -23,7 +23,7 @@
 .withShadow .fill {
   filter: drop-shadow(
     var(--rk-roco-shape-shadow-x, 0) var(--rk-roco-shape-shadow-y, 2px)
-      var(--rk-roco-shape-shadow-blur, 0) var(--rk-roco-shape-shadow, rgb(0 0 0 / 0.5))
+      var(--rk-roco-shape-shadow-blur, 0) var(--rk-roco-shape-shadow, var(--rk-shadow-strong-color))
   );
 }
 

@@ -13,12 +13,24 @@ export function ToolbarButton() {
 }`
 
 function ButtonNormalExamplePage() {
+  const materials = [
+    'default',
+    'primary',
+    'primarySoft',
+    'primaryMuted',
+    'primaryStrong',
+    'paper',
+    'stone',
+    'success',
+    'danger',
+  ] as const
+
   return (
     <ExampleShell
       code={buttonNormalCode}
       description="ButtonNormal 是更轻量的胶囊按钮，适合表单、工具栏或不需要 SVG 底形的场景。"
       highlights={[
-        'material 覆盖 default、paper、stone。',
+        'material 覆盖 default、primary、primarySoft、primaryMuted、primaryStrong、paper、stone 以及状态色。',
         'size 覆盖 small、middle、large。',
         'variant 覆盖 solid、outline、text，并展示 disabled。',
       ]}
@@ -28,7 +40,7 @@ function ButtonNormalExamplePage() {
       <ExampleSection title="材质与变体">
         <PreviewSurface>
           <div className="grid gap-6">
-            {(['default', 'paper', 'stone'] as const).map((material) => (
+            {materials.map((material) => (
               <div className="flex flex-wrap items-center gap-4" key={material}>
                 <span className="w-20 text-sm font-black uppercase text-stone/60">{material}</span>
                 <ButtonNormal material={material}>Solid</ButtonNormal>

@@ -219,7 +219,7 @@
 }
 
 .closeIcon {
-  filter: drop-shadow(0 3px 0 rgb(0 0 0 / 0.35));
+  filter: drop-shadow(0 3px 0 var(--rk-drawer-close-shadow-color, var(--rk-shadow-strong-color)));
   height: 34px;
   position: relative;
   width: 34px;

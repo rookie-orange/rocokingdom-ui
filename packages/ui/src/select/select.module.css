@@ -79,7 +79,7 @@
 .contentShell {
   background: var(--rk-select-content-background);
   border-radius: var(--rk-select-content-radius, 8px);
-  box-shadow: 0 4px 0 rgb(0 0 0 / 0.24);
+  box-shadow: 0 4px 0 var(--rk-select-shadow-color, var(--rk-shadow-color));
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
   font-size: var(--rk-select-content-font-size, 18px);
   font-weight: 900;

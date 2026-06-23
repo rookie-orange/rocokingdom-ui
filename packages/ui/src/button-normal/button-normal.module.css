@@ -41,6 +41,36 @@
   --rk-button-on-material: var(--rk-on-stone);
 }
 
+.primary {
+  --rk-button-material: var(--rk-primary);
+  --rk-button-on-material: var(--rk-on-primary);
+}
+
+.primarySoft {
+  --rk-button-material: var(--rk-primary-soft);
+  --rk-button-on-material: var(--rk-on-primary-soft);
+}
+
+.primaryMuted {
+  --rk-button-material: var(--rk-primary-muted);
+  --rk-button-on-material: var(--rk-on-primary-muted);
+}
+
+.primaryStrong {
+  --rk-button-material: var(--rk-primary-strong);
+  --rk-button-on-material: var(--rk-on-primary-strong);
+}
+
+.success {
+  --rk-button-material: var(--rk-success);
+  --rk-button-on-material: var(--rk-on-success);
+}
+
+.danger {
+  --rk-button-material: var(--rk-danger);
+  --rk-button-on-material: var(--rk-on-danger);
+}
+
 .button:hover {
   filter: brightness(1.08);
 }

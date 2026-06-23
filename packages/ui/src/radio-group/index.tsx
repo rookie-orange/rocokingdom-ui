@@ -7,13 +7,14 @@ import type {
 } from 'react'
 import { createContext, useContext, useState } from 'react'
 import { clsx } from 'clsx'
+import type { MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
 import styles from './radio-group.module.css'
 
 export const radioGroupPrefixCls = 'rk-radio-group'
 export const radioItemPrefixCls = 'rk-radio-item'
 
-export type RadioGroupMaterial = 'default' | 'paper' | 'stone'
+export type RadioGroupMaterial = MaterialPreset
 export type RadioGroupSize = 'small' | 'middle' | 'large'
 export type RadioGroupVariant = 'solid' | 'outline' | 'text'
 export type RadioGroupOrientation = 'horizontal' | 'vertical'

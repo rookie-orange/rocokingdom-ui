@@ -40,9 +40,15 @@ function RadioGroupExamplePage() {
       >
         <PreviewSurface>
           <RadioGroup defaultValue="water" name="element">
-            <RadioItem value="water">水系</RadioItem>
-            <RadioItem value="fire">火系</RadioItem>
-            <RadioItem value="grass">草系</RadioItem>
+            <RadioItem activeMaterial="primaryStrong" value="water">
+              水系
+            </RadioItem>
+            <RadioItem activeMaterial="danger" value="fire">
+              火系
+            </RadioItem>
+            <RadioItem activeMaterial="success" value="grass">
+              草系
+            </RadioItem>
             <RadioItem disabled value="dragon">
               龙系
             </RadioItem>
@@ -54,7 +60,7 @@ function RadioGroupExamplePage() {
         <PreviewSurface>
           <div className="grid gap-5">
             <RadioGroup
-              activeMaterial="default"
+              activeMaterial="primaryMuted"
               inactiveMaterial="paper"
               onValueChange={setControlledValue}
               value={controlledValue}

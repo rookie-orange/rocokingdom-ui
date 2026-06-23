@@ -109,16 +109,29 @@ Button sizing can be customized with CSS variables:
 }
 ```
 
-Colors are plain CSS variables:
+Colors and effects are plain CSS variables:
 
 ```css
 :root {
   --rk-paper: #f4f0e8;
   --rk-stone: #242628;
   --rk-primary: #ffc65f;
+  --rk-primary-soft: #fff1cf;
+  --rk-primary-muted: #f7d56f;
+  --rk-primary-strong: #d89522;
+  --rk-success: #2f9e66;
+  --rk-danger: #d94b4b;
   --rk-on-paper: #222222;
   --rk-on-stone: #f4f0e8;
   --rk-on-primary: #242628;
+  --rk-on-primary-soft: #2b2414;
+  --rk-on-primary-muted: #2b2414;
+  --rk-on-primary-strong: #fff9ec;
+  --rk-on-success: #f3fff8;
+  --rk-on-danger: #fff6f4;
+  --rk-shadow-soft-color: rgb(36 38 40 / 0.08);
+  --rk-shadow-color: rgb(36 38 40 / 0.16);
+  --rk-shadow-strong-color: rgb(36 38 40 / 0.32);
 }
 ```
 

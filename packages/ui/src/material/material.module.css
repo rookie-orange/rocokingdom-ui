@@ -21,3 +21,28 @@
   --rk-material-background: var(--rk-stone);
   --rk-material-color: var(--rk-on-stone);
 }
+
+.primarySoft {
+  --rk-material-background: var(--rk-primary-soft);
+  --rk-material-color: var(--rk-on-primary-soft);
+}
+
+.primaryMuted {
+  --rk-material-background: var(--rk-primary-muted);
+  --rk-material-color: var(--rk-on-primary-muted);
+}
+
+.primaryStrong {
+  --rk-material-background: var(--rk-primary-strong);
+  --rk-material-color: var(--rk-on-primary-strong);
+}
+
+.success {
+  --rk-material-background: var(--rk-success);
+  --rk-material-color: var(--rk-on-success);
+}
+
+.danger {
+  --rk-material-background: var(--rk-danger);
+  --rk-material-color: var(--rk-on-danger);
+}

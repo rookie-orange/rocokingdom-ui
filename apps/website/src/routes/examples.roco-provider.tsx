@@ -11,7 +11,7 @@ const providerCode = `import { Button, RocoProvider } from 'rocokingdom-ui'
 
 export function CustomTheme() {
   return (
-    <RocoProvider colors={{ primary: '#6ee7b7', onPrimary: '#10201a' }}>
+    <RocoProvider colors={{ primaryStrong: '#6e4c12', onPrimaryStrong: '#fff8df' }}>
       <Button shadow>主题按钮</Button>
     </RocoProvider>
   )
@@ -25,7 +25,7 @@ function RocoProviderExamplePage() {
       code={providerCode}
       description="RocoProvider 不渲染额外 DOM，只在挂载期间把主题色写入 documentElement 的 --rk-* 变量。"
       highlights={[
-        'colors 可覆盖 paper、stone、primary 及对应前景色。',
+        'colors 可覆盖基础色、语义色及对应前景色。',
         '挂载后会影响当前文档根节点上的 Rocokingdom 变量。',
         '卸载后会恢复之前的 CSS 变量值，适合作为主题切换或专题活动入口。',
       ]}
@@ -56,9 +56,15 @@ function RocoProviderExamplePage() {
               colors={{
                 onPaper: '#182117',
                 onPrimary: '#10201a',
+                onPrimaryMuted: '#10201a',
+                onPrimarySoft: '#10201a',
+                onPrimaryStrong: '#fff8df',
                 onStone: '#eef8ef',
                 paper: '#f0f6de',
                 primary: '#6ee7b7',
+                primaryMuted: '#98e6be',
+                primarySoft: '#dff8e9',
+                primaryStrong: '#276948',
                 stone: '#223529',
               }}
             />

@@ -1,10 +1,11 @@
 import type { ButtonHTMLAttributes } from 'react'
 import { clsx } from 'clsx'
+import type { MaterialPreset } from '../material'
 import styles from './button-normal.module.css'
 
 export const buttonNormalPrefixCls = 'rk-button-normal'
 
-export type ButtonNormalMaterial = 'default' | 'paper' | 'stone'
+export type ButtonNormalMaterial = MaterialPreset
 export type ButtonNormalSize = 'small' | 'middle' | 'large'
 export type ButtonNormalVariant = 'solid' | 'outline' | 'text'
 
