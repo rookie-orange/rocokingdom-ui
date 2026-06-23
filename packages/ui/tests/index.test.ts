@@ -42,10 +42,6 @@ import {
 
 const baseStyleCss = readFileSync(new URL('../src/style.css', import.meta.url), 'utf8')
 const fontCss = readFileSync(new URL('../src/font.css', import.meta.url), 'utf8')
-const decorativeFontCss = readFileSync(
-  new URL('../src/decorative-font.css', import.meta.url),
-  'utf8',
-)
 const buttonCss = readFileSync(new URL('../src/button/button.module.css', import.meta.url), 'utf8')
 const buttonSource = readFileSync(new URL('../src/button/index.tsx', import.meta.url), 'utf8')
 const buttonNormalCss = readFileSync(
@@ -704,8 +700,10 @@ test('keeps font registration out of the base style entry', () => {
   expect(baseStyleCss).not.toContain('@font-face')
   expect(fontCss).toContain('@font-face')
   expect(fontCss).toContain('Roco Kingdom Sans')
-  expect(decorativeFontCss).toContain('@font-face')
-  expect(decorativeFontCss).toContain('Roco Kingdom Rune')
+  expect(fontCss).toContain('Roco Kingdom Rune')
+  expect(fontCss).toContain('--rk-font-family-base')
+  expect(fontCss).toContain('--rk-font-family-rune')
+  expect(fontCss).toContain('--rk-font-family-decorative')
 })
 
 test('only exposes root components and manual style/font entries', () => {
@@ -714,7 +712,6 @@ test('only exposes root components and manual style/font entries', () => {
       types: './dist/index.d.mts',
       import: './dist/index.mjs',
     },
-    './decorative-font.css': './dist/decorative-font.css',
     './font.css': './dist/font.css',
     './fonts/roco-kingdom-rune.ttf': './dist/fonts/roco-kingdom-rune.ttf',
     './fonts/roco-kingdom-sans.ttf': './dist/fonts/roco-kingdom-sans.ttf',

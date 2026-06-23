@@ -15,7 +15,6 @@ export default defineConfig({
     },
     copy: [
       { from: 'src/font.css', to: 'dist' },
-      { from: 'src/decorative-font.css', to: 'dist' },
       { from: 'src/fonts/*.ttf', to: 'dist/fonts' },
     ],
     deps: {

@@ -7,7 +7,6 @@ Rocokingdom UI components.
 ```ts
 import 'rocokingdom-ui/style.css'
 import 'rocokingdom-ui/font.css'
-import 'rocokingdom-ui/decorative-font.css'
 import {
   Button,
   ButtonNormal,
@@ -142,27 +141,16 @@ In React Server Components, render `RocoProvider` from a client component.
 Fonts are opt-in. The base style entry defines font variables with system
 fallbacks, but it does not load font files.
 
-Import the regular font at the app level when you want Rocokingdom UI
-components to use it:
+Import the fonts at the app level when you want Rocokingdom UI components and
+decorative text to use them:
 
 ```ts
 import 'rocokingdom-ui/font.css'
 ```
 
-Import the decorative font only when you use decorative text:
-
-```ts
-import 'rocokingdom-ui/decorative-font.css'
-import { RuneText } from 'rocokingdom-ui'
-
-export function LogoText() {
-  return <RuneText>ROCO</RuneText>
-}
-```
-
-`font.css` registers `Roco Kingdom Sans` and sets `--rk-font-family-base`.
-`decorative-font.css` registers `Roco Kingdom Rune` and sets
-`--rk-font-family-rune` plus `--rk-font-family-decorative`.
+`font.css` registers `Roco Kingdom Sans` and `Roco Kingdom Rune`, then sets
+`--rk-font-family-base`, `--rk-font-family-rune`, and
+`--rk-font-family-decorative`.
 
 You can also host the font files yourself and point the variables at your own
 font-family names:
