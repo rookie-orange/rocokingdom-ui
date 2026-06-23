@@ -1,0 +1,23 @@
+.material {
+  --rk-material-background: var(--rk-paper);
+  --rk-material-color: var(--rk-on-paper);
+
+  background: var(--rk-material-background);
+  color: var(--rk-material-color);
+}
+
+.default,
+.primary {
+  --rk-material-background: var(--rk-primary);
+  --rk-material-color: var(--rk-on-primary);
+}
+
+.paper {
+  --rk-material-background: var(--rk-paper);
+  --rk-material-color: var(--rk-on-paper);
+}
+
+.stone {
+  --rk-material-background: var(--rk-stone);
+  --rk-material-color: var(--rk-on-stone);
+}

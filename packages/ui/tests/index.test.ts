@@ -8,6 +8,7 @@ import {
   ButtonNormal,
   Drawer,
   DrawerClose,
+  Material,
   Panel,
   Select,
   SideNav,
@@ -24,6 +25,7 @@ import {
   buttonNormalPrefixCls,
   buttonPrefixCls,
   drawerPrefixCls,
+  materialPrefixCls,
   panelPrefixCls,
   selectItemPrefixCls,
   selectPrefixCls,
@@ -45,6 +47,7 @@ const decorativeFontCss = readFileSync(
   'utf8',
 )
 const buttonCss = readFileSync(new URL('../src/button/button.module.css', import.meta.url), 'utf8')
+const buttonSource = readFileSync(new URL('../src/button/index.tsx', import.meta.url), 'utf8')
 const buttonNormalCss = readFileSync(
   new URL('../src/button-normal/button-normal.module.css', import.meta.url),
   'utf8',
@@ -59,6 +62,10 @@ const radioGroupSource = readFileSync(
 )
 const modalSource = readFileSync(new URL('../src/modal/index.tsx', import.meta.url), 'utf8')
 const modalCss = readFileSync(new URL('../src/modal/modal.module.css', import.meta.url), 'utf8')
+const materialCss = readFileSync(
+  new URL('../src/material/material.module.css', import.meta.url),
+  'utf8',
+)
 const panelCss = readFileSync(new URL('../src/panel/panel.module.css', import.meta.url), 'utf8')
 const drawerCss = readFileSync(new URL('../src/drawer/drawer.module.css', import.meta.url), 'utf8')
 const drawerSource = readFileSync(new URL('../src/drawer/index.tsx', import.meta.url), 'utf8')
@@ -75,6 +82,7 @@ test('exports a single button prefix class', () => {
   expect(buttonNormalPrefixCls).toBe('rk-button-normal')
   expect(drawerPrefixCls).toBe('rk-drawer')
   expect(DrawerClose).toBeTruthy()
+  expect(materialPrefixCls).toBe('rk-material')
   expect(panelPrefixCls).toBe('rk-panel')
   expect(selectPrefixCls).toBe('rk-select')
   expect(selectItemPrefixCls).toBe('rk-select-item')
@@ -87,6 +95,45 @@ test('exports a single button prefix class', () => {
   expect(radioItemPrefixCls).toBe('rk-radio-item')
   expect(rocoShapePrefixCls).toBe('rk-roco-shape')
   expect(runeTextPrefixCls).toBe('rk-rune-text')
+})
+
+test('renders a polymorphic material surface with background and color variables', () => {
+  const html = renderToString(
+    createElement(
+      Material,
+      {
+        as: 'a',
+        background: 'var(--rk-primary)',
+        className: 'custom-material',
+        color: 'var(--rk-on-primary)',
+        href: '/kingdom',
+        material: 'stone',
+        rootClassName: 'app-material',
+      },
+      'Kingdom',
+    ),
+  )
+
+  expect(html).toContain('<a')
+  expect(html).toContain('href="/kingdom"')
+  expect(html).toContain('rk-material')
+  expect(html).toContain('app-material')
+  expect(html).toContain('custom-material')
+  expect(html).toContain('stone')
+  expect(html).toContain('--rk-material-background:var(--rk-primary)')
+  expect(html).toContain('--rk-material-color:var(--rk-on-primary)')
+  expect(html).toContain('Kingdom')
+})
+
+test('maps material presets to base background and foreground variables', () => {
+  expect(materialCss).toContain('--rk-material-background: var(--rk-paper);')
+  expect(materialCss).toContain('--rk-material-color: var(--rk-on-paper);')
+  expect(materialCss).toContain('background: var(--rk-material-background);')
+  expect(materialCss).toContain('color: var(--rk-material-color);')
+  expect(materialCss).toContain('--rk-material-background: var(--rk-primary);')
+  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary);')
+  expect(materialCss).toContain('--rk-material-background: var(--rk-stone);')
+  expect(materialCss).toContain('--rk-material-color: var(--rk-on-stone);')
 })
 
 test('renders an svg-backed React button component with css module classes', () => {
@@ -105,9 +152,18 @@ test('renders an svg-backed React button component with css module classes', () 
   expect(html).toContain('<svg')
   expect(html).toContain('<path')
   expect(html).toContain('rk-button')
+  expect(html).toContain('rk-material')
   expect(html).toContain('app-button')
   expect(html).toContain('custom-button')
   expect(html).toContain('type="button"')
+})
+
+test('uses material as the button root color primitive', () => {
+  expect(buttonSource).toContain("import { Material, type MaterialPreset } from '../material'")
+  expect(buttonSource).toContain('<Material as="button"')
+  expect(buttonSource).not.toContain('<button className={resolvedClassName}')
+  expect(buttonCss).toContain('--rk-button-material: var(--rk-material-background);')
+  expect(buttonCss).toContain('--rk-button-on-material: var(--rk-material-color);')
 })
 
 test('passes the optional shadow prop from button to its shape', () => {

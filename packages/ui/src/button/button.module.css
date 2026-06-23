@@ -5,6 +5,8 @@
   --rk-button-height: 40px;
   --rk-button-min-width: auto;
   --rk-button-padding-inline: 18px;
+  --rk-button-material: var(--rk-material-background);
+  --rk-button-on-material: var(--rk-material-color);
 
   appearance: none;
   align-items: center;
@@ -28,21 +30,6 @@
     filter 160ms ease,
     transform 120ms ease;
   user-select: none;
-}
-
-.default {
-  --rk-button-material: var(--rk-primary);
-  --rk-button-on-material: var(--rk-on-primary);
-}
-
-.paper {
-  --rk-button-material: var(--rk-paper);
-  --rk-button-on-material: var(--rk-on-paper);
-}
-
-.stone {
-  --rk-button-material: var(--rk-stone);
-  --rk-button-on-material: var(--rk-on-stone);
 }
 
 .button:hover {

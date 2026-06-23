@@ -4,6 +4,8 @@ export { ButtonNormal, buttonNormalPrefixCls } from './button-normal'
 export type { ButtonNormalProps } from './button-normal'
 export { Drawer, DrawerClose, drawerPrefixCls } from './drawer'
 export type { DrawerCloseProps, DrawerProps, DrawerSide } from './drawer'
+export { Material, materialPrefixCls } from './material'
+export type { MaterialPreset, MaterialProps } from './material'
 export { Panel, panelPrefixCls } from './panel'
 export type { PanelCurve, PanelMaterial, PanelProps } from './panel'
 export {

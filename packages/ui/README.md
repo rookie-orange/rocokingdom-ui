@@ -11,6 +11,7 @@ import 'rocokingdom-ui/decorative-font.css'
 import {
   Button,
   ButtonNormal,
+  Material,
   Modal,
   ModalClose,
   RadioGroup,
@@ -29,6 +30,9 @@ export function App() {
       }}
     >
       <Button shadow>Start</Button>
+      <Material as="section" material="stone">
+        Stone surface
+      </Material>
       <ButtonNormal>Classic</ButtonNormal>
       <RadioGroup defaultValue="paper">
         <RadioItem value="stone">Stone</RadioItem>
@@ -70,6 +74,18 @@ right arcs keep their aspect ratio while the center segment stretches.
 
 `Button` does not render a shadow by default. Pass `shadow` to enable the
 shape shadow.
+
+`Material` is the low-level color surface primitive. It renders a `div` by
+default and can render another element with `as`. Use `material="paper"`,
+`material="stone"`, or `material="default"`/`material="primary"` for the base
+palette, and use `background` plus `color` when a one-off surface needs explicit
+background and foreground values:
+
+```tsx
+<Material as="button" background="var(--rk-primary)" color="var(--rk-on-primary)">
+  Enter
+</Material>
+```
 
 `Modal` is backed by Radix Dialog and keeps the Rocokingdom game-panel styling
 in this package. Pass `header={false}` to hide the visible header, `closable={false}`

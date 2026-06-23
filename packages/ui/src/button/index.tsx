@@ -1,11 +1,12 @@
 import type { ButtonHTMLAttributes } from 'react'
 import { clsx } from 'clsx'
+import { Material, type MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
 import styles from './button.module.css'
 
 export const buttonPrefixCls = 'rk-button'
 
-export type ButtonMaterial = 'default' | 'paper' | 'stone'
+export type ButtonMaterial = MaterialPreset
 export type ButtonSize = 'small' | 'middle' | 'large'
 export type ButtonVariant = 'solid' | 'outline' | 'text'
 
@@ -41,13 +42,13 @@ export function Button({
   )
 
   return (
-    <button className={resolvedClassName} type={type} {...props}>
+    <Material as="button" className={resolvedClassName} material={material} type={type} {...props}>
       <RocoShape
         className={styles.shape}
         shadow={shadow}
         variant={variant === 'outline' ? 'outline' : 'solid'}
       />
       <span className={styles.content}>{children}</span>
-    </button>
+    </Material>
   )
 }
