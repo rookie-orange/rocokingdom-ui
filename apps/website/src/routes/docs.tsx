@@ -1,31 +1,9 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { examples } from '../examples/catalog'
 
 export const Route = createFileRoute('/docs')({
   component: DocsPage,
 })
-
-const components = [
-  {
-    name: 'Button',
-    intro: '按钮用于承载明确的页面动作，支持普通、纸张、石材等洛克王国风格材质。',
-  },
-  {
-    name: 'Modal',
-    intro: '弹窗用于承载短流程确认、提示或适龄说明，适合需要阻断当前操作的内容。',
-  },
-  {
-    name: 'Drawer',
-    intro: '抽屉适合展示公告、详情和长内容，保留侧向进入的空间关系。',
-  },
-  {
-    name: 'Select',
-    intro: '选择器用于从固定选项中完成单选，适合设置项和筛选条件。',
-  },
-  {
-    name: 'Radio Group',
-    intro: '单选组用于少量互斥选项，保持当前选择状态清晰可见。',
-  },
-]
 
 function DocsPage() {
   return (
@@ -58,14 +36,14 @@ function DocsPage() {
             组件
           </a>
           <nav className="mt-8 grid gap-2 max-[860px]:mt-5 max-[860px]:flex max-[860px]:overflow-x-auto max-[860px]:pb-1">
-            {components.map((component) => (
-              <a
+            {examples.map((component) => (
+              <Link
                 className="rounded-lg px-3 py-2 text-base font-black text-stone/70 transition hover:bg-primary hover:text-on-primary max-[860px]:shrink-0"
-                href={`#${component.name.toLowerCase().replaceAll(' ', '-')}`}
-                key={component.name}
+                key={component.slug}
+                to={component.path}
               >
                 {component.name}
-              </a>
+              </Link>
             ))}
           </nav>
         </aside>
@@ -77,24 +55,35 @@ function DocsPage() {
               组件说明
             </h1>
             <span className="mt-6 block max-w-2xl text-lg font-bold leading-8 text-stone/70">
-              这里先放置基础介绍和组件导航，后续可以逐步接入真实示例、API 表格和交互预览。
+              这里集中展示组件入口。每个组件都有独立示例路由，覆盖主要材质、状态、交互和组合用法。
             </span>
+            <div className="mt-8">
+              <Link
+                className="inline-flex rounded-lg bg-stone px-4 py-3 text-base font-black text-on-stone transition hover:bg-primary hover:text-on-primary"
+                to="/examples"
+              >
+                查看全部示例
+              </Link>
+            </div>
           </section>
 
-          <div className="mt-4">
-            {components.map((component) => (
-              <section
-                className="border-b border-stone/15 py-10"
-                id={component.name.toLowerCase().replaceAll(' ', '-')}
-                key={component.name}
-              >
+          <div className="mt-4 grid gap-0">
+            {examples.map((component) => (
+              <section className="border-b border-stone/15 py-10" key={component.slug}>
                 <p className="text-base font-black text-primary">Component</p>
                 <h2 className="mt-3 font-roco text-4xl font-black leading-tight text-on-paper">
                   {component.name}
                 </h2>
                 <span className="mt-4 block text-lg font-bold leading-8 text-stone/70">
-                  {component.intro}
+                  {component.description}
                 </span>
+                <Link
+                  className="mt-5 inline-flex rounded-lg bg-primary px-4 py-3 text-base font-black text-on-primary transition hover:brightness-105"
+                  key={component.name}
+                  to={component.path}
+                >
+                  打开示例
+                </Link>
               </section>
             ))}
           </div>
