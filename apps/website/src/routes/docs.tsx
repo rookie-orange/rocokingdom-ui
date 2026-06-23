@@ -24,7 +24,7 @@ export const Route = createFileRoute('/docs')({
 function DocsPage() {
   return (
     <main className="min-h-svh bg-paper text-on-paper">
-      <header className="sticky top-0 z-20 flex min-h-20 items-center justify-between gap-6 border-b border-stone/15 bg-stone px-8 text-on-stone max-[860px]:flex-wrap max-[860px]:gap-4 max-[860px]:px-5 max-[860px]:py-4">
+      <header className="sticky top-0 z-20 flex h-14 items-center justify-between gap-6 border-b border-stone/15 bg-stone px-8 text-on-stone max-[860px]:gap-4 max-[860px]:px-5">
         <Link
           aria-label="返回首页"
           className="inline-flex items-center gap-3 font-roco text-2xl font-black"
@@ -46,7 +46,7 @@ function DocsPage() {
       <div className="flex max-[860px]:block">
         <aside
           aria-label="组件列表"
-          className="sticky top-20 h-[calc(100svh-5rem)] w-72 shrink-0 border-r border-stone/15 bg-[linear-gradient(180deg,rgb(255_255_255_/_0.44),rgb(47_125_209_/_0.08))] px-8 py-8 max-[860px]:relative max-[860px]:top-0 max-[860px]:h-auto max-[860px]:w-full max-[860px]:border-r-0 max-[860px]:border-b max-[860px]:px-5 max-[860px]:py-5"
+          className="sticky top-14 h-[calc(100svh-3.5rem)] w-72 shrink-0 border-r border-stone/15 bg-[linear-gradient(180deg,rgb(255_255_255_/_0.44),rgb(47_125_209_/_0.08))] px-8 py-8 max-[860px]:relative max-[860px]:top-0 max-[860px]:h-auto max-[860px]:w-full max-[860px]:border-r-0 max-[860px]:border-b max-[860px]:px-5 max-[860px]:py-5"
         >
           <a className="font-roco text-3xl font-black leading-none text-on-paper" href="#overview">
             组件

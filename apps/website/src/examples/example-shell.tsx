@@ -63,7 +63,7 @@ export function ExampleShell({
 }: ExampleShellProps) {
   return (
     <main className="min-h-svh bg-paper text-on-paper">
-      <header className="sticky top-0 z-30 flex min-h-20 items-center justify-between gap-6 border-b border-stone/15 bg-stone px-8 text-on-stone max-[900px]:flex-wrap max-[900px]:px-5 max-[900px]:py-4">
+      <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-6 border-b border-stone/15 bg-stone px-8 text-on-stone max-[900px]:px-5">
         <Link className="font-roco text-2xl font-black leading-none" to="/docs">
           洛克王国:UI
         </Link>
@@ -89,7 +89,7 @@ export function ExampleShell({
       <div className="grid grid-cols-[280px_minmax(0,1fr)] max-[980px]:block">
         <aside
           aria-label="组件示例"
-          className="sticky top-20 h-[calc(100svh-5rem)] border-r border-stone/15 px-6 py-8 max-[980px]:relative max-[980px]:top-0 max-[980px]:h-auto max-[980px]:border-r-0 max-[980px]:border-b max-[980px]:px-5 max-[980px]:py-5"
+          className="sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto border-r border-stone/15 px-6 py-8 max-[980px]:relative max-[980px]:top-0 max-[980px]:h-auto max-[980px]:border-r-0 max-[980px]:border-b max-[980px]:px-5 max-[980px]:py-5"
         >
           <p className="font-roco text-3xl font-black leading-none">Examples</p>
           <div className="mt-7 grid gap-2 max-[980px]:mt-4 max-[980px]:flex max-[980px]:overflow-x-auto max-[980px]:pb-1">

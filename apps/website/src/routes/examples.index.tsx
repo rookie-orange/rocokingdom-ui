@@ -42,7 +42,7 @@ export const Route = createFileRoute('/examples/')({
 function ExamplesIndexPage() {
   return (
     <main className="min-h-svh bg-paper text-on-paper">
-      <header className="flex min-h-20 items-center justify-between gap-6 border-b border-stone/15 bg-stone px-8 text-on-stone max-sm:px-5">
+      <header className="flex h-14 items-center justify-between gap-6 border-b border-stone/15 bg-stone px-8 text-on-stone max-sm:px-5">
         <Link className="font-roco text-2xl font-black leading-none" to="/docs">
           洛克王国:UI
         </Link>

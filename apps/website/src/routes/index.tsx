@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { Button, RuneText } from 'rocokingdom-ui'
+import { Button } from 'rocokingdom-ui'
 import heroUrl from '../assets/hero.png'
+import backgroundUrl from '../assets/rocom-home-bg.jpg'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -11,9 +12,15 @@ function HomePage() {
 
   return (
     <main className="relative grid min-h-svh place-items-center overflow-hidden bg-stone px-6 py-20 text-on-stone max-sm:px-4 max-sm:py-14">
+      <img
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 size-full object-cover"
+        src={backgroundUrl}
+      />
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-2 bg-[linear-gradient(90deg,var(--primary-soft),var(--primary),var(--primary-muted),var(--primary-strong),var(--success),var(--danger))]"
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgb(0_0_0_/_0.36),rgb(29_24_18_/_0.56)),radial-gradient(circle_at_center,rgb(255_255_255_/_0.08),transparent_58%)]"
       />
       <img
         alt=""
@@ -36,16 +43,12 @@ function HomePage() {
         aria-label="Rocokingdom UI"
         className="relative z-10 grid w-full max-w-6xl justify-items-center"
       >
-        <div
-          aria-label="洛克王国 UI"
-          className="grid items-center justify-center gap-5 text-center font-roco tracking-normal max-sm:gap-3"
-        >
-          <span className="whitespace-nowrap text-9xl font-black leading-none tracking-normal text-paper max-lg:text-7xl max-sm:text-5xl">
-            洛克王国
-          </span>
-          <RuneText className="whitespace-nowrap text-5xl! text-primary font-black leading-none tracking-normal max-lg:text-4xl max-sm:text-3xl">
-            ROCOKINGDOM:UI
-          </RuneText>
+        <div aria-label="洛克王国 UI" className="flex gap-2 items-center justify-center">
+          <p className="flex flex-col">
+            <span className="text-8xl">洛克王国</span>
+            <span className="text-5xl tracking-[0.22em]">ROCOKINGDOM</span>
+          </p>
+          <p className="text-[13rem] leading-none">UI</p>
         </div>
 
         <div className="mt-20 flex flex-wrap justify-center gap-4 max-sm:mt-14">
