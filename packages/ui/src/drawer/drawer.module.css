@@ -18,6 +18,8 @@
 }
 
 .content {
+  --rk-drawer-curve-extension: calc(var(--rk-drawer-size) * 0.13636);
+  --rk-drawer-outer-size: calc(var(--rk-drawer-size) + var(--rk-drawer-curve-extension));
   --rk-drawer-size: 760px;
 
   display: flex;
@@ -32,7 +34,7 @@
 .left {
   bottom: 0;
   top: 0;
-  width: min(100vw, var(--rk-drawer-size));
+  width: min(100vw, var(--rk-drawer-outer-size));
 }
 
 .right {
@@ -45,7 +47,7 @@
 
 .top,
 .bottom {
-  height: min(100svh, var(--rk-drawer-size));
+  height: min(100svh, var(--rk-drawer-outer-size));
   left: 0;
   right: 0;
 }
@@ -98,6 +100,11 @@
   animation: rk-drawer-panel-in var(--rk-drawer-content-enter-duration, 300ms) linear;
 }
 
+.content[data-state='open'].top .panel,
+.content[data-state='open'].bottom .panel {
+  animation-name: rk-drawer-panel-y-in;
+}
+
 .content[data-state='closed'] .panel {
   animation: rk-drawer-panel-out
     var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 180ms)) ease-in;
@@ -143,32 +150,71 @@
 .inner {
   box-sizing: border-box;
   display: flex;
-  flex: 1 1 auto;
   flex-direction: column;
+  height: 100%;
   min-height: 0;
   min-width: 0;
   overflow: auto;
-  padding: var(--rk-drawer-padding, 56px 64px);
+  padding: var(--rk-drawer-padding, 36px);
+  position: relative;
+  width: min(var(--rk-drawer-size), calc(100% - var(--rk-drawer-curve-extension)));
 }
 
-/* 12% matches the SVG arc's max horizontal extent (viewBox x=120/1000), so the
-   content clears the curve at any width. A fixed px only clears near 800px and
-   overflows wide drawers (e.g. size="full"). */
-.right .inner {
-  padding-inline-start: max(
-    var(--rk-drawer-padding-inline-start, 64px),
-    var(--rk-drawer-curve-inset, 12%)
-  );
+.left .inner,
+.top .inner {
+  margin-inline-end: auto;
 }
 
-.left .inner {
-  padding-inline-end: max(
-    var(--rk-drawer-padding-inline-end, 64px),
-    var(--rk-drawer-curve-inset, 12%)
-  );
+.right .inner,
+.bottom .inner {
+  margin-inline-start: auto;
+}
+
+.top .inner,
+.bottom .inner {
+  height: min(var(--rk-drawer-size), calc(100% - var(--rk-drawer-curve-extension)));
+  width: 100%;
+}
+
+.top .inner {
+  margin-block-end: auto;
+  margin-inline-end: 0;
+}
+
+.bottom .inner {
+  margin-block-start: auto;
+  margin-inline-start: 0;
+}
+
+.header {
+  --rk-drawer-close-size: 52px;
+
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  gap: var(--rk-drawer-header-gap, 24px);
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.left .header {
+  flex-direction: row-reverse;
+}
+
+.headerContent {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
+  font-size: var(--rk-drawer-title-font-size, 40px);
+  font-weight: var(--rk-drawer-title-font-weight, 900);
+  margin: 0 0 var(--rk-drawer-title-margin-block-end, 28px);
 }
 
 .body {
+  flex: 1 1 auto;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
   font-size: var(--rk-drawer-body-font-size, 16px);
   font-weight: var(--rk-drawer-body-font-weight, 800);
@@ -177,8 +223,10 @@
 }
 
 .description {
+  flex: 1 1 auto;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
   margin: 0 0 16px;
+  min-width: 0;
 }
 
 .close {
@@ -188,14 +236,12 @@
   color: var(--rk-drawer-close-color, var(--rk-on-stone));
   cursor: pointer;
   display: inline-grid;
-  height: 52px;
+  height: var(--rk-drawer-close-size);
   margin: 0;
   padding: 0;
   place-items: center;
-  position: absolute;
-  right: var(--rk-drawer-close-inset-inline-end, 28px);
-  top: var(--rk-drawer-close-inset-block-start, 28px);
-  width: 52px;
+  position: relative;
+  width: var(--rk-drawer-close-size);
   z-index: 2;
 }
 
@@ -337,6 +383,28 @@
   100% {
     opacity: 1;
     transform: scaleX(1);
+  }
+}
+
+@keyframes rk-drawer-panel-y-in {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  75% {
+    opacity: 1;
+    transform: scaleY(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
   }
 }
 

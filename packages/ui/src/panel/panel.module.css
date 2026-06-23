@@ -61,3 +61,11 @@
 .both .content {
   padding-inline-end: max(var(--rk-panel-padding), var(--rk-panel-curve-inset));
 }
+
+.top .content {
+  padding-block-start: max(var(--rk-panel-padding), var(--rk-panel-curve-inset));
+}
+
+.bottom .content {
+  padding-block-end: max(var(--rk-panel-padding), var(--rk-panel-curve-inset));
+}

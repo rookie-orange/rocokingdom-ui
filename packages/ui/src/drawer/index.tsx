@@ -28,6 +28,8 @@ type DialogContentProps = Omit<
 type DrawerPanelProps = Omit<PanelProps, 'children'>
 
 interface DrawerStyle extends CSSProperties {
+  '--rk-drawer-curve-extension'?: string
+  '--rk-drawer-outer-size'?: string
   '--rk-drawer-size'?: string
 }
 
@@ -56,6 +58,7 @@ export interface DrawerProps extends Omit<DialogRootProps, 'children'> {
   // oxlint-disable-next-line no-redundant-type-constituents
   size?: number | 'full' | string
   title?: ReactNode
+  titleClassName?: string
   trigger?: ReactElement
 }
 
@@ -71,13 +74,49 @@ function resolveSize(value: number | string | undefined) {
   return value
 }
 
-// oxlint-disable-next-line no-redundant-type-constituents
-function resolveDrawerSize(size: number | 'full' | string | undefined, side: DrawerSide) {
-  if (size === 'full') {
-    return side === 'left' || side === 'right' ? '100vw' : '100svh'
+function resolveCurveExtension(size: number, hasCurveExtension: boolean) {
+  if (!hasCurveExtension) {
+    return '0px'
   }
 
-  return resolveSize(size)
+  return `${Number(((size * 120) / 880).toFixed(3))}px`
+}
+
+// oxlint-disable-next-line no-redundant-type-constituents
+function resolveDrawerSize(
+  size: number | string | undefined,
+  side: DrawerSide,
+  hasCurveExtension: boolean,
+) {
+  if (size === 'full') {
+    const viewportSize = side === 'left' || side === 'right' ? '100vw' : '100svh'
+
+    if (!hasCurveExtension) {
+      return {
+        outerSize: viewportSize,
+        size: viewportSize,
+      }
+    }
+
+    return {
+      curveExtension: side === 'left' || side === 'right' ? '12vw' : '12svh',
+      outerSize: viewportSize,
+      size: `calc(${viewportSize} - var(--rk-drawer-curve-extension))`,
+    }
+  }
+
+  if (typeof size === 'number') {
+    return {
+      curveExtension: resolveCurveExtension(size, hasCurveExtension),
+      size: resolveSize(size),
+    }
+  }
+
+  if (!hasCurveExtension) {
+    return { curveExtension: '0px', size: resolveSize(size) }
+  }
+
+  return { size: resolveSize(size) }
 }
 
 function getDefaultCurve(side: DrawerSide): PanelCurve {
@@ -89,7 +128,11 @@ function getDefaultCurve(side: DrawerSide): PanelCurve {
     return 'right'
   }
 
-  return 'none'
+  if (side === 'top') {
+    return 'bottom'
+  }
+
+  return 'top'
 }
 
 export function Drawer({
@@ -115,17 +158,27 @@ export function Drawer({
   side = 'right',
   size,
   title,
+  titleClassName,
   trigger,
   ...rootProps
 }: DrawerProps) {
   const hasDescription = hasContent(description)
-  const titleForAssistiveTech = hasContent(title) ? title : (ariaLabel ?? 'Drawer')
+  const hasTitle = hasContent(title)
+  const titleForAssistiveTech = hasTitle ? title : (ariaLabel ?? 'Drawer')
   const contentStyle: DrawerStyle = { ...contentProps?.style }
-  const resolvedSize = resolveDrawerSize(size, side)
   const resolvedCurve = curve ?? panelProps?.curve ?? getDefaultCurve(side)
+  const resolvedSize = resolveDrawerSize(size, side, resolvedCurve !== 'none')
 
-  if (resolvedSize) {
-    contentStyle['--rk-drawer-size'] = resolvedSize
+  if (resolvedSize.size) {
+    contentStyle['--rk-drawer-size'] = resolvedSize.size
+  }
+
+  if (resolvedSize.curveExtension) {
+    contentStyle['--rk-drawer-curve-extension'] = resolvedSize.curveExtension
+  }
+
+  if (resolvedSize.outerSize) {
+    contentStyle['--rk-drawer-outer-size'] = resolvedSize.outerSize
   }
 
   const descriptionProps =
@@ -151,9 +204,6 @@ export function Drawer({
           className={clsx(prefixCls, styles.content, styles[side], rootClassName, contentClassName)}
           style={contentStyle}
         >
-          <RadixDialogTitle className={styles.visuallyHidden}>
-            {titleForAssistiveTech}
-          </RadixDialogTitle>
           <Panel
             {...panelProps}
             as="section"
@@ -172,31 +222,53 @@ export function Drawer({
             material={panelProps?.material ?? material}
           >
             <div className={clsx(`${prefixCls}-inner`, styles.inner, innerClassName)}>
-              {hasDescription ? (
-                <RadixDialogDescription
-                  className={clsx(
-                    `${prefixCls}-description`,
-                    styles.description,
-                    descriptionClassName,
+              <header className={clsx(`${prefixCls}-header`, styles.header)}>
+                <div className={clsx(`${prefixCls}-header-content`, styles.headerContent)}>
+                  {hasTitle ? (
+                    <RadixDialogTitle
+                      className={clsx(`${prefixCls}-title`, styles.title, titleClassName)}
+                    >
+                      {title}
+                    </RadixDialogTitle>
+                  ) : (
+                    <RadixDialogTitle className={styles.visuallyHidden}>
+                      {titleForAssistiveTech}
+                    </RadixDialogTitle>
                   )}
-                >
-                  {description}
-                </RadixDialogDescription>
-              ) : null}
-              <div className={clsx(`${prefixCls}-body`, styles.body, bodyClassName)}>
+                  {hasDescription ? (
+                    <RadixDialogDescription
+                      className={clsx(
+                        `${prefixCls}-description`,
+                        styles.description,
+                        descriptionClassName,
+                      )}
+                    >
+                      {description}
+                    </RadixDialogDescription>
+                  ) : null}
+                </div>
+                {closable ? (
+                  <RadixDialogClose
+                    aria-label={closeLabel}
+                    className={clsx(`${prefixCls}-close`, styles.close, closeClassName)}
+                    type="button"
+                  >
+                    <span aria-hidden="true" className={styles.closeIcon} />
+                  </RadixDialogClose>
+                ) : null}
+              </header>
+              <div
+                className={clsx(
+                  `${prefixCls}-content`,
+                  `${prefixCls}-body`,
+                  styles.body,
+                  bodyClassName,
+                )}
+              >
                 {children}
               </div>
             </div>
           </Panel>
-          {closable ? (
-            <RadixDialogClose
-              aria-label={closeLabel}
-              className={clsx(`${prefixCls}-close`, styles.close, closeClassName)}
-              type="button"
-            >
-              <span aria-hidden="true" className={styles.closeIcon} />
-            </RadixDialogClose>
-          ) : null}
         </RadixDialogContent>
       </RadixDialogPortal>
     </RadixDialogRoot>

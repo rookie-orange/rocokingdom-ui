@@ -40,12 +40,11 @@ function DrawerExamplePage() {
           <div className="flex flex-wrap gap-4">
             {(['right', 'left', 'top', 'bottom'] as const).map((side) => (
               <Drawer
-                description={`当前抽屉方向：${side}`}
                 key={side}
                 overlay
                 side={side}
                 size={side === 'left' || side === 'right' ? 460 : 320}
-                title={`${side} drawer`}
+                title="任务详情"
                 trigger={
                   <Button material="default" shadow>
                     {side}
@@ -53,7 +52,6 @@ function DrawerExamplePage() {
                 }
               >
                 <div className="grid gap-5">
-                  <p className="font-roco text-4xl font-black leading-none">任务详情</p>
                   <p className="text-base font-bold leading-7">
                     这里可以放置长内容、公告列表、筛选条件或配置项。
                   </p>

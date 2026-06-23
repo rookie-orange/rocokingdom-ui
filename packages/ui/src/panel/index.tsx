@@ -4,7 +4,7 @@ import styles from './panel.module.css'
 
 export const panelPrefixCls = 'rk-panel'
 
-export type PanelCurve = 'none' | 'left' | 'right' | 'both'
+export type PanelCurve = 'none' | 'bottom' | 'left' | 'right' | 'top' | 'both'
 export type PanelMaterial = 'paper' | 'stone'
 
 interface PanelStyle extends CSSProperties {
@@ -23,9 +23,11 @@ export interface PanelProps extends HTMLAttributes<HTMLElement> {
 }
 
 const curvePathBySide: Record<Exclude<PanelCurve, 'none'>, string> = {
+  bottom: 'M0 0H1000V880C754 958 246 958 0 880Z',
   both: 'M120 0C42 246 42 754 120 1000H880C958 754 958 246 880 0Z',
   left: 'M120 0C42 246 42 754 120 1000H1000V0Z',
   right: 'M0 0H880C958 246 958 754 880 1000H0Z',
+  top: 'M0 120C246 42 754 42 1000 120V1000H0Z',
 }
 
 function resolveSize(value: number | string | undefined) {

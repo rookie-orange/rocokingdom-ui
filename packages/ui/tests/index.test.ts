@@ -314,6 +314,8 @@ test('styles panel curves with svg shape padding insets', () => {
   expect(panelCss).toContain('fill: currentColor;')
   expect(panelCss).toContain('.left .content')
   expect(panelCss).toContain('.right .content')
+  expect(panelCss).toContain('.top .content')
+  expect(panelCss).toContain('.bottom .content')
   expect(panelCss).toContain('var(--rk-panel-curve-inset)')
 })
 
@@ -502,65 +504,106 @@ test('renders a radix-backed drawer trigger on the server', () => {
   )
 
   expect(html).toContain('Open drawer')
+  expect(html).toContain('rk-drawer-title')
+  expect(html).toContain('公告')
 })
 
-test('uses radix dialog for drawer behavior and defaults right drawer to a left curve', () => {
+test('uses radix dialog for drawer behavior and maps drawer side to the exposed curve', () => {
   expect(radixDialogSource).toContain("import * as Dialog from '@radix-ui/react-dialog'")
   expect(drawerSource).toContain("return 'left'")
+  expect(drawerSource).toContain("return 'right'")
+  expect(drawerSource).toContain("return 'bottom'")
+  expect(drawerSource).toContain("return 'top'")
   expect(drawerSource).toContain('<Panel')
   expect(drawerSource).toContain('RadixDialogClose')
   expect(drawerSource).toContain('innerClassName')
   expect(drawerSource).toContain('overlay = false')
   expect(drawerSource).toContain('overlay && styles.overlayVisible')
+  expect(drawerSource).toContain('`${prefixCls}-header`')
+  expect(drawerSource).toContain('`${prefixCls}-header-content`')
+  expect(drawerSource).toContain('`${prefixCls}-title`')
+  expect(drawerSource).toContain('`${prefixCls}-content`')
+  expect(drawerSource).toContain('titleClassName')
   expect(drawerSource).toContain('styles.panelContent')
   expect(drawerCss).toContain('background: transparent;')
   expect(drawerCss).toContain('.overlayVisible')
   expect(drawerCss).toContain('.panelContent')
   expect(drawerCss).toContain('.inner')
+  expect(drawerCss).toContain('--rk-drawer-curve-extension')
+  expect(drawerCss).toContain('--rk-drawer-outer-size')
+  expect(drawerCss).toContain('width: min(100vw, var(--rk-drawer-outer-size));')
+  expect(drawerCss).toContain(
+    'width: min(var(--rk-drawer-size), calc(100% - var(--rk-drawer-curve-extension)));',
+  )
+  expect(drawerCss).toContain('.header')
+  expect(drawerCss).toContain('.headerContent')
+  expect(drawerCss).toContain('.title')
+  expect(drawerCss).toContain('.left .header')
+  expect(drawerCss).toContain('flex-direction: row-reverse;')
+  expect(drawerCss).toContain('position: relative;')
+  expect(drawerCss).toContain('--rk-drawer-close-size: 52px;')
+  expect(drawerCss).toContain('--rk-drawer-title-font-size')
   // 12% tracks the arc's max extent; a fixed px overflowed wide drawers (size="full").
   expect(drawerCss).toContain('var(--rk-drawer-curve-inset, 12%)')
+  expect(drawerCss).toContain('.top .inner')
+  expect(drawerCss).toContain('.bottom .inner')
   expect(drawerCss).toContain(".content[data-state='open'].right")
+  expect(drawerCss).toContain(".content[data-state='open'].top .panel")
+  expect(drawerCss).toContain('animation-name: rk-drawer-panel-y-in;')
   expect(drawerCss).toContain(".content[data-state='open'] .panel")
   expect(drawerCss).toContain('@keyframes rk-drawer-panel-in')
+  expect(drawerCss).toContain('@keyframes rk-drawer-panel-y-in')
   expect(drawerCss).toContain('@keyframes rk-drawer-panel-out')
   expect(drawerCss).toContain('transform: translateX(50%);')
   expect(drawerCss).toContain('opacity: 0;')
   expect(drawerCss).toContain('transform-origin: right center;')
   expect(drawerCss).toContain('transform: scaleX(0);')
   expect(drawerCss).toContain('transform: scaleX(1.02);')
+  expect(drawerCss).toContain('transform: scaleY(0);')
+  expect(drawerCss).toContain('transform: scaleY(1.02);')
   expect(drawerCss).toContain('@media (prefers-reduced-motion: reduce)')
 })
 
 test('fills the viewport along the drawer side when size is full', () => {
   expect(drawerSource).toContain("size?: number | 'full' | string")
   expect(drawerSource).toContain('function resolveDrawerSize')
+  expect(drawerSource).toContain('resolveCurveExtension')
   expect(drawerSource).toContain("'100vw'")
   expect(drawerSource).toContain("'100svh'")
 
   const rightHtml = renderToString(
     createElement(Drawer, { size: 'full', children: 'Full width drawer' }),
   )
-  expect(rightHtml).toContain('--rk-drawer-size:100vw')
+  expect(rightHtml).toContain('--rk-drawer-size:calc(100vw - var(--rk-drawer-curve-extension))')
+  expect(rightHtml).toContain('--rk-drawer-curve-extension:12vw')
+  expect(rightHtml).toContain('--rk-drawer-outer-size:100vw')
 
   const bottomHtml = renderToString(
     createElement(Drawer, { size: 'full', side: 'bottom', children: 'Full height drawer' }),
   )
-  expect(bottomHtml).toContain('--rk-drawer-size:100svh')
+  expect(bottomHtml).toContain('--rk-drawer-size:calc(100svh - var(--rk-drawer-curve-extension))')
+  expect(bottomHtml).toContain('--rk-drawer-curve-extension:12svh')
+  expect(bottomHtml).toContain('--rk-drawer-outer-size:100svh')
 
   const leftHtml = renderToString(
     createElement(Drawer, { size: 'full', side: 'left', children: 'Full width drawer' }),
   )
-  expect(leftHtml).toContain('--rk-drawer-size:100vw')
+  expect(leftHtml).toContain('--rk-drawer-size:calc(100vw - var(--rk-drawer-curve-extension))')
+  expect(leftHtml).toContain('--rk-drawer-curve-extension:12vw')
+  expect(leftHtml).toContain('--rk-drawer-outer-size:100vw')
 
   const topHtml = renderToString(
     createElement(Drawer, { size: 'full', side: 'top', children: 'Full height drawer' }),
   )
-  expect(topHtml).toContain('--rk-drawer-size:100svh')
+  expect(topHtml).toContain('--rk-drawer-size:calc(100svh - var(--rk-drawer-curve-extension))')
+  expect(topHtml).toContain('--rk-drawer-curve-extension:12svh')
+  expect(topHtml).toContain('--rk-drawer-outer-size:100svh')
 })
 
-test('keeps numeric and string sizes unchanged when size is not full', () => {
+test('keeps explicit drawer sizes on the inner content box when size is not full', () => {
   const numericHtml = renderToString(createElement(Drawer, { size: 720, children: 'Sized drawer' }))
   expect(numericHtml).toContain('--rk-drawer-size:720px')
+  expect(numericHtml).toContain('--rk-drawer-curve-extension:98.182px')
 
   const stringHtml = renderToString(
     createElement(Drawer, { size: '50vw', children: 'Sized drawer' }),
