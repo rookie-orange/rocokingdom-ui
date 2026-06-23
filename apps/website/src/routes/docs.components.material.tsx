@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Material } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/material')({
+export const Route = createFileRoute('/docs/components/material')({
   component: MaterialExamplePage,
 })
 
@@ -26,7 +26,6 @@ function MaterialExamplePage() {
         'as 可切换渲染元素。',
         'background 和 color 可用于一次性自定义表面。',
       ]}
-      slug="material"
       title="Material"
     >
       <ExampleSection title="预设材质">

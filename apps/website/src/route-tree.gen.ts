@@ -12,19 +12,21 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ExamplesRouteImport } from './routes/examples'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ExamplesIndexRouteImport } from './routes/examples.index'
-import { Route as ExamplesSideNavRouteImport } from './routes/examples.side-nav'
-import { Route as ExamplesSelectRouteImport } from './routes/examples.select'
-import { Route as ExamplesRuneTextRouteImport } from './routes/examples.rune-text'
-import { Route as ExamplesRocoShapeRouteImport } from './routes/examples.roco-shape'
-import { Route as ExamplesRocoProviderRouteImport } from './routes/examples.roco-provider'
-import { Route as ExamplesRadioGroupRouteImport } from './routes/examples.radio-group'
-import { Route as ExamplesPanelRouteImport } from './routes/examples.panel'
-import { Route as ExamplesModalRouteImport } from './routes/examples.modal'
-import { Route as ExamplesMaterialRouteImport } from './routes/examples.material'
-import { Route as ExamplesDrawerRouteImport } from './routes/examples.drawer'
-import { Route as ExamplesButtonNormalRouteImport } from './routes/examples.button-normal'
-import { Route as ExamplesButtonRouteImport } from './routes/examples.button'
+import { Route as DocsIndexRouteImport } from './routes/docs.index'
+import { Route as ExamplesSlugRouteImport } from './routes/examples.$slug'
+import { Route as DocsComponentsIndexRouteImport } from './routes/docs.components.index'
+import { Route as DocsComponentsSideNavRouteImport } from './routes/docs.components.side-nav'
+import { Route as DocsComponentsSelectRouteImport } from './routes/docs.components.select'
+import { Route as DocsComponentsRuneTextRouteImport } from './routes/docs.components.rune-text'
+import { Route as DocsComponentsRocoShapeRouteImport } from './routes/docs.components.roco-shape'
+import { Route as DocsComponentsRocoProviderRouteImport } from './routes/docs.components.roco-provider'
+import { Route as DocsComponentsRadioGroupRouteImport } from './routes/docs.components.radio-group'
+import { Route as DocsComponentsPanelRouteImport } from './routes/docs.components.panel'
+import { Route as DocsComponentsModalRouteImport } from './routes/docs.components.modal'
+import { Route as DocsComponentsMaterialRouteImport } from './routes/docs.components.material'
+import { Route as DocsComponentsDrawerRouteImport } from './routes/docs.components.drawer'
+import { Route as DocsComponentsButtonNormalRouteImport } from './routes/docs.components.button-normal'
+import { Route as DocsComponentsButtonRouteImport } from './routes/docs.components.button'
 
 const ExamplesRoute = ExamplesRouteImport.update({
   id: '/examples',
@@ -41,125 +43,144 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ExamplesIndexRoute = ExamplesIndexRouteImport.update({
+const DocsIndexRoute = DocsIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => DocsRoute,
+} as any)
+const ExamplesSlugRoute = ExamplesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => ExamplesRoute,
 } as any)
-const ExamplesSideNavRoute = ExamplesSideNavRouteImport.update({
-  id: '/side-nav',
-  path: '/side-nav',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsIndexRoute = DocsComponentsIndexRouteImport.update({
+  id: '/components/',
+  path: '/components/',
+  getParentRoute: () => DocsRoute,
 } as any)
-const ExamplesSelectRoute = ExamplesSelectRouteImport.update({
-  id: '/select',
-  path: '/select',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsSideNavRoute = DocsComponentsSideNavRouteImport.update({
+  id: '/components/side-nav',
+  path: '/components/side-nav',
+  getParentRoute: () => DocsRoute,
 } as any)
-const ExamplesRuneTextRoute = ExamplesRuneTextRouteImport.update({
-  id: '/rune-text',
-  path: '/rune-text',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsSelectRoute = DocsComponentsSelectRouteImport.update({
+  id: '/components/select',
+  path: '/components/select',
+  getParentRoute: () => DocsRoute,
 } as any)
-const ExamplesRocoShapeRoute = ExamplesRocoShapeRouteImport.update({
-  id: '/roco-shape',
-  path: '/roco-shape',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsRuneTextRoute = DocsComponentsRuneTextRouteImport.update({
+  id: '/components/rune-text',
+  path: '/components/rune-text',
+  getParentRoute: () => DocsRoute,
 } as any)
-const ExamplesRocoProviderRoute = ExamplesRocoProviderRouteImport.update({
-  id: '/roco-provider',
-  path: '/roco-provider',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsRocoShapeRoute = DocsComponentsRocoShapeRouteImport.update({
+  id: '/components/roco-shape',
+  path: '/components/roco-shape',
+  getParentRoute: () => DocsRoute,
 } as any)
-const ExamplesRadioGroupRoute = ExamplesRadioGroupRouteImport.update({
-  id: '/radio-group',
-  path: '/radio-group',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsRocoProviderRoute =
+  DocsComponentsRocoProviderRouteImport.update({
+    id: '/components/roco-provider',
+    path: '/components/roco-provider',
+    getParentRoute: () => DocsRoute,
+  } as any)
+const DocsComponentsRadioGroupRoute =
+  DocsComponentsRadioGroupRouteImport.update({
+    id: '/components/radio-group',
+    path: '/components/radio-group',
+    getParentRoute: () => DocsRoute,
+  } as any)
+const DocsComponentsPanelRoute = DocsComponentsPanelRouteImport.update({
+  id: '/components/panel',
+  path: '/components/panel',
+  getParentRoute: () => DocsRoute,
 } as any)
-const ExamplesPanelRoute = ExamplesPanelRouteImport.update({
-  id: '/panel',
-  path: '/panel',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsModalRoute = DocsComponentsModalRouteImport.update({
+  id: '/components/modal',
+  path: '/components/modal',
+  getParentRoute: () => DocsRoute,
 } as any)
-const ExamplesModalRoute = ExamplesModalRouteImport.update({
-  id: '/modal',
-  path: '/modal',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsMaterialRoute = DocsComponentsMaterialRouteImport.update({
+  id: '/components/material',
+  path: '/components/material',
+  getParentRoute: () => DocsRoute,
 } as any)
-const ExamplesMaterialRoute = ExamplesMaterialRouteImport.update({
-  id: '/material',
-  path: '/material',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsDrawerRoute = DocsComponentsDrawerRouteImport.update({
+  id: '/components/drawer',
+  path: '/components/drawer',
+  getParentRoute: () => DocsRoute,
 } as any)
-const ExamplesDrawerRoute = ExamplesDrawerRouteImport.update({
-  id: '/drawer',
-  path: '/drawer',
-  getParentRoute: () => ExamplesRoute,
-} as any)
-const ExamplesButtonNormalRoute = ExamplesButtonNormalRouteImport.update({
-  id: '/button-normal',
-  path: '/button-normal',
-  getParentRoute: () => ExamplesRoute,
-} as any)
-const ExamplesButtonRoute = ExamplesButtonRouteImport.update({
-  id: '/button',
-  path: '/button',
-  getParentRoute: () => ExamplesRoute,
+const DocsComponentsButtonNormalRoute =
+  DocsComponentsButtonNormalRouteImport.update({
+    id: '/components/button-normal',
+    path: '/components/button-normal',
+    getParentRoute: () => DocsRoute,
+  } as any)
+const DocsComponentsButtonRoute = DocsComponentsButtonRouteImport.update({
+  id: '/components/button',
+  path: '/components/button',
+  getParentRoute: () => DocsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/docs': typeof DocsRoute
+  '/docs': typeof DocsRouteWithChildren
   '/examples': typeof ExamplesRouteWithChildren
-  '/examples/button': typeof ExamplesButtonRoute
-  '/examples/button-normal': typeof ExamplesButtonNormalRoute
-  '/examples/drawer': typeof ExamplesDrawerRoute
-  '/examples/material': typeof ExamplesMaterialRoute
-  '/examples/modal': typeof ExamplesModalRoute
-  '/examples/panel': typeof ExamplesPanelRoute
-  '/examples/radio-group': typeof ExamplesRadioGroupRoute
-  '/examples/roco-provider': typeof ExamplesRocoProviderRoute
-  '/examples/roco-shape': typeof ExamplesRocoShapeRoute
-  '/examples/rune-text': typeof ExamplesRuneTextRoute
-  '/examples/select': typeof ExamplesSelectRoute
-  '/examples/side-nav': typeof ExamplesSideNavRoute
-  '/examples/': typeof ExamplesIndexRoute
+  '/examples/$slug': typeof ExamplesSlugRoute
+  '/docs/': typeof DocsIndexRoute
+  '/docs/components/button': typeof DocsComponentsButtonRoute
+  '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
+  '/docs/components/drawer': typeof DocsComponentsDrawerRoute
+  '/docs/components/material': typeof DocsComponentsMaterialRoute
+  '/docs/components/modal': typeof DocsComponentsModalRoute
+  '/docs/components/panel': typeof DocsComponentsPanelRoute
+  '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
+  '/docs/components/roco-provider': typeof DocsComponentsRocoProviderRoute
+  '/docs/components/roco-shape': typeof DocsComponentsRocoShapeRoute
+  '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
+  '/docs/components/select': typeof DocsComponentsSelectRoute
+  '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/': typeof DocsComponentsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/docs': typeof DocsRoute
-  '/examples/button': typeof ExamplesButtonRoute
-  '/examples/button-normal': typeof ExamplesButtonNormalRoute
-  '/examples/drawer': typeof ExamplesDrawerRoute
-  '/examples/material': typeof ExamplesMaterialRoute
-  '/examples/modal': typeof ExamplesModalRoute
-  '/examples/panel': typeof ExamplesPanelRoute
-  '/examples/radio-group': typeof ExamplesRadioGroupRoute
-  '/examples/roco-provider': typeof ExamplesRocoProviderRoute
-  '/examples/roco-shape': typeof ExamplesRocoShapeRoute
-  '/examples/rune-text': typeof ExamplesRuneTextRoute
-  '/examples/select': typeof ExamplesSelectRoute
-  '/examples/side-nav': typeof ExamplesSideNavRoute
-  '/examples': typeof ExamplesIndexRoute
+  '/examples': typeof ExamplesRouteWithChildren
+  '/examples/$slug': typeof ExamplesSlugRoute
+  '/docs': typeof DocsIndexRoute
+  '/docs/components/button': typeof DocsComponentsButtonRoute
+  '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
+  '/docs/components/drawer': typeof DocsComponentsDrawerRoute
+  '/docs/components/material': typeof DocsComponentsMaterialRoute
+  '/docs/components/modal': typeof DocsComponentsModalRoute
+  '/docs/components/panel': typeof DocsComponentsPanelRoute
+  '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
+  '/docs/components/roco-provider': typeof DocsComponentsRocoProviderRoute
+  '/docs/components/roco-shape': typeof DocsComponentsRocoShapeRoute
+  '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
+  '/docs/components/select': typeof DocsComponentsSelectRoute
+  '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components': typeof DocsComponentsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/docs': typeof DocsRoute
+  '/docs': typeof DocsRouteWithChildren
   '/examples': typeof ExamplesRouteWithChildren
-  '/examples/button': typeof ExamplesButtonRoute
-  '/examples/button-normal': typeof ExamplesButtonNormalRoute
-  '/examples/drawer': typeof ExamplesDrawerRoute
-  '/examples/material': typeof ExamplesMaterialRoute
-  '/examples/modal': typeof ExamplesModalRoute
-  '/examples/panel': typeof ExamplesPanelRoute
-  '/examples/radio-group': typeof ExamplesRadioGroupRoute
-  '/examples/roco-provider': typeof ExamplesRocoProviderRoute
-  '/examples/roco-shape': typeof ExamplesRocoShapeRoute
-  '/examples/rune-text': typeof ExamplesRuneTextRoute
-  '/examples/select': typeof ExamplesSelectRoute
-  '/examples/side-nav': typeof ExamplesSideNavRoute
-  '/examples/': typeof ExamplesIndexRoute
+  '/examples/$slug': typeof ExamplesSlugRoute
+  '/docs/': typeof DocsIndexRoute
+  '/docs/components/button': typeof DocsComponentsButtonRoute
+  '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
+  '/docs/components/drawer': typeof DocsComponentsDrawerRoute
+  '/docs/components/material': typeof DocsComponentsMaterialRoute
+  '/docs/components/modal': typeof DocsComponentsModalRoute
+  '/docs/components/panel': typeof DocsComponentsPanelRoute
+  '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
+  '/docs/components/roco-provider': typeof DocsComponentsRocoProviderRoute
+  '/docs/components/roco-shape': typeof DocsComponentsRocoShapeRoute
+  '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
+  '/docs/components/select': typeof DocsComponentsSelectRoute
+  '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/': typeof DocsComponentsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -167,59 +188,65 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/examples'
-    | '/examples/button'
-    | '/examples/button-normal'
-    | '/examples/drawer'
-    | '/examples/material'
-    | '/examples/modal'
-    | '/examples/panel'
-    | '/examples/radio-group'
-    | '/examples/roco-provider'
-    | '/examples/roco-shape'
-    | '/examples/rune-text'
-    | '/examples/select'
-    | '/examples/side-nav'
-    | '/examples/'
+    | '/examples/$slug'
+    | '/docs/'
+    | '/docs/components/button'
+    | '/docs/components/button-normal'
+    | '/docs/components/drawer'
+    | '/docs/components/material'
+    | '/docs/components/modal'
+    | '/docs/components/panel'
+    | '/docs/components/radio-group'
+    | '/docs/components/roco-provider'
+    | '/docs/components/roco-shape'
+    | '/docs/components/rune-text'
+    | '/docs/components/select'
+    | '/docs/components/side-nav'
+    | '/docs/components/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/docs'
-    | '/examples/button'
-    | '/examples/button-normal'
-    | '/examples/drawer'
-    | '/examples/material'
-    | '/examples/modal'
-    | '/examples/panel'
-    | '/examples/radio-group'
-    | '/examples/roco-provider'
-    | '/examples/roco-shape'
-    | '/examples/rune-text'
-    | '/examples/select'
-    | '/examples/side-nav'
     | '/examples'
+    | '/examples/$slug'
+    | '/docs'
+    | '/docs/components/button'
+    | '/docs/components/button-normal'
+    | '/docs/components/drawer'
+    | '/docs/components/material'
+    | '/docs/components/modal'
+    | '/docs/components/panel'
+    | '/docs/components/radio-group'
+    | '/docs/components/roco-provider'
+    | '/docs/components/roco-shape'
+    | '/docs/components/rune-text'
+    | '/docs/components/select'
+    | '/docs/components/side-nav'
+    | '/docs/components'
   id:
     | '__root__'
     | '/'
     | '/docs'
     | '/examples'
-    | '/examples/button'
-    | '/examples/button-normal'
-    | '/examples/drawer'
-    | '/examples/material'
-    | '/examples/modal'
-    | '/examples/panel'
-    | '/examples/radio-group'
-    | '/examples/roco-provider'
-    | '/examples/roco-shape'
-    | '/examples/rune-text'
-    | '/examples/select'
-    | '/examples/side-nav'
-    | '/examples/'
+    | '/examples/$slug'
+    | '/docs/'
+    | '/docs/components/button'
+    | '/docs/components/button-normal'
+    | '/docs/components/drawer'
+    | '/docs/components/material'
+    | '/docs/components/modal'
+    | '/docs/components/panel'
+    | '/docs/components/radio-group'
+    | '/docs/components/roco-provider'
+    | '/docs/components/roco-shape'
+    | '/docs/components/rune-text'
+    | '/docs/components/select'
+    | '/docs/components/side-nav'
+    | '/docs/components/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DocsRoute: typeof DocsRoute
+  DocsRoute: typeof DocsRouteWithChildren
   ExamplesRoute: typeof ExamplesRouteWithChildren
 }
 
@@ -246,130 +273,156 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/examples/': {
-      id: '/examples/'
+    '/docs/': {
+      id: '/docs/'
       path: '/'
-      fullPath: '/examples/'
-      preLoaderRoute: typeof ExamplesIndexRouteImport
+      fullPath: '/docs/'
+      preLoaderRoute: typeof DocsIndexRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/examples/$slug': {
+      id: '/examples/$slug'
+      path: '/$slug'
+      fullPath: '/examples/$slug'
+      preLoaderRoute: typeof ExamplesSlugRouteImport
       parentRoute: typeof ExamplesRoute
     }
-    '/examples/side-nav': {
-      id: '/examples/side-nav'
-      path: '/side-nav'
-      fullPath: '/examples/side-nav'
-      preLoaderRoute: typeof ExamplesSideNavRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/': {
+      id: '/docs/components/'
+      path: '/components'
+      fullPath: '/docs/components/'
+      preLoaderRoute: typeof DocsComponentsIndexRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/select': {
-      id: '/examples/select'
-      path: '/select'
-      fullPath: '/examples/select'
-      preLoaderRoute: typeof ExamplesSelectRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/side-nav': {
+      id: '/docs/components/side-nav'
+      path: '/components/side-nav'
+      fullPath: '/docs/components/side-nav'
+      preLoaderRoute: typeof DocsComponentsSideNavRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/rune-text': {
-      id: '/examples/rune-text'
-      path: '/rune-text'
-      fullPath: '/examples/rune-text'
-      preLoaderRoute: typeof ExamplesRuneTextRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/select': {
+      id: '/docs/components/select'
+      path: '/components/select'
+      fullPath: '/docs/components/select'
+      preLoaderRoute: typeof DocsComponentsSelectRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/roco-shape': {
-      id: '/examples/roco-shape'
-      path: '/roco-shape'
-      fullPath: '/examples/roco-shape'
-      preLoaderRoute: typeof ExamplesRocoShapeRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/rune-text': {
+      id: '/docs/components/rune-text'
+      path: '/components/rune-text'
+      fullPath: '/docs/components/rune-text'
+      preLoaderRoute: typeof DocsComponentsRuneTextRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/roco-provider': {
-      id: '/examples/roco-provider'
-      path: '/roco-provider'
-      fullPath: '/examples/roco-provider'
-      preLoaderRoute: typeof ExamplesRocoProviderRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/roco-shape': {
+      id: '/docs/components/roco-shape'
+      path: '/components/roco-shape'
+      fullPath: '/docs/components/roco-shape'
+      preLoaderRoute: typeof DocsComponentsRocoShapeRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/radio-group': {
-      id: '/examples/radio-group'
-      path: '/radio-group'
-      fullPath: '/examples/radio-group'
-      preLoaderRoute: typeof ExamplesRadioGroupRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/roco-provider': {
+      id: '/docs/components/roco-provider'
+      path: '/components/roco-provider'
+      fullPath: '/docs/components/roco-provider'
+      preLoaderRoute: typeof DocsComponentsRocoProviderRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/panel': {
-      id: '/examples/panel'
-      path: '/panel'
-      fullPath: '/examples/panel'
-      preLoaderRoute: typeof ExamplesPanelRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/radio-group': {
+      id: '/docs/components/radio-group'
+      path: '/components/radio-group'
+      fullPath: '/docs/components/radio-group'
+      preLoaderRoute: typeof DocsComponentsRadioGroupRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/modal': {
-      id: '/examples/modal'
-      path: '/modal'
-      fullPath: '/examples/modal'
-      preLoaderRoute: typeof ExamplesModalRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/panel': {
+      id: '/docs/components/panel'
+      path: '/components/panel'
+      fullPath: '/docs/components/panel'
+      preLoaderRoute: typeof DocsComponentsPanelRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/material': {
-      id: '/examples/material'
-      path: '/material'
-      fullPath: '/examples/material'
-      preLoaderRoute: typeof ExamplesMaterialRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/modal': {
+      id: '/docs/components/modal'
+      path: '/components/modal'
+      fullPath: '/docs/components/modal'
+      preLoaderRoute: typeof DocsComponentsModalRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/drawer': {
-      id: '/examples/drawer'
-      path: '/drawer'
-      fullPath: '/examples/drawer'
-      preLoaderRoute: typeof ExamplesDrawerRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/material': {
+      id: '/docs/components/material'
+      path: '/components/material'
+      fullPath: '/docs/components/material'
+      preLoaderRoute: typeof DocsComponentsMaterialRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/button-normal': {
-      id: '/examples/button-normal'
-      path: '/button-normal'
-      fullPath: '/examples/button-normal'
-      preLoaderRoute: typeof ExamplesButtonNormalRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/drawer': {
+      id: '/docs/components/drawer'
+      path: '/components/drawer'
+      fullPath: '/docs/components/drawer'
+      preLoaderRoute: typeof DocsComponentsDrawerRouteImport
+      parentRoute: typeof DocsRoute
     }
-    '/examples/button': {
-      id: '/examples/button'
-      path: '/button'
-      fullPath: '/examples/button'
-      preLoaderRoute: typeof ExamplesButtonRouteImport
-      parentRoute: typeof ExamplesRoute
+    '/docs/components/button-normal': {
+      id: '/docs/components/button-normal'
+      path: '/components/button-normal'
+      fullPath: '/docs/components/button-normal'
+      preLoaderRoute: typeof DocsComponentsButtonNormalRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/components/button': {
+      id: '/docs/components/button'
+      path: '/components/button'
+      fullPath: '/docs/components/button'
+      preLoaderRoute: typeof DocsComponentsButtonRouteImport
+      parentRoute: typeof DocsRoute
     }
   }
 }
 
+interface DocsRouteChildren {
+  DocsIndexRoute: typeof DocsIndexRoute
+  DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
+  DocsComponentsButtonNormalRoute: typeof DocsComponentsButtonNormalRoute
+  DocsComponentsDrawerRoute: typeof DocsComponentsDrawerRoute
+  DocsComponentsMaterialRoute: typeof DocsComponentsMaterialRoute
+  DocsComponentsModalRoute: typeof DocsComponentsModalRoute
+  DocsComponentsPanelRoute: typeof DocsComponentsPanelRoute
+  DocsComponentsRadioGroupRoute: typeof DocsComponentsRadioGroupRoute
+  DocsComponentsRocoProviderRoute: typeof DocsComponentsRocoProviderRoute
+  DocsComponentsRocoShapeRoute: typeof DocsComponentsRocoShapeRoute
+  DocsComponentsRuneTextRoute: typeof DocsComponentsRuneTextRoute
+  DocsComponentsSelectRoute: typeof DocsComponentsSelectRoute
+  DocsComponentsSideNavRoute: typeof DocsComponentsSideNavRoute
+  DocsComponentsIndexRoute: typeof DocsComponentsIndexRoute
+}
+
+const DocsRouteChildren: DocsRouteChildren = {
+  DocsIndexRoute: DocsIndexRoute,
+  DocsComponentsButtonRoute: DocsComponentsButtonRoute,
+  DocsComponentsButtonNormalRoute: DocsComponentsButtonNormalRoute,
+  DocsComponentsDrawerRoute: DocsComponentsDrawerRoute,
+  DocsComponentsMaterialRoute: DocsComponentsMaterialRoute,
+  DocsComponentsModalRoute: DocsComponentsModalRoute,
+  DocsComponentsPanelRoute: DocsComponentsPanelRoute,
+  DocsComponentsRadioGroupRoute: DocsComponentsRadioGroupRoute,
+  DocsComponentsRocoProviderRoute: DocsComponentsRocoProviderRoute,
+  DocsComponentsRocoShapeRoute: DocsComponentsRocoShapeRoute,
+  DocsComponentsRuneTextRoute: DocsComponentsRuneTextRoute,
+  DocsComponentsSelectRoute: DocsComponentsSelectRoute,
+  DocsComponentsSideNavRoute: DocsComponentsSideNavRoute,
+  DocsComponentsIndexRoute: DocsComponentsIndexRoute,
+}
+
+const DocsRouteWithChildren = DocsRoute._addFileChildren(DocsRouteChildren)
+
 interface ExamplesRouteChildren {
-  ExamplesButtonRoute: typeof ExamplesButtonRoute
-  ExamplesButtonNormalRoute: typeof ExamplesButtonNormalRoute
-  ExamplesDrawerRoute: typeof ExamplesDrawerRoute
-  ExamplesMaterialRoute: typeof ExamplesMaterialRoute
-  ExamplesModalRoute: typeof ExamplesModalRoute
-  ExamplesPanelRoute: typeof ExamplesPanelRoute
-  ExamplesRadioGroupRoute: typeof ExamplesRadioGroupRoute
-  ExamplesRocoProviderRoute: typeof ExamplesRocoProviderRoute
-  ExamplesRocoShapeRoute: typeof ExamplesRocoShapeRoute
-  ExamplesRuneTextRoute: typeof ExamplesRuneTextRoute
-  ExamplesSelectRoute: typeof ExamplesSelectRoute
-  ExamplesSideNavRoute: typeof ExamplesSideNavRoute
-  ExamplesIndexRoute: typeof ExamplesIndexRoute
+  ExamplesSlugRoute: typeof ExamplesSlugRoute
 }
 
 const ExamplesRouteChildren: ExamplesRouteChildren = {
-  ExamplesButtonRoute: ExamplesButtonRoute,
-  ExamplesButtonNormalRoute: ExamplesButtonNormalRoute,
-  ExamplesDrawerRoute: ExamplesDrawerRoute,
-  ExamplesMaterialRoute: ExamplesMaterialRoute,
-  ExamplesModalRoute: ExamplesModalRoute,
-  ExamplesPanelRoute: ExamplesPanelRoute,
-  ExamplesRadioGroupRoute: ExamplesRadioGroupRoute,
-  ExamplesRocoProviderRoute: ExamplesRocoProviderRoute,
-  ExamplesRocoShapeRoute: ExamplesRocoShapeRoute,
-  ExamplesRuneTextRoute: ExamplesRuneTextRoute,
-  ExamplesSelectRoute: ExamplesSelectRoute,
-  ExamplesSideNavRoute: ExamplesSideNavRoute,
-  ExamplesIndexRoute: ExamplesIndexRoute,
+  ExamplesSlugRoute: ExamplesSlugRoute,
 }
 
 const ExamplesRouteWithChildren = ExamplesRoute._addFileChildren(
@@ -378,7 +431,7 @@ const ExamplesRouteWithChildren = ExamplesRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DocsRoute: DocsRoute,
+  DocsRoute: DocsRouteWithChildren,
   ExamplesRoute: ExamplesRouteWithChildren,
 }
 export const routeTree = rootRouteImport

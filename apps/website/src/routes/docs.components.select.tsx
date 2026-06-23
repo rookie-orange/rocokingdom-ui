@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Select, SelectGroup, SelectItem, SelectLabel, SelectSeparator } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/select')({
+export const Route = createFileRoute('/docs/components/select')({
   component: SelectExamplePage,
 })
 
@@ -41,7 +41,6 @@ function SelectExamplePage() {
         'value/onValueChange 展示受控选择。',
         'SelectGroup、SelectLabel、SelectSeparator、SelectItem 可组合自定义菜单。',
       ]}
-      slug="select"
       title="Select"
     >
       <ExampleSection title="快速 options 用法">

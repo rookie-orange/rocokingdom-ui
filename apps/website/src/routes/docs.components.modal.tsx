@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Button, Modal, ModalClose } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/modal')({
+export const Route = createFileRoute('/docs/components/modal')({
   component: ModalExamplePage,
 })
 
@@ -35,7 +35,6 @@ function ModalExamplePage() {
         'headerRuneText 可增加标题栏装饰文字。',
         'header={false}、closable={false}、width 可覆盖特殊弹窗。',
       ]}
-      slug="modal"
       title="Modal"
     >
       <ExampleSection title="基础确认弹窗">
@@ -45,7 +44,7 @@ function ModalExamplePage() {
             footer={
               <>
                 <ModalClose asChild>
-                  <Button material="stone" variant="outline">
+                  <Button material="paper" shadow>
                     取消
                   </Button>
                 </ModalClose>

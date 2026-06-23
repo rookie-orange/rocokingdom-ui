@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { RadioGroup, RadioItem } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/radio-group')({
+export const Route = createFileRoute('/docs/components/radio-group')({
   component: RadioGroupExamplePage,
 })
 
@@ -31,7 +31,6 @@ function RadioGroupExamplePage() {
         'orientation 覆盖 horizontal、vertical。',
         'active/inactive 的 material、variant、shadow 可分别配置。',
       ]}
-      slug="radio-group"
       title="RadioGroup"
     >
       <ExampleSection

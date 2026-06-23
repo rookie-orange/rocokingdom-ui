@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { ButtonNormal } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/button-normal')({
+export const Route = createFileRoute('/docs/components/button-normal')({
   component: ButtonNormalExamplePage,
 })
 
@@ -34,7 +34,6 @@ function ButtonNormalExamplePage() {
         'size 覆盖 small、middle、large。',
         'variant 覆盖 solid、outline、text，并展示 disabled。',
       ]}
-      slug="button-normal"
       title="ButtonNormal"
     >
       <ExampleSection title="材质与变体">

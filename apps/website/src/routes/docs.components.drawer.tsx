@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Button, Drawer, DrawerClose } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/drawer')({
+export const Route = createFileRoute('/docs/components/drawer')({
   component: DrawerExamplePage,
 })
 
@@ -32,7 +32,6 @@ function DrawerExamplePage() {
         'size 支持数字、CSS 长度和 full。',
         'overlay、closable、curve、material 可按场景组合。',
       ]}
-      slug="drawer"
       title="Drawer"
     >
       <ExampleSection title="四个方向">

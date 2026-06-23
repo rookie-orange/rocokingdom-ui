@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { RuneText } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/rune-text')({
+export const Route = createFileRoute('/docs/components/rune-text')({
   component: RuneTextExamplePage,
 })
 
@@ -22,7 +22,6 @@ function RuneTextExamplePage() {
         '继承当前颜色，也可通过 --rk-rune-text-* 变量定制。',
         '适合短文本，不建议承载正文。',
       ]}
-      slug="rune-text"
       title="RuneText"
     >
       <ExampleSection title="字号和颜色">

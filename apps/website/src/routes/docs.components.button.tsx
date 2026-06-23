@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Button } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/button')({
+export const Route = createFileRoute('/docs/components/button')({
   component: ButtonExamplePage,
 })
 
@@ -38,7 +38,6 @@ function ButtonExamplePage() {
         'size 覆盖 small、middle、large。',
         'variant 覆盖 solid、outline、text，并展示 shadow 与 disabled。',
       ]}
-      slug="button"
       title="Button"
     >
       <ExampleSection

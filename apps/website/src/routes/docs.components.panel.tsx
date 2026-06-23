@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Panel } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/panel')({
+export const Route = createFileRoute('/docs/components/panel')({
   component: PanelExamplePage,
 })
 
@@ -26,7 +26,6 @@ function PanelExamplePage() {
         'curve 覆盖 none、left、right、both。',
         'curveInset 可调整内容避让曲线的距离。',
       ]}
-      slug="panel"
       title="Panel"
     >
       <ExampleSection title="基础容器">

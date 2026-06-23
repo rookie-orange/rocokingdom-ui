@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { RocoShape } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/roco-shape')({
+export const Route = createFileRoute('/docs/components/roco-shape')({
   component: RocoShapeExamplePage,
 })
 
@@ -27,7 +27,6 @@ function RocoShapeExamplePage() {
         'shadow 仅对实心填充生效。',
         '通过 width、height、color 或 CSS 变量控制外观。',
       ]}
-      slug="roco-shape"
       title="RocoShape"
     >
       <ExampleSection title="实心与描边">

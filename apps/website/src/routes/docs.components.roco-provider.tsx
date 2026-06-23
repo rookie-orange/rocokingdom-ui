@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Button, Material, Panel, RocoProvider, RuneText } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/roco-provider')({
+export const Route = createFileRoute('/docs/components/roco-provider')({
   component: RocoProviderExamplePage,
 })
 
@@ -29,7 +29,6 @@ function RocoProviderExamplePage() {
         '挂载后会影响当前文档根节点上的 Rocokingdom 变量。',
         '卸载后会恢复之前的 CSS 变量值，适合作为主题切换或专题活动入口。',
       ]}
-      slug="roco-provider"
       title="RocoProvider"
     >
       <ExampleSection title="默认主题">

@@ -51,24 +51,18 @@ function HomePage() {
           <p className="text-[13rem] leading-none">UI</p>
         </div>
 
-        <div className="mt-20 flex flex-wrap justify-center gap-4 max-sm:mt-14">
+        <div className="flex mt-20 gap-4 items-center justify-center w-full">
+          <Button material="stone" rootClassName="font-roco text-xl!" size="large">
+            npm install rocokingdom-ui
+          </Button>
           <Button
-            material="primaryStrong"
+            material="paper"
             onClick={() => navigate({ to: '/docs' })}
-            rootClassName="font-roco text-lg font-black"
+            rootClassName="font-roco text-lg font-black min-w-44"
             shadow
             size="large"
           >
             前往文档
-          </Button>
-          <Button
-            material="paper"
-            onClick={() => navigate({ to: '/examples' })}
-            rootClassName="font-roco text-lg font-black"
-            shadow
-            size="large"
-          >
-            浏览示例
           </Button>
         </div>
       </section>

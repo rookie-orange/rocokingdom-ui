@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { SideNav, SideNavHeader, SideNavItem, SideNavList } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/examples/side-nav')({
+export const Route = createFileRoute('/docs/components/side-nav')({
   component: SideNavExamplePage,
 })
 
@@ -47,7 +47,6 @@ function SideNavExamplePage() {
         'Header 支持 icon、eyebrow、title 或自定义 children。',
         'Item 覆盖 active、badge、dot badge、disabled 和 icon。',
       ]}
-      slug="side-nav"
       title="SideNav"
     >
       <ExampleSection title="堆叠导航">
