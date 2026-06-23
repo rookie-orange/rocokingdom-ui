@@ -9,9 +9,13 @@
     "preview": "vp preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "catalog:",
+    "@tanstack/react-router": "catalog:",
+    "@tanstack/router-plugin": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "rocokingdom-ui": "workspace:*"
+    "rocokingdom-ui": "workspace:*",
+    "tailwindcss": "catalog:"
   },
   "devDependencies": {
     "@types/react": "catalog:",
