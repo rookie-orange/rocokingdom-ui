@@ -82,36 +82,12 @@ p {
   --rk-button-min-width: 152px;
 }
 
-.showcase__ui {
-  align-items: stretch;
-  background: linear-gradient(135deg, #42424d 0%, #242628 48%, #31565a 100%);
-  display: grid;
-  gap: 20px;
-  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
-  min-height: 360px;
-  overflow: hidden;
-  padding: 24px;
-}
-
-.showcase__side-nav {
-  --rk-side-nav-width: 100%;
-}
-
-.showcase__panel {
-  --rk-panel-padding: 32px 36px;
-  --rk-panel-curve-inset: 76px;
-
-  min-height: 100%;
-}
-
-.showcase__panel h3,
 .showcase__drawer-copy h3 {
   font-size: 28px;
   line-height: 1.1;
   margin: 0;
 }
 
-.showcase__panel p,
 .showcase__drawer-copy p {
   color: color-mix(in srgb, currentColor 82%, transparent);
   font-weight: 800;
@@ -152,10 +128,5 @@ p {
 
   .showcase__header h1 {
     font-size: 36px;
-  }
-
-  .showcase__ui {
-    grid-template-columns: 1fr;
-    padding: 16px;
   }
 }

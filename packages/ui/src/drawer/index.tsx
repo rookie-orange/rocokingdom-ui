@@ -52,7 +52,9 @@ export interface DrawerProps extends Omit<DialogRootProps, 'children'> {
   prefixCls?: string
   rootClassName?: string
   side?: DrawerSide
-  size?: number | string
+  // 'full' is listed explicitly for IDE completion even though it is a string subset.
+  // oxlint-disable-next-line no-redundant-type-constituents
+  size?: number | 'full' | string
   title?: ReactNode
   trigger?: ReactElement
 }
@@ -67,6 +69,15 @@ function resolveSize(value: number | string | undefined) {
   }
 
   return value
+}
+
+// oxlint-disable-next-line no-redundant-type-constituents
+function resolveDrawerSize(size: number | 'full' | string | undefined, side: DrawerSide) {
+  if (size === 'full') {
+    return side === 'left' || side === 'right' ? '100vw' : '100svh'
+  }
+
+  return resolveSize(size)
 }
 
 function getDefaultCurve(side: DrawerSide): PanelCurve {
@@ -110,7 +121,7 @@ export function Drawer({
   const hasDescription = hasContent(description)
   const titleForAssistiveTech = hasContent(title) ? title : (ariaLabel ?? 'Drawer')
   const contentStyle: DrawerStyle = { ...contentProps?.style }
-  const resolvedSize = resolveSize(size)
+  const resolvedSize = resolveDrawerSize(size, side)
   const resolvedCurve = curve ?? panelProps?.curve ?? getDefaultCurve(side)
 
   if (resolvedSize) {

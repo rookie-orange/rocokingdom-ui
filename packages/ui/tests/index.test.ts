@@ -418,7 +418,8 @@ test('uses radix dialog for drawer behavior and defaults right drawer to a left 
   expect(drawerCss).toContain('.overlayVisible')
   expect(drawerCss).toContain('.panelContent')
   expect(drawerCss).toContain('.inner')
-  expect(drawerCss).toContain('var(--rk-drawer-curve-inset, 96px)')
+  // 12% tracks the arc's max extent; a fixed px overflowed wide drawers (size="full").
+  expect(drawerCss).toContain('var(--rk-drawer-curve-inset, 12%)')
   expect(drawerCss).toContain(".content[data-state='open'].right")
   expect(drawerCss).toContain(".content[data-state='open'] .panel")
   expect(drawerCss).toContain('@keyframes rk-drawer-panel-in')
@@ -429,6 +430,46 @@ test('uses radix dialog for drawer behavior and defaults right drawer to a left 
   expect(drawerCss).toContain('transform: scaleX(0);')
   expect(drawerCss).toContain('transform: scaleX(1.02);')
   expect(drawerCss).toContain('@media (prefers-reduced-motion: reduce)')
+})
+
+test('fills the viewport along the drawer side when size is full', () => {
+  expect(drawerSource).toContain("size?: number | 'full' | string")
+  expect(drawerSource).toContain('function resolveDrawerSize')
+  expect(drawerSource).toContain("'100vw'")
+  expect(drawerSource).toContain("'100svh'")
+
+  const rightHtml = renderToString(
+    createElement(Drawer, { size: 'full', children: 'Full width drawer' }),
+  )
+  expect(rightHtml).toContain('--rk-drawer-size:100vw')
+
+  const bottomHtml = renderToString(
+    createElement(Drawer, { size: 'full', side: 'bottom', children: 'Full height drawer' }),
+  )
+  expect(bottomHtml).toContain('--rk-drawer-size:100svh')
+
+  const leftHtml = renderToString(
+    createElement(Drawer, { size: 'full', side: 'left', children: 'Full width drawer' }),
+  )
+  expect(leftHtml).toContain('--rk-drawer-size:100vw')
+
+  const topHtml = renderToString(
+    createElement(Drawer, { size: 'full', side: 'top', children: 'Full height drawer' }),
+  )
+  expect(topHtml).toContain('--rk-drawer-size:100svh')
+})
+
+test('keeps numeric and string sizes unchanged when size is not full', () => {
+  const numericHtml = renderToString(createElement(Drawer, { size: 720, children: 'Sized drawer' }))
+  expect(numericHtml).toContain('--rk-drawer-size:720px')
+
+  const stringHtml = renderToString(
+    createElement(Drawer, { size: '50vw', children: 'Sized drawer' }),
+  )
+  expect(stringHtml).toContain('--rk-drawer-size:50vw')
+
+  const defaultHtml = renderToString(createElement(Drawer, { children: 'Default drawer' }))
+  expect(defaultHtml).not.toContain('--rk-drawer-size')
 })
 
 test('renders a radix-backed select trigger on the server', () => {

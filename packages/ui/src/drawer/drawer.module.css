@@ -105,7 +105,7 @@
 
 .panel {
   --rk-panel-padding: 0;
-  --rk-panel-curve-inset: var(--rk-drawer-curve-inset, 96px);
+  --rk-panel-curve-inset: var(--rk-drawer-curve-inset, 12%);
 
   flex: 1 1 auto;
   min-height: 0;
@@ -151,17 +151,20 @@
   padding: var(--rk-drawer-padding, 56px 64px);
 }
 
+/* 12% matches the SVG arc's max horizontal extent (viewBox x=120/1000), so the
+   content clears the curve at any width. A fixed px only clears near 800px and
+   overflows wide drawers (e.g. size="full"). */
 .right .inner {
   padding-inline-start: max(
     var(--rk-drawer-padding-inline-start, 64px),
-    var(--rk-drawer-curve-inset, 96px)
+    var(--rk-drawer-curve-inset, 12%)
   );
 }
 
 .left .inner {
   padding-inline-end: max(
     var(--rk-drawer-padding-inline-end, 64px),
-    var(--rk-drawer-curve-inset, 96px)
+    var(--rk-drawer-curve-inset, 12%)
   );
 }
 
