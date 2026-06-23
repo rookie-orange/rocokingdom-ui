@@ -426,8 +426,8 @@ test('uses radix dialog for drawer behavior and defaults right drawer to a left 
   expect(drawerCss).toContain('transform: translateX(50%);')
   expect(drawerCss).toContain('opacity: 0;')
   expect(drawerCss).toContain('transform-origin: right center;')
-  expect(drawerCss).toContain('transform: scale(0);')
-  expect(drawerCss).toContain('transform: scaleY(1) scaleX(1.1);')
+  expect(drawerCss).toContain('transform: scaleX(0);')
+  expect(drawerCss).toContain('transform: scaleX(1.02);')
   expect(drawerCss).toContain('@media (prefers-reduced-motion: reduce)')
 })
 

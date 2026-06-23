@@ -64,7 +64,7 @@
 
 .content[data-state='closed'].right {
   animation: rk-drawer-right-out
-    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 180ms)) ease-in;
 }
 
 .content[data-state='open'].left {
@@ -73,7 +73,7 @@
 
 .content[data-state='closed'].left {
   animation: rk-drawer-left-out
-    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 180ms)) ease-in;
 }
 
 .content[data-state='open'].top {
@@ -82,7 +82,7 @@
 
 .content[data-state='closed'].top {
   animation: rk-drawer-top-out
-    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 180ms)) ease-in;
 }
 
 .content[data-state='open'].bottom {
@@ -91,7 +91,7 @@
 
 .content[data-state='closed'].bottom {
   animation: rk-drawer-bottom-out
-    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 180ms)) ease-in;
 }
 
 .content[data-state='open'] .panel {
@@ -100,7 +100,7 @@
 
 .content[data-state='closed'] .panel {
   animation: rk-drawer-panel-out
-    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 300ms)) ease-in;
+    var(--rk-drawer-exit-duration, var(--rk-drawer-content-exit-duration, 180ms)) ease-in;
 }
 
 .panel {
@@ -318,22 +318,22 @@
 @keyframes rk-drawer-panel-in {
   0% {
     opacity: 0;
-    transform: scale(0);
+    transform: scaleX(0);
   }
 
   50% {
     opacity: 1;
-    transform: scaleY(1) scaleX(1);
+    transform: scaleX(1);
   }
 
   75% {
     opacity: 1;
-    transform: scaleY(1) scaleX(1.02);
+    transform: scaleX(1.02);
   }
 
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scaleX(1);
   }
 }
 
