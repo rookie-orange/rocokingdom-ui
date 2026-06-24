@@ -1,0 +1,201 @@
+.checkbox {
+  --rk-checkbox-focus-color: var(--rk-primary);
+  --rk-checkbox-font-family: var(--rk-font-family-base, inherit);
+  --rk-checkbox-font-size: 14px;
+  --rk-checkbox-font-weight: 700;
+  --rk-checkbox-icon-size: 40px;
+  --rk-checkbox-material: var(--rk-primary);
+  --rk-checkbox-on-material: var(--rk-on-primary);
+  --rk-checkbox-size: 28px;
+
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--rk-checkbox-material);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-family: var(--rk-checkbox-font-family);
+  font-size: var(--rk-checkbox-font-size);
+  font-weight: var(--rk-checkbox-font-weight);
+  gap: var(--rk-checkbox-gap, 8px);
+  line-height: 1.25;
+  position: relative;
+  user-select: none;
+}
+
+.default,
+.primary {
+  --rk-checkbox-material: var(--rk-primary);
+  --rk-checkbox-on-material: var(--rk-on-primary);
+}
+
+.paper {
+  --rk-checkbox-material: var(--rk-paper);
+  --rk-checkbox-on-material: var(--rk-on-paper);
+}
+
+.stone {
+  --rk-checkbox-material: var(--rk-stone);
+  --rk-checkbox-on-material: var(--rk-on-stone);
+}
+
+.primarySoft {
+  --rk-checkbox-material: var(--rk-primary-soft);
+  --rk-checkbox-on-material: var(--rk-on-primary-soft);
+}
+
+.primaryMuted {
+  --rk-checkbox-material: var(--rk-primary-muted);
+  --rk-checkbox-on-material: var(--rk-on-primary-muted);
+}
+
+.primaryStrong {
+  --rk-checkbox-material: var(--rk-primary-strong);
+  --rk-checkbox-on-material: var(--rk-on-primary-strong);
+}
+
+.success {
+  --rk-checkbox-material: var(--rk-success);
+  --rk-checkbox-on-material: var(--rk-on-success);
+}
+
+.danger {
+  --rk-checkbox-material: var(--rk-danger);
+  --rk-checkbox-on-material: var(--rk-on-danger);
+}
+
+.small {
+  --rk-checkbox-font-size: 12px;
+  --rk-checkbox-icon-size: 15px;
+  --rk-checkbox-size: 22px;
+}
+
+.middle {
+  --rk-checkbox-size: 28px;
+}
+
+.large {
+  --rk-checkbox-font-size: 16px;
+  --rk-checkbox-icon-size: 22px;
+  --rk-checkbox-size: 36px;
+}
+
+.input {
+  block-size: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  inline-size: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.control {
+  align-items: center;
+  color: var(--rk-checkbox-material);
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: var(--rk-checkbox-size);
+  justify-content: center;
+  position: relative;
+  transform: scale(1);
+  transition:
+    filter 160ms ease,
+    transform 120ms ease;
+  width: var(--rk-checkbox-size);
+}
+
+.shape {
+  inset: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.icon {
+  align-items: center;
+  color: var(--rk-checkbox-icon-color, var(--rk-checkbox-on-material));
+  display: inline-flex;
+  font-size: var(--rk-checkbox-icon-size);
+  justify-content: center;
+  line-height: 1;
+  position: relative;
+  transform-origin: center;
+  z-index: 1;
+}
+
+.solid.checked {
+  --rk-checkbox-icon-color: var(--rk-checkbox-on-material);
+}
+
+.outline.checked,
+.outline.unchecked {
+  --rk-checkbox-icon-color: var(--rk-checkbox-material);
+}
+
+.checked .control {
+  animation: rk-checkbox-pop var(--rk-checkbox-check-duration, 220ms) linear;
+}
+
+.unchecked .control {
+  opacity: 0.88;
+}
+
+.label {
+  color: var(--rk-checkbox-label-color, var(--rk-on-paper));
+  display: inline-flex;
+  min-width: 0;
+}
+
+.checkbox:hover .control {
+  filter: brightness(1.08);
+}
+
+.checkbox:active .control {
+  filter: brightness(0.92);
+  transform: scale(0.94);
+}
+
+.input:focus-visible + .control {
+  outline: 2px solid var(--rk-checkbox-focus-color);
+  outline-offset: 2px;
+}
+
+.disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  opacity: 0.48;
+}
+
+.disabled .control {
+  transform: none;
+}
+
+.disabled:hover .control,
+.disabled:active .control {
+  filter: none;
+  transform: none;
+}
+
+@keyframes rk-checkbox-pop {
+  0% {
+    transform: scale(0.78);
+  }
+
+  55% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checked .control {
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+  }
+}

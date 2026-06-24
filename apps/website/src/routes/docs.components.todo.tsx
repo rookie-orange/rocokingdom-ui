@@ -88,6 +88,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '布尔选择、半选和表单联动。',
+        implementedSlug: 'checkbox',
         name: 'Checkbox 多选框',
       },
       {

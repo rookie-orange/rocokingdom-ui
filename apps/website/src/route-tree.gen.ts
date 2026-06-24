@@ -27,6 +27,7 @@ import { Route as DocsComponentsModalRouteImport } from './routes/docs.component
 import { Route as DocsComponentsMaterialRouteImport } from './routes/docs.components.material'
 import { Route as DocsComponentsIconsRouteImport } from './routes/docs.components.icons'
 import { Route as DocsComponentsDrawerRouteImport } from './routes/docs.components.drawer'
+import { Route as DocsComponentsCheckboxRouteImport } from './routes/docs.components.checkbox'
 import { Route as DocsComponentsButtonNormalRouteImport } from './routes/docs.components.button-normal'
 import { Route as DocsComponentsButtonRouteImport } from './routes/docs.components.button'
 
@@ -121,6 +122,11 @@ const DocsComponentsDrawerRoute = DocsComponentsDrawerRouteImport.update({
   path: '/components/drawer',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsCheckboxRoute = DocsComponentsCheckboxRouteImport.update({
+  id: '/components/checkbox',
+  path: '/components/checkbox',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsButtonNormalRoute =
   DocsComponentsButtonNormalRouteImport.update({
     id: '/components/button-normal',
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/docs/': typeof DocsIndexRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
+  '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
   '/docs/components/icons': typeof DocsComponentsIconsRoute
   '/docs/components/material': typeof DocsComponentsMaterialRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/docs': typeof DocsIndexRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
+  '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
   '/docs/components/icons': typeof DocsComponentsIconsRoute
   '/docs/components/material': typeof DocsComponentsMaterialRoute
@@ -185,6 +193,7 @@ export interface FileRoutesById {
   '/docs/': typeof DocsIndexRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
+  '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
   '/docs/components/icons': typeof DocsComponentsIconsRoute
   '/docs/components/material': typeof DocsComponentsMaterialRoute
@@ -209,6 +218,7 @@ export interface FileRouteTypes {
     | '/docs/'
     | '/docs/components/button'
     | '/docs/components/button-normal'
+    | '/docs/components/checkbox'
     | '/docs/components/drawer'
     | '/docs/components/icons'
     | '/docs/components/material'
@@ -230,6 +240,7 @@ export interface FileRouteTypes {
     | '/docs'
     | '/docs/components/button'
     | '/docs/components/button-normal'
+    | '/docs/components/checkbox'
     | '/docs/components/drawer'
     | '/docs/components/icons'
     | '/docs/components/material'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/docs/'
     | '/docs/components/button'
     | '/docs/components/button-normal'
+    | '/docs/components/checkbox'
     | '/docs/components/drawer'
     | '/docs/components/icons'
     | '/docs/components/material'
@@ -401,6 +413,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsDrawerRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/checkbox': {
+      id: '/docs/components/checkbox'
+      path: '/components/checkbox'
+      fullPath: '/docs/components/checkbox'
+      preLoaderRoute: typeof DocsComponentsCheckboxRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/components/button-normal': {
       id: '/docs/components/button-normal'
       path: '/components/button-normal'
@@ -422,6 +441,7 @@ interface DocsRouteChildren {
   DocsIndexRoute: typeof DocsIndexRoute
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
   DocsComponentsButtonNormalRoute: typeof DocsComponentsButtonNormalRoute
+  DocsComponentsCheckboxRoute: typeof DocsComponentsCheckboxRoute
   DocsComponentsDrawerRoute: typeof DocsComponentsDrawerRoute
   DocsComponentsIconsRoute: typeof DocsComponentsIconsRoute
   DocsComponentsMaterialRoute: typeof DocsComponentsMaterialRoute
@@ -441,6 +461,7 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsIndexRoute: DocsIndexRoute,
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,
   DocsComponentsButtonNormalRoute: DocsComponentsButtonNormalRoute,
+  DocsComponentsCheckboxRoute: DocsComponentsCheckboxRoute,
   DocsComponentsDrawerRoute: DocsComponentsDrawerRoute,
   DocsComponentsIconsRoute: DocsComponentsIconsRoute,
   DocsComponentsMaterialRoute: DocsComponentsMaterialRoute,

@@ -6,6 +6,7 @@ import packageJson from '../package.json' with { type: 'json' }
 import {
   Button,
   ButtonNormal,
+  Checkbox,
   Drawer,
   DrawerClose,
   Material,
@@ -24,6 +25,7 @@ import {
   RuneText,
   buttonNormalPrefixCls,
   buttonPrefixCls,
+  checkboxPrefixCls,
   drawerPrefixCls,
   materialPrefixCls,
   panelPrefixCls,
@@ -54,6 +56,11 @@ const buttonNormalSource = readFileSync(
   new URL('../src/button-normal/index.tsx', import.meta.url),
   'utf8',
 )
+const checkboxCss = readFileSync(
+  new URL('../src/checkbox/checkbox.module.css', import.meta.url),
+  'utf8',
+)
+const checkboxSource = readFileSync(new URL('../src/checkbox/index.tsx', import.meta.url), 'utf8')
 const radioGroupCss = readFileSync(
   new URL('../src/radio-group/radio-group.module.css', import.meta.url),
   'utf8',
@@ -91,6 +98,7 @@ const runeTextCss = readFileSync(
 test('exports a single button prefix class', () => {
   expect(buttonPrefixCls).toBe('rk-button')
   expect(buttonNormalPrefixCls).toBe('rk-button-normal')
+  expect(checkboxPrefixCls).toBe('rk-checkbox')
   expect(drawerPrefixCls).toBe('rk-drawer')
   expect(DrawerClose).toBeTruthy()
   expect(materialPrefixCls).toBe('rk-material')
@@ -216,6 +224,17 @@ test('supports semantic materials for lightweight controls', () => {
   expect(radioGroupCss).toContain('--rk-radio-item-on-material: var(--rk-on-success);')
   expect(radioGroupCss).toContain('--rk-radio-item-material: var(--rk-danger);')
   expect(radioGroupCss).toContain('--rk-radio-item-on-material: var(--rk-on-danger);')
+  expect(checkboxSource).toContain("import type { MaterialPreset } from '../material'")
+  expect(checkboxCss).toContain('--rk-checkbox-material: var(--rk-primary-soft);')
+  expect(checkboxCss).toContain('--rk-checkbox-on-material: var(--rk-on-primary-soft);')
+  expect(checkboxCss).toContain('--rk-checkbox-material: var(--rk-primary-muted);')
+  expect(checkboxCss).toContain('--rk-checkbox-on-material: var(--rk-on-primary-muted);')
+  expect(checkboxCss).toContain('--rk-checkbox-material: var(--rk-primary-strong);')
+  expect(checkboxCss).toContain('--rk-checkbox-on-material: var(--rk-on-primary-strong);')
+  expect(checkboxCss).toContain('--rk-checkbox-material: var(--rk-success);')
+  expect(checkboxCss).toContain('--rk-checkbox-on-material: var(--rk-on-success);')
+  expect(checkboxCss).toContain('--rk-checkbox-material: var(--rk-danger);')
+  expect(checkboxCss).toContain('--rk-checkbox-on-material: var(--rk-on-danger);')
 })
 
 test('passes the optional shadow prop from button to its shape', () => {
@@ -502,6 +521,47 @@ test('animates the selected radio item with the modal spring scale', () => {
   expect(radioGroupCss).toContain('transform: scaleY(1.1) scaleX(0.9);')
   expect(radioGroupCss).toContain('transform: scale(var(--rk-radio-item-active-scale));')
   expect(radioGroupCss).toContain('@media (prefers-reduced-motion: reduce)')
+})
+
+test('renders a square-shape backed checkbox with check icon only when checked', () => {
+  const checkedHtml = renderToString(
+    createElement(
+      Checkbox,
+      {
+        checked: true,
+        className: 'custom-checkbox',
+        name: 'quest',
+        onChange: () => {},
+        rootClassName: 'app-checkbox',
+        value: 'loot',
+      },
+      '领取奖励',
+    ),
+  )
+  const uncheckedHtml = renderToString(createElement(Checkbox, null, '领取奖励'))
+
+  expect(checkedHtml).toContain('rk-checkbox')
+  expect(checkedHtml).toContain('app-checkbox')
+  expect(checkedHtml).toContain('custom-checkbox')
+  expect(checkedHtml).toContain('data-state="checked"')
+  expect(checkedHtml).toContain('type="checkbox"')
+  expect(checkedHtml).toContain('name="quest"')
+  expect(checkedHtml).toContain('value="loot"')
+  expect(checkedHtml).toContain('领取奖励')
+  expect(checkedHtml).toContain('rk-roco-shape')
+  expect(checkedHtml).toContain('square')
+  expect(checkedHtml.match(/<svg/g)).toHaveLength(2)
+  expect(uncheckedHtml).toContain('data-state="unchecked"')
+  expect(uncheckedHtml.match(/<svg/g)).toHaveLength(1)
+})
+
+test('uses square roco shape and the shared check icon for checkbox visuals', () => {
+  expect(checkboxSource).toContain("import { Check } from '@rocokingdom-ui/icons'")
+  expect(checkboxSource).toContain('<RocoShape')
+  expect(checkboxSource).toContain('shape="square"')
+  expect(checkboxSource).toContain('isChecked ? <span className={styles.icon}>')
+  expect(checkboxCss).toContain('.input:focus-visible + .control')
+  expect(checkboxCss).toContain('@keyframes rk-checkbox-pop')
 })
 
 test('renders a radix-backed modal trigger on the server', () => {

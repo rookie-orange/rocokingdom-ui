@@ -19,6 +19,12 @@ export const examples: ExampleMeta[] = [
     slug: 'button-normal',
   },
   {
+    description: '以方形 RocoShape 为底的多选控件，选中时渲染 Check 图标。',
+    name: 'Checkbox',
+    path: '/docs/components/checkbox',
+    slug: 'checkbox',
+  },
+  {
     description: '侧向或纵向进入的抽屉面板，覆盖方向、尺寸和遮罩。',
     name: 'Drawer',
     path: '/docs/components/drawer',
