@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { RuneText } from 'rocokingdom-ui'
+import { Checkbox, RuneText } from 'rocokingdom-ui'
 import { examples } from '../examples/catalog'
 
 interface ComponentTodoItem {
@@ -341,12 +341,13 @@ function ComponentTodoPage() {
                       className="grid grid-cols-[auto_minmax(0,1fr)] gap-3 border-b border-stone/10 py-4"
                       key={item.name}
                     >
-                      <input
+                      <Checkbox
                         aria-label={`${item.name} ${isDone ? '已实现' : '待实现'}`}
                         checked={isDone}
-                        className="mt-1 size-4 shrink-0 accent-success"
+                        className="mt-1 shrink-0"
+                        material={isDone ? 'success' : 'stone'}
+                        onClick={(event) => event.preventDefault()}
                         readOnly
-                        type="checkbox"
                       />
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
