@@ -628,6 +628,8 @@ test('renders a radix-backed select trigger on the server', () => {
   )
 
   expect(html).toContain('rk-select')
+  expect(html).toContain('rk-roco-shape')
+  expect(html).toContain('<svg')
   expect(html).toContain('role="combobox"')
   expect(html).toContain('aria-label="待机设置"')
   expect(html).toContain('10分钟')
@@ -635,18 +637,33 @@ test('renders a radix-backed select trigger on the server', () => {
 
 test('uses radix select and animates select content with scale', () => {
   expect(selectSource).toContain("import * as RadixSelect from '@radix-ui/react-select'")
+  expect(selectSource).toContain("import { RocoShape } from '../roco-shape'")
+  expect(selectSource).toContain('<RocoShape className={styles.triggerShape} />')
   expect(selectSource).toContain("position={props.position ?? 'popper'}")
   expect(selectSource).toContain("align={props.align ?? 'start'}")
   expect(selectSource).toContain('sideOffset={props.sideOffset ?? 8}')
   expect(selectSource).toContain('contentShellClassName')
   expect(selectSource).not.toContain('scrollHeight')
   expect(selectSource).not.toContain('ResizeObserver')
+  expect(selectCss).toContain('--rk-select-material: var(--rk-select-background);')
+  expect(selectCss).toContain('--rk-select-on-material: var(--rk-select-color);')
+  expect(selectCss).toContain('.trigger .triggerShape')
+  expect(selectCss).toContain('.triggerContent')
   expect(selectCss).toContain('.contentShell')
   expect(selectCss).toContain(
     'box-shadow: 0 4px 0 var(--rk-select-shadow-color, var(--rk-shadow-color));',
   )
   expect(selectCss).toContain(".content[data-state='open'] .contentShell")
+  expect(selectCss).toContain(".content[data-state='closed'] {")
+  expect(selectCss).toContain(
+    'animation: rk-select-content-presence-out var(--rk-select-exit-duration, 100ms) ease-in;',
+  )
+  expect(selectCss).toContain(".content[data-state='closed'] .contentShell")
+  expect(selectCss).toContain(
+    'animation: rk-select-content-out var(--rk-select-exit-duration, 100ms) ease-in forwards;',
+  )
   expect(selectCss).toContain('@keyframes rk-select-content-in')
+  expect(selectCss).toContain('@keyframes rk-select-content-presence-out')
   expect(selectCss).toContain('transform: scaleY(0);')
   expect(selectCss).toContain('transform: scaleY(1);')
   expect(selectCss).not.toContain('--rk-select-content-height')

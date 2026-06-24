@@ -2,6 +2,7 @@ import * as RadixSelect from '@radix-ui/react-select'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 import { clsx } from 'clsx'
+import { RocoShape } from '../roco-shape'
 import styles from './select.module.css'
 
 export const selectPrefixCls = 'rk-select'
@@ -146,13 +147,16 @@ export function Select({
         aria-label={triggerAriaLabel}
         className={clsx(prefixCls, styles.trigger, rootClassName, triggerClassName)}
       >
-        <RadixSelect.Value
-          className={clsx(`${prefixCls}-value`, styles.value, valueClassName)}
-          placeholder={placeholder}
-        />
-        <RadixSelect.Icon asChild>
-          {icon ?? <span aria-hidden="true" className={styles.triggerIcon} />}
-        </RadixSelect.Icon>
+        <RocoShape className={styles.triggerShape} />
+        <span className={styles.triggerContent}>
+          <RadixSelect.Value
+            className={clsx(`${prefixCls}-value`, styles.value, valueClassName)}
+            placeholder={placeholder}
+          />
+          <RadixSelect.Icon asChild>
+            {icon ?? <span aria-hidden="true" className={styles.triggerIcon} />}
+          </RadixSelect.Icon>
+        </span>
       </RadixSelect.Trigger>
       <RadixSelect.Portal>
         <SelectContent {...contentProps} contentClassName={contentClassName}>
