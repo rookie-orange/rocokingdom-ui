@@ -79,11 +79,16 @@
 }
 
 .title {
-  font-family: var(--rk-font-family-base, system-ui, sans-serif);
-  font-size: var(--rk-modal-title-font-size, 22px);
-  font-weight: 900;
+  --rk-rune-text-base-font-family: var(
+    --rk-modal-title-font-family,
+    var(--rk-font-family-base, system-ui, sans-serif)
+  );
+  --rk-rune-text-base-font-weight: var(--rk-modal-title-font-weight, 900);
+  --rk-rune-text-font-size: var(--rk-modal-title-font-size, 22px);
+  --rk-rune-text-line-height: var(--rk-modal-title-line-height, 1);
+
+  display: block;
   letter-spacing: 0;
-  line-height: 1;
   margin: 0;
   overflow-wrap: anywhere;
   padding-inline: var(--rk-modal-title-padding-inline, 56px);

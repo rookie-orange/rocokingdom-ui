@@ -38,7 +38,7 @@
 
 .button:active {
   filter: brightness(0.9);
-  transform: scale(0.96) translateY(4px);
+  transform: scale(0.96) translateY(2px);
 }
 
 .button:disabled {
@@ -90,6 +90,10 @@
 }
 
 .content {
+  --rk-rune-text-base-font-family: var(--rk-button-font-family);
+  --rk-rune-text-base-font-weight: var(--rk-button-font-weight);
+
+  align-items: center;
   display: inline-flex;
   justify-content: center;
   position: relative;

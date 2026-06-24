@@ -83,6 +83,10 @@ const rocoShapeCss = readFileSync(
   new URL('../src/roco-shape/roco-shape.module.css', import.meta.url),
   'utf8',
 )
+const runeTextCss = readFileSync(
+  new URL('../src/rune-text/rune-text.module.css', import.meta.url),
+  'utf8',
+)
 
 test('exports a single button prefix class', () => {
   expect(buttonPrefixCls).toBe('rk-button')
@@ -174,14 +178,19 @@ test('renders an svg-backed React button component with css module classes', () 
   expect(html).toContain('app-button')
   expect(html).toContain('custom-button')
   expect(html).toContain('type="button"')
+  expect(html).toContain('rk-rune-text')
 })
 
 test('uses material as the button root color primitive', () => {
   expect(buttonSource).toContain("import { Material, type MaterialPreset } from '../material'")
+  expect(buttonSource).toContain("import { RuneText } from '../rune-text'")
   expect(buttonSource).toContain('<Material as="button"')
+  expect(buttonSource).toContain('<RuneText className={styles.content}>')
   expect(buttonSource).not.toContain('<button className={resolvedClassName}')
   expect(buttonCss).toContain('--rk-button-material: var(--rk-material-background);')
   expect(buttonCss).toContain('--rk-button-on-material: var(--rk-material-color);')
+  expect(buttonCss).toContain('--rk-rune-text-base-font-family: var(--rk-button-font-family);')
+  expect(buttonCss).toContain('--rk-rune-text-base-font-weight: var(--rk-button-font-weight);')
 })
 
 test('supports semantic materials for lightweight controls', () => {
@@ -701,7 +710,12 @@ test('supports optional modal header rune text behind the title', () => {
   expect(modalSource).toContain('hasCustomHeader || hasTitle || hasHeaderRuneText || closable')
   expect(modalSource).toContain('<RuneText')
   expect(modalSource).toContain('aria-hidden="true"')
+  expect(modalSource).toContain('font="rune"')
   expect(modalSource).toContain('`${prefixCls}-header-rune-text`')
+  expect(modalSource).toContain('<RadixDialogTitle asChild>')
+  expect(modalSource).toContain('as="h2"')
+  expect(modalCss).toContain('--rk-rune-text-base-font-family')
+  expect(modalCss).toContain('--rk-rune-text-base-font-weight')
 })
 
 test('styles modal as an overlayed dialog with optional regions', () => {
@@ -866,6 +880,22 @@ test('renders rune text without registering fonts from JavaScript', () => {
   expect(html).toContain('app-text')
   expect(html).toContain('custom-text')
   expect(html).toContain('Rune')
+})
+
+test('uses roco base font by default and keeps rune text explicit', () => {
+  const defaultHtml = renderToString(createElement(RuneText, null, 'Base'))
+  const runeHtml = renderToString(createElement(RuneText, { font: 'rune' }, 'Rune'))
+
+  expect(defaultHtml).toContain('Base')
+  expect(runeHtml).toContain('Rune')
+  expect(runeTextCss).toContain('.base')
+  expect(runeTextCss).toContain('.rune')
+  expect(runeTextCss).toContain('--rk-rune-text-rune-font-family')
+  expect(runeTextCss).toContain('--rk-rune-text-base-font-family')
+  expect(runeTextCss).toContain('var(--rk-font-family-base, inherit)')
+  expect(runeTextCss).toContain(
+    'var(--rk-font-family-decorative, var(--rk-font-family-rune, inherit))',
+  )
 })
 
 test('keeps font registration out of the base style entry', () => {

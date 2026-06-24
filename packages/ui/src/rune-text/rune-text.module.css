@@ -1,8 +1,6 @@
 .text {
   --rk-rune-text-color: currentColor;
-  --rk-rune-text-font-family: var(--rk-font-family-decorative, var(--rk-font-family-rune, inherit));
   --rk-rune-text-font-size: inherit;
-  --rk-rune-text-font-weight: 400;
   --rk-rune-text-letter-spacing: 0;
   --rk-rune-text-line-height: inherit;
 
@@ -13,4 +11,20 @@
   font-weight: var(--rk-rune-text-font-weight);
   letter-spacing: var(--rk-rune-text-letter-spacing);
   line-height: var(--rk-rune-text-line-height);
+}
+
+.rune {
+  --rk-rune-text-font-family: var(
+    --rk-rune-text-rune-font-family,
+    var(--rk-font-family-decorative, var(--rk-font-family-rune, inherit))
+  );
+  --rk-rune-text-font-weight: var(--rk-rune-text-rune-font-weight, 400);
+}
+
+.base {
+  --rk-rune-text-font-family: var(
+    --rk-rune-text-base-font-family,
+    var(--rk-font-family-base, inherit)
+  );
+  --rk-rune-text-font-weight: var(--rk-rune-text-base-font-weight, 400);
 }

@@ -2,6 +2,7 @@ import type { ButtonHTMLAttributes } from 'react'
 import { clsx } from 'clsx'
 import { Material, type MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
+import { RuneText } from '../rune-text'
 import styles from './button.module.css'
 
 export const buttonPrefixCls = 'rk-button'
@@ -48,7 +49,7 @@ export function Button({
         shadow={shadow}
         variant={variant === 'outline' ? 'outline' : 'solid'}
       />
-      <span className={styles.content}>{children}</span>
+      <RuneText className={styles.content}>{children}</RuneText>
     </Material>
   )
 }

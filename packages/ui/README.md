@@ -104,7 +104,6 @@ Button sizing can be customized with CSS variables:
   --rk-button-text-padding-inline: 8px;
   --rk-button-font-size: 14px;
   --rk-button-font-weight: 700;
-  --rk-button-line-height: 1.4;
 }
 ```
 
@@ -184,16 +183,26 @@ font-family names:
 }
 ```
 
-`Button` uses `--rk-font-family-base` by default. `RuneText` uses the
-decorative font and renders a `span`; change the element with `as`.
+`RuneText` uses `--rk-font-family-base` by default and renders a `span`; change
+the element with `as`. Pass `font="rune"` when a short label should use the
+decorative rune font instead. Keep both styles to short labels because the roco
+fonts can reduce readability on longer text. `Button` content and the visible
+`Modal` title are rendered with `RuneText`.
+
+```tsx
+<RuneText>任务公告</RuneText>
+<RuneText font="rune">ROCO KINGDOM</RuneText>
+```
 
 Rune text typography can be customized with CSS variables:
 
 ```css
 .logo-text {
-  --rk-rune-text-font-family: var(--rk-font-family-decorative);
+  --rk-rune-text-rune-font-family: var(--rk-font-family-decorative);
+  --rk-rune-text-base-font-family: var(--rk-font-family-base);
   --rk-rune-text-font-size: 24px;
-  --rk-rune-text-font-weight: 400;
+  --rk-rune-text-rune-font-weight: 400;
+  --rk-rune-text-base-font-weight: 400;
   --rk-rune-text-line-height: 1;
 }
 ```

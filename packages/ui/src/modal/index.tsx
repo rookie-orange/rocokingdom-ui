@@ -149,6 +149,7 @@ export function Modal({
                           styles.headerRuneText,
                           headerRuneTextClassName,
                         )}
+                        font="rune"
                       >
                         {headerRuneText}
                       </RuneText>
@@ -163,10 +164,13 @@ export function Modal({
                         </div>
                       </>
                     ) : (
-                      <RadixDialogTitle
-                        className={clsx(`${prefixCls}-title`, styles.title, titleClassName)}
-                      >
-                        {titleForAssistiveTech}
+                      <RadixDialogTitle asChild>
+                        <RuneText
+                          as="h2"
+                          className={clsx(`${prefixCls}-title`, styles.title, titleClassName)}
+                        >
+                          {titleForAssistiveTech}
+                        </RuneText>
                       </RadixDialogTitle>
                     )}
                     {closeButton}

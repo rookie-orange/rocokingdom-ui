@@ -53,4 +53,4 @@ export type { RocoThemeColors, RocoThemeProps, RocoThemeContextValue } from './t
 export { RocoShape, rocoShapePrefixCls } from './roco-shape'
 export type { RocoShapeProps, RocoShapeVariant } from './roco-shape'
 export { RuneText, runeTextPrefixCls } from './rune-text'
-export type { RuneTextProps } from './rune-text'
+export type { RuneTextFont, RuneTextProps } from './rune-text'
