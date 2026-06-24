@@ -638,6 +638,7 @@ test('renders a radix-backed select trigger on the server', () => {
     createElement(Select, {
       ariaLabel: '待机设置',
       defaultValue: '10',
+      material: 'paper',
       options: [
         { label: '10分钟', value: '10' },
         { label: '20分钟', value: '20' },
@@ -651,13 +652,18 @@ test('renders a radix-backed select trigger on the server', () => {
   expect(html).toContain('<svg')
   expect(html).toContain('role="combobox"')
   expect(html).toContain('aria-label="待机设置"')
+  expect(html).toContain('paper')
   expect(html).toContain('10分钟')
 })
 
 test('uses radix select and animates select content with scale', () => {
   expect(selectSource).toContain("import * as RadixSelect from '@radix-ui/react-select'")
+  expect(selectSource).toContain("import type { MaterialPreset } from '../material'")
   expect(selectSource).toContain("import { RocoTheme } from '../theme'")
   expect(selectSource).toContain("import { RocoShape } from '../roco-shape'")
+  expect(selectSource).toContain('export type SelectMaterial = MaterialPreset')
+  expect(selectSource).toContain("material = 'stone'")
+  expect(selectSource).toContain('styles[material]')
   expect(selectSource).toContain('<RocoShape className={styles.triggerShape} />')
   expect(selectSource).toContain('<RocoTheme asChild>')
   expect(selectSource).not.toContain('useRocoThemeStyle')
@@ -669,9 +675,20 @@ test('uses radix select and animates select content with scale', () => {
   expect(selectSource).toContain('contentShellClassName')
   expect(selectSource).not.toContain('scrollHeight')
   expect(selectSource).not.toContain('ResizeObserver')
-  expect(selectCss).toContain('--rk-select-material: var(--rk-select-background);')
-  expect(selectCss).toContain('--rk-select-on-material: var(--rk-select-color);')
+  expect(selectCss).toContain('--rk-select-material: var(--rk-stone);')
+  expect(selectCss).toContain('--rk-select-on-material: var(--rk-on-stone);')
+  expect(selectCss).toContain('.paper')
+  expect(selectCss).toContain('--rk-select-material: var(--rk-paper);')
+  expect(selectCss).toContain('--rk-select-on-material: var(--rk-on-paper);')
+  expect(selectCss).toContain('.primaryStrong')
+  expect(selectCss).not.toContain('--rk-select-background')
+  expect(selectCss).not.toContain('rgb(0 0 0 / 0.72)')
+  expect(selectCss).toContain('--rk-select-content-background: var(--rk-stone);')
+  expect(selectCss).not.toContain('rgb(20 20 20 / 0.96)')
   expect(selectCss).toContain('.trigger .triggerShape')
+  expect(selectCss).not.toContain('--rk-roco-shape-fill-overlap')
+  expect(selectCss).not.toContain('.trigger:active')
+  expect(selectCss).not.toContain('transform: scale(0.96) translateY(4px);')
   expect(selectCss).toContain('.triggerContent')
   expect(selectCss).toContain('.contentShell')
   expect(selectCss).toContain(

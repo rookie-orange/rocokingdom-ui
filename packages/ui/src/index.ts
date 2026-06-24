@@ -19,7 +19,7 @@ export {
   selectItemPrefixCls,
   selectPrefixCls,
 } from './select'
-export type { SelectItemProps, SelectOption, SelectProps } from './select'
+export type { SelectItemProps, SelectMaterial, SelectOption, SelectProps } from './select'
 export {
   SideNav,
   SideNavHeader,

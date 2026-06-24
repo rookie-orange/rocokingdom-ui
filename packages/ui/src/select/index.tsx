@@ -2,6 +2,7 @@ import * as RadixSelect from '@radix-ui/react-select'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 import { clsx } from 'clsx'
+import type { MaterialPreset } from '../material'
 import { RocoTheme } from '../theme'
 import { RocoShape } from '../roco-shape'
 import styles from './select.module.css'
@@ -13,6 +14,8 @@ export const SelectRoot = RadixSelect.Root
 export const SelectGroup = RadixSelect.Group
 export const SelectLabel = RadixSelect.Label
 export const SelectSeparator = RadixSelect.Separator
+
+export type SelectMaterial = MaterialPreset
 
 export interface SelectOption {
   disabled?: boolean
@@ -42,6 +45,7 @@ export interface SelectProps extends Omit<RadixSelectRootProps, 'children'> {
   contentProps?: RadixSelectContentProps
   icon?: ReactNode
   itemClassName?: string
+  material?: SelectMaterial
   options?: readonly SelectOption[]
   placeholder?: ReactNode
   prefixCls?: string
@@ -129,6 +133,7 @@ export function Select({
   contentProps,
   icon,
   itemClassName,
+  material = 'stone',
   options,
   placeholder,
   prefixCls = selectPrefixCls,
@@ -148,7 +153,13 @@ export function Select({
       <RadixSelect.Trigger
         {...triggerProps}
         aria-label={triggerAriaLabel}
-        className={clsx(prefixCls, styles.trigger, rootClassName, triggerClassName)}
+        className={clsx(
+          prefixCls,
+          styles.trigger,
+          styles[material],
+          rootClassName,
+          triggerClassName,
+        )}
       >
         <RocoShape className={styles.triggerShape} />
         <span className={styles.triggerContent}>

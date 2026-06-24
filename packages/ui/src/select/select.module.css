@@ -1,9 +1,7 @@
 .trigger {
-  --rk-select-background: rgb(0 0 0 / 0.72);
-  --rk-select-color: var(--rk-on-stone);
   --rk-select-height: 36px;
-  --rk-select-material: var(--rk-select-background);
-  --rk-select-on-material: var(--rk-select-color);
+  --rk-select-material: var(--rk-stone);
+  --rk-select-on-material: var(--rk-on-stone);
 
   appearance: none;
   align-items: center;
@@ -24,19 +22,12 @@
   padding: 0 14px 0 20px;
   position: relative;
   text-align: start;
-  transition:
-    filter 160ms ease,
-    transform 120ms ease;
+  transition: filter 160ms ease;
   user-select: none;
 }
 
 .trigger:hover {
   filter: brightness(1.08);
-}
-
-.trigger:active {
-  filter: brightness(0.9);
-  transform: scale(0.96) translateY(4px);
 }
 
 .trigger:focus-visible {
@@ -49,6 +40,47 @@
   filter: grayscale(0.2);
   opacity: 0.5;
   transform: none;
+}
+
+.default,
+.primary {
+  --rk-select-material: var(--rk-primary);
+  --rk-select-on-material: var(--rk-on-primary);
+}
+
+.paper {
+  --rk-select-material: var(--rk-paper);
+  --rk-select-on-material: var(--rk-on-paper);
+}
+
+.stone {
+  --rk-select-material: var(--rk-stone);
+  --rk-select-on-material: var(--rk-on-stone);
+}
+
+.primarySoft {
+  --rk-select-material: var(--rk-primary-soft);
+  --rk-select-on-material: var(--rk-on-primary-soft);
+}
+
+.primaryMuted {
+  --rk-select-material: var(--rk-primary-muted);
+  --rk-select-on-material: var(--rk-on-primary-muted);
+}
+
+.primaryStrong {
+  --rk-select-material: var(--rk-primary-strong);
+  --rk-select-on-material: var(--rk-on-primary-strong);
+}
+
+.success {
+  --rk-select-material: var(--rk-success);
+  --rk-select-on-material: var(--rk-on-success);
+}
+
+.danger {
+  --rk-select-material: var(--rk-danger);
+  --rk-select-on-material: var(--rk-on-danger);
 }
 
 .trigger .triggerShape {
@@ -87,7 +119,7 @@
 }
 
 .content {
-  --rk-select-content-background: rgb(20 20 20 / 0.96);
+  --rk-select-content-background: var(--rk-stone);
   --rk-select-content-color: var(--rk-on-stone);
 
   color: var(--rk-select-content-color);
@@ -143,7 +175,10 @@
 }
 
 .item[data-highlighted] {
-  background: var(--rk-select-item-highlight-background, rgb(255 198 95 / 0.16));
+  background: var(
+    --rk-select-item-highlight-background,
+    color-mix(in srgb, var(--rk-primary) 16%, transparent)
+  );
   color: var(--rk-select-item-highlight-color, var(--rk-primary));
 }
 

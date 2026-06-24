@@ -14,6 +14,7 @@ export function RegionSelect() {
     <Select
       ariaLabel="选择区域"
       defaultValue="castle"
+      material="stone"
       options={[
         { label: '王国城堡', value: 'castle' },
         { label: '宠物园', value: 'garden' },
@@ -38,6 +39,7 @@ function SelectExamplePage() {
       description="Select 封装 Radix Select，提供游戏风格触发器和菜单，可用 options 快速渲染，也可组合低层子组件。"
       highlights={[
         'options 覆盖普通项、禁用项和 placeholder。',
+        'material 支持 stone、paper、primary 等主题材质。',
         'value/onValueChange 展示受控选择。',
         'SelectGroup、SelectLabel、SelectSeparator、SelectItem 可组合自定义菜单。',
       ]}
@@ -62,6 +64,7 @@ function SelectExamplePage() {
           <div className="grid gap-5">
             <Select
               ariaLabel="选择传送点"
+              material="paper"
               onValueChange={setRegion}
               options={regionOptions}
               placeholder="选择传送点"
