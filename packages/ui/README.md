@@ -134,9 +134,11 @@ Colors and effects are plain CSS variables:
 }
 ```
 
-You can override them with CSS, or set them on the document root with `RocoProvider`.
-`RocoProvider` does not render a wrapper element.
-In React Server Components, render `RocoProvider` from a client component.
+You can override them with CSS, or create a scoped theme with `RocoProvider`.
+`RocoProvider` renders a `div` with the `rk-theme` root class and writes
+provided color tokens as inline `--rk-*` variables on that element. Descendant
+components inherit the nearest variables, so providers can be nested for local
+brand or feature themes.
 
 Fonts are opt-in. The base style entry defines font variables with system
 fallbacks, but it does not load font files.

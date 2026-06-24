@@ -48,7 +48,7 @@ export type {
   RadioGroupSize,
   RadioGroupVariant,
 } from './radio-group'
-export { RocoProvider } from './provider'
+export { RocoProvider, rocoProviderPrefixCls } from './provider'
 export type { RocoProviderColors, RocoProviderProps } from './provider'
 export { RocoShape, rocoShapePrefixCls } from './roco-shape'
 export type { RocoShapeProps, RocoShapeVariant } from './roco-shape'

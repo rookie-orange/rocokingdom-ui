@@ -1,4 +1,7 @@
-import { useInsertionEffect, type ReactNode } from 'react'
+import type { CSSProperties, HTMLAttributes } from 'react'
+import { clsx } from 'clsx'
+
+export const rocoProviderPrefixCls = 'rk-theme'
 
 export interface RocoProviderColors {
   danger?: string
@@ -22,11 +25,15 @@ export interface RocoProviderColors {
   success?: string
 }
 
-type RocoThemeVariable = readonly [name: `--rk-${string}`, value: string | undefined]
+type RocoThemeVariableName = `--rk-${string}`
+type RocoThemeVariable = readonly [name: RocoThemeVariableName, value: string | undefined]
 
-export interface RocoProviderProps {
-  children?: ReactNode
+type RocoProviderStyle = CSSProperties & Partial<Record<RocoThemeVariableName, string>>
+
+export interface RocoProviderProps extends HTMLAttributes<HTMLDivElement> {
   colors?: RocoProviderColors
+  prefixCls?: string
+  rootClassName?: string
 }
 
 function toColorVariables(colors?: RocoProviderColors): RocoThemeVariable[] {
@@ -53,54 +60,32 @@ function toColorVariables(colors?: RocoProviderColors): RocoThemeVariable[] {
   ]
 }
 
-export function RocoProvider({ children, colors }: RocoProviderProps) {
-  useInsertionEffect(() => {
-    if (typeof document === 'undefined') {
-      return undefined
+export function RocoProvider({
+  children,
+  className,
+  colors,
+  prefixCls = rocoProviderPrefixCls,
+  rootClassName,
+  style,
+  ...props
+}: RocoProviderProps) {
+  const themeStyle: RocoProviderStyle = {}
+
+  for (const [name, value] of toColorVariables(colors)) {
+    if (value === undefined) {
+      continue
     }
 
-    const rootStyle = document.documentElement.style
-    const previousValues = new Map<string, string>()
+    themeStyle[name] = value
+  }
 
-    for (const [name, value] of toColorVariables(colors)) {
-      if (!value) {
-        continue
-      }
-
-      previousValues.set(name, rootStyle.getPropertyValue(name))
-      rootStyle.setProperty(name, value)
-    }
-
-    return () => {
-      for (const [name, previousValue] of previousValues) {
-        if (previousValue) {
-          rootStyle.setProperty(name, previousValue)
-        } else {
-          rootStyle.removeProperty(name)
-        }
-      }
-    }
-  }, [
-    colors?.danger,
-    colors?.onDanger,
-    colors?.onPaper,
-    colors?.onPrimary,
-    colors?.onPrimaryMuted,
-    colors?.onPrimarySoft,
-    colors?.onPrimaryStrong,
-    colors?.onSuccess,
-    colors?.onStone,
-    colors?.paper,
-    colors?.primary,
-    colors?.primaryMuted,
-    colors?.primarySoft,
-    colors?.primaryStrong,
-    colors?.shadowColor,
-    colors?.shadowSoftColor,
-    colors?.shadowStrongColor,
-    colors?.stone,
-    colors?.success,
-  ])
-
-  return children
+  return (
+    <div
+      {...props}
+      className={clsx(prefixCls, rootClassName, className)}
+      style={{ ...themeStyle, ...style }}
+    >
+      {children}
+    </div>
+  )
 }

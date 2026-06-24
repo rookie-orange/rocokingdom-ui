@@ -36,6 +36,7 @@ import {
   modalPrefixCls,
   radioGroupPrefixCls,
   radioItemPrefixCls,
+  rocoProviderPrefixCls,
   runeTextPrefixCls,
   rocoShapePrefixCls,
 } from '../src/index.ts'
@@ -97,6 +98,7 @@ test('exports a single button prefix class', () => {
   expect(modalPrefixCls).toBe('rk-modal')
   expect(radioGroupPrefixCls).toBe('rk-radio-group')
   expect(radioItemPrefixCls).toBe('rk-radio-item')
+  expect(rocoProviderPrefixCls).toBe('rk-theme')
   expect(rocoShapePrefixCls).toBe('rk-roco-shape')
   expect(runeTextPrefixCls).toBe('rk-rune-text')
 })
@@ -709,11 +711,12 @@ test('styles modal as an overlayed dialog with optional regions', () => {
   expect(modalCss).toContain('.visuallyHidden')
 })
 
-test('renders a color variable provider without extra markup', () => {
+test('renders a scoped color variable provider', () => {
   const html = renderToString(
     createElement(
       RocoProvider,
       {
+        className: 'custom-theme',
         colors: {
           onPrimary: '#10201a',
           onPrimaryStrong: '#fff8df',
@@ -722,21 +725,40 @@ test('renders a color variable provider without extra markup', () => {
           shadowColor: 'rgb(20 30 40 / 0.2)',
           shadowStrongColor: 'rgb(20 30 40 / 0.4)',
         },
+        rootClassName: 'app-theme',
       },
       createElement(Button, {
         children: 'Scoped',
       }),
+      createElement(
+        RocoProvider,
+        {
+          colors: {
+            onPrimary: '#133122',
+            primary: '#34d399',
+          },
+        },
+        createElement(Button, {
+          children: 'Nested',
+        }),
+      ),
     ),
   )
 
-  expect(html).not.toContain('<div')
-  expect(html).not.toContain('--rk-primary:#6ee7b7')
-  expect(html).not.toContain('--rk-on-primary:#10201a')
-  expect(html).not.toContain('--rk-primary-strong:#276948')
-  expect(html).not.toContain('--rk-on-primary-strong:#fff8df')
-  expect(html).not.toContain('--rk-shadow-color:rgb(20 30 40 / 0.2)')
-  expect(html).not.toContain('--rk-shadow-strong-color:rgb(20 30 40 / 0.4)')
+  expect(html).toContain('<div')
+  expect(html).toContain('rk-theme')
+  expect(html).toContain('app-theme')
+  expect(html).toContain('custom-theme')
+  expect(html).toContain('--rk-primary:#6ee7b7')
+  expect(html).toContain('--rk-on-primary:#10201a')
+  expect(html).toContain('--rk-primary-strong:#276948')
+  expect(html).toContain('--rk-on-primary-strong:#fff8df')
+  expect(html).toContain('--rk-shadow-color:rgb(20 30 40 / 0.2)')
+  expect(html).toContain('--rk-shadow-strong-color:rgb(20 30 40 / 0.4)')
+  expect(html).toContain('--rk-primary:#34d399')
+  expect(html).toContain('--rk-on-primary:#133122')
   expect(html).toContain('Scoped')
+  expect(html).toContain('Nested')
 })
 
 test('renders rune text without registering fonts from JavaScript', () => {
