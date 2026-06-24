@@ -84,6 +84,16 @@ function DocsLayout() {
                 >
                   组件总览
                 </Link>
+                <Link
+                  activeOptions={{ exact: true }}
+                  activeProps={{
+                    className: 'bg-primary-strong text-on-primary-strong',
+                  }}
+                  className="rounded-lg px-3 py-2 text-base font-black text-stone/70 transition hover:bg-primary-muted hover:text-on-primary-muted max-[980px]:shrink-0"
+                  to="/docs/components/todo"
+                >
+                  组件待办
+                </Link>
                 {examples.map((component) => (
                   <Link
                     activeOptions={{ exact: true }}

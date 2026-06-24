@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as ExamplesSlugRouteImport } from './routes/examples.$slug'
 import { Route as DocsComponentsIndexRouteImport } from './routes/docs.components.index'
+import { Route as DocsComponentsTodoRouteImport } from './routes/docs.components.todo'
 import { Route as DocsComponentsSideNavRouteImport } from './routes/docs.components.side-nav'
 import { Route as DocsComponentsSelectRouteImport } from './routes/docs.components.select'
 import { Route as DocsComponentsRuneTextRouteImport } from './routes/docs.components.rune-text'
@@ -56,6 +57,11 @@ const ExamplesSlugRoute = ExamplesSlugRouteImport.update({
 const DocsComponentsIndexRoute = DocsComponentsIndexRouteImport.update({
   id: '/components/',
   path: '/components/',
+  getParentRoute: () => DocsRoute,
+} as any)
+const DocsComponentsTodoRoute = DocsComponentsTodoRouteImport.update({
+  id: '/components/todo',
+  path: '/components/todo',
   getParentRoute: () => DocsRoute,
 } as any)
 const DocsComponentsSideNavRoute = DocsComponentsSideNavRouteImport.update({
@@ -139,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/todo': typeof DocsComponentsTodoRoute
   '/docs/components/': typeof DocsComponentsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/todo': typeof DocsComponentsTodoRoute
   '/docs/components': typeof DocsComponentsIndexRoute
 }
 export interface FileRoutesById {
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/todo': typeof DocsComponentsTodoRoute
   '/docs/components/': typeof DocsComponentsIndexRoute
 }
 export interface FileRouteTypes {
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/todo'
     | '/docs/components/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -220,6 +230,7 @@ export interface FileRouteTypes {
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/todo'
     | '/docs/components'
   id:
     | '__root__'
@@ -240,6 +251,7 @@ export interface FileRouteTypes {
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/todo'
     | '/docs/components/'
   fileRoutesById: FileRoutesById
 }
@@ -291,6 +303,13 @@ declare module '@tanstack/react-router' {
       path: '/components'
       fullPath: '/docs/components/'
       preLoaderRoute: typeof DocsComponentsIndexRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/components/todo': {
+      id: '/docs/components/todo'
+      path: '/components/todo'
+      fullPath: '/docs/components/todo'
+      preLoaderRoute: typeof DocsComponentsTodoRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/components/side-nav': {
@@ -394,6 +413,7 @@ interface DocsRouteChildren {
   DocsComponentsRuneTextRoute: typeof DocsComponentsRuneTextRoute
   DocsComponentsSelectRoute: typeof DocsComponentsSelectRoute
   DocsComponentsSideNavRoute: typeof DocsComponentsSideNavRoute
+  DocsComponentsTodoRoute: typeof DocsComponentsTodoRoute
   DocsComponentsIndexRoute: typeof DocsComponentsIndexRoute
 }
 
@@ -411,6 +431,7 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsComponentsRuneTextRoute: DocsComponentsRuneTextRoute,
   DocsComponentsSelectRoute: DocsComponentsSelectRoute,
   DocsComponentsSideNavRoute: DocsComponentsSideNavRoute,
+  DocsComponentsTodoRoute: DocsComponentsTodoRoute,
   DocsComponentsIndexRoute: DocsComponentsIndexRoute,
 }
 
