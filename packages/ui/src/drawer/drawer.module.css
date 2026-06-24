@@ -9,12 +9,13 @@
   background: rgb(0 0 0 / 0.48);
 }
 
-.overlayVisible[data-state='open'] {
+.overlay[data-state='open'] {
   animation: rk-drawer-overlay-in var(--rk-drawer-overlay-enter-duration, 160ms) ease-out;
 }
 
-.overlayVisible[data-state='closed'] {
-  animation: rk-drawer-overlay-out var(--rk-drawer-overlay-exit-duration, 120ms) ease-in;
+.overlay[data-state='closed'] {
+  animation: rk-drawer-overlay-out
+    var(--rk-drawer-overlay-exit-duration, var(--rk-drawer-exit-duration, 180ms)) ease-in;
 }
 
 .content {

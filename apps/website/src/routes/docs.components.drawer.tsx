@@ -70,7 +70,6 @@ function DrawerExamplePage() {
         <PreviewSurface>
           <div className="flex flex-wrap gap-4">
             <Drawer
-              material="paper"
               overlay
               side="right"
               size="full"
@@ -81,9 +80,9 @@ function DrawerExamplePage() {
                 </Button>
               }
             >
-              <div className="grid gap-5 text-on-paper">
+              <div className="grid gap-5 text-on-stone">
                 <p className="font-roco text-5xl font-black leading-none">背包</p>
-                <p className="max-w-2xl text-base font-bold leading-7 text-stone/70">
+                <p className="max-w-2xl text-base font-bold leading-7">
                   size=&quot;full&quot; 会根据方向展开到 100vw 或 100svh，适合移动端主流程。
                 </p>
               </div>
