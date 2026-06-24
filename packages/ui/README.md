@@ -140,6 +140,15 @@ provided color tokens as inline `--rk-*` variables on that element. Descendant
 components inherit the nearest variables, so providers can be nested for local
 brand or feature themes.
 
+Pass `asChild` to apply that theme scope to an existing element instead of
+rendering the default `div`.
+
+`RocoProvider` also keeps the merged theme in React context. Use `useRocoTheme`
+when React code needs the current theme values. Portal-based components such as
+`Modal`, `Drawer`, and `Select` recreate the current theme scope inside their
+portal content, so local themes continue to apply even when the DOM is mounted
+outside the provider subtree.
+
 Fonts are opt-in. The base style entry defines font variables with system
 fallbacks, but it does not load font files.
 

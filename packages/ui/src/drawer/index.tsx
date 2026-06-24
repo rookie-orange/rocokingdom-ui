@@ -2,6 +2,7 @@ import type { ComponentPropsWithoutRef, CSSProperties, ReactElement, ReactNode }
 import { clsx } from 'clsx'
 import { Panel } from '../panel'
 import type { PanelCurve, PanelMaterial, PanelProps } from '../panel'
+import { RocoProvider } from '../provider'
 import {
   RadixDialogClose,
   RadixDialogContent,
@@ -190,86 +191,95 @@ export function Drawer({
     <RadixDialogRoot {...rootProps}>
       {trigger ? <RadixDialogTrigger asChild>{trigger}</RadixDialogTrigger> : null}
       <RadixDialogPortal>
-        <RadixDialogOverlay
-          className={clsx(
-            `${prefixCls}-overlay`,
-            styles.overlay,
-            overlay && styles.overlayVisible,
-            overlayClassName,
-          )}
-        />
-        <RadixDialogContent
-          {...contentProps}
-          {...descriptionProps}
-          className={clsx(prefixCls, styles.content, styles[side], rootClassName, contentClassName)}
-          style={contentStyle}
-        >
-          <Panel
-            {...panelProps}
-            as="section"
+        <RocoProvider asChild>
+          <RadixDialogOverlay
             className={clsx(
-              `${prefixCls}-panel`,
-              styles.panel,
-              panelProps?.className,
-              panelClassName,
+              `${prefixCls}-overlay`,
+              styles.overlay,
+              overlay && styles.overlayVisible,
+              overlayClassName,
             )}
-            contentClassName={clsx(
-              `${prefixCls}-panel-content`,
-              styles.panelContent,
-              panelProps?.contentClassName,
-            )}
-            curve={resolvedCurve}
-            material={panelProps?.material ?? material}
           >
-            <div className={clsx(`${prefixCls}-inner`, styles.inner, innerClassName)}>
-              <header className={clsx(`${prefixCls}-header`, styles.header)}>
-                <div className={clsx(`${prefixCls}-header-content`, styles.headerContent)}>
-                  {hasTitle ? (
-                    <RadixDialogTitle
-                      className={clsx(`${prefixCls}-title`, styles.title, titleClassName)}
-                    >
-                      {title}
-                    </RadixDialogTitle>
-                  ) : (
-                    <RadixDialogTitle className={styles.visuallyHidden}>
-                      {titleForAssistiveTech}
-                    </RadixDialogTitle>
-                  )}
-                  {hasDescription ? (
-                    <RadixDialogDescription
-                      className={clsx(
-                        `${prefixCls}-description`,
-                        styles.description,
-                        descriptionClassName,
-                      )}
-                    >
-                      {description}
-                    </RadixDialogDescription>
-                  ) : null}
-                </div>
-                {closable ? (
-                  <RadixDialogClose
-                    aria-label={closeLabel}
-                    className={clsx(`${prefixCls}-close`, styles.close, closeClassName)}
-                    type="button"
-                  >
-                    <span aria-hidden="true" className={styles.closeIcon} />
-                  </RadixDialogClose>
-                ) : null}
-              </header>
-              <div
+            <RadixDialogContent
+              {...contentProps}
+              {...descriptionProps}
+              className={clsx(
+                prefixCls,
+                styles.content,
+                styles[side],
+                rootClassName,
+                contentClassName,
+              )}
+              style={contentStyle}
+            >
+              <Panel
+                {...panelProps}
+                as="section"
                 className={clsx(
-                  `${prefixCls}-content`,
-                  `${prefixCls}-body`,
-                  styles.body,
-                  bodyClassName,
+                  `${prefixCls}-panel`,
+                  styles.panel,
+                  panelProps?.className,
+                  panelClassName,
                 )}
+                contentClassName={clsx(
+                  `${prefixCls}-panel-content`,
+                  styles.panelContent,
+                  panelProps?.contentClassName,
+                )}
+                curve={resolvedCurve}
+                material={panelProps?.material ?? material}
               >
-                {children}
-              </div>
-            </div>
-          </Panel>
-        </RadixDialogContent>
+                <div className={clsx(`${prefixCls}-inner`, styles.inner, innerClassName)}>
+                  <header className={clsx(`${prefixCls}-header`, styles.header)}>
+                    <div className={clsx(`${prefixCls}-header-content`, styles.headerContent)}>
+                      {hasTitle ? (
+                        <RadixDialogTitle
+                          className={clsx(`${prefixCls}-title`, styles.title, titleClassName)}
+                        >
+                          {title}
+                        </RadixDialogTitle>
+                      ) : (
+                        <RadixDialogTitle className={styles.visuallyHidden}>
+                          {titleForAssistiveTech}
+                        </RadixDialogTitle>
+                      )}
+                      {hasDescription ? (
+                        <RadixDialogDescription
+                          className={clsx(
+                            `${prefixCls}-description`,
+                            styles.description,
+                            descriptionClassName,
+                          )}
+                        >
+                          {description}
+                        </RadixDialogDescription>
+                      ) : null}
+                    </div>
+                    {closable ? (
+                      <RadixDialogClose
+                        aria-label={closeLabel}
+                        className={clsx(`${prefixCls}-close`, styles.close, closeClassName)}
+                        type="button"
+                      >
+                        <span aria-hidden="true" className={styles.closeIcon} />
+                      </RadixDialogClose>
+                    ) : null}
+                  </header>
+                  <div
+                    className={clsx(
+                      `${prefixCls}-content`,
+                      `${prefixCls}-body`,
+                      styles.body,
+                      bodyClassName,
+                    )}
+                  >
+                    {children}
+                  </div>
+                </div>
+              </Panel>
+            </RadixDialogContent>
+          </RadixDialogOverlay>
+        </RocoProvider>
       </RadixDialogPortal>
     </RadixDialogRoot>
   )

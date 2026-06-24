@@ -48,8 +48,8 @@ export type {
   RadioGroupSize,
   RadioGroupVariant,
 } from './radio-group'
-export { RocoProvider, rocoProviderPrefixCls } from './provider'
-export type { RocoProviderColors, RocoProviderProps } from './provider'
+export { RocoProvider, rocoProviderPrefixCls, useRocoTheme, useRocoThemeStyle } from './provider'
+export type { RocoProviderColors, RocoProviderProps, RocoThemeContextValue } from './provider'
 export { RocoShape, rocoShapePrefixCls } from './roco-shape'
 export type { RocoShapeProps, RocoShapeVariant } from './roco-shape'
 export { RuneText, runeTextPrefixCls } from './rune-text'

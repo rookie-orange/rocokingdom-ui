@@ -2,6 +2,7 @@ import * as RadixSelect from '@radix-ui/react-select'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 import { clsx } from 'clsx'
+import { RocoProvider } from '../provider'
 import { RocoShape } from '../roco-shape'
 import styles from './select.module.css'
 
@@ -83,21 +84,23 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(func
   forwardedRef,
 ) {
   return (
-    <RadixSelect.Content
-      {...props}
-      align={props.align ?? 'start'}
-      className={clsx(`${prefixCls}-content`, styles.content, rootClassName, contentClassName)}
-      position={props.position ?? 'popper'}
-      ref={forwardedRef}
-      side={props.side ?? 'bottom'}
-      sideOffset={props.sideOffset ?? 8}
-    >
-      <div
-        className={clsx(`${prefixCls}-content-shell`, styles.contentShell, contentShellClassName)}
+    <RocoProvider asChild>
+      <RadixSelect.Content
+        {...props}
+        align={props.align ?? 'start'}
+        className={clsx(`${prefixCls}-content`, styles.content, rootClassName, contentClassName)}
+        position={props.position ?? 'popper'}
+        ref={forwardedRef}
+        side={props.side ?? 'bottom'}
+        sideOffset={props.sideOffset ?? 8}
       >
-        {children}
-      </div>
-    </RadixSelect.Content>
+        <div
+          className={clsx(`${prefixCls}-content-shell`, styles.contentShell, contentShellClassName)}
+        >
+          {children}
+        </div>
+      </RadixSelect.Content>
+    </RocoProvider>
   )
 })
 

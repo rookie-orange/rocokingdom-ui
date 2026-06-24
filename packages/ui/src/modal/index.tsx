@@ -10,6 +10,7 @@ import {
   RadixDialogTitle,
   RadixDialogTrigger,
 } from '../radix-dialog'
+import { RocoProvider } from '../provider'
 import { RuneText } from '../rune-text'
 import styles from './modal.module.css'
 
@@ -127,83 +128,86 @@ export function Modal({
     <RadixDialogRoot {...rootProps}>
       {trigger ? <RadixDialogTrigger asChild>{trigger}</RadixDialogTrigger> : null}
       <RadixDialogPortal>
-        <RadixDialogOverlay
-          className={clsx(`${prefixCls}-overlay`, styles.overlay, overlayClassName)}
-        />
-        <RadixDialogContent
-          {...contentProps}
-          {...descriptionProps}
-          className={clsx(prefixCls, styles.content, rootClassName, contentClassName)}
-          style={contentStyle}
-        >
-          <section className={clsx(`${prefixCls}-panel`, styles.panel, panelClassName)}>
-            {hasVisibleHeader ? (
-              <header className={clsx(`${prefixCls}-header`, styles.header, headerClassName)}>
-                {hasHeaderRuneText ? (
-                  <RuneText
-                    aria-hidden="true"
-                    className={clsx(
-                      `${prefixCls}-header-rune-text`,
-                      styles.headerRuneText,
-                      headerRuneTextClassName,
+        <RocoProvider asChild>
+          <RadixDialogOverlay
+            className={clsx(`${prefixCls}-overlay`, styles.overlay, overlayClassName)}
+          >
+            <RadixDialogContent
+              {...contentProps}
+              {...descriptionProps}
+              className={clsx(prefixCls, styles.content, rootClassName, contentClassName)}
+              style={contentStyle}
+            >
+              <section className={clsx(`${prefixCls}-panel`, styles.panel, panelClassName)}>
+                {hasVisibleHeader ? (
+                  <header className={clsx(`${prefixCls}-header`, styles.header, headerClassName)}>
+                    {hasHeaderRuneText ? (
+                      <RuneText
+                        aria-hidden="true"
+                        className={clsx(
+                          `${prefixCls}-header-rune-text`,
+                          styles.headerRuneText,
+                          headerRuneTextClassName,
+                        )}
+                      >
+                        {headerRuneText}
+                      </RuneText>
+                    ) : null}
+                    {hasCustomHeader ? (
+                      <>
+                        <RadixDialogTitle className={styles.visuallyHidden}>
+                          {titleForAssistiveTech}
+                        </RadixDialogTitle>
+                        <div className={clsx(`${prefixCls}-header-content`, styles.headerContent)}>
+                          {header}
+                        </div>
+                      </>
+                    ) : (
+                      <RadixDialogTitle
+                        className={clsx(`${prefixCls}-title`, styles.title, titleClassName)}
+                      >
+                        {titleForAssistiveTech}
+                      </RadixDialogTitle>
                     )}
-                  >
-                    {headerRuneText}
-                  </RuneText>
-                ) : null}
-                {hasCustomHeader ? (
+                    {closeButton}
+                  </header>
+                ) : (
                   <>
                     <RadixDialogTitle className={styles.visuallyHidden}>
                       {titleForAssistiveTech}
                     </RadixDialogTitle>
-                    <div className={clsx(`${prefixCls}-header-content`, styles.headerContent)}>
-                      {header}
-                    </div>
+                    {closeButton ? (
+                      <div className={clsx(`${prefixCls}-floating-close`, styles.floatingClose)}>
+                        {closeButton}
+                      </div>
+                    ) : null}
                   </>
-                ) : (
-                  <RadixDialogTitle
-                    className={clsx(`${prefixCls}-title`, styles.title, titleClassName)}
-                  >
-                    {titleForAssistiveTech}
-                  </RadixDialogTitle>
                 )}
-                {closeButton}
-              </header>
-            ) : (
-              <>
-                <RadixDialogTitle className={styles.visuallyHidden}>
-                  {titleForAssistiveTech}
-                </RadixDialogTitle>
-                {closeButton ? (
-                  <div className={clsx(`${prefixCls}-floating-close`, styles.floatingClose)}>
-                    {closeButton}
-                  </div>
-                ) : null}
-              </>
-            )}
 
-            <div className={clsx(`${prefixCls}-body`, styles.body, bodyClassName)}>
-              {hasDescription ? (
-                <RadixDialogDescription
-                  className={clsx(
-                    `${prefixCls}-description`,
-                    styles.description,
-                    descriptionClassName,
-                  )}
-                >
-                  {description}
-                </RadixDialogDescription>
+                <div className={clsx(`${prefixCls}-body`, styles.body, bodyClassName)}>
+                  {hasDescription ? (
+                    <RadixDialogDescription
+                      className={clsx(
+                        `${prefixCls}-description`,
+                        styles.description,
+                        descriptionClassName,
+                      )}
+                    >
+                      {description}
+                    </RadixDialogDescription>
+                  ) : null}
+                  {children}
+                </div>
+              </section>
+
+              {hasFooter ? (
+                <footer className={clsx(`${prefixCls}-footer`, styles.footer, footerClassName)}>
+                  {footer}
+                </footer>
               ) : null}
-              {children}
-            </div>
-          </section>
-
-          {hasFooter ? (
-            <footer className={clsx(`${prefixCls}-footer`, styles.footer, footerClassName)}>
-              {footer}
-            </footer>
-          ) : null}
-        </RadixDialogContent>
+            </RadixDialogContent>
+          </RadixDialogOverlay>
+        </RocoProvider>
       </RadixDialogPortal>
     </RadixDialogRoot>
   )
