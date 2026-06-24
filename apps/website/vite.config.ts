@@ -5,6 +5,7 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 const uiSource = new URL('../../packages/ui/src/index.ts', import.meta.url).pathname
 const uiFontSource = new URL('../../packages/ui/src/font.css', import.meta.url).pathname
 const uiStyleSource = new URL('../../packages/ui/src/style.css', import.meta.url).pathname
+const iconsSource = new URL('../../packages/icons/src/index.ts', import.meta.url).pathname
 
 export default defineConfig({
   plugins: [
@@ -18,6 +19,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      '@rocokingdom-ui/icons': iconsSource,
       'rocokingdom-ui/font.css': uiFontSource,
       'rocokingdom-ui/style.css': uiStyleSource,
       'rocokingdom-ui': uiSource,

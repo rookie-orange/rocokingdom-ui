@@ -31,6 +31,12 @@ export const examples: ExampleMeta[] = [
     slug: 'material',
   },
   {
+    description: '填充风格 SVG 图标，继承 currentColor 并提供 Roco 前缀别名。',
+    name: 'Icons',
+    path: '/docs/components/icons',
+    slug: 'icons',
+  },
+  {
     description: '游戏面板风格弹窗，覆盖标题、描述、页脚和自定义头部。',
     name: 'Modal',
     path: '/docs/components/modal',

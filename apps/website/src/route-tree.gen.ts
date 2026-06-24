@@ -25,6 +25,7 @@ import { Route as DocsComponentsRadioGroupRouteImport } from './routes/docs.comp
 import { Route as DocsComponentsPanelRouteImport } from './routes/docs.components.panel'
 import { Route as DocsComponentsModalRouteImport } from './routes/docs.components.modal'
 import { Route as DocsComponentsMaterialRouteImport } from './routes/docs.components.material'
+import { Route as DocsComponentsIconsRouteImport } from './routes/docs.components.icons'
 import { Route as DocsComponentsDrawerRouteImport } from './routes/docs.components.drawer'
 import { Route as DocsComponentsButtonNormalRouteImport } from './routes/docs.components.button-normal'
 import { Route as DocsComponentsButtonRouteImport } from './routes/docs.components.button'
@@ -110,6 +111,11 @@ const DocsComponentsMaterialRoute = DocsComponentsMaterialRouteImport.update({
   path: '/components/material',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsIconsRoute = DocsComponentsIconsRouteImport.update({
+  id: '/components/icons',
+  path: '/components/icons',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsDrawerRoute = DocsComponentsDrawerRouteImport.update({
   id: '/components/drawer',
   path: '/components/drawer',
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
+  '/docs/components/icons': typeof DocsComponentsIconsRoute
   '/docs/components/material': typeof DocsComponentsMaterialRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
+  '/docs/components/icons': typeof DocsComponentsIconsRoute
   '/docs/components/material': typeof DocsComponentsMaterialRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
@@ -178,6 +186,7 @@ export interface FileRoutesById {
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
+  '/docs/components/icons': typeof DocsComponentsIconsRoute
   '/docs/components/material': typeof DocsComponentsMaterialRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/drawer'
+    | '/docs/components/icons'
     | '/docs/components/material'
     | '/docs/components/modal'
     | '/docs/components/panel'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/drawer'
+    | '/docs/components/icons'
     | '/docs/components/material'
     | '/docs/components/modal'
     | '/docs/components/panel'
@@ -242,6 +253,7 @@ export interface FileRouteTypes {
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/drawer'
+    | '/docs/components/icons'
     | '/docs/components/material'
     | '/docs/components/modal'
     | '/docs/components/panel'
@@ -375,6 +387,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsMaterialRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/icons': {
+      id: '/docs/components/icons'
+      path: '/components/icons'
+      fullPath: '/docs/components/icons'
+      preLoaderRoute: typeof DocsComponentsIconsRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/components/drawer': {
       id: '/docs/components/drawer'
       path: '/components/drawer'
@@ -404,6 +423,7 @@ interface DocsRouteChildren {
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
   DocsComponentsButtonNormalRoute: typeof DocsComponentsButtonNormalRoute
   DocsComponentsDrawerRoute: typeof DocsComponentsDrawerRoute
+  DocsComponentsIconsRoute: typeof DocsComponentsIconsRoute
   DocsComponentsMaterialRoute: typeof DocsComponentsMaterialRoute
   DocsComponentsModalRoute: typeof DocsComponentsModalRoute
   DocsComponentsPanelRoute: typeof DocsComponentsPanelRoute
@@ -422,6 +442,7 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,
   DocsComponentsButtonNormalRoute: DocsComponentsButtonNormalRoute,
   DocsComponentsDrawerRoute: DocsComponentsDrawerRoute,
+  DocsComponentsIconsRoute: DocsComponentsIconsRoute,
   DocsComponentsMaterialRoute: DocsComponentsMaterialRoute,
   DocsComponentsModalRoute: DocsComponentsModalRoute,
   DocsComponentsPanelRoute: DocsComponentsPanelRoute,

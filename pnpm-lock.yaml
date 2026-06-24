@@ -66,6 +66,9 @@ importers:
 
   apps/website:
     dependencies:
+      '@rocokingdom-ui/icons':
+        specifier: workspace:*
+        version: link:../../packages/icons
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.3.1(@voidzero-dev/vite-plus-core@0.2.1(@tsdown/css@0.22.2)(@types/node@25.9.2)(esbuild@0.28.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.0))
@@ -103,6 +106,30 @@ importers:
       vite-plus:
         specifier: 'catalog:'
         version: 0.2.1(@tsdown/css@0.22.2(jiti@2.7.0)(postcss@8.5.15)(tsdown@0.22.2)(yaml@2.9.0))(@types/node@25.9.2)(@voidzero-dev/vite-plus-core@0.2.1(@tsdown/css@0.22.2)(@types/node@25.9.2)(esbuild@0.28.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.0))(esbuild@0.28.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.0)
+
+  packages/icons:
+    devDependencies:
+      '@types/node':
+        specifier: ^25.6.2
+        version: 25.9.2
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.17
+      '@typescript/native-preview':
+        specifier: 7.0.0-dev.20260509.2
+        version: 7.0.0-dev.20260509.2
+      bumpp:
+        specifier: ^11.1.0
+        version: 11.1.0
+      react:
+        specifier: 'catalog:'
+        version: 19.2.7
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vite-plus:
+        specifier: 'catalog:'
+        version: 0.2.1(@tsdown/css@0.22.2(jiti@2.7.0)(postcss@8.5.15)(tsdown@0.22.2)(yaml@2.9.0))(@types/node@25.9.2)(esbuild@0.28.1)(jiti@2.7.0)(typescript@6.0.3)(vite@8.0.16(@types/node@25.9.2)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))(yaml@2.9.0)
 
   packages/shared:
     devDependencies:
