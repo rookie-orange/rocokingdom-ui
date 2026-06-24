@@ -58,3 +58,123 @@
     @apply min-h-svh;
   }
 }
+
+@layer components {
+  .home-bird-flight {
+    --bird-frame-width: clamp(3.1rem, 6.2vw, 6.5rem);
+    --bird-frame-height: calc(var(--bird-frame-width) * 105 / 65);
+
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .home-bird {
+    position: absolute;
+    width: var(--bird-frame-width);
+    height: var(--bird-frame-height);
+    overflow: hidden;
+    opacity: 0;
+    transform-origin: 50% 50%;
+    z-index: 1;
+    will-change: transform, opacity;
+    animation: home-bird-fly 7.8s linear infinite;
+  }
+
+  .home-bird__sprite {
+    display: block;
+    width: calc(var(--bird-frame-width) * 78);
+    height: var(--bird-frame-height);
+    max-width: none;
+    user-select: none;
+    will-change: transform;
+    animation: home-bird-flap 4.588s steps(77, end) infinite;
+  }
+
+  .home-bird--one {
+    --bird-start-x: 8vw;
+    --bird-start-y: 31vh;
+    --bird-end-x: 88vw;
+    --bird-end-y: -5vh;
+    animation-delay: -1.5s;
+  }
+
+  .home-bird--two {
+    --bird-start-x: -20vw;
+    --bird-start-y: 78vh;
+    --bird-end-x: 89vw;
+    --bird-end-y: 17vh;
+    z-index: 20;
+    animation-delay: -0.7s;
+  }
+
+  .home-bird--two .home-bird__sprite {
+    animation-delay: -1.18s;
+  }
+
+  .home-bird--three {
+    --bird-start-x: -4vw;
+    --bird-start-y: 68vh;
+    --bird-end-x: 84vw;
+    --bird-end-y: 25vh;
+    animation-delay: -1s;
+  }
+
+  .home-bird--three .home-bird__sprite {
+    animation-delay: -2.65s;
+  }
+}
+
+@keyframes home-bird-fly {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--bird-start-x), var(--bird-start-y), 0) rotate(25deg) scale(0.92);
+  }
+  8%,
+  82% {
+    opacity: 0.82;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--bird-end-x), var(--bird-end-y), 0) rotate(25deg) scale(1.02);
+  }
+}
+
+@keyframes home-bird-flap {
+  to {
+    transform: translate3d(calc(var(--bird-frame-width) * -77), 0, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-bird-flight {
+    --bird-frame-width: clamp(2.6rem, 13vw, 4rem);
+  }
+
+  .home-bird--one {
+    --bird-start-x: 6vw;
+    --bird-start-y: 34vh;
+    --bird-end-x: 99vw;
+    --bird-end-y: 4vh;
+  }
+
+  .home-bird--two {
+    --bird-start-x: -30vw;
+    --bird-start-y: 78vh;
+    --bird-end-x: 103vw;
+    --bird-end-y: 26vh;
+  }
+
+  .home-bird--three {
+    --bird-start-x: -8vw;
+    --bird-start-y: 66vh;
+    --bird-end-x: 95vw;
+    --bird-end-y: 38vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-bird {
+    display: none;
+  }
+}
