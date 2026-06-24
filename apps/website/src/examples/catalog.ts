@@ -50,9 +50,9 @@ export const examples: ExampleMeta[] = [
   },
   {
     description: '全局主题变量注入器，用于运行时切换品牌色。',
-    name: 'RocoProvider',
-    path: '/docs/components/roco-provider',
-    slug: 'roco-provider',
+    name: 'RocoTheme',
+    path: '/docs/components/roco-theme',
+    slug: 'roco-theme',
   },
   {
     description: '可拉伸的洛克王国按钮底形，支持实心、描边和阴影。',

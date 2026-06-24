@@ -1,17 +1,17 @@
 import {
   createContext,
-  forwardRef,
-  useContext,
+  use,
   useMemo,
   type CSSProperties,
   type HTMLAttributes,
+  type Ref,
 } from 'react'
 import * as Slot from '@radix-ui/react-slot'
 import { clsx } from 'clsx'
 
-export const rocoProviderPrefixCls = 'rk-theme'
+export const rocoThemePrefixCls = 'rk-theme'
 
-export interface RocoProviderColors {
+export interface RocoThemeColors {
   danger?: string
   onDanger?: string
   onPaper?: string
@@ -36,10 +36,10 @@ export interface RocoProviderColors {
 type RocoThemeVariableName = `--rk-${string}`
 type RocoThemeVariable = readonly [name: RocoThemeVariableName, value: string | undefined]
 
-type RocoProviderStyle = CSSProperties & Partial<Record<RocoThemeVariableName, string>>
-type RocoProviderColorName = keyof RocoProviderColors
+type RocoThemeStyle = CSSProperties & Partial<Record<RocoThemeVariableName, string>>
+type RocoThemeColorName = keyof RocoThemeColors
 
-const rocoProviderColorNames: RocoProviderColorName[] = [
+const rocoThemeColorNames: RocoThemeColorName[] = [
   'paper',
   'stone',
   'primary',
@@ -65,20 +65,21 @@ const defaultRocoThemeContext: RocoThemeContextValue = {
   colors: {},
 }
 
-const RocoThemeContext = createContext<RocoThemeContextValue>(defaultRocoThemeContext)
+const RocoThemeContext = createContext<RocoThemeContextValue | undefined>(undefined)
 
 export interface RocoThemeContextValue {
-  colors: RocoProviderColors
+  colors: RocoThemeColors
 }
 
-export interface RocoProviderProps extends HTMLAttributes<HTMLDivElement> {
+export interface RocoThemeProps extends HTMLAttributes<HTMLDivElement> {
   asChild?: boolean
-  colors?: RocoProviderColors
+  colors?: RocoThemeColors
   prefixCls?: string
+  ref?: Ref<HTMLDivElement>
   rootClassName?: string
 }
 
-function toColorVariables(colors?: RocoProviderColors): RocoThemeVariable[] {
+function toColorVariables(colors?: RocoThemeColors): RocoThemeVariable[] {
   return [
     ['--rk-paper', colors?.paper],
     ['--rk-stone', colors?.stone],
@@ -102,8 +103,8 @@ function toColorVariables(colors?: RocoProviderColors): RocoThemeVariable[] {
   ]
 }
 
-function toThemeStyle(colors?: RocoProviderColors): RocoProviderStyle {
-  const themeStyle: RocoProviderStyle = {}
+function toThemeStyle(colors?: RocoThemeColors): RocoThemeStyle {
+  const themeStyle: RocoThemeStyle = {}
 
   for (const [name, value] of toColorVariables(colors)) {
     if (value === undefined) {
@@ -116,14 +117,14 @@ function toThemeStyle(colors?: RocoProviderColors): RocoProviderStyle {
   return themeStyle
 }
 
-function mergeColors(parentColors: RocoProviderColors, colors?: RocoProviderColors) {
+function mergeColors(parentColors: RocoThemeColors, colors?: RocoThemeColors) {
   if (!colors) {
     return parentColors
   }
 
-  let mergedColors: RocoProviderColors | undefined
+  let mergedColors: RocoThemeColors | undefined
 
-  for (const colorName of rocoProviderColorNames) {
+  for (const colorName of rocoThemeColorNames) {
     const value = colors[colorName]
 
     if (value === undefined) {
@@ -137,14 +138,18 @@ function mergeColors(parentColors: RocoProviderColors, colors?: RocoProviderColo
   return mergedColors ?? parentColors
 }
 
+function useOptionalRocoTheme() {
+  return use(RocoThemeContext) ?? defaultRocoThemeContext
+}
+
 export function useRocoTheme() {
-  const theme = useContext(RocoThemeContext)
+  const theme = use(RocoThemeContext)
 
   if (theme === undefined) {
-    throw new Error('`useRocoTheme` must be used within a `RocoProvider`')
+    throw new Error('`useRocoTheme` must be used within a `RocoTheme`')
   }
 
-  return useContext(RocoThemeContext)
+  return theme
 }
 
 export function useRocoThemeStyle(): CSSProperties {
@@ -153,20 +158,18 @@ export function useRocoThemeStyle(): CSSProperties {
   return useMemo(() => toThemeStyle(theme.colors), [theme.colors])
 }
 
-export const RocoProvider = forwardRef<HTMLDivElement, RocoProviderProps>(function RocoProvider(
-  {
-    asChild,
-    children,
-    className,
-    colors,
-    prefixCls = rocoProviderPrefixCls,
-    rootClassName,
-    style,
-    ...props
-  },
-  forwardedRef,
-) {
-  const parentTheme = useRocoTheme()
+export function RocoTheme({
+  asChild,
+  children,
+  className,
+  colors,
+  prefixCls = rocoThemePrefixCls,
+  ref,
+  rootClassName,
+  style,
+  ...props
+}: RocoThemeProps) {
+  const parentTheme = useOptionalRocoTheme()
   const Root = asChild ? Slot.Root : 'div'
   const themeColors = useMemo(
     () => mergeColors(parentTheme.colors, colors),
@@ -181,15 +184,15 @@ export const RocoProvider = forwardRef<HTMLDivElement, RocoProviderProps>(functi
   )
 
   return (
-    <RocoThemeContext.Provider value={theme}>
+    <RocoThemeContext value={theme}>
       <Root
         {...props}
         className={clsx(prefixCls, rootClassName, className)}
-        ref={forwardedRef}
+        ref={ref}
         style={{ ...themeStyle, ...style }}
       >
         {children}
       </Root>
-    </RocoThemeContext.Provider>
+    </RocoThemeContext>
   )
-})
+}

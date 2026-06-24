@@ -19,7 +19,7 @@ import {
   ModalClose,
   RadioGroup,
   RadioItem,
-  RocoProvider,
+  RocoTheme,
   RocoShape,
   RuneText,
   buttonNormalPrefixCls,
@@ -36,7 +36,7 @@ import {
   modalPrefixCls,
   radioGroupPrefixCls,
   radioItemPrefixCls,
-  rocoProviderPrefixCls,
+  rocoThemePrefixCls,
   runeTextPrefixCls,
   rocoShapePrefixCls,
   useRocoTheme,
@@ -64,7 +64,7 @@ const radioGroupSource = readFileSync(
 )
 const modalSource = readFileSync(new URL('../src/modal/index.tsx', import.meta.url), 'utf8')
 const modalCss = readFileSync(new URL('../src/modal/modal.module.css', import.meta.url), 'utf8')
-const providerSource = readFileSync(new URL('../src/provider/index.tsx', import.meta.url), 'utf8')
+const themeSource = readFileSync(new URL('../src/theme/index.tsx', import.meta.url), 'utf8')
 const materialCss = readFileSync(
   new URL('../src/material/material.module.css', import.meta.url),
   'utf8',
@@ -100,7 +100,7 @@ test('exports a single button prefix class', () => {
   expect(modalPrefixCls).toBe('rk-modal')
   expect(radioGroupPrefixCls).toBe('rk-radio-group')
   expect(radioItemPrefixCls).toBe('rk-radio-item')
-  expect(rocoProviderPrefixCls).toBe('rk-theme')
+  expect(rocoThemePrefixCls).toBe('rk-theme')
   expect(rocoShapePrefixCls).toBe('rk-roco-shape')
   expect(runeTextPrefixCls).toBe('rk-rune-text')
 })
@@ -514,8 +514,8 @@ test('renders a radix-backed drawer trigger on the server', () => {
 
 test('uses radix dialog for drawer behavior and maps drawer side to the exposed curve', () => {
   expect(radixDialogSource).toContain("import * as Dialog from '@radix-ui/react-dialog'")
-  expect(drawerSource).toContain("import { RocoProvider } from '../provider'")
-  expect(drawerSource).toContain('<RocoProvider asChild>')
+  expect(drawerSource).toContain("import { RocoTheme } from '../theme'")
+  expect(drawerSource).toContain('<RocoTheme asChild>')
   expect(drawerSource).toContain('style={contentStyle}')
   expect(drawerSource).not.toContain('useRocoThemeStyle')
   expect(drawerSource).not.toContain('themeStyle')
@@ -647,10 +647,10 @@ test('renders a radix-backed select trigger on the server', () => {
 
 test('uses radix select and animates select content with scale', () => {
   expect(selectSource).toContain("import * as RadixSelect from '@radix-ui/react-select'")
-  expect(selectSource).toContain("import { RocoProvider } from '../provider'")
+  expect(selectSource).toContain("import { RocoTheme } from '../theme'")
   expect(selectSource).toContain("import { RocoShape } from '../roco-shape'")
   expect(selectSource).toContain('<RocoShape className={styles.triggerShape} />')
-  expect(selectSource).toContain('<RocoProvider asChild>')
+  expect(selectSource).toContain('<RocoTheme asChild>')
   expect(selectSource).not.toContain('useRocoThemeStyle')
   expect(selectSource).not.toContain('themeStyle')
   expect(selectSource).not.toContain('RocoThemeScope')
@@ -705,8 +705,8 @@ test('supports optional modal header rune text behind the title', () => {
 })
 
 test('styles modal as an overlayed dialog with optional regions', () => {
-  expect(modalSource).toContain("import { RocoProvider } from '../provider'")
-  expect(modalSource).toContain('<RocoProvider asChild>')
+  expect(modalSource).toContain("import { RocoTheme } from '../theme'")
+  expect(modalSource).toContain('<RocoTheme asChild>')
   expect(modalSource).toContain('style={contentStyle}')
   expect(modalSource).not.toContain('useRocoThemeStyle')
   expect(modalSource).not.toContain('themeStyle')
@@ -730,9 +730,21 @@ test('styles modal as an overlayed dialog with optional regions', () => {
   expect(modalCss).toContain('.visuallyHidden')
 })
 
-test('renders a scoped color variable provider', () => {
-  expect(providerSource).toContain("import * as Slot from '@radix-ui/react-slot'")
-  expect(providerSource).toContain('const Root = asChild ? Slot.Root :')
+test('renders a scoped color variable theme', () => {
+  expect(themeSource).toContain("import * as Slot from '@radix-ui/react-slot'")
+  expect(themeSource).toContain('use,')
+  expect(themeSource).toContain('const Root = asChild ? Slot.Root :')
+  expect(themeSource).toContain(
+    'const RocoThemeContext = createContext<RocoThemeContextValue | undefined>(undefined)',
+  )
+  expect(themeSource).toContain('const theme = use(RocoThemeContext)')
+  expect(themeSource).toContain(
+    "throw new Error('`useRocoTheme` must be used within a `RocoTheme`')",
+  )
+  expect(themeSource).toContain('<RocoThemeContext value={theme}>')
+  expect(themeSource).not.toContain('useContext')
+  expect(themeSource).not.toContain('forwardRef')
+  expect(themeSource).not.toContain('.Provider')
 
   function ThemeProbe() {
     const theme = useRocoTheme()
@@ -746,7 +758,7 @@ test('renders a scoped color variable provider', () => {
 
   const html = renderToString(
     createElement(
-      RocoProvider,
+      RocoTheme,
       {
         className: 'custom-theme',
         colors: {
@@ -763,7 +775,7 @@ test('renders a scoped color variable provider', () => {
         children: 'Scoped',
       }),
       createElement(
-        RocoProvider,
+        RocoTheme,
         {
           colors: {
             onPrimary: '#133122',
@@ -796,7 +808,7 @@ test('renders a scoped color variable provider', () => {
 
   const asChildHtml = renderToString(
     createElement(
-      RocoProvider,
+      RocoTheme,
       {
         asChild: true,
         className: 'custom-theme',
@@ -818,7 +830,7 @@ test('renders a scoped color variable provider', () => {
 
   const inheritedAsChildHtml = renderToString(
     createElement(
-      RocoProvider,
+      RocoTheme,
       {
         colors: {
           onPrimary: '#f8fafc',
@@ -826,7 +838,7 @@ test('renders a scoped color variable provider', () => {
         },
       },
       createElement(
-        RocoProvider,
+        RocoTheme,
         { asChild: true },
         createElement('section', { className: 'portal-scope' }, 'Inherited slot theme'),
       ),

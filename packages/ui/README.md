@@ -15,14 +15,14 @@ import {
   ModalClose,
   RadioGroup,
   RadioItem,
-  RocoProvider,
+  RocoTheme,
   RocoShape,
   RuneText,
 } from 'rocokingdom-ui'
 
 export function App() {
   return (
-    <RocoProvider
+    <RocoTheme
       colors={{
         primary: '#6ee7b7',
         onPrimary: '#10201a',
@@ -51,7 +51,7 @@ export function App() {
       </Modal>
       <RuneText>START</RuneText>
       <RocoShape style={{ color: '#ffc65f', height: 44, width: 180 }} />
-    </RocoProvider>
+    </RocoTheme>
   )
 }
 ```
@@ -134,20 +134,20 @@ Colors and effects are plain CSS variables:
 }
 ```
 
-You can override them with CSS, or create a scoped theme with `RocoProvider`.
-`RocoProvider` renders a `div` with the `rk-theme` root class and writes
+You can override them with CSS, or create a scoped theme with `RocoTheme`.
+`RocoTheme` renders a `div` with the `rk-theme` root class and writes
 provided color tokens as inline `--rk-*` variables on that element. Descendant
-components inherit the nearest variables, so providers can be nested for local
+components inherit the nearest variables, so themes can be nested for local
 brand or feature themes.
 
 Pass `asChild` to apply that theme scope to an existing element instead of
 rendering the default `div`.
 
-`RocoProvider` also keeps the merged theme in React context. Use `useRocoTheme`
+`RocoTheme` also keeps the merged theme in React context. Use `useRocoTheme`
 when React code needs the current theme values. Portal-based components such as
 `Modal`, `Drawer`, and `Select` recreate the current theme scope inside their
 portal content, so local themes continue to apply even when the DOM is mounted
-outside the provider subtree.
+outside the theme subtree.
 
 Fonts are opt-in. The base style entry defines font variables with system
 fallbacks, but it does not load font files.

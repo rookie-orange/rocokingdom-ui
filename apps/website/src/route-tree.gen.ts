@@ -18,8 +18,8 @@ import { Route as DocsComponentsIndexRouteImport } from './routes/docs.component
 import { Route as DocsComponentsSideNavRouteImport } from './routes/docs.components.side-nav'
 import { Route as DocsComponentsSelectRouteImport } from './routes/docs.components.select'
 import { Route as DocsComponentsRuneTextRouteImport } from './routes/docs.components.rune-text'
+import { Route as DocsComponentsRocoThemeRouteImport } from './routes/docs.components.roco-theme'
 import { Route as DocsComponentsRocoShapeRouteImport } from './routes/docs.components.roco-shape'
-import { Route as DocsComponentsRocoProviderRouteImport } from './routes/docs.components.roco-provider'
 import { Route as DocsComponentsRadioGroupRouteImport } from './routes/docs.components.radio-group'
 import { Route as DocsComponentsPanelRouteImport } from './routes/docs.components.panel'
 import { Route as DocsComponentsModalRouteImport } from './routes/docs.components.modal'
@@ -73,17 +73,16 @@ const DocsComponentsRuneTextRoute = DocsComponentsRuneTextRouteImport.update({
   path: '/components/rune-text',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsRocoThemeRoute = DocsComponentsRocoThemeRouteImport.update({
+  id: '/components/roco-theme',
+  path: '/components/roco-theme',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsRocoShapeRoute = DocsComponentsRocoShapeRouteImport.update({
   id: '/components/roco-shape',
   path: '/components/roco-shape',
   getParentRoute: () => DocsRoute,
 } as any)
-const DocsComponentsRocoProviderRoute =
-  DocsComponentsRocoProviderRouteImport.update({
-    id: '/components/roco-provider',
-    path: '/components/roco-provider',
-    getParentRoute: () => DocsRoute,
-  } as any)
 const DocsComponentsRadioGroupRoute =
   DocsComponentsRadioGroupRouteImport.update({
     id: '/components/radio-group',
@@ -135,8 +134,8 @@ export interface FileRoutesByFullPath {
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
-  '/docs/components/roco-provider': typeof DocsComponentsRocoProviderRoute
   '/docs/components/roco-shape': typeof DocsComponentsRocoShapeRoute
+  '/docs/components/roco-theme': typeof DocsComponentsRocoThemeRoute
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
@@ -154,8 +153,8 @@ export interface FileRoutesByTo {
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
-  '/docs/components/roco-provider': typeof DocsComponentsRocoProviderRoute
   '/docs/components/roco-shape': typeof DocsComponentsRocoShapeRoute
+  '/docs/components/roco-theme': typeof DocsComponentsRocoThemeRoute
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
@@ -175,8 +174,8 @@ export interface FileRoutesById {
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
-  '/docs/components/roco-provider': typeof DocsComponentsRocoProviderRoute
   '/docs/components/roco-shape': typeof DocsComponentsRocoShapeRoute
+  '/docs/components/roco-theme': typeof DocsComponentsRocoThemeRoute
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
@@ -197,8 +196,8 @@ export interface FileRouteTypes {
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
-    | '/docs/components/roco-provider'
     | '/docs/components/roco-shape'
+    | '/docs/components/roco-theme'
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
@@ -216,8 +215,8 @@ export interface FileRouteTypes {
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
-    | '/docs/components/roco-provider'
     | '/docs/components/roco-shape'
+    | '/docs/components/roco-theme'
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
@@ -236,8 +235,8 @@ export interface FileRouteTypes {
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
-    | '/docs/components/roco-provider'
     | '/docs/components/roco-shape'
+    | '/docs/components/roco-theme'
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
@@ -315,18 +314,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsRuneTextRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/roco-theme': {
+      id: '/docs/components/roco-theme'
+      path: '/components/roco-theme'
+      fullPath: '/docs/components/roco-theme'
+      preLoaderRoute: typeof DocsComponentsRocoThemeRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/components/roco-shape': {
       id: '/docs/components/roco-shape'
       path: '/components/roco-shape'
       fullPath: '/docs/components/roco-shape'
       preLoaderRoute: typeof DocsComponentsRocoShapeRouteImport
-      parentRoute: typeof DocsRoute
-    }
-    '/docs/components/roco-provider': {
-      id: '/docs/components/roco-provider'
-      path: '/components/roco-provider'
-      fullPath: '/docs/components/roco-provider'
-      preLoaderRoute: typeof DocsComponentsRocoProviderRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/components/radio-group': {
@@ -390,8 +389,8 @@ interface DocsRouteChildren {
   DocsComponentsModalRoute: typeof DocsComponentsModalRoute
   DocsComponentsPanelRoute: typeof DocsComponentsPanelRoute
   DocsComponentsRadioGroupRoute: typeof DocsComponentsRadioGroupRoute
-  DocsComponentsRocoProviderRoute: typeof DocsComponentsRocoProviderRoute
   DocsComponentsRocoShapeRoute: typeof DocsComponentsRocoShapeRoute
+  DocsComponentsRocoThemeRoute: typeof DocsComponentsRocoThemeRoute
   DocsComponentsRuneTextRoute: typeof DocsComponentsRuneTextRoute
   DocsComponentsSelectRoute: typeof DocsComponentsSelectRoute
   DocsComponentsSideNavRoute: typeof DocsComponentsSideNavRoute
@@ -407,8 +406,8 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsComponentsModalRoute: DocsComponentsModalRoute,
   DocsComponentsPanelRoute: DocsComponentsPanelRoute,
   DocsComponentsRadioGroupRoute: DocsComponentsRadioGroupRoute,
-  DocsComponentsRocoProviderRoute: DocsComponentsRocoProviderRoute,
   DocsComponentsRocoShapeRoute: DocsComponentsRocoShapeRoute,
+  DocsComponentsRocoThemeRoute: DocsComponentsRocoThemeRoute,
   DocsComponentsRuneTextRoute: DocsComponentsRuneTextRoute,
   DocsComponentsSelectRoute: DocsComponentsSelectRoute,
   DocsComponentsSideNavRoute: DocsComponentsSideNavRoute,

@@ -10,7 +10,7 @@ import {
   RadixDialogTitle,
   RadixDialogTrigger,
 } from '../radix-dialog'
-import { RocoProvider } from '../provider'
+import { RocoTheme } from '../theme'
 import { RuneText } from '../rune-text'
 import styles from './modal.module.css'
 
@@ -128,7 +128,7 @@ export function Modal({
     <RadixDialogRoot {...rootProps}>
       {trigger ? <RadixDialogTrigger asChild>{trigger}</RadixDialogTrigger> : null}
       <RadixDialogPortal>
-        <RocoProvider asChild>
+        <RocoTheme asChild>
           <RadixDialogOverlay
             className={clsx(`${prefixCls}-overlay`, styles.overlay, overlayClassName)}
           >
@@ -207,7 +207,7 @@ export function Modal({
               ) : null}
             </RadixDialogContent>
           </RadixDialogOverlay>
-        </RocoProvider>
+        </RocoTheme>
       </RadixDialogPortal>
     </RadixDialogRoot>
   )

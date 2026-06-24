@@ -2,7 +2,7 @@ import * as RadixSelect from '@radix-ui/react-select'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 import { clsx } from 'clsx'
-import { RocoProvider } from '../provider'
+import { RocoTheme } from '../theme'
 import { RocoShape } from '../roco-shape'
 import styles from './select.module.css'
 
@@ -84,7 +84,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(func
   forwardedRef,
 ) {
   return (
-    <RocoProvider asChild>
+    <RocoTheme asChild>
       <RadixSelect.Content
         {...props}
         align={props.align ?? 'start'}
@@ -100,7 +100,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(func
           {children}
         </div>
       </RadixSelect.Content>
-    </RocoProvider>
+    </RocoTheme>
   )
 })
 

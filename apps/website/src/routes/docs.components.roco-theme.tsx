@@ -1,23 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
-import { Button, Material, Panel, RocoProvider, RuneText } from 'rocokingdom-ui'
+import { Button, Material, Panel, RocoTheme, RuneText } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/docs/components/roco-provider')({
-  component: RocoProviderExamplePage,
+export const Route = createFileRoute('/docs/components/roco-theme')({
+  component: RocoThemeExamplePage,
 })
 
-const providerCode = `import { Button, RocoProvider } from 'rocokingdom-ui'
+const themeCode = `import { Button, RocoTheme } from 'rocokingdom-ui'
 
 export function CustomTheme() {
   return (
-    <RocoProvider colors={{ primaryStrong: '#6e4c12', onPrimaryStrong: '#fff8df' }}>
+    <RocoTheme colors={{ primaryStrong: '#6e4c12', onPrimaryStrong: '#fff8df' }}>
       <Button shadow>主题按钮</Button>
-    </RocoProvider>
+    </RocoTheme>
   )
 }`
 
-function RocoProviderExamplePage() {
+function RocoThemeExamplePage() {
   const [customThemeEnabled, setCustomThemeEnabled] = useState(false)
   const scopedTheme = customThemeEnabled
     ? {
@@ -38,14 +38,14 @@ function RocoProviderExamplePage() {
 
   return (
     <ExampleShell
-      code={providerCode}
-      description="RocoProvider 渲染一个主题作用域元素，把 colors 映射成该作用域上的 --rk-* CSS 变量。"
+      code={themeCode}
+      description="RocoTheme 渲染一个主题作用域元素，把 colors 映射成该作用域上的 --rk-* CSS 变量。"
       highlights={[
         'colors 可覆盖基础色、语义色及对应前景色。',
-        '变量会被子树继承，嵌套 RocoProvider 可以覆盖最近作用域。',
+        '变量会被子树继承，嵌套 RocoTheme 可以覆盖最近作用域。',
         '默认主题仍由 style.css 的 :root 变量提供，局部主题只影响被包裹内容。',
       ]}
-      title="RocoProvider"
+      title="RocoTheme"
     >
       <ExampleSection title="默认主题">
         <PreviewSurface>
@@ -62,18 +62,18 @@ function RocoProviderExamplePage() {
       </ExampleSection>
 
       <ExampleSection
-        description="启用后，只有被 RocoProvider 包裹的面板读取新的 --rk-* 颜色；关闭后回到外层默认变量。"
+        description="启用后，只有被 RocoTheme 包裹的面板读取新的 --rk-* 颜色；关闭后回到外层默认变量。"
         title="运行时主题切换"
       >
         <PreviewSurface>
-          <RocoProvider colors={scopedTheme}>
+          <RocoTheme colors={scopedTheme}>
             <Panel material="stone">
               <div className="grid gap-5">
                 <RuneText className="text-5xl leading-none text-primary max-sm:text-4xl">
                   {customThemeEnabled ? 'GREEN THEME' : 'DEFAULT THEME'}
                 </RuneText>
                 <p className="max-w-2xl text-base font-bold leading-7 text-on-stone/80">
-                  RocoProvider 通过包裹元素创建主题作用域，内部组件会读取最近的 --rk-* 变量。
+                  RocoTheme 通过包裹元素创建主题作用域，内部组件会读取最近的 --rk-* 变量。
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button
@@ -89,7 +89,7 @@ function RocoProviderExamplePage() {
                 </div>
               </div>
             </Panel>
-          </RocoProvider>
+          </RocoTheme>
         </PreviewSurface>
       </ExampleSection>
 
@@ -98,7 +98,7 @@ function RocoProviderExamplePage() {
         title="嵌套主题"
       >
         <PreviewSurface>
-          <RocoProvider
+          <RocoTheme
             className="grid gap-4"
             colors={{
               onPrimary: '#f8fbff',
@@ -111,7 +111,7 @@ function RocoProviderExamplePage() {
                 <Button material="default" shadow>
                   外层蓝色主题
                 </Button>
-                <RocoProvider
+                <RocoTheme
                   colors={{
                     onPrimary: '#10201a',
                     primary: '#34d399',
@@ -121,13 +121,13 @@ function RocoProviderExamplePage() {
                   <Button material="default" shadow>
                     内层绿色主题
                   </Button>
-                </RocoProvider>
+                </RocoTheme>
                 <Button material="primarySoft" shadow>
                   回到外层浅蓝
                 </Button>
               </div>
             </div>
-          </RocoProvider>
+          </RocoTheme>
         </PreviewSurface>
       </ExampleSection>
     </ExampleShell>

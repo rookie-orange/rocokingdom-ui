@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, CSSProperties, ReactElement, ReactNode }
 import { clsx } from 'clsx'
 import { Panel } from '../panel'
 import type { PanelCurve, PanelMaterial, PanelProps } from '../panel'
-import { RocoProvider } from '../provider'
+import { RocoTheme } from '../theme'
 import {
   RadixDialogClose,
   RadixDialogContent,
@@ -191,7 +191,7 @@ export function Drawer({
     <RadixDialogRoot {...rootProps}>
       {trigger ? <RadixDialogTrigger asChild>{trigger}</RadixDialogTrigger> : null}
       <RadixDialogPortal>
-        <RocoProvider asChild>
+        <RocoTheme asChild>
           <RadixDialogOverlay
             className={clsx(
               `${prefixCls}-overlay`,
@@ -279,7 +279,7 @@ export function Drawer({
               </Panel>
             </RadixDialogContent>
           </RadixDialogOverlay>
-        </RocoProvider>
+        </RocoTheme>
       </RadixDialogPortal>
     </RadixDialogRoot>
   )
