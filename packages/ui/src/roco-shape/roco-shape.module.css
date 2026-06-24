@@ -8,6 +8,11 @@
   width: 100%;
 }
 
+.circle,
+.square {
+  aspect-ratio: 1;
+}
+
 .layer {
   display: flex;
   height: 100%;
@@ -88,4 +93,25 @@
     --rk-roco-shape-outline-curve-stroke-width,
     var(--rk-roco-shape-outline-stroke-width, 2px)
   );
+}
+
+.fixed {
+  display: block;
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+}
+
+.fixedFill {
+  fill: currentColor;
+}
+
+.fixedStroke {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: var(--rk-roco-shape-fixed-stroke-width, var(--rk-roco-shape-stroke-width, 1px));
 }

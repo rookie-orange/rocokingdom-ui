@@ -23,6 +23,7 @@ function RocoShapeExamplePage() {
       code={rocoShapeCode}
       description="RocoShape 是可拉伸的按钮底形，左右弧线保持比例，中间区域自动延展。"
       highlights={[
+        'shape 覆盖 stretch、circle、square。',
         'variant 覆盖 solid、outline。',
         'shadow 仅对实心填充生效。',
         '通过 width、height、color 或 CSS 变量控制外观。',
@@ -44,6 +45,29 @@ function RocoShapeExamplePage() {
               <RocoShape shadow style={{ color: '#2f7dd1', height: 32, width: 120 }} />
               <RocoShape shadow style={{ color: '#d94b4b', height: 52, width: 240 }} />
             </div>
+          </div>
+        </PreviewSurface>
+      </ExampleSection>
+
+      <ExampleSection title="圆形与正方形">
+        <PreviewSurface>
+          <div className="flex flex-wrap items-center gap-5">
+            <RocoShape
+              shadow
+              shape="circle"
+              style={{ color: 'var(--rk-primary)', height: 56, width: 56 }}
+            />
+            <RocoShape
+              shape="circle"
+              style={{ color: 'var(--rk-stone)', height: 56, width: 56 }}
+              variant="outline"
+            />
+            <RocoShape shadow shape="square" style={{ color: '#d94b4b', height: 56, width: 56 }} />
+            <RocoShape
+              shape="square"
+              style={{ color: '#2f7dd1', height: 56, width: 56 }}
+              variant="outline"
+            />
           </div>
         </PreviewSurface>
       </ExampleSection>

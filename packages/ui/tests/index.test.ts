@@ -273,6 +273,19 @@ test('renders roco shape shadow only when enabled', () => {
   expect(rocoShapeCss).toContain('var(--rk-roco-shape-shadow, var(--rk-shadow-strong-color))')
 })
 
+test('renders fixed roco shape paths for circle and square', () => {
+  const circleHtml = renderToString(
+    createElement(RocoShape, { shape: 'circle', variant: 'outline' }),
+  )
+  const squareHtml = renderToString(createElement(RocoShape, { shape: 'square' }))
+
+  expect(circleHtml).toContain('M0.858625 19.4179')
+  expect(circleHtml.match(/<path/g)).toHaveLength(1)
+  expect(squareHtml).toContain('M3.51624 2.91328')
+  expect(squareHtml.match(/<path/g)).toHaveLength(1)
+  expect(rocoShapeCss).toContain('--rk-roco-shape-fixed-stroke-width')
+})
+
 test('renders the previous capsule button as button normal', () => {
   const html = renderToString(
     createElement(ButtonNormal, {

@@ -51,6 +51,8 @@ export function App() {
       </Modal>
       <RuneText>START</RuneText>
       <RocoShape style={{ color: '#ffc65f', height: 44, width: 180 }} />
+      <RocoShape shape="circle" variant="outline" style={{ color: '#2f7dd1', height: 49, width: 49 }} />
+      <RocoShape shape="square" style={{ color: '#d94b4b', height: 49, width: 49 }} />
     </RocoTheme>
   )
 }
@@ -69,7 +71,8 @@ with `className`, `style`, `material`, `activeMaterial`, `inactiveMaterial`,
 
 `RocoShape` renders the reusable stretched shape behind the SVG-backed button.
 Set its `color`, `width`, and `height` from CSS or inline styles. The left and
-right arcs keep their aspect ratio while the center segment stretches.
+right arcs keep their aspect ratio while the center segment stretches. Pass
+`shape="circle"` or `shape="square"` for the fixed 49x49 SVG-backed shapes.
 
 `Button` does not render a shadow by default. Pass `shadow` to enable the
 shape shadow.
