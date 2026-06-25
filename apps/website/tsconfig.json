@@ -11,6 +11,7 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "paths": {
+      "@rocokingdom-ui/icons": ["../../packages/icons/src/index.ts"],
       "rocokingdom-ui/font.css": ["../../packages/ui/src/font.css"],
       "rocokingdom-ui/style.css": ["../../packages/ui/src/style.css"],
       "rocokingdom-ui": ["../../packages/ui/src/index.ts"]
