@@ -305,6 +305,57 @@ test('renders fixed roco shape paths for circle and square', () => {
   expect(rocoShapeCss).toContain('--rk-roco-shape-fixed-stroke-width')
 })
 
+test('renders roco shape as a content surface with material colors', () => {
+  const html = renderToString(
+    createElement(
+      RocoShape,
+      {
+        background: 'var(--rk-stone)',
+        color: 'var(--rk-on-stone)',
+        contentClassName: 'shape-label',
+        material: 'paper',
+        style: { height: 44, width: 180 },
+      },
+      '今日活动',
+    ),
+  )
+
+  expect(html.startsWith('<span class="rk-roco-shape')).toBe(true)
+  expect(html).toContain('paper')
+  expect(html).toContain('withContent')
+  expect(html).toContain('shape-label')
+  expect(html).toContain('--rk-material-background:var(--rk-stone)')
+  expect(html).toContain('--rk-material-color:var(--rk-on-stone)')
+  expect(html).not.toContain('aria-hidden="true" class="rk-roco-shape')
+  expect(html).toContain('今日活动')
+  expect(html.match(/aria-hidden="true"/g)).toHaveLength(1)
+  expect(rocoShapeCss).toContain('.shape.shape')
+  expect(rocoShapeCss).toContain('background: transparent;')
+})
+
+test('lets material render the roco shape root for combined surfaces', () => {
+  const html = renderToString(
+    createElement(
+      Material,
+      {
+        as: RocoShape,
+        material: 'paper',
+        rootClassName: 'material-shape',
+        shadow: true,
+      },
+      'Notice',
+    ),
+  )
+
+  expect(html).toContain('rk-material')
+  expect(html).toContain('rk-roco-shape')
+  expect(html).toContain('material-shape')
+  expect(html).toContain('paper')
+  expect(html).toContain('withContent')
+  expect(html).toContain('withShadow')
+  expect(html).toContain('Notice')
+})
+
 test('renders the previous capsule button as button normal', () => {
   const html = renderToString(
     createElement(ButtonNormal, {

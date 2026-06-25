@@ -50,7 +50,9 @@ export function App() {
         更新完成！请手动重启游戏...
       </Modal>
       <RuneText>START</RuneText>
-      <RocoShape style={{ color: '#ffc65f', height: 44, width: 180 }} />
+      <RocoShape material="paper" shadow>
+        今日活动
+      </RocoShape>
       <RocoShape shape="circle" variant="outline" style={{ color: '#2f7dd1', height: 49, width: 49 }} />
       <RocoShape shape="square" style={{ color: '#d94b4b', height: 49, width: 49 }} />
     </RocoTheme>
@@ -69,10 +71,30 @@ default and the active item uses paper. Change them at the group level with
 with `className`, `style`, `material`, `activeMaterial`, `inactiveMaterial`,
 `variant`, `shadow`, and size props.
 
-`RocoShape` renders the reusable stretched shape behind the SVG-backed button.
-Set its `color`, `width`, and `height` from CSS or inline styles. The left and
-right arcs keep their aspect ratio while the center segment stretches. Pass
-`shape="circle"` or `shape="square"` for the fixed 49x49 SVG-backed shapes.
+`RocoShape` renders the reusable stretched shape behind the SVG-backed button or
+as a content surface. Pass children to place text above the generated shape
+without writing separate positioning layers:
+
+```tsx
+<RocoShape material="paper" shadow>
+  今日活动
+</RocoShape>
+```
+
+It uses the same material variables as `Material`, so `material`, `background`,
+and `color` set the shape fill and foreground color together. You can also merge
+the primitives onto one element with `Material as={RocoShape}`:
+
+```tsx
+<Material as={RocoShape} material="stone" shadow>
+  Stone badge
+</Material>
+```
+
+Set its `color`, `width`, and `height` from CSS or inline styles when using it as
+a decoration with no children. The left and right arcs keep their aspect ratio
+while the center segment stretches. Pass `shape="circle"` or `shape="square"`
+for the fixed 49x49 SVG-backed shapes.
 
 `Button` does not render a shadow by default. Pass `shadow` to enable the
 shape shadow.

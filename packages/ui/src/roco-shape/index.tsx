@@ -1,19 +1,38 @@
-import type { HTMLAttributes } from 'react'
+import type { ComponentPropsWithoutRef, CSSProperties, ElementType, ReactNode } from 'react'
 import { clsx } from 'clsx'
+import type { MaterialPreset } from '../material'
+import materialStyles from '../material/material.module.css'
 import styles from './roco-shape.module.css'
 
 export const rocoShapePrefixCls = 'rk-roco-shape'
 
 export type RocoShapeKind = 'stretch' | 'circle' | 'square'
+export type RocoShapeMaterial = MaterialPreset
 export type RocoShapeVariant = 'solid' | 'outline'
 
-export interface RocoShapeProps extends HTMLAttributes<HTMLSpanElement> {
+interface RocoShapeStyle extends CSSProperties {
+  '--rk-material-background'?: string
+  '--rk-material-color'?: string
+}
+
+interface RocoShapeOwnProps<As extends ElementType> {
+  as?: As
+  background?: string
+  children?: ReactNode
+  className?: string
+  color?: string
+  contentClassName?: string
+  material?: RocoShapeMaterial
   prefixCls?: string
   rootClassName?: string
   shadow?: boolean
   shape?: RocoShapeKind
+  style?: CSSProperties
   variant?: RocoShapeVariant
 }
+
+export type RocoShapeProps<As extends ElementType = 'span'> = RocoShapeOwnProps<As> &
+  Omit<ComponentPropsWithoutRef<As>, keyof RocoShapeOwnProps<As>>
 
 type RocoShapeFixedKind = Exclude<RocoShapeKind, 'stretch'>
 
@@ -82,7 +101,7 @@ function RocoShapeCenter({ part }: Pick<RocoShapeLayerProps, 'part'>) {
 
 function RocoShapeLayer({ className, part }: RocoShapeLayerProps) {
   return (
-    <span className={clsx(styles.layer, className)}>
+    <span aria-hidden="true" className={clsx(styles.layer, className)}>
       <RocoShapeEdge part={part} side="left" />
       <RocoShapeCenter part={part} />
       <RocoShapeEdge part={part} side="right" />
@@ -100,6 +119,7 @@ function RocoShapeFixed({ part, shape }: RocoShapeFixedProps) {
 
   return (
     <svg
+      aria-hidden="true"
       className={clsx(styles.fixed, part === 'fill' ? styles.fill : styles.stroke)}
       focusable="false"
       preserveAspectRatio="xMidYMid meet"
@@ -114,38 +134,63 @@ function RocoShapeFixed({ part, shape }: RocoShapeFixedProps) {
   )
 }
 
-export function RocoShape({
-  'aria-hidden': ariaHidden = true,
+export function RocoShape<As extends ElementType = 'span'>({
+  'aria-hidden': ariaHiddenProp,
+  as,
+  background,
+  children,
   className,
+  color,
+  contentClassName,
+  material,
   prefixCls = rocoShapePrefixCls,
   rootClassName,
   shadow = false,
   shape = 'stretch',
+  style,
   variant = 'solid',
   ...props
-}: RocoShapeProps) {
+}: RocoShapeProps<As>) {
+  const Tag = as ?? 'span'
   const hasFill = variant !== 'outline'
   const hasStroke = variant === 'outline'
+  const hasContent = children !== undefined && children !== null
   const isStretch = shape === 'stretch'
+  const shapeStyle: RocoShapeStyle = { ...style }
+  const ariaHidden = ariaHiddenProp ?? (hasContent ? undefined : true)
+
+  if (background) {
+    shapeStyle['--rk-material-background'] = background
+  }
+
+  if (color) {
+    shapeStyle['--rk-material-color'] = color
+  }
 
   return (
-    <span
+    <Tag
+      {...props}
       aria-hidden={ariaHidden}
       className={clsx(
         prefixCls,
         styles.shape,
         styles[shape],
         styles[variant],
+        material && materialStyles[material],
+        hasContent && styles.withContent,
         shadow && hasFill && styles.withShadow,
         rootClassName,
         className,
       )}
-      {...props}
+      style={shapeStyle}
     >
       {hasFill && isStretch ? <RocoShapeLayer className={styles.fill} part="fill" /> : null}
       {hasStroke && isStretch ? <RocoShapeLayer className={styles.stroke} part="stroke" /> : null}
       {hasFill && !isStretch ? <RocoShapeFixed part="fill" shape={shape} /> : null}
       {hasStroke && !isStretch ? <RocoShapeFixed part="stroke" shape={shape} /> : null}
-    </span>
+      {hasContent ? (
+        <span className={clsx(styles.content, contentClassName)}>{children}</span>
+      ) : null}
+    </Tag>
   )
 }

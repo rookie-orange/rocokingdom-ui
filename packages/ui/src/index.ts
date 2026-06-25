@@ -53,6 +53,11 @@ export type {
 export { RocoTheme, rocoThemePrefixCls, useRocoTheme, useRocoThemeStyle } from './theme'
 export type { RocoThemeColors, RocoThemeProps, RocoThemeContextValue } from './theme'
 export { RocoShape, rocoShapePrefixCls } from './roco-shape'
-export type { RocoShapeKind, RocoShapeProps, RocoShapeVariant } from './roco-shape'
+export type {
+  RocoShapeKind,
+  RocoShapeMaterial,
+  RocoShapeProps,
+  RocoShapeVariant,
+} from './roco-shape'
 export { RuneText, runeTextPrefixCls } from './rune-text'
 export type { RuneTextFont, RuneTextProps } from './rune-text'

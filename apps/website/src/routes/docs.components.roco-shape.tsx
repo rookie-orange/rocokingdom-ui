@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { RocoShape } from 'rocokingdom-ui'
+import { Material, RocoShape } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
 export const Route = createFileRoute('/docs/components/roco-shape')({
@@ -8,12 +8,11 @@ export const Route = createFileRoute('/docs/components/roco-shape')({
 
 const rocoShapeCode = `import { RocoShape } from 'rocokingdom-ui'
 
-export function ButtonBackplate() {
+export function NoticeBadge() {
   return (
-    <RocoShape
-      shadow
-      style={{ color: 'var(--rk-primary)', height: 44, width: 180 }}
-    />
+    <RocoShape material="paper" shadow>
+      今日活动
+    </RocoShape>
   )
 }`
 
@@ -21,12 +20,13 @@ function RocoShapeExamplePage() {
   return (
     <ExampleShell
       code={rocoShapeCode}
-      description="RocoShape 是可拉伸的按钮底形，左右弧线保持比例，中间区域自动延展。"
+      description="RocoShape 是可拉伸的造型表面，左右弧线保持比例，中间区域自动延展，也可以直接承载文字内容。"
       highlights={[
         'shape 覆盖 stretch、circle、square。',
         'variant 覆盖 solid、outline。',
         'shadow 仅对实心填充生效。',
-        '通过 width、height、color 或 CSS 变量控制外观。',
+        'children 会自动生成内容层，不需要手写 position、inset 或 z-index。',
+        'material、background 和 color 与 Material 使用同一组表面变量。',
       ]}
       title="RocoShape"
     >
@@ -72,17 +72,47 @@ function RocoShapeExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="作为装饰底板">
+      <ExampleSection title="文字背景">
         <PreviewSurface>
-          <div className="relative grid min-h-32 max-w-xl place-items-center">
+          <div className="flex flex-wrap items-center gap-5">
             <RocoShape
-              className="absolute inset-x-0 mx-auto"
+              className="h-[72px] [--rk-roco-shape-padding-inline:42px] font-roco text-3xl font-black"
+              material="stone"
               shadow
-              style={{ color: 'var(--rk-stone)', height: 72, width: 'min(100%, 460px)' }}
-            />
-            <span className="relative z-10 font-roco text-3xl font-black text-on-stone">
+            >
               今日活动
-            </span>
+            </RocoShape>
+            <RocoShape
+              className="h-14 [--rk-roco-shape-padding-inline:34px] font-roco text-2xl font-black"
+              material="paper"
+              shadow
+            >
+              宠物档案
+            </RocoShape>
+          </div>
+        </PreviewSurface>
+      </ExampleSection>
+
+      <ExampleSection title="与 Material 合并">
+        <PreviewSurface>
+          <div className="flex flex-wrap items-center gap-5">
+            <Material
+              as={RocoShape}
+              className="h-14 [--rk-roco-shape-padding-inline:34px] font-roco text-2xl font-black"
+              material="paper"
+              shadow
+            >
+              纸张表面
+            </Material>
+            <Material
+              as={RocoShape}
+              background="#2f7dd1"
+              className="h-14 [--rk-roco-shape-padding-inline:34px] font-roco text-2xl font-black"
+              color="#f7fbff"
+              shadow
+            >
+              水系活动
+            </Material>
           </div>
         </PreviewSurface>
       </ExampleSection>

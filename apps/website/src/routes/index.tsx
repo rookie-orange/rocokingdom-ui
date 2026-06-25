@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { Button } from 'rocokingdom-ui'
 import birdFlightUrl from '../assets/roco-bird-flight.png'
+import logoUrl from '../assets/roco-kingdom-logo.png'
 import backgroundUrl from '../assets/roco-map-bg.png'
 
 export const Route = createFileRoute('/')({
@@ -40,20 +41,13 @@ function HomePage() {
         aria-label="Rocokingdom UI"
         className="relative z-10 grid w-full max-w-6xl justify-items-center"
       >
-        <div
-          aria-label="洛克王国 UI"
-          className="flex flex-wrap items-center justify-center gap-2 text-center drop-shadow-2xl drop-shadow-stone max-sm:gap-1"
-        >
-          <p className="flex flex-col">
-            <span className="text-8xl max-md:text-7xl max-sm:text-5xl">洛克王国</span>
-            <span className="text-5xl tracking-[0.22em] max-md:text-4xl max-sm:text-2xl max-sm:tracking-[0.16em]">
-              ROCOKINGDOM
-            </span>
-          </p>
-          <p className="text-[13rem] leading-none max-md:text-[9rem] max-sm:text-[5.5rem]">UI</p>
-        </div>
+        <img
+          alt="洛克王国 Rocokingdom UI"
+          className="max-h-4/5 object-contain h-64 drop-shadow-2xl drop-shadow-stone"
+          src={logoUrl}
+        />
 
-        <div className="mt-20 flex w-full flex-wrap items-center justify-center gap-4 max-sm:mt-12 max-sm:flex-col">
+        <div className="mt-2 flex w-full flex-wrap items-center justify-center gap-4 max-sm:mt-12 max-sm:flex-col">
           <Button material="stone" rootClassName="font-roco text-xl!" size="large">
             npm install rocokingdom-ui
           </Button>

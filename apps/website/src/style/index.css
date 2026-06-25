@@ -22,7 +22,6 @@
   --shadow-strong-color: var(--rk-shadow-strong-color, rgb(36 38 40 / 0.32));
 
   color: var(--on-paper);
-  font-family: var(--rk-font-family-base);
   font-synthesis: none;
   text-rendering: geometricprecision;
 }

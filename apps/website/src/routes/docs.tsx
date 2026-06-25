@@ -1,4 +1,5 @@
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router'
+import logoUrl from '../assets/roco-kingdom-logo.png'
 import { examples } from '../examples/catalog'
 
 const themeLinks = [
@@ -20,12 +21,14 @@ function DocsLayout() {
   return (
     <main className="min-h-svh bg-paper text-on-paper">
       <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-6 border-b border-stone/15 bg-stone px-8 text-on-stone max-[860px]:gap-4 max-[860px]:px-5">
-        <Link
-          aria-label="返回首页"
-          className="inline-flex items-center gap-3 font-roco text-2xl font-black leading-none"
-          to="/"
-        >
-          洛克王国:UI
+        <Link aria-label="返回首页" className="inline-flex shrink-0 items-center" to="/">
+          <img
+            alt=""
+            className="h-9 w-auto object-contain max-[480px]:h-8"
+            height={295}
+            src={logoUrl}
+            width={851}
+          />
         </Link>
         <nav
           aria-label="文档主题"

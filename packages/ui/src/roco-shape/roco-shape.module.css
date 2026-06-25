@@ -1,16 +1,38 @@
 .shape {
-  color: currentColor;
+  --rk-roco-shape-background: var(--rk-material-background, currentColor);
+  --rk-roco-shape-color: var(--rk-material-color, currentColor);
+
+  color: var(--rk-roco-shape-color);
   display: block;
   height: 100%;
   overflow: visible;
-  pointer-events: none;
   position: relative;
   width: 100%;
+}
+
+.shape.shape {
+  background: transparent;
+}
+
+.shape:not(.withContent) {
+  pointer-events: none;
 }
 
 .circle,
 .square {
   aspect-ratio: 1;
+}
+
+.withContent {
+  align-items: center;
+  box-sizing: border-box;
+  display: inline-flex;
+  height: var(--rk-roco-shape-height, auto);
+  justify-content: center;
+  min-height: var(--rk-roco-shape-height, 32px);
+  min-width: var(--rk-roco-shape-min-width, auto);
+  padding: var(--rk-roco-shape-padding-block, 2px) var(--rk-roco-shape-padding-inline, 18px);
+  width: var(--rk-roco-shape-width, auto);
 }
 
 .layer {
@@ -22,7 +44,8 @@
 }
 
 .fill {
-  color: currentColor;
+  color: var(--rk-roco-shape-background);
+  pointer-events: none;
 }
 
 .withShadow .fill {
@@ -33,7 +56,8 @@
 }
 
 .stroke {
-  color: currentColor;
+  color: var(--rk-roco-shape-background);
+  pointer-events: none;
 }
 
 .edge {
@@ -102,6 +126,16 @@
   overflow: visible;
   position: absolute;
   width: 100%;
+}
+
+.content {
+  align-items: center;
+  color: var(--rk-roco-shape-color);
+  display: inline-flex;
+  justify-content: center;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .fixedFill {
