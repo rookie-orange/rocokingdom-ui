@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Button, Material, Panel, RocoTheme, RuneText } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/docs/components/roco-theme')({
+export const Route = createFileRoute('/docs/overview/roco-theme')({
   component: RocoThemeExamplePage,
 })
 

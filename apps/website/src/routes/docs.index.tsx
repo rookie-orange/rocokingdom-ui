@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { Button, Panel, RuneText } from 'rocokingdom-ui'
-import { examples } from '../examples/catalog'
+import { componentExamples } from '../examples/catalog'
 
 const overviewStats = [
   {
@@ -9,7 +9,7 @@ const overviewStats = [
   },
   {
     label: '组件',
-    value: String(examples.length),
+    value: String(componentExamples.length),
   },
   {
     label: '材质',
@@ -33,8 +33,8 @@ function DocsOverviewPage() {
             文档总览
           </h1>
           <p className="mt-5 max-w-3xl text-lg font-bold leading-8 text-stone/70">
-            Rocokingdom UI 将洛克王国风格的材质、造型和交互组件整理成两个文档主题：overview
-            负责安装与使用入口，components 收纳每个组件的独立示例。
+            Rocokingdom UI 将洛克王国风格的材质、造型、图标和交互组件整理成
+            Overview、Design、Components、Icon 四类文档入口。
           </p>
         </div>
 
@@ -68,7 +68,7 @@ function DocsOverviewPage() {
         <div>
           <Button
             material="primaryStrong"
-            onClick={() => navigate({ to: '/docs/components' })}
+            onClick={() => navigate({ to: '/docs/overview/components' })}
             rootClassName="font-roco font-black"
             shadow
           >

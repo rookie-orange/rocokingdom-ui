@@ -5,6 +5,6 @@ export const Route = createFileRoute('/examples/$slug')({
   beforeLoad: ({ params }) => {
     const example = getExampleBySlug(params.slug)
 
-    throw redirect({ to: example?.path ?? '/docs/components' })
+    throw redirect({ to: example?.path ?? '/docs/overview/components' })
   },
 })

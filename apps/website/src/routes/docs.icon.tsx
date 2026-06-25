@@ -2,7 +2,7 @@ import { Check, Cross, RocoCheck, RocoCross } from '@rocokingdom-ui/icons'
 import { createFileRoute } from '@tanstack/react-router'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/docs/components/icons')({
+export const Route = createFileRoute('/docs/icon')({
   component: IconsExamplePage,
 })
 

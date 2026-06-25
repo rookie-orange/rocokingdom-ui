@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Material } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/docs/components/material')({
+export const Route = createFileRoute('/docs/design/material')({
   component: MaterialExamplePage,
 })
 

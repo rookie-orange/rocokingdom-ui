@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { Checkbox, RuneText } from 'rocokingdom-ui'
-import { examples } from '../examples/catalog'
+import { componentExamples, examples } from '../examples/catalog'
 
 interface ComponentTodoItem {
   description: string
@@ -12,6 +12,39 @@ interface ComponentTodoGroup {
   items: readonly ComponentTodoItem[]
   title: string
 }
+
+const cardTones = [
+  {
+    action: 'group-hover:bg-primary group-hover:text-on-primary',
+    badge: 'bg-primary/20 text-on-paper',
+    border: 'hover:border-primary',
+    marker: 'bg-primary',
+  },
+  {
+    action: 'group-hover:bg-primary-muted group-hover:text-on-primary-muted',
+    badge: 'bg-primary-soft text-on-primary-soft',
+    border: 'hover:border-primary-muted',
+    marker: 'bg-primary-muted',
+  },
+  {
+    action: 'group-hover:bg-primary-strong group-hover:text-on-primary-strong',
+    badge: 'bg-primary-muted/20 text-primary-strong',
+    border: 'hover:border-primary-strong',
+    marker: 'bg-primary-strong',
+  },
+  {
+    action: 'group-hover:bg-success group-hover:text-on-success',
+    badge: 'bg-success/15 text-success',
+    border: 'hover:border-success',
+    marker: 'bg-success',
+  },
+  {
+    action: 'group-hover:bg-danger group-hover:text-on-danger',
+    badge: 'bg-danger/15 text-danger',
+    border: 'hover:border-danger',
+    marker: 'bg-danger',
+  },
+]
 
 const componentTodoGroups: readonly ComponentTodoGroup[] = [
   {
@@ -29,6 +62,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '图标资产、尺寸规范和语义颜色映射。',
+        implementedSlug: 'icons',
         name: 'Icon 图标',
       },
       {
@@ -285,25 +319,24 @@ const completedTodoCount = componentTodoGroups.reduce(
   0,
 )
 
-export const Route = createFileRoute('/docs/components/todo')({
-  component: ComponentTodoPage,
+export const Route = createFileRoute('/docs/overview/components')({
+  component: DocsComponentsPage,
 })
 
-function ComponentTodoPage() {
+function DocsComponentsPage() {
   return (
     <article className="mx-auto w-full max-w-6xl px-10 py-14 max-[980px]:px-5 max-[980px]:py-10">
       <section className="grid gap-7 border-b border-stone/15 pb-10">
         <div className="flex items-end justify-between gap-5 max-sm:block">
           <div>
             <RuneText className="block text-base leading-none text-primary-strong">
-              COMPONENT TODO
+              COMPONENTS
             </RuneText>
             <h1 className="mt-4 font-roco text-6xl font-black leading-none text-on-paper max-sm:text-4xl">
-              组件待办
+              组件
             </h1>
             <p className="mt-5 max-w-3xl text-lg font-bold leading-8 text-stone/70">
-              以常见 React 组件库为参照整理基础能力。已在当前 website
-              中有文档入口的组件会自动打勾，并链接到对应组件文档。
+              这里集中展示组件入口和完整能力清单。已有文档入口的项目会自动打勾，并链接到对应文档。
             </p>
           </div>
           <p className="rounded-lg bg-primary-soft px-4 py-3 text-sm font-black text-on-primary-soft shadow-[0_6px_0_var(--shadow-soft-color)] max-sm:mt-5 max-sm:inline-flex">
@@ -312,7 +345,65 @@ function ComponentTodoPage() {
         </div>
       </section>
 
-      <section className="grid gap-10 py-12">
+      <section className="grid gap-5 py-12">
+        <div>
+          <p className="text-sm font-black text-primary-strong">Docs</p>
+          <h2 className="mt-2 font-roco text-3xl font-black leading-none text-on-paper">
+            已实现组件
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+          {componentExamples.map((example, index) => {
+            const tone = cardTones[index % cardTones.length]
+
+            return (
+              <Link
+                className={[
+                  'group rounded-lg border border-stone/15 bg-white/55 p-5 shadow-[0_8px_0_var(--shadow-soft-color)] transition hover:-translate-y-1 hover:bg-white',
+                  tone.border,
+                ].join(' ')}
+                key={example.slug}
+                to={example.path}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <p className="font-roco text-3xl font-black leading-none text-on-paper">
+                    {example.name}
+                  </p>
+                  <span
+                    aria-hidden="true"
+                    className={['mt-1 size-3 shrink-0 rounded-full', tone.marker].join(' ')}
+                  />
+                </div>
+                <p className="mt-4 min-h-16 text-base font-bold leading-7 text-stone/70">
+                  {example.description}
+                </p>
+                <span
+                  className={[
+                    'mt-5 inline-flex rounded-lg px-3 py-2 text-sm font-black transition',
+                    tone.badge,
+                    tone.action,
+                  ].join(' ')}
+                >
+                  打开文档
+                </span>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
+
+      <section className="grid gap-10 border-t border-stone/15 py-12">
+        <div>
+          <p className="text-sm font-black text-primary-strong">Roadmap</p>
+          <h2 className="mt-2 font-roco text-3xl font-black leading-none text-on-paper">
+            组件能力清单
+          </h2>
+          <p className="mt-3 max-w-2xl text-base font-bold leading-7 text-stone/70">
+            以常见 React 组件库为参照整理基础能力，方便持续补齐文档和实现。
+          </p>
+        </div>
+
         {componentTodoGroups.map((group) => {
           const groupDoneCount = group.items.filter(
             (item) => item.implementedSlug && implementedExampleBySlug.has(item.implementedSlug),
@@ -321,9 +412,9 @@ function ComponentTodoPage() {
           return (
             <section className="grid gap-4" key={group.title}>
               <div className="flex items-center justify-between gap-4 border-b border-stone/15 pb-3">
-                <h2 className="font-roco text-3xl font-black leading-none text-on-paper max-sm:text-2xl">
+                <h3 className="font-roco text-3xl font-black leading-none text-on-paper max-sm:text-2xl">
                   {group.title}
-                </h2>
+                </h3>
                 <span className="shrink-0 text-sm font-black text-primary-strong">
                   {groupDoneCount} / {group.items.length}
                 </span>

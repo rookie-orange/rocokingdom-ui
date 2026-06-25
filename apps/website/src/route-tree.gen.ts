@@ -14,18 +14,17 @@ import { Route as DocsRouteImport } from './routes/docs'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as ExamplesSlugRouteImport } from './routes/examples.$slug'
-import { Route as DocsComponentsIndexRouteImport } from './routes/docs.components.index'
-import { Route as DocsComponentsTodoRouteImport } from './routes/docs.components.todo'
+import { Route as DocsIconRouteImport } from './routes/docs.icon'
+import { Route as DocsOverviewRocoThemeRouteImport } from './routes/docs.overview.roco-theme'
+import { Route as DocsOverviewComponentsRouteImport } from './routes/docs.overview.components'
+import { Route as DocsDesignRocoShapeRouteImport } from './routes/docs.design.roco-shape'
+import { Route as DocsDesignMaterialRouteImport } from './routes/docs.design.material'
 import { Route as DocsComponentsSideNavRouteImport } from './routes/docs.components.side-nav'
 import { Route as DocsComponentsSelectRouteImport } from './routes/docs.components.select'
 import { Route as DocsComponentsRuneTextRouteImport } from './routes/docs.components.rune-text'
-import { Route as DocsComponentsRocoThemeRouteImport } from './routes/docs.components.roco-theme'
-import { Route as DocsComponentsRocoShapeRouteImport } from './routes/docs.components.roco-shape'
 import { Route as DocsComponentsRadioGroupRouteImport } from './routes/docs.components.radio-group'
 import { Route as DocsComponentsPanelRouteImport } from './routes/docs.components.panel'
 import { Route as DocsComponentsModalRouteImport } from './routes/docs.components.modal'
-import { Route as DocsComponentsMaterialRouteImport } from './routes/docs.components.material'
-import { Route as DocsComponentsIconsRouteImport } from './routes/docs.components.icons'
 import { Route as DocsComponentsDrawerRouteImport } from './routes/docs.components.drawer'
 import { Route as DocsComponentsCheckboxRouteImport } from './routes/docs.components.checkbox'
 import { Route as DocsComponentsButtonNormalRouteImport } from './routes/docs.components.button-normal'
@@ -56,14 +55,29 @@ const ExamplesSlugRoute = ExamplesSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ExamplesRoute,
 } as any)
-const DocsComponentsIndexRoute = DocsComponentsIndexRouteImport.update({
-  id: '/components/',
-  path: '/components/',
+const DocsIconRoute = DocsIconRouteImport.update({
+  id: '/icon',
+  path: '/icon',
   getParentRoute: () => DocsRoute,
 } as any)
-const DocsComponentsTodoRoute = DocsComponentsTodoRouteImport.update({
-  id: '/components/todo',
-  path: '/components/todo',
+const DocsOverviewRocoThemeRoute = DocsOverviewRocoThemeRouteImport.update({
+  id: '/overview/roco-theme',
+  path: '/overview/roco-theme',
+  getParentRoute: () => DocsRoute,
+} as any)
+const DocsOverviewComponentsRoute = DocsOverviewComponentsRouteImport.update({
+  id: '/overview/components',
+  path: '/overview/components',
+  getParentRoute: () => DocsRoute,
+} as any)
+const DocsDesignRocoShapeRoute = DocsDesignRocoShapeRouteImport.update({
+  id: '/design/roco-shape',
+  path: '/design/roco-shape',
+  getParentRoute: () => DocsRoute,
+} as any)
+const DocsDesignMaterialRoute = DocsDesignMaterialRouteImport.update({
+  id: '/design/material',
+  path: '/design/material',
   getParentRoute: () => DocsRoute,
 } as any)
 const DocsComponentsSideNavRoute = DocsComponentsSideNavRouteImport.update({
@@ -81,16 +95,6 @@ const DocsComponentsRuneTextRoute = DocsComponentsRuneTextRouteImport.update({
   path: '/components/rune-text',
   getParentRoute: () => DocsRoute,
 } as any)
-const DocsComponentsRocoThemeRoute = DocsComponentsRocoThemeRouteImport.update({
-  id: '/components/roco-theme',
-  path: '/components/roco-theme',
-  getParentRoute: () => DocsRoute,
-} as any)
-const DocsComponentsRocoShapeRoute = DocsComponentsRocoShapeRouteImport.update({
-  id: '/components/roco-shape',
-  path: '/components/roco-shape',
-  getParentRoute: () => DocsRoute,
-} as any)
 const DocsComponentsRadioGroupRoute =
   DocsComponentsRadioGroupRouteImport.update({
     id: '/components/radio-group',
@@ -105,16 +109,6 @@ const DocsComponentsPanelRoute = DocsComponentsPanelRouteImport.update({
 const DocsComponentsModalRoute = DocsComponentsModalRouteImport.update({
   id: '/components/modal',
   path: '/components/modal',
-  getParentRoute: () => DocsRoute,
-} as any)
-const DocsComponentsMaterialRoute = DocsComponentsMaterialRouteImport.update({
-  id: '/components/material',
-  path: '/components/material',
-  getParentRoute: () => DocsRoute,
-} as any)
-const DocsComponentsIconsRoute = DocsComponentsIconsRouteImport.update({
-  id: '/components/icons',
-  path: '/components/icons',
   getParentRoute: () => DocsRoute,
 } as any)
 const DocsComponentsDrawerRoute = DocsComponentsDrawerRouteImport.update({
@@ -143,70 +137,67 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteWithChildren
   '/examples': typeof ExamplesRouteWithChildren
+  '/docs/icon': typeof DocsIconRoute
   '/examples/$slug': typeof ExamplesSlugRoute
   '/docs/': typeof DocsIndexRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
-  '/docs/components/icons': typeof DocsComponentsIconsRoute
-  '/docs/components/material': typeof DocsComponentsMaterialRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
-  '/docs/components/roco-shape': typeof DocsComponentsRocoShapeRoute
-  '/docs/components/roco-theme': typeof DocsComponentsRocoThemeRoute
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
-  '/docs/components/todo': typeof DocsComponentsTodoRoute
-  '/docs/components/': typeof DocsComponentsIndexRoute
+  '/docs/design/material': typeof DocsDesignMaterialRoute
+  '/docs/design/roco-shape': typeof DocsDesignRocoShapeRoute
+  '/docs/overview/components': typeof DocsOverviewComponentsRoute
+  '/docs/overview/roco-theme': typeof DocsOverviewRocoThemeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/examples': typeof ExamplesRouteWithChildren
+  '/docs/icon': typeof DocsIconRoute
   '/examples/$slug': typeof ExamplesSlugRoute
   '/docs': typeof DocsIndexRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
-  '/docs/components/icons': typeof DocsComponentsIconsRoute
-  '/docs/components/material': typeof DocsComponentsMaterialRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
-  '/docs/components/roco-shape': typeof DocsComponentsRocoShapeRoute
-  '/docs/components/roco-theme': typeof DocsComponentsRocoThemeRoute
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
-  '/docs/components/todo': typeof DocsComponentsTodoRoute
-  '/docs/components': typeof DocsComponentsIndexRoute
+  '/docs/design/material': typeof DocsDesignMaterialRoute
+  '/docs/design/roco-shape': typeof DocsDesignRocoShapeRoute
+  '/docs/overview/components': typeof DocsOverviewComponentsRoute
+  '/docs/overview/roco-theme': typeof DocsOverviewRocoThemeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteWithChildren
   '/examples': typeof ExamplesRouteWithChildren
+  '/docs/icon': typeof DocsIconRoute
   '/examples/$slug': typeof ExamplesSlugRoute
   '/docs/': typeof DocsIndexRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
-  '/docs/components/icons': typeof DocsComponentsIconsRoute
-  '/docs/components/material': typeof DocsComponentsMaterialRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
-  '/docs/components/roco-shape': typeof DocsComponentsRocoShapeRoute
-  '/docs/components/roco-theme': typeof DocsComponentsRocoThemeRoute
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
-  '/docs/components/todo': typeof DocsComponentsTodoRoute
-  '/docs/components/': typeof DocsComponentsIndexRoute
+  '/docs/design/material': typeof DocsDesignMaterialRoute
+  '/docs/design/roco-shape': typeof DocsDesignRocoShapeRoute
+  '/docs/overview/components': typeof DocsOverviewComponentsRoute
+  '/docs/overview/roco-theme': typeof DocsOverviewRocoThemeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -214,69 +205,66 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/examples'
+    | '/docs/icon'
     | '/examples/$slug'
     | '/docs/'
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
     | '/docs/components/drawer'
-    | '/docs/components/icons'
-    | '/docs/components/material'
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
-    | '/docs/components/roco-shape'
-    | '/docs/components/roco-theme'
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
-    | '/docs/components/todo'
-    | '/docs/components/'
+    | '/docs/design/material'
+    | '/docs/design/roco-shape'
+    | '/docs/overview/components'
+    | '/docs/overview/roco-theme'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/examples'
+    | '/docs/icon'
     | '/examples/$slug'
     | '/docs'
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
     | '/docs/components/drawer'
-    | '/docs/components/icons'
-    | '/docs/components/material'
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
-    | '/docs/components/roco-shape'
-    | '/docs/components/roco-theme'
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
-    | '/docs/components/todo'
-    | '/docs/components'
+    | '/docs/design/material'
+    | '/docs/design/roco-shape'
+    | '/docs/overview/components'
+    | '/docs/overview/roco-theme'
   id:
     | '__root__'
     | '/'
     | '/docs'
     | '/examples'
+    | '/docs/icon'
     | '/examples/$slug'
     | '/docs/'
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
     | '/docs/components/drawer'
-    | '/docs/components/icons'
-    | '/docs/components/material'
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
-    | '/docs/components/roco-shape'
-    | '/docs/components/roco-theme'
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
-    | '/docs/components/todo'
-    | '/docs/components/'
+    | '/docs/design/material'
+    | '/docs/design/roco-shape'
+    | '/docs/overview/components'
+    | '/docs/overview/roco-theme'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -322,18 +310,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamplesSlugRouteImport
       parentRoute: typeof ExamplesRoute
     }
-    '/docs/components/': {
-      id: '/docs/components/'
-      path: '/components'
-      fullPath: '/docs/components/'
-      preLoaderRoute: typeof DocsComponentsIndexRouteImport
+    '/docs/icon': {
+      id: '/docs/icon'
+      path: '/icon'
+      fullPath: '/docs/icon'
+      preLoaderRoute: typeof DocsIconRouteImport
       parentRoute: typeof DocsRoute
     }
-    '/docs/components/todo': {
-      id: '/docs/components/todo'
-      path: '/components/todo'
-      fullPath: '/docs/components/todo'
-      preLoaderRoute: typeof DocsComponentsTodoRouteImport
+    '/docs/overview/roco-theme': {
+      id: '/docs/overview/roco-theme'
+      path: '/overview/roco-theme'
+      fullPath: '/docs/overview/roco-theme'
+      preLoaderRoute: typeof DocsOverviewRocoThemeRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/overview/components': {
+      id: '/docs/overview/components'
+      path: '/overview/components'
+      fullPath: '/docs/overview/components'
+      preLoaderRoute: typeof DocsOverviewComponentsRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/design/roco-shape': {
+      id: '/docs/design/roco-shape'
+      path: '/design/roco-shape'
+      fullPath: '/docs/design/roco-shape'
+      preLoaderRoute: typeof DocsDesignRocoShapeRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/design/material': {
+      id: '/docs/design/material'
+      path: '/design/material'
+      fullPath: '/docs/design/material'
+      preLoaderRoute: typeof DocsDesignMaterialRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/components/side-nav': {
@@ -357,20 +366,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsRuneTextRouteImport
       parentRoute: typeof DocsRoute
     }
-    '/docs/components/roco-theme': {
-      id: '/docs/components/roco-theme'
-      path: '/components/roco-theme'
-      fullPath: '/docs/components/roco-theme'
-      preLoaderRoute: typeof DocsComponentsRocoThemeRouteImport
-      parentRoute: typeof DocsRoute
-    }
-    '/docs/components/roco-shape': {
-      id: '/docs/components/roco-shape'
-      path: '/components/roco-shape'
-      fullPath: '/docs/components/roco-shape'
-      preLoaderRoute: typeof DocsComponentsRocoShapeRouteImport
-      parentRoute: typeof DocsRoute
-    }
     '/docs/components/radio-group': {
       id: '/docs/components/radio-group'
       path: '/components/radio-group'
@@ -390,20 +385,6 @@ declare module '@tanstack/react-router' {
       path: '/components/modal'
       fullPath: '/docs/components/modal'
       preLoaderRoute: typeof DocsComponentsModalRouteImport
-      parentRoute: typeof DocsRoute
-    }
-    '/docs/components/material': {
-      id: '/docs/components/material'
-      path: '/components/material'
-      fullPath: '/docs/components/material'
-      preLoaderRoute: typeof DocsComponentsMaterialRouteImport
-      parentRoute: typeof DocsRoute
-    }
-    '/docs/components/icons': {
-      id: '/docs/components/icons'
-      path: '/components/icons'
-      fullPath: '/docs/components/icons'
-      preLoaderRoute: typeof DocsComponentsIconsRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/components/drawer': {
@@ -438,43 +419,41 @@ declare module '@tanstack/react-router' {
 }
 
 interface DocsRouteChildren {
+  DocsIconRoute: typeof DocsIconRoute
   DocsIndexRoute: typeof DocsIndexRoute
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
   DocsComponentsButtonNormalRoute: typeof DocsComponentsButtonNormalRoute
   DocsComponentsCheckboxRoute: typeof DocsComponentsCheckboxRoute
   DocsComponentsDrawerRoute: typeof DocsComponentsDrawerRoute
-  DocsComponentsIconsRoute: typeof DocsComponentsIconsRoute
-  DocsComponentsMaterialRoute: typeof DocsComponentsMaterialRoute
   DocsComponentsModalRoute: typeof DocsComponentsModalRoute
   DocsComponentsPanelRoute: typeof DocsComponentsPanelRoute
   DocsComponentsRadioGroupRoute: typeof DocsComponentsRadioGroupRoute
-  DocsComponentsRocoShapeRoute: typeof DocsComponentsRocoShapeRoute
-  DocsComponentsRocoThemeRoute: typeof DocsComponentsRocoThemeRoute
   DocsComponentsRuneTextRoute: typeof DocsComponentsRuneTextRoute
   DocsComponentsSelectRoute: typeof DocsComponentsSelectRoute
   DocsComponentsSideNavRoute: typeof DocsComponentsSideNavRoute
-  DocsComponentsTodoRoute: typeof DocsComponentsTodoRoute
-  DocsComponentsIndexRoute: typeof DocsComponentsIndexRoute
+  DocsDesignMaterialRoute: typeof DocsDesignMaterialRoute
+  DocsDesignRocoShapeRoute: typeof DocsDesignRocoShapeRoute
+  DocsOverviewComponentsRoute: typeof DocsOverviewComponentsRoute
+  DocsOverviewRocoThemeRoute: typeof DocsOverviewRocoThemeRoute
 }
 
 const DocsRouteChildren: DocsRouteChildren = {
+  DocsIconRoute: DocsIconRoute,
   DocsIndexRoute: DocsIndexRoute,
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,
   DocsComponentsButtonNormalRoute: DocsComponentsButtonNormalRoute,
   DocsComponentsCheckboxRoute: DocsComponentsCheckboxRoute,
   DocsComponentsDrawerRoute: DocsComponentsDrawerRoute,
-  DocsComponentsIconsRoute: DocsComponentsIconsRoute,
-  DocsComponentsMaterialRoute: DocsComponentsMaterialRoute,
   DocsComponentsModalRoute: DocsComponentsModalRoute,
   DocsComponentsPanelRoute: DocsComponentsPanelRoute,
   DocsComponentsRadioGroupRoute: DocsComponentsRadioGroupRoute,
-  DocsComponentsRocoShapeRoute: DocsComponentsRocoShapeRoute,
-  DocsComponentsRocoThemeRoute: DocsComponentsRocoThemeRoute,
   DocsComponentsRuneTextRoute: DocsComponentsRuneTextRoute,
   DocsComponentsSelectRoute: DocsComponentsSelectRoute,
   DocsComponentsSideNavRoute: DocsComponentsSideNavRoute,
-  DocsComponentsTodoRoute: DocsComponentsTodoRoute,
-  DocsComponentsIndexRoute: DocsComponentsIndexRoute,
+  DocsDesignMaterialRoute: DocsDesignMaterialRoute,
+  DocsDesignRocoShapeRoute: DocsDesignRocoShapeRoute,
+  DocsOverviewComponentsRoute: DocsOverviewComponentsRoute,
+  DocsOverviewRocoThemeRoute: DocsOverviewRocoThemeRoute,
 }
 
 const DocsRouteWithChildren = DocsRoute._addFileChildren(DocsRouteChildren)

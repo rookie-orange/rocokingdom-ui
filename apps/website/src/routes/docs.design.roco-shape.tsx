@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { RocoShape } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
-export const Route = createFileRoute('/docs/components/roco-shape')({
+export const Route = createFileRoute('/docs/design/roco-shape')({
   component: RocoShapeExamplePage,
 })
 
