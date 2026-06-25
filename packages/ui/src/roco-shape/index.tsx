@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, CSSProperties, ElementType, ReactNode } from 'react'
+import type { ComponentPropsWithRef, CSSProperties, ElementType, ReactNode } from 'react'
 import { clsx } from 'clsx'
 import type { MaterialPreset } from '../material'
 import materialStyles from '../material/material.module.css'
@@ -8,7 +8,7 @@ export const rocoShapePrefixCls = 'rk-roco-shape'
 
 export type RocoShapeKind = 'stretch' | 'circle' | 'square'
 export type RocoShapeMaterial = MaterialPreset
-export type RocoShapeVariant = 'solid' | 'outline'
+export type RocoShapeVariant = 'outline' | 'solid' | 'text'
 
 interface RocoShapeStyle extends CSSProperties {
   '--rk-material-background'?: string
@@ -32,7 +32,7 @@ interface RocoShapeOwnProps<As extends ElementType> {
 }
 
 export type RocoShapeProps<As extends ElementType = 'span'> = RocoShapeOwnProps<As> &
-  Omit<ComponentPropsWithoutRef<As>, keyof RocoShapeOwnProps<As>>
+  Omit<ComponentPropsWithRef<As>, keyof RocoShapeOwnProps<As>>
 
 type RocoShapeFixedKind = Exclude<RocoShapeKind, 'stretch'>
 
@@ -152,7 +152,7 @@ export function RocoShape<As extends ElementType = 'span'>({
   ...props
 }: RocoShapeProps<As>) {
   const Tag = as ?? 'span'
-  const hasFill = variant !== 'outline'
+  const hasFill = variant === 'solid'
   const hasStroke = variant === 'outline'
   const hasContent = children !== undefined && children !== null
   const isStretch = shape === 'stretch'

@@ -26,30 +26,24 @@
   --rk-radio-item-height: 32px;
   --rk-radio-item-min-width: var(--rk-radio-group-item-min-width, auto);
   --rk-radio-item-padding-inline: 18px;
+  --rk-roco-shape-height: var(--rk-radio-item-height);
+  --rk-roco-shape-min-width: var(--rk-radio-item-min-width);
+  --rk-roco-shape-padding-block: 2px;
+  --rk-roco-shape-padding-inline: var(--rk-radio-item-padding-inline);
 
   appearance: none;
-  align-items: center;
   background: transparent;
   border: 0;
   box-sizing: border-box;
-  color: var(--rk-radio-item-on-material);
   cursor: pointer;
-  display: inline-flex;
   flex: 0 0 auto;
   font: inherit;
   font-family: var(--rk-radio-item-font-family);
   font-size: var(--rk-radio-item-font-size);
   font-weight: var(--rk-radio-item-font-weight);
-  height: var(--rk-radio-item-height);
-  justify-content: center;
-  min-width: var(--rk-radio-item-min-width);
-  padding: 2px var(--rk-radio-item-padding-inline);
-  position: relative;
   transform: scale(1);
   transform-origin: center;
-  transition:
-    color 160ms ease,
-    filter 160ms ease;
+  transition: filter 160ms ease;
   user-select: none;
 }
 
@@ -115,17 +109,13 @@
 }
 
 .solid {
-  color: var(--rk-radio-item-on-material);
 }
 
 .outline {
-  color: var(--rk-radio-item-material);
 }
 
 .text {
-  color: var(--rk-radio-item-material);
-  min-width: auto;
-  padding-inline: var(--rk-radio-item-text-padding-inline, 8px);
+  --rk-roco-shape-padding-inline: var(--rk-radio-item-text-padding-inline, 8px);
 }
 
 .item:hover {
@@ -157,22 +147,9 @@
   z-index: 0;
 }
 
-.itemShape {
-  color: var(--rk-radio-item-material);
-  inset: 0;
-  position: absolute;
-  z-index: 0;
-}
-
-.text .itemShape {
-  display: none;
-}
-
 .itemContent {
   display: inline-flex;
   justify-content: center;
-  position: relative;
-  z-index: 1;
 }
 
 @keyframes rk-radio-item-spring-scale {

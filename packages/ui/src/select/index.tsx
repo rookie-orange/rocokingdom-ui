@@ -150,19 +150,21 @@ export function Select({
 
   return (
     <RadixSelect.Root {...rootProps}>
-      <RadixSelect.Trigger
-        {...triggerProps}
-        aria-label={triggerAriaLabel}
-        className={clsx(
-          prefixCls,
-          styles.trigger,
-          styles[material],
-          rootClassName,
-          triggerClassName,
-        )}
-      >
-        <RocoShape className={styles.triggerShape} />
-        <span className={styles.triggerContent}>
+      <RadixSelect.Trigger {...triggerProps} aria-label={triggerAriaLabel} asChild>
+        <RocoShape
+          as="button"
+          background="var(--rk-select-material)"
+          className={clsx(
+            prefixCls,
+            styles.trigger,
+            styles[material],
+            rootClassName,
+            triggerClassName,
+          )}
+          color="var(--rk-select-on-material)"
+          contentClassName={styles.triggerContent}
+          type="button"
+        >
           <RadixSelect.Value
             className={clsx(`${prefixCls}-value`, styles.value, valueClassName)}
             placeholder={placeholder}
@@ -170,7 +172,7 @@ export function Select({
           <RadixSelect.Icon asChild>
             {icon ?? <span aria-hidden="true" className={styles.triggerIcon} />}
           </RadixSelect.Icon>
-        </span>
+        </RocoShape>
       </RadixSelect.Trigger>
       <RadixSelect.Portal>
         <SelectContent {...contentProps} contentClassName={contentClassName}>

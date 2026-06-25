@@ -87,15 +87,22 @@ export function Checkbox({
         onChange={handleChange}
         type="checkbox"
       />
-      <span aria-hidden="true" className={styles.control}>
-        <RocoShape
-          className={styles.shape}
-          shadow={isChecked && shadow}
-          shape="square"
-          variant={shapeVariant}
-        />
-        {isChecked ? <span className={styles.icon}>{icon ?? <Check />}</span> : null}
-      </span>
+      <RocoShape
+        aria-hidden="true"
+        background="var(--rk-checkbox-material)"
+        className={styles.control}
+        color={
+          shapeVariant === 'solid'
+            ? 'var(--rk-checkbox-on-material)'
+            : 'var(--rk-checkbox-material)'
+        }
+        contentClassName={styles.icon}
+        shadow={isChecked && shadow}
+        shape="square"
+        variant={shapeVariant}
+      >
+        {isChecked ? (icon ?? <Check />) : null}
+      </RocoShape>
       {children ? <span className={styles.label}>{children}</span> : null}
     </label>
   )

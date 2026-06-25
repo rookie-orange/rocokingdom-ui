@@ -94,13 +94,15 @@
 }
 
 .control {
+  --rk-roco-shape-height: var(--rk-checkbox-size);
+  --rk-roco-shape-min-width: var(--rk-checkbox-size);
+  --rk-roco-shape-padding-block: 0;
+  --rk-roco-shape-padding-inline: 0;
+
   align-items: center;
-  color: var(--rk-checkbox-material);
   display: inline-flex;
   flex: 0 0 auto;
   height: var(--rk-checkbox-size);
-  justify-content: center;
-  position: relative;
   transform: scale(1);
   transition:
     filter 160ms ease,
@@ -108,10 +110,9 @@
   width: var(--rk-checkbox-size);
 }
 
-.shape {
-  inset: 0;
-  position: absolute;
-  z-index: 0;
+.checkbox .control {
+  height: var(--rk-checkbox-size);
+  width: var(--rk-checkbox-size);
 }
 
 .icon {
@@ -121,9 +122,7 @@
   font-size: var(--rk-checkbox-icon-size);
   justify-content: center;
   line-height: 1;
-  position: relative;
   transform-origin: center;
-  z-index: 1;
 }
 
 .solid.checked {

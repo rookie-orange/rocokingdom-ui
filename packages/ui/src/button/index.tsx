@@ -35,7 +35,6 @@ export function Button({
   const resolvedClassName = clsx(
     prefixCls,
     styles.button,
-    styles[material],
     styles[size],
     styles[variant],
     rootClassName,
@@ -43,12 +42,16 @@ export function Button({
   )
 
   return (
-    <Material as="button" className={resolvedClassName} material={material} type={type} {...props}>
-      <RocoShape
-        className={styles.shape}
-        shadow={shadow}
-        variant={variant === 'outline' ? 'outline' : 'solid'}
-      />
+    <Material
+      as={RocoShape}
+      className={resolvedClassName}
+      color={variant === 'solid' ? undefined : 'var(--rk-material-background)'}
+      material={material}
+      shadow={variant === 'text' ? false : shadow}
+      type={type}
+      variant={variant}
+      {...props}
+    >
       <RuneText className={styles.content}>{children}</RuneText>
     </Material>
   )

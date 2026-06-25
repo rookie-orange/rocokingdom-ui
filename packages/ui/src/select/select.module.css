@@ -2,6 +2,10 @@
   --rk-select-height: 36px;
   --rk-select-material: var(--rk-stone);
   --rk-select-on-material: var(--rk-on-stone);
+  --rk-roco-shape-height: var(--rk-select-height);
+  --rk-roco-shape-min-width: var(--rk-select-min-width, 176px);
+  --rk-roco-shape-padding-block: 0;
+  --rk-roco-shape-padding-inline: var(--rk-select-padding-inline, 18px);
 
   appearance: none;
   align-items: center;
@@ -15,12 +19,8 @@
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
   font-size: var(--rk-select-font-size, 18px);
   font-weight: 900;
-  height: var(--rk-select-height);
   justify-content: center;
   line-height: 1;
-  min-width: var(--rk-select-min-width, 176px);
-  padding: 0 14px 0 20px;
-  position: relative;
   text-align: start;
   transition: filter 160ms ease;
   user-select: none;
@@ -83,22 +83,13 @@
   --rk-select-on-material: var(--rk-on-danger);
 }
 
-.trigger .triggerShape {
-  color: var(--rk-select-material);
-  inset: 0;
-  position: absolute;
-  z-index: 0;
-}
-
 .triggerContent {
   align-items: center;
   display: inline-flex;
   gap: 10px;
   justify-content: space-between;
   min-width: 0;
-  position: relative;
   width: 100%;
-  z-index: 1;
 }
 
 .value {

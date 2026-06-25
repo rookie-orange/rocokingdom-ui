@@ -5,28 +5,21 @@
   --rk-button-height: 40px;
   --rk-button-min-width: auto;
   --rk-button-padding-inline: 18px;
-  --rk-button-material: var(--rk-material-background);
-  --rk-button-on-material: var(--rk-material-color);
+  --rk-roco-shape-height: var(--rk-button-height);
+  --rk-roco-shape-min-width: var(--rk-button-min-width);
+  --rk-roco-shape-padding-block: 2px;
+  --rk-roco-shape-padding-inline: var(--rk-button-padding-inline);
 
   appearance: none;
-  align-items: center;
   background: transparent;
   border: 0;
   box-sizing: border-box;
-  color: var(--rk-button-on-material);
   cursor: pointer;
-  display: inline-flex;
   font: inherit;
   font-family: var(--rk-button-font-family);
   font-size: var(--rk-button-font-size);
   font-weight: var(--rk-button-font-weight);
-  justify-content: center;
-  height: var(--rk-button-height);
-  min-width: var(--rk-button-min-width);
-  padding: 2px var(--rk-button-padding-inline);
-  position: relative;
   transition:
-    color 160ms ease,
     filter 160ms ease,
     transform 120ms ease;
   user-select: none;
@@ -65,37 +58,16 @@
 }
 
 .solid {
-  color: var(--rk-button-on-material);
 }
 
 .outline {
-  color: var(--rk-button-material);
 }
 
 .text {
-  color: var(--rk-button-material);
-  min-width: auto;
-  padding-inline: var(--rk-button-text-padding-inline, 8px);
-}
-
-.button .shape {
-  color: var(--rk-button-material);
-  inset: 0;
-  position: absolute;
-  z-index: 0;
-}
-
-.text .shape {
-  display: none;
+  --rk-roco-shape-padding-inline: var(--rk-button-text-padding-inline, 8px);
 }
 
 .content {
   --rk-rune-text-base-font-family: var(--rk-button-font-family);
   --rk-rune-text-base-font-weight: var(--rk-button-font-weight);
-
-  align-items: center;
-  display: inline-flex;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
 }

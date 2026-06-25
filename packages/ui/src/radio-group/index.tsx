@@ -274,26 +274,31 @@ export function RadioItem<Value extends string = string>({
   }
 
   return (
-    <button
+    <RocoShape
       {...props}
       aria-checked={isSelected}
       aria-disabled={isDisabled || undefined}
+      as="button"
+      background="var(--rk-radio-item-material)"
       className={resolvedClassName}
+      color={
+        resolvedVariant === 'solid'
+          ? 'var(--rk-radio-item-on-material)'
+          : 'var(--rk-radio-item-material)'
+      }
       data-rk-radio-item="true"
       data-state={isSelected ? 'checked' : 'unchecked'}
       disabled={isDisabled}
       onClick={handleClick}
       role="radio"
+      shadow={resolvedVariant === 'text' ? false : resolvedShadow}
       tabIndex={isTabbable ? 0 : -1}
       type="button"
       value={value}
+      variant={resolvedVariant}
+      contentClassName={styles.itemContent}
     >
-      <RocoShape
-        className={styles.itemShape}
-        shadow={resolvedShadow}
-        variant={resolvedVariant === 'outline' ? 'outline' : 'solid'}
-      />
-      <span className={styles.itemContent}>{children}</span>
-    </button>
+      {children}
+    </RocoShape>
   )
 }
