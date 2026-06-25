@@ -82,8 +82,14 @@ export function SideNavHeader({
   const hasStructuredContent = icon || eyebrow || title
 
   return (
-    <Component {...props} className={clsx(prefixCls, styles.header, rootClassName, className)}>
-      <RocoShape className={styles.headerShape} />
+    <RocoShape
+      {...props}
+      as={Component}
+      background="var(--rk-side-nav-header-material)"
+      className={clsx(prefixCls, styles.header, rootClassName, className)}
+      color="var(--rk-side-nav-header-on-material)"
+      contentClassName={styles.headerContent}
+    >
       {hasStructuredContent ? (
         <>
           {icon ? (
@@ -99,7 +105,7 @@ export function SideNavHeader({
       ) : (
         children
       )}
-    </Component>
+    </RocoShape>
   )
 }
 

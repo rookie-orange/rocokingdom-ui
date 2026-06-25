@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Material, RocoShape } from 'rocokingdom-ui'
+import { RocoShape } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
 export const Route = createFileRoute('/docs/components/roco-shape')({
@@ -93,26 +93,24 @@ function RocoShapeExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="与 Material 合并">
+      <ExampleSection title="材质与自定义颜色">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-5">
-            <Material
-              as={RocoShape}
+            <RocoShape
               className="h-14 [--rk-roco-shape-padding-inline:34px] font-roco text-2xl font-black"
               material="paper"
               shadow
             >
               纸张表面
-            </Material>
-            <Material
-              as={RocoShape}
+            </RocoShape>
+            <RocoShape
               background="#2f7dd1"
               className="h-14 [--rk-roco-shape-padding-inline:34px] font-roco text-2xl font-black"
               color="#f7fbff"
               shadow
             >
               水系活动
-            </Material>
+            </RocoShape>
           </div>
         </PreviewSurface>
       </ExampleSection>

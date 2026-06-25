@@ -82,19 +82,18 @@ without writing separate positioning layers:
 ```
 
 It uses the same material variables as `Material`, so `material`, `background`,
-and `color` set the shape fill and foreground color together. You can also merge
-the primitives onto one element with `Material as={RocoShape}`:
+and `color` set the shape fill and foreground color together:
 
 ```tsx
-<Material as={RocoShape} material="stone" shadow>
-  Stone badge
-</Material>
+<RocoShape background="#2f7dd1" color="#f7fbff" shadow>
+  Water badge
+</RocoShape>
 ```
 
-Set its `color`, `width`, and `height` from CSS or inline styles when using it as
-a decoration with no children. The left and right arcs keep their aspect ratio
-while the center segment stretches. Pass `shape="circle"` or `shape="square"`
-for the fixed 49x49 SVG-backed shapes.
+Set its `material`, `background`, and `color` from props or CSS when you want a
+surface with text on top. The left and right arcs keep their aspect ratio while
+the center segment stretches. Pass `shape="circle"` or `shape="square"` for the
+fixed 49x49 SVG-backed shapes.
 
 `Button` does not render a shadow by default. Pass `shadow` to enable the
 shape shadow.

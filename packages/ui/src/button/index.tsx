@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from 'react'
 import { clsx } from 'clsx'
-import { Material, type MaterialPreset } from '../material'
+import type { MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
 import { RuneText } from '../rune-text'
 import styles from './button.module.css'
@@ -42,8 +42,8 @@ export function Button({
   )
 
   return (
-    <Material
-      as={RocoShape}
+    <RocoShape
+      as="button"
       className={resolvedClassName}
       color={variant === 'solid' ? undefined : 'var(--rk-material-background)'}
       material={material}
@@ -53,6 +53,6 @@ export function Button({
       {...props}
     >
       <RuneText className={styles.content}>{children}</RuneText>
-    </Material>
+    </RocoShape>
   )
 }

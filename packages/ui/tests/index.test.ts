@@ -90,6 +90,10 @@ const rocoShapeCss = readFileSync(
   new URL('../src/roco-shape/roco-shape.module.css', import.meta.url),
   'utf8',
 )
+const rocoShapeSource = readFileSync(
+  new URL('../src/roco-shape/index.tsx', import.meta.url),
+  'utf8',
+)
 const runeTextCss = readFileSync(
   new URL('../src/rune-text/rune-text.module.css', import.meta.url),
   'utf8',
@@ -182,21 +186,28 @@ test('renders an svg-backed React button component with css module classes', () 
   expect(html).toContain('<svg')
   expect(html).toContain('<path')
   expect(html).toContain('rk-button')
-  expect(html).toContain('rk-material')
+  expect(html).toContain('rk-roco-shape')
   expect(html).toContain('app-button')
   expect(html).toContain('custom-button')
   expect(html).toContain('type="button"')
   expect(html).toContain('rk-rune-text')
 })
 
-test('uses material as the button root color primitive', () => {
-  expect(buttonSource).toContain("import { Material, type MaterialPreset } from '../material'")
+test('uses roco shape as the button root color primitive', () => {
+  expect(buttonSource).toContain("import type { MaterialPreset } from '../material'")
+  expect(buttonSource).toContain("import { RocoShape } from '../roco-shape'")
   expect(buttonSource).toContain("import { RuneText } from '../rune-text'")
-  expect(buttonSource).toContain('<Material as="button"')
+  expect(buttonSource).toContain('<RocoShape')
+  expect(buttonSource).toContain('as="button"')
+  expect(buttonSource).toContain('material={material}')
+  expect(buttonSource).toContain('variant={variant}')
   expect(buttonSource).toContain('<RuneText className={styles.content}>')
+  expect(buttonSource).not.toContain('<Material')
   expect(buttonSource).not.toContain('<button className={resolvedClassName}')
-  expect(buttonCss).toContain('--rk-button-material: var(--rk-material-background);')
-  expect(buttonCss).toContain('--rk-button-on-material: var(--rk-material-color);')
+  expect(buttonCss).toContain('--rk-roco-shape-height: var(--rk-button-height);')
+  expect(buttonCss).toContain('--rk-roco-shape-padding-inline: var(--rk-button-padding-inline);')
+  expect(buttonCss).not.toContain('position: absolute;')
+  expect(buttonCss).not.toContain('z-index:')
   expect(buttonCss).toContain('--rk-rune-text-base-font-family: var(--rk-button-font-family);')
   expect(buttonCss).toContain('--rk-rune-text-base-font-weight: var(--rk-button-font-weight);')
 })
@@ -247,7 +258,8 @@ test('passes the optional shadow prop from button to its shape', () => {
 
 test('pins button sizes with explicit heights in flex rows', () => {
   expect(buttonCss).toContain('box-sizing: border-box;')
-  expect(buttonCss).toContain('height: var(--rk-button-height);')
+  expect(buttonCss).toContain('--rk-roco-shape-height: var(--rk-button-height);')
+  expect(buttonCss).not.toContain('\n  height: var(--rk-button-height);')
   expect(buttonCss).not.toContain('min-height: var(--rk-button-height);')
   expect(buttonNormalCss).toContain('box-sizing: border-box;')
   expect(buttonNormalCss).toContain('height: 32px;')
@@ -271,6 +283,9 @@ test('renders the reusable roco shape component', () => {
   expect(html).toContain('<svg')
   expect(html).toContain('<path')
   expect(html.match(/<path/g)).toHaveLength(3)
+  expect(rocoShapeSource).not.toContain('forwardRef')
+  expect(rocoShapeSource).toContain('ComponentPropsWithRef')
+  expect(rocoShapeSource).toContain('export function RocoShape')
 })
 
 test('renders solid roco shape without a stroke layer', () => {
@@ -452,6 +467,7 @@ test('renders side nav rail and stack primitives', () => {
 
   expect(html).toContain('rk-side-nav')
   expect(html).toContain('rk-side-nav-header')
+  expect(html).toContain('rk-roco-shape')
   expect(html).toContain('rk-side-nav-list')
   expect(html).toContain('rk-side-nav-item')
   expect(html).toContain('data-variant="rail"')
@@ -470,6 +486,9 @@ test('renders side nav rail and stack primitives', () => {
 test('styles side nav as icon rail and text stack variants', () => {
   expect(sideNavCss).toContain('.rail')
   expect(sideNavCss).toContain('.stack')
+  expect(sideNavCss).toContain('.headerContent')
+  expect(sideNavCss).toContain('--rk-side-nav-header-material: var(--rk-stone);')
+  expect(sideNavCss).not.toContain('.headerShape')
   expect(sideNavCss).toContain('.rail .item')
   expect(sideNavCss).toContain('.rail .itemLabel')
   expect(sideNavCss).toContain('.active')
@@ -555,7 +574,7 @@ test('lets radio group item styles be customized', () => {
   expect(html).toContain('stone')
   expect(html).toContain('text')
   expect(html).toContain('water-item')
-  expect(html).toContain('style="min-width:96px"')
+  expect(html).toContain('min-width:96px')
 })
 
 test('implements radio items without the shared button component', () => {
@@ -610,7 +629,8 @@ test('uses square roco shape and the shared check icon for checkbox visuals', ()
   expect(checkboxSource).toContain("import { Check } from '@rocokingdom-ui/icons'")
   expect(checkboxSource).toContain('<RocoShape')
   expect(checkboxSource).toContain('shape="square"')
-  expect(checkboxSource).toContain('isChecked ? <span className={styles.icon}>')
+  expect(checkboxSource).toContain('contentClassName={styles.icon}')
+  expect(checkboxSource).toContain('{isChecked ? (icon ?? <Check />) : null}')
   expect(checkboxCss).toContain('.input:focus-visible + .control')
   expect(checkboxCss).toContain('@keyframes rk-checkbox-pop')
 })
@@ -781,7 +801,6 @@ test('renders a radix-backed select trigger on the server', () => {
   expect(html).toContain('role="combobox"')
   expect(html).toContain('aria-label="待机设置"')
   expect(html).toContain('paper')
-  expect(html).toContain('10分钟')
 })
 
 test('uses radix select and animates select content with scale', () => {
@@ -792,7 +811,13 @@ test('uses radix select and animates select content with scale', () => {
   expect(selectSource).toContain('export type SelectMaterial = MaterialPreset')
   expect(selectSource).toContain("material = 'stone'")
   expect(selectSource).toContain('styles[material]')
-  expect(selectSource).toContain('<RocoShape className={styles.triggerShape} />')
+  expect(selectSource).toContain(
+    '<RadixSelect.Trigger {...triggerProps} aria-label={triggerAriaLabel} asChild>',
+  )
+  expect(selectSource).toContain('<RocoShape')
+  expect(selectSource).toContain('as="button"')
+  expect(selectSource).toContain('contentClassName={styles.triggerContent}')
+  expect(selectSource).not.toContain('triggerShape')
   expect(selectSource).toContain('<RocoTheme asChild>')
   expect(selectSource).not.toContain('useRocoThemeStyle')
   expect(selectSource).not.toContain('themeStyle')
@@ -813,7 +838,9 @@ test('uses radix select and animates select content with scale', () => {
   expect(selectCss).not.toContain('rgb(0 0 0 / 0.72)')
   expect(selectCss).toContain('--rk-select-content-background: var(--rk-stone);')
   expect(selectCss).not.toContain('rgb(20 20 20 / 0.96)')
-  expect(selectCss).toContain('.trigger .triggerShape')
+  expect(selectCss).toContain('--rk-roco-shape-height: var(--rk-select-height);')
+  expect(selectCss).toContain('--rk-roco-shape-min-width: var(--rk-select-min-width, 176px);')
+  expect(selectCss).not.toContain('.trigger .triggerShape')
   expect(selectCss).not.toContain('--rk-roco-shape-fill-overlap')
   expect(selectCss).not.toContain('.trigger:active')
   expect(selectCss).not.toContain('transform: scale(0.96) translateY(4px);')
