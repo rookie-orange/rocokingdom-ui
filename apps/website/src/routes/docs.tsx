@@ -1,4 +1,6 @@
+import type { CSSProperties } from 'react'
 import { Link, Outlet, createFileRoute, useRouterState } from '@tanstack/react-router'
+import { Panel } from 'rocokingdom-ui'
 import logoUrl from '../assets/roco-kingdom-logo.png'
 import {
   componentExamples,
@@ -73,6 +75,16 @@ const sidebarSections = [
   },
 ]
 
+interface DocsSidebarPanelStyle extends CSSProperties {
+  '--rk-panel-background'?: string
+  '--rk-panel-color'?: string
+}
+
+const sidebarPanelStyle: DocsSidebarPanelStyle = {
+  '--rk-panel-background': '#fff9ec',
+  '--rk-panel-color': 'var(--on-paper)',
+}
+
 export const Route = createFileRoute('/docs')({
   component: DocsLayout,
 })
@@ -111,35 +123,45 @@ function DocsLayout() {
         </nav>
       </header>
 
-      <div className="grid grid-cols-[280px_minmax(0,1fr)] max-[980px]:block">
+      <div className="grid grid-cols-[336px_minmax(0,1fr)] max-[980px]:block">
         <aside
           aria-label="文档导航"
-          className="sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto border-r border-stone/15 bg-[linear-gradient(180deg,rgb(255_255_255_/_0.5),rgb(47_125_209_/_0.08))] px-6 py-8 max-[980px]:relative max-[980px]:top-0 max-[980px]:h-auto max-[980px]:border-r-0 max-[980px]:border-b max-[980px]:px-5 max-[980px]:py-5"
+          className="sticky top-14 h-[calc(100svh-3.5rem)] overflow-visible pr-4 max-[980px]:relative max-[980px]:top-0 max-[980px]:h-auto max-[980px]:border-b max-[980px]:border-stone/15 max-[980px]:px-5 max-[980px]:py-5"
         >
-          <nav className="grid gap-7 max-[980px]:gap-5">
-            {sidebarSections.map((section) => (
-              <div key={section.title}>
-                <p className="px-3 font-roco text-2xl font-black leading-none text-primary-strong">
-                  {section.title}
-                </p>
-                <div className="mt-2 grid gap-2 max-[980px]:flex max-[980px]:overflow-x-auto max-[980px]:pb-1">
-                  {section.links.map((link) => (
-                    <Link
-                      activeOptions={{ exact: true }}
-                      activeProps={{
-                        className: 'bg-primary-strong text-on-primary-strong',
-                      }}
-                      className="rounded-lg px-3 py-2 text-base font-black text-stone/70 transition hover:bg-primary-muted hover:text-on-primary-muted max-[980px]:shrink-0"
-                      key={link.to}
-                      to={link.to}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </nav>
+          <Panel
+            className="h-full min-h-0 [--docs-sidebar-curve-inset:34px] max-[980px]:h-auto max-[980px]:[--docs-sidebar-curve-inset:24px]"
+            contentClassName="flex h-full min-h-0 !p-0 max-[980px]:h-auto"
+            curve="right"
+            curveInset="var(--docs-sidebar-curve-inset)"
+            style={sidebarPanelStyle}
+          >
+            <div className="box-border scrollbar-none h-full w-[calc(100%-var(--docs-sidebar-curve-inset))] min-w-0 overflow-y-auto px-6 py-8 max-[980px]:h-auto max-[980px]:px-5 max-[980px]:py-5">
+              <nav className="grid gap-7 max-[980px]:gap-5">
+                {sidebarSections.map((section) => (
+                  <div key={section.title}>
+                    <p className="px-3 font-roco text-2xl font-black leading-none text-primary-strong">
+                      {section.title}
+                    </p>
+                    <div className="mt-2 grid gap-2 max-[980px]:flex max-[980px]:overflow-x-auto max-[980px]:pb-1">
+                      {section.links.map((link) => (
+                        <Link
+                          activeOptions={{ exact: true }}
+                          activeProps={{
+                            className: 'bg-primary-strong text-on-primary-strong',
+                          }}
+                          className="rounded-lg px-3 py-2 text-base font-black text-stone/70 transition hover:bg-primary-muted hover:text-on-primary-muted max-[980px]:shrink-0"
+                          key={link.to}
+                          to={link.to}
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </nav>
+            </div>
+          </Panel>
         </aside>
 
         <Outlet />
