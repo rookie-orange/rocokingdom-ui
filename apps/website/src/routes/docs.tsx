@@ -1,37 +1,13 @@
 import type { CSSProperties } from 'react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Outlet, createFileRoute, useNavigate, useRouterState } from '@tanstack/react-router'
-import { Panel, ToggleGroup, ToggleItem } from 'rocokingdom-ui'
-import logoUrl from '../assets/roco-kingdom-logo.png'
+import { Button, Panel, ToggleGroup, ToggleItem } from 'rocokingdom-ui'
 import {
   componentExamples,
   designExamples,
   iconExamples,
   overviewExamples,
 } from '../examples/catalog'
-
-const themeLinks = [
-  {
-    isActive: (pathname: string) => pathname === '/docs' || pathname.startsWith('/docs/overview'),
-    label: 'Overview',
-    to: '/docs',
-  },
-  {
-    isActive: (pathname: string) => pathname.startsWith('/docs/design'),
-    label: 'Design',
-    to: '/docs/design/roco-shape',
-  },
-  {
-    isActive: (pathname: string) => pathname.startsWith('/docs/components'),
-    label: 'Components',
-    to: '/docs/components/button',
-  },
-  {
-    isActive: (pathname: string) => pathname.startsWith('/docs/icon'),
-    label: 'Icon',
-    to: '/docs/icon',
-  },
-]
 
 const overviewLinks = [
   {
@@ -76,6 +52,13 @@ const sidebarSections = [
   },
 ]
 
+const docsSearchLinks = sidebarSections.flatMap((section) =>
+  section.links.map((link) => ({
+    ...link,
+    section: section.title,
+  })),
+)
+
 interface DocsSidebarLink {
   label: string
   to: string
@@ -97,6 +80,8 @@ const sidebarPanelStyle: DocsSidebarPanelStyle = {
   '--rk-panel-background': 'var(--rk-stone)',
   '--rk-panel-color': 'var(--rk-on-stone)',
 }
+
+const githubUrl = 'https://github.com/rookie-orange/rocokingdom-ui'
 
 export const Route = createFileRoute('/docs')({
   component: DocsLayout,
@@ -155,6 +140,41 @@ function DocsSidebarSection({ links, onNavigate, pathname, title }: DocsSidebarS
 function DocsLayout() {
   const navigate = useNavigate()
   const pathname = useRouterState({ select: (state) => state.location.pathname })
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const searchInputRef = useRef<HTMLInputElement>(null)
+
+  const visibleSearchLinks = useMemo(() => {
+    const normalizedQuery = searchQuery.trim().toLowerCase()
+
+    if (normalizedQuery.length === 0) {
+      return docsSearchLinks
+    }
+
+    return docsSearchLinks.filter((link) =>
+      `${link.section} ${link.label} ${link.to}`.toLowerCase().includes(normalizedQuery),
+    )
+  }, [searchQuery])
+
+  useEffect(() => {
+    if (!isSearchOpen) {
+      return
+    }
+
+    searchInputRef.current?.focus()
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setIsSearchOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [isSearchOpen])
 
   function navigateTo(nextPath: string) {
     if (nextPath === pathname) {
@@ -164,41 +184,111 @@ function DocsLayout() {
     void navigate({ to: nextPath })
   }
 
+  function openGitHub() {
+    window.open(githubUrl, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <main className="min-h-svh bg-paper text-on-paper">
-      <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-6 border-b border-stone/15 bg-stone px-8 text-on-stone max-[860px]:gap-4 max-[860px]:px-5">
-        <Link aria-label="返回首页" className="inline-flex shrink-0 items-center" to="/">
-          <img
-            alt=""
-            className="h-9 w-auto object-contain max-[480px]:h-8"
-            height={295}
-            src={logoUrl}
-            width={851}
-          />
-        </Link>
-        <nav
-          aria-label="文档主题"
-          className="flex min-w-0 items-center gap-2 overflow-x-auto max-[860px]:justify-end"
+      <nav
+        aria-label="快捷操作"
+        className="fixed right-5 top-5 z-50 flex flex-wrap justify-end gap-2 max-sm:right-3 max-sm:top-3 max-sm:max-w-[calc(100vw-1.5rem)] max-sm:gap-1.5"
+      >
+        <Button
+          aria-label="打开 GitHub"
+          material="stone"
+          onClick={openGitHub}
+          shadow
+          size="large"
+          title="GitHub"
         >
-          {themeLinks.map((link) => (
-            <Link
-              className={[
-                'shrink-0 rounded-lg px-3 py-2 text-sm font-black transition hover:bg-paper hover:text-on-paper',
-                link.isActive(pathname) ? 'bg-paper text-on-paper' : 'text-on-stone/75',
-              ].join(' ')}
-              key={link.to}
-              to={link.to}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      </header>
+          GitHub
+        </Button>
+        <Button
+          aria-controls="docs-search-panel"
+          aria-expanded={isSearchOpen}
+          aria-label="搜索文档"
+          material="stone"
+          onClick={() => setIsSearchOpen((current) => !current)}
+          shadow
+          size="large"
+          title="搜索"
+        >
+          Search
+        </Button>
+        <Button
+          aria-label="返回首页"
+          material="stone"
+          onClick={() => navigateTo('/')}
+          shadow
+          size="large"
+          title="Home"
+        >
+          Home
+        </Button>
+        <Button
+          aria-label="文档总览"
+          material="stone"
+          onClick={() => navigateTo('/docs')}
+          shadow
+          size="large"
+          title="Docs"
+        >
+          Docs
+        </Button>
+      </nav>
+
+      {isSearchOpen ? (
+        <section
+          aria-label="搜索文档"
+          className="fixed right-5 top-18 z-40 w-[min(calc(100vw-2rem),25rem)] rounded-lg border border-stone/15 bg-paper p-3 text-on-paper shadow-[0_14px_0_var(--shadow-soft-color)] max-sm:right-3 max-sm:top-16 max-sm:w-[calc(100vw-1.5rem)]"
+          id="docs-search-panel"
+        >
+          <label className="sr-only" htmlFor="docs-search-input">
+            搜索文档
+          </label>
+          <div className="flex items-center rounded-lg border border-stone/15 bg-white/55 px-3 py-2">
+            <input
+              className="min-w-0 flex-1 bg-transparent text-sm font-bold text-on-paper outline-none placeholder:text-stone/45"
+              id="docs-search-input"
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="搜索文档"
+              ref={searchInputRef}
+              type="search"
+              value={searchQuery}
+            />
+          </div>
+          <div className="mt-3 max-h-[min(28rem,calc(100svh-8rem))] overflow-y-auto pr-1">
+            {visibleSearchLinks.length > 0 ? (
+              <div className="grid gap-1">
+                {visibleSearchLinks.map((link) => (
+                  <Link
+                    className={[
+                      'rounded-lg px-3 py-2 text-sm font-black transition hover:bg-primary hover:text-on-primary',
+                      link.to === pathname ? 'bg-stone text-on-stone' : 'text-on-paper',
+                    ].join(' ')}
+                    key={`${link.section}-${link.to}`}
+                    onClick={() => setIsSearchOpen(false)}
+                    to={link.to}
+                  >
+                    <span className="block text-xs leading-none text-primary-strong">
+                      {link.section}
+                    </span>
+                    <span className="mt-1 block leading-5">{link.label}</span>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="px-3 py-4 text-sm font-bold text-stone/60">没有找到相关文档</p>
+            )}
+          </div>
+        </section>
+      ) : null}
 
       <div className="grid grid-cols-[336px_minmax(0,1fr)] max-[980px]:block">
         <aside
           aria-label="文档导航"
-          className="sticky top-14 h-[calc(100svh-3.5rem)] overflow-visible pr-4 max-[980px]:relative max-[980px]:top-0 max-[980px]:h-auto max-[980px]:border-b max-[980px]:border-stone/15 max-[980px]:px-5 max-[980px]:py-5"
+          className="sticky top-0 box-border h-svh overflow-visible pr-4 max-[980px]:relative max-[980px]:h-auto max-[980px]:border-b max-[980px]:border-stone/15 max-[980px]:px-5 max-[980px]:pb-5 max-[980px]:pt-18"
         >
           <Panel
             className="h-full min-h-0 [--docs-sidebar-curve-inset:34px] max-[980px]:h-auto max-[980px]:[--docs-sidebar-curve-inset:24px]"
