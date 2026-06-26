@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Panel, RuneText } from 'rocokingdom-ui'
+import { RuneText, Material } from 'rocokingdom-ui'
 
 const highlightMarkers = [
   'bg-primary',
@@ -59,32 +59,47 @@ export function ExampleShell({
 }: ExampleShellProps) {
   return (
     <article className="mx-auto w-full max-w-6xl px-10 py-14 max-[980px]:px-5 max-[980px]:py-10">
-      <section className="grid gap-7 border-b border-stone/15 pb-10">
-        <div>
-          <p className="text-base font-black text-primary-strong">Component</p>
-          <h1 className="mt-3 font-roco text-6xl font-black leading-none text-on-paper max-sm:text-4xl">
-            {title}
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg font-bold leading-8 text-stone/70">{description}</p>
-        </div>
-        <Panel material="stone" className="max-w-3xl" contentClassName="p-6 max-sm:p-5">
-          <RuneText aria-hidden="true" className="block text-sm leading-none text-primary/80">
-            COVERAGE
-          </RuneText>
-          <ul className="mt-4 grid gap-2 text-base font-black leading-7 text-on-stone/90">
-            {highlights.map((highlight, index) => (
-              <li className="flex gap-3" key={highlight}>
-                <span
-                  className={[
-                    'mt-2 size-2 shrink-0 rounded-full',
-                    highlightMarkers[index % highlightMarkers.length],
-                  ].join(' ')}
-                />
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
-        </Panel>
+      <section className="border-b border-stone/15 pb-10">
+        <Material
+          material="paper"
+          className="flex p-2 border-stone min-h-[248px] w-full flex-col overflow-hidden rounded-xl border bg-paper text-on-paper shadow-[0_14px_0_var(--shadow-soft-color)]"
+        >
+          <header className="relative flex p-4 rounded-t-lg items-center border-b-2 bg-stone text-on-stone after:absolute after:inset-x-0 after:-bottom-2 after:h-1 after:bg-stone after:content-[''] max-sm:p-2">
+            <RuneText
+              aria-hidden="true"
+              className="pointer-events-none absolute text-6xl! text-on-stone/20! top-1/2 block -translate-y-1/2 select-none overflow-hidden text-ellipsis whitespace-nowrap text-center leading-none max-sm:text-6"
+              font="rune"
+            >
+              {title}
+            </RuneText>
+            <RuneText
+              as="h1"
+              className="relative z-1 m-0 w-full text-6xl! font-black leading-none text-on-stone wrap:anywhere max-sm:text-lg"
+            >
+              {title}
+            </RuneText>
+          </header>
+          <div className="p-4 flex flex-col gap-4 font-black ">
+            <p>{description}</p>
+            <div className="flex flex-col gap-2">
+              {highlights.length > 0 ? (
+                <ul className="grid max-w-3xl gap-2 text-sm leading-6">
+                  {highlights.map((highlight, index) => (
+                    <li className="flex gap-3" key={highlight}>
+                      <span
+                        className={[
+                          'mt-2 size-2 shrink-0 rounded-full',
+                          highlightMarkers[index % highlightMarkers.length],
+                        ].join(' ')}
+                      />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          </div>
+        </Material>
       </section>
 
       <div className="grid gap-12 py-12">{children}</div>
