@@ -280,12 +280,10 @@ export function ToggleItem<Value extends string = string>({
       aria-disabled={isDisabled || undefined}
       aria-pressed={isSelected}
       as="button"
-      background="var(--rk-toggle-item-material)"
+      background="var(--rk-material-background)"
       className={resolvedClassName}
       color={
-        resolvedVariant === 'solid'
-          ? 'var(--rk-toggle-item-on-material)'
-          : 'var(--rk-toggle-item-material)'
+        resolvedVariant === 'solid' ? 'var(--rk-material-color)' : 'var(--rk-material-background)'
       }
       contentClassName={styles.itemContent}
       data-rk-toggle-item="true"

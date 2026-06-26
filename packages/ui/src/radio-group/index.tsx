@@ -279,12 +279,10 @@ export function RadioItem<Value extends string = string>({
       aria-checked={isSelected}
       aria-disabled={isDisabled || undefined}
       as="button"
-      background="var(--rk-radio-item-material)"
+      background="var(--rk-material-background)"
       className={resolvedClassName}
       color={
-        resolvedVariant === 'solid'
-          ? 'var(--rk-radio-item-on-material)'
-          : 'var(--rk-radio-item-material)'
+        resolvedVariant === 'solid' ? 'var(--rk-material-color)' : 'var(--rk-material-background)'
       }
       data-rk-radio-item="true"
       data-state={isSelected ? 'checked' : 'unchecked'}

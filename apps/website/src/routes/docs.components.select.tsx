@@ -83,7 +83,7 @@ function SelectExamplePage() {
             ariaLabel="选择技能"
             defaultValue="fire"
             placeholder="选择技能"
-            triggerClassName="[--rk-select-min-width:220px]"
+            triggerClassName="min-w-[220px]"
           >
             <SelectGroup>
               <SelectLabel className="px-4 py-2 text-sm font-black text-primary">

@@ -45,7 +45,7 @@ function MaterialExamplePage() {
               ] as const
             ).map((material) => (
               <Material
-                className="min-h-36 rounded-lg border border-black/10 p-5 shadow-[0_6px_0_var(--shadow-soft-color)]"
+                className="min-h-36 rounded-lg border border-black/10 p-5 shadow-[0_6px_0_var(--rk-shadow-soft-color)]"
                 key={material}
                 material={material}
               >
@@ -65,7 +65,7 @@ function MaterialExamplePage() {
             <Material
               as="button"
               background="#2f7dd1"
-              className="rounded-lg p-5 text-left shadow-[0_6px_0_var(--shadow-strong-color)]"
+              className="rounded-lg p-5 text-left shadow-[0_6px_0_var(--rk-shadow-strong-color)]"
               color="#f7fbff"
               type="button"
             >
@@ -75,7 +75,7 @@ function MaterialExamplePage() {
             <Material
               as="article"
               background="#f7d56f"
-              className="rounded-lg p-5 shadow-[0_6px_0_var(--shadow-color)]"
+              className="rounded-lg p-5 shadow-[0_6px_0_var(--rk-shadow-color)]"
               color="#2b2414"
             >
               <span className="block font-roco text-2xl font-black leading-none">宠物档案</span>

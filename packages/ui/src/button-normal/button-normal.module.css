@@ -3,11 +3,11 @@
 
   appearance: none;
   align-items: center;
-  background: var(--rk-button-material);
-  border: 1px solid var(--rk-button-material);
+  background: var(--rk-material-background);
+  border: 1px solid var(--rk-material-background);
   border-radius: 9999px;
   box-sizing: border-box;
-  color: var(--rk-button-on-material);
+  color: var(--rk-material-color);
   cursor: pointer;
   display: inline-flex;
   font: inherit;
@@ -27,48 +27,48 @@
 }
 
 .default {
-  --rk-button-material: var(--rk-primary);
-  --rk-button-on-material: var(--rk-on-primary);
+  --rk-material-background: var(--rk-primary);
+  --rk-material-color: var(--rk-on-primary);
 }
 
 .paper {
-  --rk-button-material: var(--rk-paper);
-  --rk-button-on-material: var(--rk-on-paper);
+  --rk-material-background: var(--rk-paper);
+  --rk-material-color: var(--rk-on-paper);
 }
 
 .stone {
-  --rk-button-material: var(--rk-stone);
-  --rk-button-on-material: var(--rk-on-stone);
+  --rk-material-background: var(--rk-stone);
+  --rk-material-color: var(--rk-on-stone);
 }
 
 .primary {
-  --rk-button-material: var(--rk-primary);
-  --rk-button-on-material: var(--rk-on-primary);
+  --rk-material-background: var(--rk-primary);
+  --rk-material-color: var(--rk-on-primary);
 }
 
 .primarySoft {
-  --rk-button-material: var(--rk-primary-soft);
-  --rk-button-on-material: var(--rk-on-primary-soft);
+  --rk-material-background: var(--rk-primary-soft);
+  --rk-material-color: var(--rk-on-primary-soft);
 }
 
 .primaryMuted {
-  --rk-button-material: var(--rk-primary-muted);
-  --rk-button-on-material: var(--rk-on-primary-muted);
+  --rk-material-background: var(--rk-primary-muted);
+  --rk-material-color: var(--rk-on-primary-muted);
 }
 
 .primaryStrong {
-  --rk-button-material: var(--rk-primary-strong);
-  --rk-button-on-material: var(--rk-on-primary-strong);
+  --rk-material-background: var(--rk-primary-strong);
+  --rk-material-color: var(--rk-on-primary-strong);
 }
 
 .success {
-  --rk-button-material: var(--rk-success);
-  --rk-button-on-material: var(--rk-on-success);
+  --rk-material-background: var(--rk-success);
+  --rk-material-color: var(--rk-on-success);
 }
 
 .danger {
-  --rk-button-material: var(--rk-danger);
-  --rk-button-on-material: var(--rk-on-danger);
+  --rk-material-background: var(--rk-danger);
+  --rk-material-color: var(--rk-on-danger);
 }
 
 .button:hover {
@@ -102,20 +102,20 @@
 }
 
 .solid {
-  background: var(--rk-button-material);
-  border-color: var(--rk-button-material);
-  color: var(--rk-button-on-material);
+  background: var(--rk-material-background);
+  border-color: var(--rk-material-background);
+  color: var(--rk-material-color);
 }
 
 .outline {
   background: transparent;
-  border-color: var(--rk-button-material);
-  color: var(--rk-button-material);
+  border-color: var(--rk-material-background);
+  color: var(--rk-material-background);
 }
 
 .text {
   background: transparent;
   border-color: transparent;
-  color: var(--rk-button-material);
+  color: var(--rk-material-background);
   padding-inline: 8px;
 }

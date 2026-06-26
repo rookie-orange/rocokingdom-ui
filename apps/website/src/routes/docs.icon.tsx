@@ -73,7 +73,7 @@ function IconsExamplePage() {
               return (
                 <div
                   className={[
-                    'rounded-lg border border-stone/15 p-5 shadow-[0_8px_0_var(--shadow-soft-color)]',
+                    'rounded-lg border border-stone/15 p-5 shadow-[0_8px_0_var(--rk-shadow-soft-color)]',
                     icon.surface,
                   ].join(' ')}
                   key={icon.name}
@@ -81,7 +81,7 @@ function IconsExamplePage() {
                   <div className="flex items-center gap-5">
                     <span
                       className={[
-                        'grid size-20 place-items-center rounded-lg bg-white/75 text-5xl shadow-[0_6px_0_var(--shadow-soft-color)]',
+                        'grid size-20 place-items-center rounded-lg bg-white/75 text-5xl shadow-[0_6px_0_var(--rk-shadow-soft-color)]',
                         icon.color,
                       ].join(' ')}
                     >
@@ -112,7 +112,7 @@ function IconsExamplePage() {
 
               return (
                 <div
-                  className="flex min-w-44 items-center gap-4 rounded-lg border border-stone/15 bg-white/60 px-5 py-4 shadow-[0_6px_0_var(--shadow-soft-color)]"
+                  className="flex min-w-44 items-center gap-4 rounded-lg border border-stone/15 bg-white/60 px-5 py-4 shadow-[0_6px_0_var(--rk-shadow-soft-color)]"
                   key={icon.name}
                 >
                   <Icon className={['text-4xl', icon.color].join(' ')} aria-label={icon.name} />

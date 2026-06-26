@@ -1,11 +1,8 @@
 .group {
-  --rk-toggle-group-focus-color: var(--rk-primary);
-  --rk-toggle-group-gap: 10px;
-
   align-items: center;
   display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--rk-toggle-group-gap);
+  gap: 10px;
 }
 
 .horizontal {
@@ -18,19 +15,11 @@
 }
 
 .item {
-  --rk-toggle-item-font-family: var(--rk-font-family-base, inherit);
-  --rk-toggle-item-font-size: 14px;
-  --rk-toggle-item-font-weight: 400;
-  --rk-toggle-item-height: 32px;
-  --rk-toggle-item-min-width: var(--rk-toggle-group-item-min-width, auto);
-  --rk-toggle-item-padding-inline: 18px;
-  --rk-toggle-item-selected-min-width: var(--rk-toggle-group-selected-min-width, 118px);
-  --rk-toggle-item-selected-padding-inline: 30px;
-  --rk-roco-shape-height: var(--rk-toggle-item-height);
-  --rk-roco-shape-min-width: var(--rk-toggle-item-min-width);
+  --rk-roco-shape-height: 32px;
+  --rk-roco-shape-min-width: auto;
   --rk-roco-shape-padding-block: 2px;
-  --rk-roco-shape-padding-inline: var(--rk-toggle-item-padding-inline);
-  --rk-roco-shape-width: var(--rk-toggle-item-width, auto);
+  --rk-roco-shape-padding-inline: 18px;
+  --rk-roco-shape-width: auto;
 
   appearance: none;
   background: transparent;
@@ -39,9 +28,9 @@
   cursor: pointer;
   flex: 0 0 auto;
   font: inherit;
-  font-family: var(--rk-toggle-item-font-family);
-  font-size: var(--rk-toggle-item-font-size);
-  font-weight: var(--rk-toggle-item-font-weight);
+  font-family: var(--rk-font-family-base, inherit);
+  font-size: 14px;
+  font-weight: 400;
   text-decoration: none;
   transform-origin: center;
   transition:
@@ -55,63 +44,61 @@
 
 .default,
 .primary {
-  --rk-toggle-item-material: var(--rk-primary);
-  --rk-toggle-item-on-material: var(--rk-on-primary);
+  --rk-material-background: var(--rk-primary);
+  --rk-material-color: var(--rk-on-primary);
 }
 
 .paper {
-  --rk-toggle-item-material: var(--rk-paper);
-  --rk-toggle-item-on-material: var(--rk-on-paper);
+  --rk-material-background: var(--rk-paper);
+  --rk-material-color: var(--rk-on-paper);
 }
 
 .stone {
-  --rk-toggle-item-material: var(--rk-stone);
-  --rk-toggle-item-on-material: var(--rk-on-stone);
+  --rk-material-background: var(--rk-stone);
+  --rk-material-color: var(--rk-on-stone);
 }
 
 .primarySoft {
-  --rk-toggle-item-material: var(--rk-primary-soft);
-  --rk-toggle-item-on-material: var(--rk-on-primary-soft);
+  --rk-material-background: var(--rk-primary-soft);
+  --rk-material-color: var(--rk-on-primary-soft);
 }
 
 .primaryMuted {
-  --rk-toggle-item-material: var(--rk-primary-muted);
-  --rk-toggle-item-on-material: var(--rk-on-primary-muted);
+  --rk-material-background: var(--rk-primary-muted);
+  --rk-material-color: var(--rk-on-primary-muted);
 }
 
 .primaryStrong {
-  --rk-toggle-item-material: var(--rk-primary-strong);
-  --rk-toggle-item-on-material: var(--rk-on-primary-strong);
+  --rk-material-background: var(--rk-primary-strong);
+  --rk-material-color: var(--rk-on-primary-strong);
 }
 
 .success {
-  --rk-toggle-item-material: var(--rk-success);
-  --rk-toggle-item-on-material: var(--rk-on-success);
+  --rk-material-background: var(--rk-success);
+  --rk-material-color: var(--rk-on-success);
 }
 
 .danger {
-  --rk-toggle-item-material: var(--rk-danger);
-  --rk-toggle-item-on-material: var(--rk-on-danger);
+  --rk-material-background: var(--rk-danger);
+  --rk-material-color: var(--rk-on-danger);
 }
 
 .small {
-  --rk-toggle-item-font-size: 12px;
-  --rk-toggle-item-height: 24px;
-  --rk-toggle-item-padding-inline: 14px;
-  --rk-toggle-item-selected-min-width: var(--rk-toggle-group-selected-min-width, 96px);
-  --rk-toggle-item-selected-padding-inline: 22px;
+  --rk-roco-shape-height: 24px;
+  --rk-roco-shape-padding-inline: 14px;
+
+  font-size: 12px;
 }
 
 .middle {
-  --rk-toggle-item-height: 32px;
+  --rk-roco-shape-height: 32px;
 }
 
 .large {
-  --rk-toggle-item-font-size: 16px;
-  --rk-toggle-item-height: 40px;
-  --rk-toggle-item-padding-inline: 22px;
-  --rk-toggle-item-selected-min-width: var(--rk-toggle-group-selected-min-width, 136px);
-  --rk-toggle-item-selected-padding-inline: 34px;
+  --rk-roco-shape-height: 40px;
+  --rk-roco-shape-padding-inline: 22px;
+
+  font-size: 16px;
 }
 
 .solid {
@@ -121,7 +108,7 @@
 }
 
 .text {
-  --rk-roco-shape-padding-inline: var(--rk-toggle-item-text-padding-inline, 8px);
+  --rk-roco-shape-padding-inline: 8px;
 }
 
 .item:hover {
@@ -134,7 +121,7 @@
 }
 
 .item:focus-visible {
-  outline: 2px solid var(--rk-toggle-group-focus-color);
+  outline: 2px solid var(--rk-primary);
   outline-offset: 2px;
 }
 
@@ -146,12 +133,22 @@
 }
 
 .selected {
-  --rk-toggle-item-min-width: var(--rk-toggle-item-selected-min-width);
-  --rk-toggle-item-padding-inline: var(--rk-toggle-item-selected-padding-inline);
-  --rk-roco-shape-width: var(--rk-toggle-item-selected-width, var(--rk-toggle-item-width, auto));
+  --rk-roco-shape-min-width: 118px;
+  --rk-roco-shape-padding-inline: 30px;
+  --rk-roco-shape-width: auto;
 
-  animation: rk-toggle-item-spring-select var(--rk-toggle-item-select-duration, 260ms) linear;
+  animation: rk-toggle-item-spring-select 260ms linear;
   z-index: 1;
+}
+
+.small.selected {
+  --rk-roco-shape-min-width: 96px;
+  --rk-roco-shape-padding-inline: 22px;
+}
+
+.large.selected {
+  --rk-roco-shape-min-width: 136px;
+  --rk-roco-shape-padding-inline: 34px;
 }
 
 .unselected {
@@ -164,8 +161,8 @@
 }
 
 .itemText {
-  --rk-rune-text-base-font-family: var(--rk-toggle-item-font-family);
-  --rk-rune-text-base-font-weight: var(--rk-toggle-item-font-weight);
+  --rk-rune-text-base-font-family: var(--rk-font-family-base, inherit);
+  --rk-rune-text-base-font-weight: 400;
 }
 
 @keyframes rk-toggle-item-spring-select {

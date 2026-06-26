@@ -1,14 +1,10 @@
 .button {
   --rk-button-font-family: var(--rk-font-family-base, inherit);
-  --rk-button-font-size: 14px;
   --rk-button-font-weight: 400;
-  --rk-button-height: 40px;
-  --rk-button-min-width: auto;
-  --rk-button-padding-inline: 18px;
-  --rk-roco-shape-height: var(--rk-button-height);
-  --rk-roco-shape-min-width: var(--rk-button-min-width);
+  --rk-roco-shape-height: 32px;
+  --rk-roco-shape-min-width: auto;
   --rk-roco-shape-padding-block: 2px;
-  --rk-roco-shape-padding-inline: var(--rk-button-padding-inline);
+  --rk-roco-shape-padding-inline: 18px;
 
   appearance: none;
   background: transparent;
@@ -17,7 +13,7 @@
   cursor: pointer;
   font: inherit;
   font-family: var(--rk-button-font-family);
-  font-size: var(--rk-button-font-size);
+  font-size: 14px;
   font-weight: var(--rk-button-font-weight);
   transition:
     filter 160ms ease,
@@ -42,19 +38,21 @@
 }
 
 .small {
-  --rk-button-font-size: 12px;
-  --rk-button-height: 24px;
-  --rk-button-padding-inline: 14px;
+  --rk-roco-shape-height: 24px;
+  --rk-roco-shape-padding-inline: 14px;
+
+  font-size: 12px;
 }
 
 .middle {
-  --rk-button-height: 32px;
+  --rk-roco-shape-height: 32px;
 }
 
 .large {
-  --rk-button-font-size: 16px;
-  --rk-button-height: 40px;
-  --rk-button-padding-inline: 22px;
+  --rk-roco-shape-height: 40px;
+  --rk-roco-shape-padding-inline: 22px;
+
+  font-size: 16px;
 }
 
 .solid {

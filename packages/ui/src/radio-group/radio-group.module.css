@@ -1,13 +1,8 @@
 .group {
-  --rk-radio-group-active-scale: 1.08;
-  --rk-radio-group-gap: 10px;
-  --rk-radio-group-focus-color: var(--rk-primary);
-  --rk-radio-item-active-scale: var(--rk-radio-group-active-scale);
-
   align-items: center;
   display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--rk-radio-group-gap);
+  gap: 10px;
 }
 
 .horizontal {
@@ -20,16 +15,10 @@
 }
 
 .item {
-  --rk-radio-item-font-family: var(--rk-font-family-base, inherit);
-  --rk-radio-item-font-size: 14px;
-  --rk-radio-item-font-weight: 400;
-  --rk-radio-item-height: 32px;
-  --rk-radio-item-min-width: var(--rk-radio-group-item-min-width, auto);
-  --rk-radio-item-padding-inline: 18px;
-  --rk-roco-shape-height: var(--rk-radio-item-height);
-  --rk-roco-shape-min-width: var(--rk-radio-item-min-width);
+  --rk-roco-shape-height: 32px;
+  --rk-roco-shape-min-width: auto;
   --rk-roco-shape-padding-block: 2px;
-  --rk-roco-shape-padding-inline: var(--rk-radio-item-padding-inline);
+  --rk-roco-shape-padding-inline: 18px;
 
   appearance: none;
   background: transparent;
@@ -38,9 +27,9 @@
   cursor: pointer;
   flex: 0 0 auto;
   font: inherit;
-  font-family: var(--rk-radio-item-font-family);
-  font-size: var(--rk-radio-item-font-size);
-  font-weight: var(--rk-radio-item-font-weight);
+  font-family: var(--rk-font-family-base, inherit);
+  font-size: 14px;
+  font-weight: 400;
   transform: scale(1);
   transform-origin: center;
   transition: filter 160ms ease;
@@ -48,64 +37,66 @@
 }
 
 .default {
-  --rk-radio-item-material: var(--rk-primary);
-  --rk-radio-item-on-material: var(--rk-on-primary);
+  --rk-material-background: var(--rk-primary);
+  --rk-material-color: var(--rk-on-primary);
 }
 
 .paper {
-  --rk-radio-item-material: var(--rk-paper);
-  --rk-radio-item-on-material: var(--rk-on-paper);
+  --rk-material-background: var(--rk-paper);
+  --rk-material-color: var(--rk-on-paper);
 }
 
 .stone {
-  --rk-radio-item-material: var(--rk-stone);
-  --rk-radio-item-on-material: var(--rk-on-stone);
+  --rk-material-background: var(--rk-stone);
+  --rk-material-color: var(--rk-on-stone);
 }
 
 .primary {
-  --rk-radio-item-material: var(--rk-primary);
-  --rk-radio-item-on-material: var(--rk-on-primary);
+  --rk-material-background: var(--rk-primary);
+  --rk-material-color: var(--rk-on-primary);
 }
 
 .primarySoft {
-  --rk-radio-item-material: var(--rk-primary-soft);
-  --rk-radio-item-on-material: var(--rk-on-primary-soft);
+  --rk-material-background: var(--rk-primary-soft);
+  --rk-material-color: var(--rk-on-primary-soft);
 }
 
 .primaryMuted {
-  --rk-radio-item-material: var(--rk-primary-muted);
-  --rk-radio-item-on-material: var(--rk-on-primary-muted);
+  --rk-material-background: var(--rk-primary-muted);
+  --rk-material-color: var(--rk-on-primary-muted);
 }
 
 .primaryStrong {
-  --rk-radio-item-material: var(--rk-primary-strong);
-  --rk-radio-item-on-material: var(--rk-on-primary-strong);
+  --rk-material-background: var(--rk-primary-strong);
+  --rk-material-color: var(--rk-on-primary-strong);
 }
 
 .success {
-  --rk-radio-item-material: var(--rk-success);
-  --rk-radio-item-on-material: var(--rk-on-success);
+  --rk-material-background: var(--rk-success);
+  --rk-material-color: var(--rk-on-success);
 }
 
 .danger {
-  --rk-radio-item-material: var(--rk-danger);
-  --rk-radio-item-on-material: var(--rk-on-danger);
+  --rk-material-background: var(--rk-danger);
+  --rk-material-color: var(--rk-on-danger);
 }
 
 .small {
-  --rk-radio-item-font-size: 12px;
-  --rk-radio-item-height: 24px;
-  --rk-radio-item-padding-inline: 14px;
+  --rk-roco-shape-height: 24px;
+  --rk-roco-shape-padding-inline: 14px;
+
+  font-size: 12px;
 }
 
 .middle {
-  --rk-radio-item-height: 32px;
+  --rk-roco-shape-height: 32px;
 }
 
 .large {
-  --rk-radio-item-font-size: 16px;
-  --rk-radio-item-height: 40px;
-  --rk-radio-item-padding-inline: 22px;
+  --rk-roco-shape-height: 40px;
+  --rk-roco-shape-padding-inline: 22px;
+
+  font-size: 16px;
 }
 
 .solid {
@@ -115,7 +106,7 @@
 }
 
 .text {
-  --rk-roco-shape-padding-inline: var(--rk-radio-item-text-padding-inline, 8px);
+  --rk-roco-shape-padding-inline: 8px;
 }
 
 .item:hover {
@@ -127,7 +118,7 @@
 }
 
 .item:focus-visible {
-  outline: 2px solid var(--rk-radio-group-focus-color);
+  outline: 2px solid var(--rk-primary);
   outline-offset: 2px;
 }
 
@@ -138,8 +129,8 @@
 }
 
 .active {
-  animation: rk-radio-item-spring-scale var(--rk-radio-item-select-duration, 260ms) linear;
-  transform: scale(var(--rk-radio-item-active-scale));
+  animation: rk-radio-item-spring-scale 260ms linear;
+  transform: scale(1.08);
   z-index: 1;
 }
 
@@ -166,7 +157,7 @@
   }
 
   100% {
-    transform: scale(var(--rk-radio-item-active-scale));
+    transform: scale(1.08);
   }
 }
 

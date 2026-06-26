@@ -85,9 +85,9 @@ export function SideNavHeader({
     <RocoShape
       {...props}
       as={Component}
-      background="var(--rk-side-nav-header-material)"
+      background="var(--rk-material-background)"
       className={clsx(prefixCls, styles.header, rootClassName, className)}
-      color="var(--rk-side-nav-header-on-material)"
+      color="var(--rk-material-color)"
       contentClassName={styles.headerContent}
     >
       {hasStructuredContent ? (

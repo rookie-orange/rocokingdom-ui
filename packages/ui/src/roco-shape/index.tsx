@@ -11,8 +11,8 @@ export type RocoShapeMaterial = MaterialPreset
 export type RocoShapeVariant = 'outline' | 'solid' | 'text'
 
 interface RocoShapeStyle extends CSSProperties {
-  '--rk-material-background'?: string
-  '--rk-material-color'?: string
+  '--rk-roco-shape-background'?: string
+  '--rk-roco-shape-color'?: string
 }
 
 interface RocoShapeOwnProps<As extends ElementType> {
@@ -160,11 +160,11 @@ export function RocoShape<As extends ElementType = 'span'>({
   const ariaHidden = ariaHiddenProp ?? (hasContent ? undefined : true)
 
   if (background) {
-    shapeStyle['--rk-material-background'] = background
+    shapeStyle['--rk-roco-shape-background'] = background
   }
 
   if (color) {
-    shapeStyle['--rk-material-color'] = color
+    shapeStyle['--rk-roco-shape-color'] = color
   }
 
   return (

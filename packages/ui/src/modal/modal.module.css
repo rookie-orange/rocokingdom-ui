@@ -2,26 +2,24 @@
   background: rgb(0 0 0 / 0.5);
   inset: 0;
   position: fixed;
-  z-index: var(--rk-modal-z-index, 1000);
+  z-index: 1000;
 }
 
 .overlay[data-state='open'] {
-  animation: rk-modal-overlay-in var(--rk-modal-overlay-enter-duration, 160ms) ease-out;
+  animation: rk-modal-overlay-in 160ms ease-out;
 }
 
 .overlay[data-state='closed'] {
-  animation: rk-modal-overlay-out var(--rk-modal-overlay-exit-duration, 120ms) ease-in;
+  animation: rk-modal-overlay-out 120ms ease-in;
 }
 
 .content {
   --rk-modal-width: 680px;
-  --rk-modal-panel-border: var(--rk-paper);
-  --rk-modal-panel-radius: 7px;
 
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: var(--rk-modal-footer-gap, 88px);
+  gap: 88px;
   left: 50%;
   max-height: calc(100svh - 48px);
   outline: none;
@@ -30,29 +28,29 @@
   transform-origin: center;
   transform: translate(-50%, -50%);
   width: min(calc(100vw - 32px), var(--rk-modal-width));
-  z-index: calc(var(--rk-modal-z-index, 1000) + 1);
+  z-index: 1001;
 }
 
 .panel {
   background: var(--rk-paper);
-  border: 4px solid var(--rk-modal-panel-border);
-  border-radius: var(--rk-modal-panel-radius);
+  border: 4px solid var(--rk-paper);
+  border-radius: 7px;
   color: var(--rk-on-paper);
   display: flex;
   flex-direction: column;
   max-height: min(62svh, 520px);
-  min-height: var(--rk-modal-panel-min-height, 248px);
+  min-height: 248px;
   overflow: hidden;
   transform-origin: center;
   width: 100%;
 }
 
 .content[data-state='open'] .panel {
-  animation: rk-modal-panel-in var(--rk-modal-content-enter-duration, 300ms) linear;
+  animation: rk-modal-panel-in 300ms linear;
 }
 
 .content[data-state='closed'] .panel {
-  animation: rk-modal-panel-out var(--rk-modal-content-exit-duration, 300ms) ease-in;
+  animation: rk-modal-panel-out 300ms ease-in;
 }
 
 .header {
@@ -62,7 +60,7 @@
   color: var(--rk-on-stone);
   display: flex;
   justify-content: center;
-  min-height: var(--rk-modal-header-height, 54px);
+  min-height: 54px;
   padding: 0 12px;
   position: relative;
 }
@@ -79,19 +77,16 @@
 }
 
 .title {
-  --rk-rune-text-base-font-family: var(
-    --rk-modal-title-font-family,
-    var(--rk-font-family-base, system-ui, sans-serif)
-  );
-  --rk-rune-text-base-font-weight: var(--rk-modal-title-font-weight, 900);
-  --rk-rune-text-font-size: var(--rk-modal-title-font-size, 22px);
-  --rk-rune-text-line-height: var(--rk-modal-title-line-height, 1);
+  --rk-rune-text-base-font-family: var(--rk-font-family-base, system-ui, sans-serif);
+  --rk-rune-text-base-font-weight: 900;
+  --rk-rune-text-font-size: 22px;
+  --rk-rune-text-line-height: 1;
 
   display: block;
   letter-spacing: 0;
   margin: 0;
   overflow-wrap: anywhere;
-  padding-inline: var(--rk-modal-title-padding-inline, 56px);
+  padding-inline: 56px;
   position: relative;
   text-align: center;
   width: 100%;
@@ -100,7 +95,7 @@
 
 .headerContent {
   min-width: 0;
-  padding-inline: var(--rk-modal-title-padding-inline, 56px);
+  padding-inline: 56px;
   position: relative;
   text-align: center;
   width: 100%;
@@ -108,14 +103,11 @@
 }
 
 .headerRuneText {
-  --rk-rune-text-color: var(
-    --rk-modal-header-rune-text-color,
-    color-mix(in srgb, var(--rk-on-stone) 20%, var(--rk-stone))
-  );
-  --rk-rune-text-font-size: var(--rk-modal-header-rune-text-font-size, 28px);
+  --rk-rune-text-color: color-mix(in srgb, var(--rk-on-stone) 20%, var(--rk-stone));
+  --rk-rune-text-font-size: 28px;
   --rk-rune-text-line-height: 1;
 
-  inset-inline: var(--rk-modal-header-rune-text-inset-inline, 56px);
+  inset-inline: 56px;
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -129,17 +121,17 @@
 }
 
 .body {
-  align-content: var(--rk-modal-body-align-content, center);
+  align-content: center;
   display: grid;
   flex: 1 1 auto;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
-  font-size: var(--rk-modal-body-font-size, 16px);
+  font-size: 16px;
   font-weight: 800;
   line-height: 1.5;
   min-height: 0;
   overflow: auto;
-  padding: var(--rk-modal-body-padding, 52px 28px);
-  text-align: var(--rk-modal-body-text-align, center);
+  padding: 52px 28px;
+  text-align: center;
 }
 
 .description {
@@ -168,7 +160,7 @@
 
 .header .close {
   position: absolute;
-  right: var(--rk-modal-close-inset-inline-end, 12px);
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -331,9 +323,9 @@
   }
 
   .headerRuneText {
-    --rk-rune-text-font-size: var(--rk-modal-header-rune-text-font-size, 22px);
+    --rk-rune-text-font-size: 22px;
 
-    inset-inline: var(--rk-modal-header-rune-text-inset-inline, 38px);
+    inset-inline: 38px;
   }
 
   .body {

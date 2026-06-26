@@ -83,19 +83,19 @@ function ButtonExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection description="可通过 CSS 变量压缩高度、字号和文字内边距。" title="紧凑按钮">
+      <ExampleSection description="可通过形状变量压缩高度和文字内边距。" title="紧凑按钮">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-4">
             <Button
               material="default"
-              rootClassName="[--rk-button-font-size:12px] [--rk-button-height:28px] [--rk-button-padding-inline:16px]"
+              rootClassName="[--rk-roco-shape-height:28px] [--rk-roco-shape-padding-inline:16px] text-xs"
               shadow
             >
               背包
             </Button>
             <Button
               material="stone"
-              rootClassName="[--rk-button-font-size:12px] [--rk-button-height:28px] [--rk-button-padding-inline:16px]"
+              rootClassName="[--rk-roco-shape-height:28px] [--rk-roco-shape-padding-inline:16px] text-xs"
               shadow
               variant="outline"
             >

@@ -1,23 +1,22 @@
 .trigger {
-  --rk-select-height: 36px;
-  --rk-select-material: var(--rk-stone);
-  --rk-select-on-material: var(--rk-on-stone);
-  --rk-roco-shape-height: var(--rk-select-height);
-  --rk-roco-shape-min-width: var(--rk-select-min-width, 176px);
+  --rk-material-background: var(--rk-stone);
+  --rk-material-color: var(--rk-on-stone);
+  --rk-roco-shape-height: 36px;
+  --rk-roco-shape-min-width: 176px;
   --rk-roco-shape-padding-block: 0;
-  --rk-roco-shape-padding-inline: var(--rk-select-padding-inline, 18px);
+  --rk-roco-shape-padding-inline: 18px;
 
   appearance: none;
   align-items: center;
   background: transparent;
   border: 0;
   box-sizing: border-box;
-  color: var(--rk-select-on-material);
+  color: var(--rk-material-color);
   cursor: pointer;
   display: inline-flex;
   font: inherit;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
-  font-size: var(--rk-select-font-size, 18px);
+  font-size: 18px;
   font-weight: 900;
   justify-content: center;
   line-height: 1;
@@ -44,43 +43,43 @@
 
 .default,
 .primary {
-  --rk-select-material: var(--rk-primary);
-  --rk-select-on-material: var(--rk-on-primary);
+  --rk-material-background: var(--rk-primary);
+  --rk-material-color: var(--rk-on-primary);
 }
 
 .paper {
-  --rk-select-material: var(--rk-paper);
-  --rk-select-on-material: var(--rk-on-paper);
+  --rk-material-background: var(--rk-paper);
+  --rk-material-color: var(--rk-on-paper);
 }
 
 .stone {
-  --rk-select-material: var(--rk-stone);
-  --rk-select-on-material: var(--rk-on-stone);
+  --rk-material-background: var(--rk-stone);
+  --rk-material-color: var(--rk-on-stone);
 }
 
 .primarySoft {
-  --rk-select-material: var(--rk-primary-soft);
-  --rk-select-on-material: var(--rk-on-primary-soft);
+  --rk-material-background: var(--rk-primary-soft);
+  --rk-material-color: var(--rk-on-primary-soft);
 }
 
 .primaryMuted {
-  --rk-select-material: var(--rk-primary-muted);
-  --rk-select-on-material: var(--rk-on-primary-muted);
+  --rk-material-background: var(--rk-primary-muted);
+  --rk-material-color: var(--rk-on-primary-muted);
 }
 
 .primaryStrong {
-  --rk-select-material: var(--rk-primary-strong);
-  --rk-select-on-material: var(--rk-on-primary-strong);
+  --rk-material-background: var(--rk-primary-strong);
+  --rk-material-color: var(--rk-on-primary-strong);
 }
 
 .success {
-  --rk-select-material: var(--rk-success);
-  --rk-select-on-material: var(--rk-on-success);
+  --rk-material-background: var(--rk-success);
+  --rk-material-color: var(--rk-on-success);
 }
 
 .danger {
-  --rk-select-material: var(--rk-danger);
-  --rk-select-on-material: var(--rk-on-danger);
+  --rk-material-background: var(--rk-danger);
+  --rk-material-color: var(--rk-on-danger);
 }
 
 .triggerContent {
@@ -110,21 +109,18 @@
 }
 
 .content {
-  --rk-select-content-background: var(--rk-stone);
-  --rk-select-content-color: var(--rk-on-stone);
-
-  color: var(--rk-select-content-color);
+  color: var(--rk-on-stone);
   min-width: var(--radix-select-trigger-width);
   transform-origin: var(--radix-select-content-transform-origin);
-  z-index: var(--rk-select-z-index, 1100);
+  z-index: 1100;
 }
 
 .contentShell {
-  background: var(--rk-select-content-background);
-  border-radius: var(--rk-select-content-radius, 8px);
-  box-shadow: 0 4px 0 var(--rk-select-shadow-color, var(--rk-shadow-color));
+  background: var(--rk-stone);
+  border-radius: 8px;
+  box-shadow: 0 4px 0 var(--rk-shadow-color);
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
-  font-size: var(--rk-select-content-font-size, 18px);
+  font-size: 18px;
   font-weight: 900;
   line-height: 1;
   overflow: hidden;
@@ -133,30 +129,30 @@
 }
 
 .content[data-state='open'] .contentShell {
-  animation: rk-select-content-in var(--rk-select-enter-duration, 140ms) ease-out;
+  animation: rk-select-content-in 140ms ease-out;
 }
 
 .content[data-state='closed'] {
-  animation: rk-select-content-presence-out var(--rk-select-exit-duration, 100ms) ease-in;
+  animation: rk-select-content-presence-out 100ms ease-in;
 }
 
 .content[data-state='closed'] .contentShell {
-  animation: rk-select-content-out var(--rk-select-exit-duration, 100ms) ease-in forwards;
+  animation: rk-select-content-out 100ms ease-in forwards;
 }
 
 .viewport {
   max-height: min(var(--radix-select-content-available-height), 320px);
-  padding: var(--rk-select-viewport-padding, 8px);
+  padding: 8px;
 }
 
 .item {
   align-items: center;
   border-radius: 6px;
-  color: var(--rk-select-item-color, var(--rk-select-content-color));
+  color: var(--rk-on-stone);
   cursor: pointer;
   display: flex;
   gap: 12px;
-  height: var(--rk-select-item-height, 42px);
+  height: 42px;
   justify-content: center;
   min-width: 0;
   outline: none;
@@ -166,11 +162,8 @@
 }
 
 .item[data-highlighted] {
-  background: var(
-    --rk-select-item-highlight-background,
-    color-mix(in srgb, var(--rk-primary) 16%, transparent)
-  );
-  color: var(--rk-select-item-highlight-color, var(--rk-primary));
+  background: color-mix(in srgb, var(--rk-primary) 16%, transparent);
+  color: var(--rk-primary);
 }
 
 .item[data-disabled] {

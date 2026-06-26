@@ -89,12 +89,10 @@ export function Checkbox({
       />
       <RocoShape
         aria-hidden="true"
-        background="var(--rk-checkbox-material)"
+        background="var(--rk-material-background)"
         className={styles.control}
         color={
-          shapeVariant === 'solid'
-            ? 'var(--rk-checkbox-on-material)'
-            : 'var(--rk-checkbox-material)'
+          shapeVariant === 'solid' ? 'var(--rk-material-color)' : 'var(--rk-material-background)'
         }
         contentClassName={styles.icon}
         shadow={isChecked && shadow}

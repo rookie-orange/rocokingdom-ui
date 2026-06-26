@@ -1,20 +1,16 @@
 .nav {
-  --rk-side-nav-gap: 14px;
-  --rk-side-nav-width: 320px;
-
   color: var(--rk-on-stone);
   display: flex;
   flex-direction: column;
-  gap: var(--rk-side-nav-gap);
+  gap: 14px;
   min-width: 0;
-  width: var(--rk-side-nav-width);
+  width: 320px;
 }
 
 .rail {
-  --rk-side-nav-gap: 18px;
-  --rk-side-nav-width: 96px;
-
   align-items: center;
+  gap: 18px;
+  width: 96px;
 }
 
 .stack {
@@ -22,14 +18,14 @@
 }
 
 .header {
+  --rk-material-background: var(--rk-stone);
+  --rk-material-color: var(--rk-on-stone);
   --rk-roco-shape-height: auto;
-  --rk-roco-shape-min-width: min(100%, var(--rk-side-nav-header-min-width, 232px));
+  --rk-roco-shape-min-width: min(100%, 232px);
   --rk-roco-shape-padding-block: 8px;
-  --rk-roco-shape-padding-inline: var(--rk-side-nav-header-padding-inline, 20px);
-  --rk-side-nav-header-material: var(--rk-stone);
-  --rk-side-nav-header-on-material: var(--rk-on-stone);
+  --rk-roco-shape-padding-inline: 20px;
 
-  color: var(--rk-side-nav-header-on-material);
+  color: var(--rk-material-color);
   flex: 0 0 auto;
 }
 
@@ -37,7 +33,7 @@
   align-items: center;
   display: inline-flex;
   gap: 8px;
-  min-height: var(--rk-side-nav-header-height, 72px);
+  min-height: 72px;
   width: 100%;
 }
 
@@ -45,7 +41,7 @@
   color: var(--rk-primary);
   display: inline-grid;
   flex: 0 0 auto;
-  font-size: var(--rk-side-nav-header-icon-size, 48px);
+  font-size: 48px;
   line-height: 1;
   min-width: 0;
   place-items: center;
@@ -62,43 +58,37 @@
 
 .headerEyebrow {
   color: var(--rk-primary);
-  font-size: var(--rk-side-nav-header-eyebrow-size, 16px);
+  font-size: 16px;
   overflow-wrap: anywhere;
 }
 
 .headerTitle {
-  font-size: var(--rk-side-nav-header-title-size, 24px);
+  font-size: 24px;
   overflow-wrap: anywhere;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--rk-side-nav-list-gap, 14px);
+  gap: 14px;
   min-width: 0;
 }
 
 .item {
-  --rk-side-nav-item-background: rgb(0 0 0 / 0.72);
-  --rk-side-nav-item-color: var(--rk-on-stone);
-  --rk-side-nav-item-height: 64px;
-  --rk-side-nav-item-icon-size: 30px;
-  --rk-side-nav-item-radius: 8px;
-
   appearance: none;
   align-items: center;
-  background: var(--rk-side-nav-item-background);
+  background: rgb(0 0 0 / 0.72);
   border: 0;
-  border-radius: var(--rk-side-nav-item-radius);
-  color: var(--rk-side-nav-item-color);
+  border-radius: 8px;
+  color: var(--rk-on-stone);
   cursor: pointer;
   display: flex;
   font: inherit;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
-  font-size: var(--rk-side-nav-item-font-size, 20px);
+  font-size: 20px;
   font-weight: 900;
   gap: 12px;
-  height: var(--rk-side-nav-item-height);
+  height: 64px;
   justify-content: flex-start;
   line-height: 1;
   min-width: 0;
@@ -135,18 +125,18 @@
 }
 
 .active {
-  --rk-side-nav-item-background: var(--rk-paper);
-  --rk-side-nav-item-color: var(--rk-on-paper);
+  background: var(--rk-paper);
+  color: var(--rk-on-paper);
 }
 
 .itemIcon {
   display: inline-grid;
   flex: 0 0 auto;
-  font-size: var(--rk-side-nav-item-icon-size);
-  height: var(--rk-side-nav-item-icon-size);
+  font-size: 30px;
+  height: 30px;
   line-height: 1;
   place-items: center;
-  width: var(--rk-side-nav-item-icon-size);
+  width: 30px;
 }
 
 .itemLabel {
@@ -158,9 +148,9 @@
 
 .itemBadge {
   align-items: center;
-  background: var(--rk-side-nav-badge-background, #d94b4b);
-  border-radius: var(--rk-side-nav-badge-radius, 3px);
-  color: var(--rk-side-nav-badge-color, white);
+  background: var(--rk-danger);
+  border-radius: 3px;
+  color: var(--rk-on-danger);
   display: inline-flex;
   flex: 0 0 auto;
   font-size: 12px;
@@ -188,15 +178,17 @@
 }
 
 .rail .item {
-  --rk-side-nav-item-height: 64px;
-  --rk-side-nav-item-icon-size: 38px;
-  --rk-side-nav-item-radius: 999px;
-
   aspect-ratio: 1;
-  border-radius: var(--rk-side-nav-item-radius);
+  border-radius: 999px;
   justify-content: center;
   padding: 0;
-  width: var(--rk-side-nav-item-height);
+  width: 64px;
+}
+
+.rail .itemIcon {
+  font-size: 38px;
+  height: 38px;
+  width: 38px;
 }
 
 .rail .itemLabel {

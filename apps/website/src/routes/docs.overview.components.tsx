@@ -325,156 +325,158 @@ export const Route = createFileRoute('/docs/overview/components')({
 
 function DocsComponentsPage() {
   return (
-    <article className="mx-auto w-full max-w-6xl px-10 py-14 max-[980px]:px-5 max-[980px]:py-10">
-      <section className="grid gap-7 border-b border-stone/15 pb-10">
-        <div className="flex items-end justify-between gap-5 max-sm:block">
-          <div>
-            <RuneText className="block text-base leading-none text-primary-strong">
-              COMPONENTS
-            </RuneText>
-            <h1 className="mt-4 font-roco text-6xl font-black leading-none text-on-paper max-sm:text-4xl">
-              组件
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg font-bold leading-8 text-stone/70">
-              这里集中展示组件入口和完整能力清单。已有文档入口的项目会自动打勾，并链接到对应文档。
+    <article className="h-full min-h-0 overflow-y-auto">
+      <div className="mx-auto w-full max-w-6xl px-10 py-14 max-[980px]:px-5 max-[980px]:py-10">
+        <section className="grid gap-7 border-b border-stone/15 pb-10">
+          <div className="flex items-end justify-between gap-5 max-sm:block">
+            <div>
+              <RuneText className="block text-base leading-none text-primary-strong">
+                COMPONENTS
+              </RuneText>
+              <h1 className="mt-4 font-roco text-6xl font-black leading-none text-on-paper max-sm:text-4xl">
+                组件
+              </h1>
+              <p className="mt-5 max-w-3xl text-lg font-bold leading-8 text-stone/70">
+                这里集中展示组件入口和完整能力清单。已有文档入口的项目会自动打勾，并链接到对应文档。
+              </p>
+            </div>
+            <p className="rounded-lg bg-primary-soft px-4 py-3 text-sm font-black text-on-primary-soft shadow-[0_6px_0_var(--rk-shadow-soft-color)] max-sm:mt-5 max-sm:inline-flex">
+              {completedTodoCount} / {todoCount} 已实现
             </p>
           </div>
-          <p className="rounded-lg bg-primary-soft px-4 py-3 text-sm font-black text-on-primary-soft shadow-[0_6px_0_var(--shadow-soft-color)] max-sm:mt-5 max-sm:inline-flex">
-            {completedTodoCount} / {todoCount} 已实现
-          </p>
-        </div>
-      </section>
+        </section>
 
-      <section className="grid gap-5 py-12">
-        <div>
-          <p className="text-sm font-black text-primary-strong">Docs</p>
-          <h2 className="mt-2 font-roco text-3xl font-black leading-none text-on-paper">
-            已实现组件
-          </h2>
-        </div>
+        <section className="grid gap-5 py-12">
+          <div>
+            <p className="text-sm font-black text-primary-strong">Docs</p>
+            <h2 className="mt-2 font-roco text-3xl font-black leading-none text-on-paper">
+              已实现组件
+            </h2>
+          </div>
 
-        <div className="grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {componentExamples.map((example, index) => {
-            const tone = cardTones[index % cardTones.length]
+          <div className="grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+            {componentExamples.map((example, index) => {
+              const tone = cardTones[index % cardTones.length]
 
-            return (
-              <Link
-                className={[
-                  'group rounded-lg border border-stone/15 bg-white/55 p-5 shadow-[0_8px_0_var(--shadow-soft-color)] transition hover:-translate-y-1 hover:bg-white',
-                  tone.border,
-                ].join(' ')}
-                key={example.slug}
-                to={example.path}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <p className="font-roco text-3xl font-black leading-none text-on-paper">
-                    {example.name}
+              return (
+                <Link
+                  className={[
+                    'group rounded-lg border border-stone/15 bg-white/55 p-5 shadow-[0_8px_0_var(--rk-shadow-soft-color)] transition hover:-translate-y-1 hover:bg-white',
+                    tone.border,
+                  ].join(' ')}
+                  key={example.slug}
+                  to={example.path}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-roco text-3xl font-black leading-none text-on-paper">
+                      {example.name}
+                    </p>
+                    <span
+                      aria-hidden="true"
+                      className={['mt-1 size-3 shrink-0 rounded-full', tone.marker].join(' ')}
+                    />
+                  </div>
+                  <p className="mt-4 min-h-16 text-base font-bold leading-7 text-stone/70">
+                    {example.description}
                   </p>
                   <span
-                    aria-hidden="true"
-                    className={['mt-1 size-3 shrink-0 rounded-full', tone.marker].join(' ')}
-                  />
+                    className={[
+                      'mt-5 inline-flex rounded-lg px-3 py-2 text-sm font-black transition',
+                      tone.badge,
+                      tone.action,
+                    ].join(' ')}
+                  >
+                    打开文档
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="grid gap-10 border-t border-stone/15 py-12">
+          <div>
+            <p className="text-sm font-black text-primary-strong">Roadmap</p>
+            <h2 className="mt-2 font-roco text-3xl font-black leading-none text-on-paper">
+              组件能力清单
+            </h2>
+            <p className="mt-3 max-w-2xl text-base font-bold leading-7 text-stone/70">
+              以常见 React 组件库为参照整理基础能力，方便持续补齐文档和实现。
+            </p>
+          </div>
+
+          {componentTodoGroups.map((group) => {
+            const groupDoneCount = group.items.filter(
+              (item) => item.implementedSlug && implementedExampleBySlug.has(item.implementedSlug),
+            ).length
+
+            return (
+              <section className="grid gap-4" key={group.title}>
+                <div className="flex items-center justify-between gap-4 border-b border-stone/15 pb-3">
+                  <h3 className="font-roco text-3xl font-black leading-none text-on-paper max-sm:text-2xl">
+                    {group.title}
+                  </h3>
+                  <span className="shrink-0 text-sm font-black text-primary-strong">
+                    {groupDoneCount} / {group.items.length}
+                  </span>
                 </div>
-                <p className="mt-4 min-h-16 text-base font-bold leading-7 text-stone/70">
-                  {example.description}
-                </p>
-                <span
-                  className={[
-                    'mt-5 inline-flex rounded-lg px-3 py-2 text-sm font-black transition',
-                    tone.badge,
-                    tone.action,
-                  ].join(' ')}
-                >
-                  打开文档
-                </span>
-              </Link>
+
+                <ul className="grid grid-cols-2 gap-x-8 max-lg:grid-cols-1">
+                  {group.items.map((item) => {
+                    const implementedExample = item.implementedSlug
+                      ? implementedExampleBySlug.get(item.implementedSlug)
+                      : undefined
+                    const isDone = Boolean(implementedExample)
+
+                    return (
+                      <li
+                        className="grid grid-cols-[auto_minmax(0,1fr)] gap-3 border-b border-stone/10 py-4"
+                        key={item.name}
+                      >
+                        <Checkbox
+                          aria-label={`${item.name} ${isDone ? '已实现' : '待实现'}`}
+                          checked={isDone}
+                          className="mt-1 shrink-0"
+                          material={isDone ? 'success' : 'stone'}
+                          onClick={(event) => event.preventDefault()}
+                          readOnly
+                        />
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            {implementedExample ? (
+                              <Link
+                                className="font-roco text-xl font-black leading-none text-on-paper underline decoration-primary-strong/35 underline-offset-4 transition hover:text-primary-strong"
+                                to={implementedExample.path}
+                              >
+                                {item.name}
+                              </Link>
+                            ) : (
+                              <span className="font-roco text-xl font-black leading-none text-on-paper">
+                                {item.name}
+                              </span>
+                            )}
+                            <span
+                              className={[
+                                'rounded px-2 py-1 text-xs font-black',
+                                isDone ? 'bg-success/15 text-success' : 'bg-stone/10 text-stone/60',
+                              ].join(' ')}
+                            >
+                              {isDone ? '已实现' : 'TODO'}
+                            </span>
+                          </div>
+                          <p className="mt-2 text-sm font-bold leading-6 text-stone/65">
+                            {item.description}
+                          </p>
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </section>
             )
           })}
-        </div>
-      </section>
-
-      <section className="grid gap-10 border-t border-stone/15 py-12">
-        <div>
-          <p className="text-sm font-black text-primary-strong">Roadmap</p>
-          <h2 className="mt-2 font-roco text-3xl font-black leading-none text-on-paper">
-            组件能力清单
-          </h2>
-          <p className="mt-3 max-w-2xl text-base font-bold leading-7 text-stone/70">
-            以常见 React 组件库为参照整理基础能力，方便持续补齐文档和实现。
-          </p>
-        </div>
-
-        {componentTodoGroups.map((group) => {
-          const groupDoneCount = group.items.filter(
-            (item) => item.implementedSlug && implementedExampleBySlug.has(item.implementedSlug),
-          ).length
-
-          return (
-            <section className="grid gap-4" key={group.title}>
-              <div className="flex items-center justify-between gap-4 border-b border-stone/15 pb-3">
-                <h3 className="font-roco text-3xl font-black leading-none text-on-paper max-sm:text-2xl">
-                  {group.title}
-                </h3>
-                <span className="shrink-0 text-sm font-black text-primary-strong">
-                  {groupDoneCount} / {group.items.length}
-                </span>
-              </div>
-
-              <ul className="grid grid-cols-2 gap-x-8 max-lg:grid-cols-1">
-                {group.items.map((item) => {
-                  const implementedExample = item.implementedSlug
-                    ? implementedExampleBySlug.get(item.implementedSlug)
-                    : undefined
-                  const isDone = Boolean(implementedExample)
-
-                  return (
-                    <li
-                      className="grid grid-cols-[auto_minmax(0,1fr)] gap-3 border-b border-stone/10 py-4"
-                      key={item.name}
-                    >
-                      <Checkbox
-                        aria-label={`${item.name} ${isDone ? '已实现' : '待实现'}`}
-                        checked={isDone}
-                        className="mt-1 shrink-0"
-                        material={isDone ? 'success' : 'stone'}
-                        onClick={(event) => event.preventDefault()}
-                        readOnly
-                      />
-                      <div className="min-w-0">
-                        <div className="flex flex-wrap items-center gap-2">
-                          {implementedExample ? (
-                            <Link
-                              className="font-roco text-xl font-black leading-none text-on-paper underline decoration-primary-strong/35 underline-offset-4 transition hover:text-primary-strong"
-                              to={implementedExample.path}
-                            >
-                              {item.name}
-                            </Link>
-                          ) : (
-                            <span className="font-roco text-xl font-black leading-none text-on-paper">
-                              {item.name}
-                            </span>
-                          )}
-                          <span
-                            className={[
-                              'rounded px-2 py-1 text-xs font-black',
-                              isDone ? 'bg-success/15 text-success' : 'bg-stone/10 text-stone/60',
-                            ].join(' ')}
-                          >
-                            {isDone ? '已实现' : 'TODO'}
-                          </span>
-                        </div>
-                        <p className="mt-2 text-sm font-bold leading-6 text-stone/65">
-                          {item.description}
-                        </p>
-                      </div>
-                    </li>
-                  )
-                })}
-              </ul>
-            </section>
-          )
-        })}
-      </section>
+        </section>
+      </div>
     </article>
   )
 }

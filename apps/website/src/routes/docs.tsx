@@ -189,7 +189,7 @@ function DocsLayout() {
   }
 
   return (
-    <main className="min-h-svh bg-paper text-on-paper">
+    <main className="h-svh overflow-hidden bg-paper text-on-paper">
       <nav
         aria-label="快捷操作"
         className="fixed right-5 top-5 z-50 flex flex-wrap justify-end gap-2 max-sm:right-3 max-sm:top-3 max-sm:max-w-[calc(100vw-1.5rem)] max-sm:gap-1.5"
@@ -241,7 +241,7 @@ function DocsLayout() {
       {isSearchOpen ? (
         <section
           aria-label="搜索文档"
-          className="fixed right-5 top-18 z-40 w-[min(calc(100vw-2rem),25rem)] rounded-lg border border-stone/15 bg-paper p-3 text-on-paper shadow-[0_14px_0_var(--shadow-soft-color)] max-sm:right-3 max-sm:top-16 max-sm:w-[calc(100vw-1.5rem)]"
+          className="fixed right-5 top-18 z-40 w-[min(calc(100vw-2rem),25rem)] rounded-lg border border-stone/15 bg-paper p-3 text-on-paper shadow-[0_14px_0_var(--rk-shadow-soft-color)] max-sm:right-3 max-sm:top-16 max-sm:w-[calc(100vw-1.5rem)]"
           id="docs-search-panel"
         >
           <label className="sr-only" htmlFor="docs-search-input">
@@ -285,19 +285,19 @@ function DocsLayout() {
         </section>
       ) : null}
 
-      <div className="grid grid-cols-[336px_minmax(0,1fr)] max-[980px]:block">
+      <div className="grid h-full min-h-0 grid-cols-[336px_minmax(0,1fr)] max-[980px]:grid-cols-1 max-[980px]:grid-rows-[minmax(0,45svh)_minmax(0,1fr)]">
         <aside
           aria-label="文档导航"
-          className="sticky top-0 box-border h-svh overflow-visible pr-4 max-[980px]:relative max-[980px]:h-auto max-[980px]:border-b max-[980px]:border-stone/15 max-[980px]:px-5 max-[980px]:pb-5 max-[980px]:pt-18"
+          className="box-border h-full min-h-0 overflow-visible pr-4 max-[980px]:border-b max-[980px]:border-stone/15 max-[980px]:px-5 max-[980px]:pb-5 max-[980px]:pt-18"
         >
           <Panel
-            className="h-full min-h-0 [--docs-sidebar-curve-inset:34px] max-[980px]:h-auto max-[980px]:[--docs-sidebar-curve-inset:24px]"
-            contentClassName="flex h-full min-h-0 !p-0 max-[980px]:h-auto"
+            className="h-full min-h-0 [--docs-sidebar-curve-inset:34px] max-[980px]:[--docs-sidebar-curve-inset:24px]"
+            contentClassName="flex h-full min-h-0 !p-0"
             curve="right"
             curveInset="var(--docs-sidebar-curve-inset)"
             style={sidebarPanelStyle}
           >
-            <div className="box-border scrollbar-none h-full w-[calc(100%-var(--docs-sidebar-curve-inset))] min-w-0 overflow-y-auto px-6 py-8 max-[980px]:h-auto max-[980px]:px-5 max-[980px]:py-5">
+            <div className="box-border scrollbar-none h-full w-[calc(100%-var(--docs-sidebar-curve-inset))] min-w-0 overflow-y-auto px-6 py-8 max-[980px]:px-5 max-[980px]:py-5">
               <nav className="grid gap-7 max-[980px]:gap-5">
                 {sidebarSections.map((section) => (
                   <DocsSidebarSection
@@ -313,7 +313,9 @@ function DocsLayout() {
           </Panel>
         </aside>
 
-        <Outlet />
+        <section className="min-h-0 overflow-hidden" aria-label="文档内容">
+          <Outlet />
+        </section>
       </div>
     </main>
   )

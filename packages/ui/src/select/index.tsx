@@ -153,7 +153,7 @@ export function Select({
       <RadixSelect.Trigger {...triggerProps} aria-label={triggerAriaLabel} asChild>
         <RocoShape
           as="button"
-          background="var(--rk-select-material)"
+          background="var(--rk-material-background)"
           className={clsx(
             prefixCls,
             styles.trigger,
@@ -161,7 +161,7 @@ export function Select({
             rootClassName,
             triggerClassName,
           )}
-          color="var(--rk-select-on-material)"
+          color="var(--rk-material-color)"
           contentClassName={styles.triggerContent}
           type="button"
         >
