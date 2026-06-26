@@ -706,6 +706,18 @@ test('lets toggle group item styles be customized and expands selected items', (
   expect(toggleGroupCss).toContain('padding-inline 220ms ease')
 })
 
+test('animates the selected toggle item with a spring pop', () => {
+  expect(toggleGroupCss).toContain('@keyframes rk-toggle-item-spring-select')
+  expect(toggleGroupCss).toContain(
+    'animation: rk-toggle-item-spring-select var(--rk-toggle-item-select-duration, 260ms) linear;',
+  )
+  expect(toggleGroupCss).toContain('transform: scale(0.9);')
+  expect(toggleGroupCss).toContain('transform: scaleY(0.9) scaleX(1.18);')
+  expect(toggleGroupCss).toContain('transform: scaleY(1.08) scaleX(0.94);')
+  expect(toggleGroupCss).toContain('transform: scale(1);')
+  expect(toggleGroupCss).toContain('@media (prefers-reduced-motion: reduce)')
+})
+
 test('renders a square-shape backed checkbox with check icon only when checked', () => {
   const checkedHtml = renderToString(
     createElement(

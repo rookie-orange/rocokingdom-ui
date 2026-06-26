@@ -43,6 +43,7 @@
   font-size: var(--rk-toggle-item-font-size);
   font-weight: var(--rk-toggle-item-font-weight);
   text-decoration: none;
+  transform-origin: center;
   transition:
     filter 160ms ease,
     min-width 220ms ease,
@@ -149,6 +150,7 @@
   --rk-toggle-item-padding-inline: var(--rk-toggle-item-selected-padding-inline);
   --rk-roco-shape-width: var(--rk-toggle-item-selected-width, var(--rk-toggle-item-width, auto));
 
+  animation: rk-toggle-item-spring-select var(--rk-toggle-item-select-duration, 260ms) linear;
   z-index: 1;
 }
 
@@ -166,8 +168,31 @@
   --rk-rune-text-base-font-weight: var(--rk-toggle-item-font-weight);
 }
 
+@keyframes rk-toggle-item-spring-select {
+  0% {
+    transform: scale(0.9);
+  }
+
+  20% {
+    transform: scaleY(0.9) scaleX(1.18);
+  }
+
+  60% {
+    transform: scaleY(1.08) scaleX(0.94);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .item {
     transition-duration: 1ms;
+  }
+
+  .selected {
+    animation-duration: 1ms;
+    animation-timing-function: linear;
   }
 }
