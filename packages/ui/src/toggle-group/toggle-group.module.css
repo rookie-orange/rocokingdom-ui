@@ -1,0 +1,173 @@
+.group {
+  --rk-toggle-group-focus-color: var(--rk-primary);
+  --rk-toggle-group-gap: 10px;
+
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--rk-toggle-group-gap);
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.item {
+  --rk-toggle-item-font-family: var(--rk-font-family-base, inherit);
+  --rk-toggle-item-font-size: 14px;
+  --rk-toggle-item-font-weight: 400;
+  --rk-toggle-item-height: 32px;
+  --rk-toggle-item-min-width: var(--rk-toggle-group-item-min-width, auto);
+  --rk-toggle-item-padding-inline: 18px;
+  --rk-toggle-item-selected-min-width: var(--rk-toggle-group-selected-min-width, 118px);
+  --rk-toggle-item-selected-padding-inline: 30px;
+  --rk-roco-shape-height: var(--rk-toggle-item-height);
+  --rk-roco-shape-min-width: var(--rk-toggle-item-min-width);
+  --rk-roco-shape-padding-block: 2px;
+  --rk-roco-shape-padding-inline: var(--rk-toggle-item-padding-inline);
+  --rk-roco-shape-width: var(--rk-toggle-item-width, auto);
+
+  appearance: none;
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font: inherit;
+  font-family: var(--rk-toggle-item-font-family);
+  font-size: var(--rk-toggle-item-font-size);
+  font-weight: var(--rk-toggle-item-font-weight);
+  text-decoration: none;
+  transition:
+    filter 160ms ease,
+    min-width 220ms ease,
+    padding-inline 220ms ease,
+    transform 120ms ease,
+    width 220ms ease;
+  user-select: none;
+}
+
+.default,
+.primary {
+  --rk-toggle-item-material: var(--rk-primary);
+  --rk-toggle-item-on-material: var(--rk-on-primary);
+}
+
+.paper {
+  --rk-toggle-item-material: var(--rk-paper);
+  --rk-toggle-item-on-material: var(--rk-on-paper);
+}
+
+.stone {
+  --rk-toggle-item-material: var(--rk-stone);
+  --rk-toggle-item-on-material: var(--rk-on-stone);
+}
+
+.primarySoft {
+  --rk-toggle-item-material: var(--rk-primary-soft);
+  --rk-toggle-item-on-material: var(--rk-on-primary-soft);
+}
+
+.primaryMuted {
+  --rk-toggle-item-material: var(--rk-primary-muted);
+  --rk-toggle-item-on-material: var(--rk-on-primary-muted);
+}
+
+.primaryStrong {
+  --rk-toggle-item-material: var(--rk-primary-strong);
+  --rk-toggle-item-on-material: var(--rk-on-primary-strong);
+}
+
+.success {
+  --rk-toggle-item-material: var(--rk-success);
+  --rk-toggle-item-on-material: var(--rk-on-success);
+}
+
+.danger {
+  --rk-toggle-item-material: var(--rk-danger);
+  --rk-toggle-item-on-material: var(--rk-on-danger);
+}
+
+.small {
+  --rk-toggle-item-font-size: 12px;
+  --rk-toggle-item-height: 24px;
+  --rk-toggle-item-padding-inline: 14px;
+  --rk-toggle-item-selected-min-width: var(--rk-toggle-group-selected-min-width, 96px);
+  --rk-toggle-item-selected-padding-inline: 22px;
+}
+
+.middle {
+  --rk-toggle-item-height: 32px;
+}
+
+.large {
+  --rk-toggle-item-font-size: 16px;
+  --rk-toggle-item-height: 40px;
+  --rk-toggle-item-padding-inline: 22px;
+  --rk-toggle-item-selected-min-width: var(--rk-toggle-group-selected-min-width, 136px);
+  --rk-toggle-item-selected-padding-inline: 34px;
+}
+
+.solid {
+}
+
+.outline {
+}
+
+.text {
+  --rk-roco-shape-padding-inline: var(--rk-toggle-item-text-padding-inline, 8px);
+}
+
+.item:hover {
+  filter: brightness(1.08);
+}
+
+.item:active {
+  filter: brightness(0.9);
+  transform: scale(0.96) translateY(2px);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--rk-toggle-group-focus-color);
+  outline-offset: 2px;
+}
+
+.item:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  opacity: 0.48;
+  transform: none;
+}
+
+.selected {
+  --rk-toggle-item-min-width: var(--rk-toggle-item-selected-min-width);
+  --rk-toggle-item-padding-inline: var(--rk-toggle-item-selected-padding-inline);
+  --rk-roco-shape-width: var(--rk-toggle-item-selected-width, var(--rk-toggle-item-width, auto));
+
+  z-index: 1;
+}
+
+.unselected {
+  z-index: 0;
+}
+
+.itemContent {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.itemText {
+  --rk-rune-text-base-font-family: var(--rk-toggle-item-font-family);
+  --rk-rune-text-base-font-weight: var(--rk-toggle-item-font-weight);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition-duration: 1ms;
+  }
+}

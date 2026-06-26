@@ -50,6 +50,15 @@ export type {
   RadioGroupSize,
   RadioGroupVariant,
 } from './radio-group'
+export { ToggleGroup, ToggleItem, toggleGroupPrefixCls, toggleItemPrefixCls } from './toggle-group'
+export type {
+  ToggleGroupMaterial,
+  ToggleGroupOrientation,
+  ToggleGroupProps,
+  ToggleGroupSize,
+  ToggleGroupVariant,
+  ToggleItemProps,
+} from './toggle-group'
 export { RocoTheme, rocoThemePrefixCls, useRocoTheme, useRocoThemeStyle } from './theme'
 export type { RocoThemeColors, RocoThemeProps, RocoThemeContextValue } from './theme'
 export { RocoShape, rocoShapePrefixCls } from './roco-shape'

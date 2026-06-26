@@ -73,6 +73,13 @@ export const examples: ExampleMeta[] = [
     slug: 'radio-group',
   },
   {
+    category: 'components',
+    description: '按钮风格切换组，选中时变色并拉宽底形。',
+    name: 'ToggleGroup',
+    path: '/docs/components/toggle-group',
+    slug: 'toggle-group',
+  },
+  {
     category: 'overview',
     description: '全局主题变量注入器，用于运行时切换品牌色。',
     name: 'RocoTheme',

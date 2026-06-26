@@ -23,6 +23,8 @@ import {
   RocoTheme,
   RocoShape,
   RuneText,
+  ToggleGroup,
+  ToggleItem,
   buttonNormalPrefixCls,
   buttonPrefixCls,
   checkboxPrefixCls,
@@ -41,6 +43,8 @@ import {
   rocoThemePrefixCls,
   runeTextPrefixCls,
   rocoShapePrefixCls,
+  toggleGroupPrefixCls,
+  toggleItemPrefixCls,
   useRocoTheme,
 } from '../src/index.ts'
 
@@ -67,6 +71,14 @@ const radioGroupCss = readFileSync(
 )
 const radioGroupSource = readFileSync(
   new URL('../src/radio-group/index.tsx', import.meta.url),
+  'utf8',
+)
+const toggleGroupCss = readFileSync(
+  new URL('../src/toggle-group/toggle-group.module.css', import.meta.url),
+  'utf8',
+)
+const toggleGroupSource = readFileSync(
+  new URL('../src/toggle-group/index.tsx', import.meta.url),
   'utf8',
 )
 const modalSource = readFileSync(new URL('../src/modal/index.tsx', import.meta.url), 'utf8')
@@ -116,6 +128,8 @@ test('exports a single button prefix class', () => {
   expect(modalPrefixCls).toBe('rk-modal')
   expect(radioGroupPrefixCls).toBe('rk-radio-group')
   expect(radioItemPrefixCls).toBe('rk-radio-item')
+  expect(toggleGroupPrefixCls).toBe('rk-toggle-group')
+  expect(toggleItemPrefixCls).toBe('rk-toggle-item')
   expect(rocoThemePrefixCls).toBe('rk-theme')
   expect(rocoShapePrefixCls).toBe('rk-roco-shape')
   expect(runeTextPrefixCls).toBe('rk-rune-text')
@@ -235,6 +249,17 @@ test('supports semantic materials for lightweight controls', () => {
   expect(radioGroupCss).toContain('--rk-radio-item-on-material: var(--rk-on-success);')
   expect(radioGroupCss).toContain('--rk-radio-item-material: var(--rk-danger);')
   expect(radioGroupCss).toContain('--rk-radio-item-on-material: var(--rk-on-danger);')
+  expect(toggleGroupSource).toContain("import type { MaterialPreset } from '../material'")
+  expect(toggleGroupCss).toContain('--rk-toggle-item-material: var(--rk-primary-soft);')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-on-material: var(--rk-on-primary-soft);')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-material: var(--rk-primary-muted);')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-on-material: var(--rk-on-primary-muted);')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-material: var(--rk-primary-strong);')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-on-material: var(--rk-on-primary-strong);')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-material: var(--rk-success);')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-on-material: var(--rk-on-success);')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-material: var(--rk-danger);')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-on-material: var(--rk-on-danger);')
   expect(checkboxSource).toContain("import type { MaterialPreset } from '../material'")
   expect(checkboxCss).toContain('--rk-checkbox-material: var(--rk-primary-soft);')
   expect(checkboxCss).toContain('--rk-checkbox-on-material: var(--rk-on-primary-soft);')
@@ -591,6 +616,94 @@ test('animates the selected radio item with the modal spring scale', () => {
   expect(radioGroupCss).toContain('transform: scaleY(1.1) scaleX(0.9);')
   expect(radioGroupCss).toContain('transform: scale(var(--rk-radio-item-active-scale));')
   expect(radioGroupCss).toContain('@media (prefers-reduced-motion: reduce)')
+})
+
+test('renders a compound toggle group with default selected and unselected materials', () => {
+  const html = renderToString(
+    createElement(
+      ToggleGroup,
+      {
+        className: 'custom-toggle-group',
+        name: 'section',
+        rootClassName: 'app-toggle-group',
+        value: 'paper',
+      },
+      createElement(
+        ToggleItem,
+        {
+          className: 'toggle-option',
+          unselectedClassName: 'idle-toggle',
+          value: 'stone',
+        },
+        'Stone',
+      ),
+      createElement(
+        ToggleItem,
+        {
+          className: 'toggle-option',
+          selectedClassName: 'selected-toggle',
+          value: 'paper',
+        },
+        'Paper',
+      ),
+    ),
+  )
+
+  expect(html).toContain('role="group"')
+  expect(html).toContain('rk-toggle-group')
+  expect(html).toContain('rk-toggle-item')
+  expect(html).toContain('app-toggle-group')
+  expect(html).toContain('custom-toggle-group')
+  expect(html).toContain('aria-pressed="true"')
+  expect(html).toContain('aria-pressed="false"')
+  expect(html).toContain('selected-toggle')
+  expect(html).toContain('idle-toggle')
+  expect(html).toContain('toggle-option')
+  expect(html).toContain('rk-rune-text')
+  expect(html).toContain('paper')
+  expect(html).toContain('stone')
+  expect(html).toContain('type="hidden"')
+  expect(html).toContain('name="section"')
+  expect(html).toContain('value="paper"')
+})
+
+test('lets toggle group item styles be customized and expands selected items', () => {
+  const html = renderToString(
+    createElement(
+      ToggleGroup,
+      {
+        selectedMaterial: 'primaryStrong',
+        selectedVariant: 'outline',
+        unselectedMaterial: 'paper',
+        unselectedVariant: 'text',
+        value: 'map',
+      },
+      createElement(ToggleItem, { style: { minWidth: 96 }, value: 'map' }, 'Map'),
+      createElement(
+        ToggleItem,
+        {
+          className: 'bag-toggle',
+          unselectedMaterial: 'stone',
+          value: 'bag',
+        },
+        'Bag',
+      ),
+    ),
+  )
+
+  expect(html).toContain('primaryStrong')
+  expect(html).toContain('outline')
+  expect(html).toContain('stone')
+  expect(html).toContain('text')
+  expect(html).toContain('bag-toggle')
+  expect(html).toContain('min-width:96px')
+  expect(toggleGroupSource).not.toContain("from '../button'")
+  expect(toggleGroupSource).toContain("import { RocoShape } from '../roco-shape'")
+  expect(toggleGroupSource).toContain("import { RuneText } from '../rune-text'")
+  expect(toggleGroupCss).toContain('--rk-toggle-item-selected-min-width')
+  expect(toggleGroupCss).toContain('--rk-toggle-item-selected-padding-inline')
+  expect(toggleGroupCss).toContain('min-width 220ms ease')
+  expect(toggleGroupCss).toContain('padding-inline 220ms ease')
 })
 
 test('renders a square-shape backed checkbox with check icon only when checked', () => {

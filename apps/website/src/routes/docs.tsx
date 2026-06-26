@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
-import { Link, Outlet, createFileRoute, useRouterState } from '@tanstack/react-router'
-import { Panel } from 'rocokingdom-ui'
+import { useEffect, useRef } from 'react'
+import { Link, Outlet, createFileRoute, useNavigate, useRouterState } from '@tanstack/react-router'
+import { Panel, ToggleGroup, ToggleItem } from 'rocokingdom-ui'
 import logoUrl from '../assets/roco-kingdom-logo.png'
 import {
   componentExamples,
@@ -75,22 +76,93 @@ const sidebarSections = [
   },
 ]
 
+interface DocsSidebarLink {
+  label: string
+  to: string
+}
+
+interface DocsSidebarSectionProps {
+  links: DocsSidebarLink[]
+  onNavigate: (path: string) => void
+  pathname: string
+  title: string
+}
+
 interface DocsSidebarPanelStyle extends CSSProperties {
   '--rk-panel-background'?: string
   '--rk-panel-color'?: string
 }
 
 const sidebarPanelStyle: DocsSidebarPanelStyle = {
-  '--rk-panel-background': '#fff9ec',
-  '--rk-panel-color': 'var(--on-paper)',
+  '--rk-panel-background': 'var(--rk-stone)',
+  '--rk-panel-color': 'var(--rk-on-stone)',
 }
 
 export const Route = createFileRoute('/docs')({
   component: DocsLayout,
 })
 
+function DocsSidebarSection({ links, onNavigate, pathname, title }: DocsSidebarSectionProps) {
+  const scrollerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const scroller = scrollerRef.current
+    const activeItem = scrollerRef.current?.querySelector<HTMLElement>(
+      '[data-docs-nav-active="true"]',
+    )
+
+    if (!scroller || !activeItem) {
+      return
+    }
+
+    const activeRect = activeItem.getBoundingClientRect()
+    const scrollerRect = scroller.getBoundingClientRect()
+
+    scroller.scrollLeft +=
+      activeRect.left - scrollerRect.left - (scrollerRect.width - activeRect.width) / 2
+  }, [pathname])
+
+  return (
+    <div>
+      <p className="px-3 font-roco text-2xl font-black leading-none text-primary-strong">{title}</p>
+      <div className="mt-2" ref={scrollerRef}>
+        <ToggleGroup
+          aria-label={`${title} 文档导航`}
+          onValueChange={onNavigate}
+          orientation="vertical"
+          rootClassName="w-full"
+          unselectedMaterial="stone"
+          selectedMaterial="paper"
+          value={links.some((link) => link.to === pathname) ? pathname : ''}
+        >
+          {links.map((link) => (
+            <ToggleItem
+              data-docs-nav-active={link.to === pathname || undefined}
+              key={link.to}
+              value={link.to}
+              size="large"
+              className="w-full! flex justify-start!"
+            >
+              {link.label}
+            </ToggleItem>
+          ))}
+        </ToggleGroup>
+      </div>
+    </div>
+  )
+}
+
 function DocsLayout() {
+  const navigate = useNavigate()
   const pathname = useRouterState({ select: (state) => state.location.pathname })
+
+  function navigateTo(nextPath: string) {
+    if (nextPath === pathname) {
+      return
+    }
+
+    void navigate({ to: nextPath })
+  }
 
   return (
     <main className="min-h-svh bg-paper text-on-paper">
@@ -138,26 +210,13 @@ function DocsLayout() {
             <div className="box-border scrollbar-none h-full w-[calc(100%-var(--docs-sidebar-curve-inset))] min-w-0 overflow-y-auto px-6 py-8 max-[980px]:h-auto max-[980px]:px-5 max-[980px]:py-5">
               <nav className="grid gap-7 max-[980px]:gap-5">
                 {sidebarSections.map((section) => (
-                  <div key={section.title}>
-                    <p className="px-3 font-roco text-2xl font-black leading-none text-primary-strong">
-                      {section.title}
-                    </p>
-                    <div className="mt-2 grid gap-2 max-[980px]:flex max-[980px]:overflow-x-auto max-[980px]:pb-1">
-                      {section.links.map((link) => (
-                        <Link
-                          activeOptions={{ exact: true }}
-                          activeProps={{
-                            className: 'bg-primary-strong text-on-primary-strong',
-                          }}
-                          className="rounded-lg px-3 py-2 text-base font-black text-stone/70 transition hover:bg-primary-muted hover:text-on-primary-muted max-[980px]:shrink-0"
-                          key={link.to}
-                          to={link.to}
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+                  <DocsSidebarSection
+                    key={section.title}
+                    links={section.links}
+                    onNavigate={navigateTo}
+                    pathname={pathname}
+                    title={section.title}
+                  />
                 ))}
               </nav>
             </div>
