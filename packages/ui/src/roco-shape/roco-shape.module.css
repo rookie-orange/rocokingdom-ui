@@ -4,10 +4,8 @@
 
   color: var(--rk-roco-shape-color);
   display: block;
-  height: 100%;
   overflow: visible;
   position: relative;
-  width: 100%;
 }
 
 .shape.shape {
@@ -15,7 +13,9 @@
 }
 
 .shape:not(.withContent) {
+  height: 100%;
   pointer-events: none;
+  width: 100%;
 }
 
 .circle,
@@ -27,12 +27,12 @@
   align-items: center;
   box-sizing: border-box;
   display: inline-flex;
-  height: var(--rk-roco-shape-height, auto);
+  height: var(--rk-control-height-middle, 32px);
   justify-content: center;
-  min-height: var(--rk-roco-shape-height, 32px);
-  min-width: var(--rk-roco-shape-min-width, auto);
-  padding: var(--rk-roco-shape-padding-block, 2px) var(--rk-roco-shape-padding-inline, 18px);
-  width: var(--rk-roco-shape-width, auto);
+  min-height: var(--rk-control-height-middle, 32px);
+  min-width: auto;
+  padding: 2px var(--rk-control-padding-inline-middle, 18px);
+  width: auto;
 }
 
 .layer {
@@ -49,10 +49,7 @@
 }
 
 .withShadow .fill {
-  filter: drop-shadow(
-    var(--rk-roco-shape-shadow-x, 0) var(--rk-roco-shape-shadow-y, 2px)
-      var(--rk-roco-shape-shadow-blur, 0) var(--rk-roco-shape-shadow, var(--rk-shadow-strong-color))
-  );
+  filter: drop-shadow(0 2px 0 var(--rk-shadow-strong-color));
 }
 
 .stroke {
@@ -90,7 +87,7 @@
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: var(--rk-roco-shape-curve-stroke-width, var(--rk-roco-shape-stroke-width, 1px));
+  stroke-width: 1px;
 }
 
 .stroke .center {
@@ -108,15 +105,12 @@
   fill: none;
   stroke: currentColor;
   stroke-linecap: butt;
-  stroke-width: var(--rk-roco-shape-outline-stroke-width, 2px);
+  stroke-width: 2px;
 }
 
 .outline .curve,
 .outline .centerLine {
-  stroke-width: var(
-    --rk-roco-shape-outline-curve-stroke-width,
-    var(--rk-roco-shape-outline-stroke-width, 2px)
-  );
+  stroke-width: 2px;
 }
 
 .fixed {
@@ -147,5 +141,5 @@
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: var(--rk-roco-shape-fixed-stroke-width, var(--rk-roco-shape-stroke-width, 1px));
+  stroke-width: 1px;
 }

@@ -218,12 +218,12 @@ test('uses roco shape as the button root color primitive', () => {
   expect(buttonSource).toContain('<RuneText className={styles.content}>')
   expect(buttonSource).not.toContain('<Material')
   expect(buttonSource).not.toContain('<button className={resolvedClassName}')
-  expect(buttonCss).toContain('--rk-roco-shape-height: 32px;')
-  expect(buttonCss).toContain('--rk-roco-shape-padding-inline: 18px;')
+  expect(buttonCss).toContain('height: var(--rk-control-height-middle, 32px);')
+  expect(buttonCss).toContain('padding: 2px var(--rk-control-padding-inline-middle, 18px);')
   expect(buttonCss).not.toContain('position: absolute;')
   expect(buttonCss).not.toContain('z-index:')
-  expect(buttonCss).toContain('--rk-rune-text-base-font-family: var(--rk-button-font-family);')
-  expect(buttonCss).toContain('--rk-rune-text-base-font-weight: var(--rk-button-font-weight);')
+  expect(buttonCss).not.toContain('--rk-button-')
+  expect(buttonCss).not.toContain('--rk-rune-text-')
 })
 
 test('supports semantic materials for lightweight controls', () => {
@@ -290,13 +290,13 @@ test('passes the optional shadow prop from button to its shape', () => {
 
 test('pins button sizes with explicit heights in flex rows', () => {
   expect(buttonCss).toContain('box-sizing: border-box;')
-  expect(buttonCss).toContain('--rk-roco-shape-height: 32px;')
+  expect(buttonCss).toContain('height: var(--rk-control-height-middle, 32px);')
   expect(buttonCss).not.toContain('\n  height: var(--rk-button-height);')
   expect(buttonCss).not.toContain('min-height: var(--rk-button-height);')
   expect(buttonNormalCss).toContain('box-sizing: border-box;')
-  expect(buttonNormalCss).toContain('height: 32px;')
-  expect(buttonNormalCss).toContain('height: 40px;')
-  expect(buttonNormalCss).toContain('height: 48px;')
+  expect(buttonNormalCss).toContain('height: var(--rk-control-height-small, 24px);')
+  expect(buttonNormalCss).toContain('height: var(--rk-control-height-middle, 32px);')
+  expect(buttonNormalCss).toContain('height: calc(var(--rk-control-height-large, 40px) + 8px);')
   expect(buttonNormalCss).not.toContain('min-height:')
 })
 
@@ -336,7 +336,8 @@ test('renders roco shape shadow only when enabled', () => {
   expect(baseStyleCss).toContain('--rk-shadow-soft-color: rgb(36 38 40 / 0.08);')
   expect(baseStyleCss).toContain('--rk-shadow-color: rgb(36 38 40 / 0.16);')
   expect(baseStyleCss).toContain('--rk-shadow-strong-color: rgb(36 38 40 / 0.32);')
-  expect(rocoShapeCss).toContain('var(--rk-roco-shape-shadow, var(--rk-shadow-strong-color))')
+  expect(rocoShapeCss).toContain('filter: drop-shadow(0 2px 0 var(--rk-shadow-strong-color));')
+  expect(rocoShapeCss).not.toContain('--rk-roco-shape-shadow')
 })
 
 test('renders fixed roco shape paths for circle and square', () => {
@@ -349,7 +350,8 @@ test('renders fixed roco shape paths for circle and square', () => {
   expect(circleHtml.match(/<path/g)).toHaveLength(1)
   expect(squareHtml).toContain('M3.51624 2.91328')
   expect(squareHtml.match(/<path/g)).toHaveLength(1)
-  expect(rocoShapeCss).toContain('--rk-roco-shape-fixed-stroke-width')
+  expect(rocoShapeCss).toContain('stroke-width: 1px;')
+  expect(rocoShapeCss).not.toContain('--rk-roco-shape-fixed-stroke-width')
 })
 
 test('renders roco shape as a content surface with material colors', () => {
@@ -717,13 +719,14 @@ test('lets toggle group item styles be customized and expands selected items', (
   expect(toggleGroupSource).not.toContain("from '../button'")
   expect(toggleGroupSource).toContain("import { RocoShape } from '../roco-shape'")
   expect(toggleGroupSource).toContain("import { RuneText } from '../rune-text'")
-  expect(toggleGroupCss).toContain('--rk-roco-shape-min-width: 118px;')
-  expect(toggleGroupCss).toContain('--rk-roco-shape-padding-inline: 30px;')
-  expect(toggleGroupCss).toContain('--rk-roco-shape-min-width: 96px;')
-  expect(toggleGroupCss).toContain('--rk-roco-shape-min-width: 136px;')
+  expect(toggleGroupCss).toContain('min-width: 118px;')
+  expect(toggleGroupCss).toContain('padding-inline: 30px;')
+  expect(toggleGroupCss).toContain('min-width: 96px;')
+  expect(toggleGroupCss).toContain('min-width: 136px;')
   expect(toggleGroupCss).toContain('min-width 220ms ease')
   expect(toggleGroupCss).toContain('padding-inline 220ms ease')
   expect(toggleGroupCss).not.toContain('--rk-toggle-')
+  expect(toggleGroupCss).not.toContain('--rk-roco-shape-')
 })
 
 test('animates the selected toggle item with a spring pop', () => {
@@ -774,11 +777,20 @@ test('uses square roco shape and the shared check icon for checkbox visuals', ()
   expect(checkboxSource).toContain('shape="square"')
   expect(checkboxSource).toContain('contentClassName={styles.icon}')
   expect(checkboxSource).toContain('{isChecked ? (icon ?? <Check />) : null}')
-  expect(checkboxCss).toContain('--rk-roco-shape-height: 28px;')
-  expect(checkboxCss).toContain('--rk-roco-shape-min-width: 28px;')
+  expect(checkboxCss).toContain('height: calc(var(--rk-control-height-middle, 32px) - 4px);')
+  expect(checkboxCss).toContain('min-width: calc(var(--rk-control-height-middle, 32px) - 4px);')
+  expect(checkboxCss).toContain('height: calc(var(--rk-control-height-small, 24px) - 2px);')
+  expect(checkboxCss).toContain('height: calc(var(--rk-control-height-large, 40px) - 4px);')
+  expect(checkboxCss).toContain('font-size: calc(var(--rk-control-height-middle, 32px) * 1.25);')
+  expect(checkboxCss).toContain('.checkbox .control.control')
+  expect(checkboxCss).toContain('.small .control.control')
+  expect(checkboxCss).toContain('.large .control.control')
+  expect(checkboxCss).toContain('.small .control')
   expect(checkboxCss).toContain('animation: rk-checkbox-pop 220ms linear;')
   expect(checkboxCss).toContain('.input:focus-visible + .control')
   expect(checkboxCss).toContain('@keyframes rk-checkbox-pop')
+  expect(checkboxCss).not.toContain('--rk-checkbox-')
+  expect(checkboxCss).not.toContain('--rk-roco-shape-')
 })
 
 test('renders a radix-backed modal trigger on the server', () => {
@@ -990,10 +1002,11 @@ test('uses radix select and animates select content with scale', () => {
   expect(selectCss).not.toContain('--rk-select-background')
   expect(selectCss).not.toContain('rgb(0 0 0 / 0.72)')
   expect(selectCss).not.toContain('rgb(20 20 20 / 0.96)')
-  expect(selectCss).toContain('--rk-roco-shape-height: 36px;')
-  expect(selectCss).toContain('--rk-roco-shape-min-width: 176px;')
+  expect(selectCss).toContain('height: calc(var(--rk-control-height-middle, 32px) + 4px);')
+  expect(selectCss).toContain('min-width: 176px;')
   expect(selectCss).not.toContain('.trigger .triggerShape')
   expect(selectCss).not.toContain('--rk-roco-shape-fill-overlap')
+  expect(selectCss).not.toContain('--rk-roco-shape-')
   expect(selectCss).not.toContain('.trigger:active')
   expect(selectCss).not.toContain('transform: scale(0.96) translateY(4px);')
   expect(selectCss).toContain('.triggerContent')
@@ -1031,8 +1044,9 @@ test('supports optional modal header rune text behind the title', () => {
   expect(modalSource).toContain('`${prefixCls}-header-rune-text`')
   expect(modalSource).toContain('<RadixDialogTitle asChild>')
   expect(modalSource).toContain('as="h2"')
-  expect(modalCss).toContain('--rk-rune-text-base-font-family')
-  expect(modalCss).toContain('--rk-rune-text-base-font-weight')
+  expect(modalCss).toContain('font-family: var(--rk-font-family-base, system-ui, sans-serif);')
+  expect(modalCss).not.toContain(['font', 'weight:'].join('-'))
+  expect(modalCss).not.toContain('--rk-rune-text-')
 })
 
 test('styles modal as an overlayed dialog with optional regions', () => {
@@ -1073,6 +1087,10 @@ test('renders a scoped color variable theme', () => {
   expect(themeSource).toContain(
     'const RocoThemeContext = createContext<RocoThemeContextValue | undefined>(undefined)',
   )
+  expect(themeSource).toContain('export interface RocoThemeTokens')
+  expect(themeSource).toContain("'--rk-font-size-base'")
+  expect(themeSource).toContain("'--rk-radius'")
+  expect(themeSource).toContain("'--rk-control-height-middle'")
   expect(themeSource).toContain('const theme = use(RocoThemeContext)')
   expect(themeSource).toContain(
     "throw new Error('`useRocoTheme` must be used within a `RocoTheme`')",
@@ -1106,6 +1124,11 @@ test('renders a scoped color variable theme', () => {
           shadowStrongColor: 'rgb(20 30 40 / 0.4)',
         },
         rootClassName: 'app-theme',
+        tokens: {
+          controlHeightMiddle: '36px',
+          fontSizeBase: '17px',
+          radius: '10px',
+        },
       },
       createElement(Button, {
         children: 'Scoped',
@@ -1136,6 +1159,9 @@ test('renders a scoped color variable theme', () => {
   expect(html).toContain('--rk-on-primary-strong:#fff8df')
   expect(html).toContain('--rk-shadow-color:rgb(20 30 40 / 0.2)')
   expect(html).toContain('--rk-shadow-strong-color:rgb(20 30 40 / 0.4)')
+  expect(html).toContain('--rk-font-size-base:17px')
+  expect(html).toContain('--rk-radius:10px')
+  expect(html).toContain('--rk-control-height-middle:36px')
   expect(html).toContain('--rk-primary:#34d399')
   expect(html).toContain('--rk-on-primary:#133122')
   expect(html).toContain('#34d399/#133122/rgb(20 30 40 / 0.2)')
@@ -1212,8 +1238,7 @@ test('uses roco base font by default and keeps rune text explicit', () => {
   expect(runeHtml).toContain('Rune')
   expect(runeTextCss).toContain('.base')
   expect(runeTextCss).toContain('.rune')
-  expect(runeTextCss).toContain('--rk-rune-text-rune-font-family')
-  expect(runeTextCss).toContain('--rk-rune-text-base-font-family')
+  expect(runeTextCss).not.toContain('--rk-rune-text-')
   expect(runeTextCss).toContain('var(--rk-font-family-base, inherit)')
   expect(runeTextCss).toContain(
     'var(--rk-font-family-decorative, var(--rk-font-family-rune, inherit))',

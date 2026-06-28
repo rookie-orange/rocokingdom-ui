@@ -20,13 +20,12 @@
 .header {
   --rk-material-background: var(--rk-stone);
   --rk-material-color: var(--rk-on-stone);
-  --rk-roco-shape-height: auto;
-  --rk-roco-shape-min-width: min(100%, 232px);
-  --rk-roco-shape-padding-block: 8px;
-  --rk-roco-shape-padding-inline: 20px;
 
   color: var(--rk-material-color);
   flex: 0 0 auto;
+  height: auto;
+  min-width: min(100%, 232px);
+  padding: 8px 20px;
 }
 
 .headerContent {
@@ -51,7 +50,6 @@
   color: currentColor;
   display: grid;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
-  font-weight: 900;
   line-height: 1;
   min-width: 0;
 }
@@ -79,14 +77,13 @@
   align-items: center;
   background: rgb(0 0 0 / 0.72);
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--rk-radius, 8px);
   color: var(--rk-on-stone);
   cursor: pointer;
   display: flex;
   font: inherit;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
   font-size: 20px;
-  font-weight: 900;
   gap: 12px;
   height: 64px;
   justify-content: flex-start;
@@ -154,7 +151,6 @@
   display: inline-flex;
   flex: 0 0 auto;
   font-size: 12px;
-  font-weight: 900;
   justify-content: center;
   line-height: 1;
   min-height: 18px;

@@ -88,10 +88,8 @@ function IconsExamplePage() {
                       <Icon aria-label={icon.name} />
                     </span>
                     <div>
-                      <p className="font-roco text-3xl font-black leading-none text-on-paper">
-                        {icon.name}
-                      </p>
-                      <p className="mt-2 text-sm font-black text-stone/60">{icon.alias}</p>
+                      <p className="font-roco text-3xl leading-none text-on-paper">{icon.name}</p>
+                      <p className="mt-2 text-sm text-stone/60">{icon.alias}</p>
                     </div>
                   </div>
                 </div>
@@ -116,7 +114,7 @@ function IconsExamplePage() {
                   key={icon.name}
                 >
                   <Icon className={['text-4xl', icon.color].join(' ')} aria-label={icon.name} />
-                  <span className="font-black text-on-paper">{icon.name}</span>
+                  <span className="text-on-paper">{icon.name}</span>
                 </div>
               )
             })}

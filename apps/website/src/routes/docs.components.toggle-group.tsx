@@ -62,7 +62,7 @@ function ToggleGroupExamplePage() {
               <ToggleItem value="bag">宠物背包</ToggleItem>
               <ToggleItem value="event">活动中心</ToggleItem>
             </ToggleGroup>
-            <p className="text-base font-black text-stone/70">
+            <p className="text-base text-stone/70">
               当前入口：<span className="text-on-paper">{section}</span>
             </p>
           </div>

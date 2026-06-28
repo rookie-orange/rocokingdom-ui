@@ -80,8 +80,8 @@ function ModalExamplePage() {
             }
             header={
               <div>
-                <p className="text-sm font-black text-primary">EVENT</p>
-                <p className="mt-1 text-xl font-black leading-none">周年庆活动说明</p>
+                <p className="text-sm text-primary">EVENT</p>
+                <p className="mt-1 text-xl leading-none">周年庆活动说明</p>
               </div>
             }
             title="周年庆活动说明"

@@ -21,4 +21,12 @@
   --rk-font-family-base: system-ui, sans-serif;
   --rk-font-family-rune: var(--rk-font-family-base);
   --rk-font-family-decorative: var(--rk-font-family-rune);
+  --rk-font-size-base: 16px;
+  --rk-radius: 8px;
+  --rk-control-height-small: 24px;
+  --rk-control-height-middle: 32px;
+  --rk-control-height-large: 40px;
+  --rk-control-padding-inline-small: 14px;
+  --rk-control-padding-inline-middle: 18px;
+  --rk-control-padding-inline-large: 22px;
 }

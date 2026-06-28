@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Outlet, createFileRoute, useNavigate, useRouterState } from '@tanstack/react-router'
 import { Button, Panel, ToggleGroup, ToggleItem } from 'rocokingdom-ui'
@@ -71,16 +70,6 @@ interface DocsSidebarSectionProps {
   title: string
 }
 
-interface DocsSidebarPanelStyle extends CSSProperties {
-  '--rk-panel-background'?: string
-  '--rk-panel-color'?: string
-}
-
-const sidebarPanelStyle: DocsSidebarPanelStyle = {
-  '--rk-panel-background': 'var(--rk-stone)',
-  '--rk-panel-color': 'var(--rk-on-stone)',
-}
-
 const githubUrl = 'https://github.com/rookie-orange/rocokingdom-ui'
 
 export const Route = createFileRoute('/docs')({
@@ -109,7 +98,7 @@ function DocsSidebarSection({ links, onNavigate, pathname, title }: DocsSidebarS
 
   return (
     <div>
-      <p className="px-3 font-roco text-2xl font-black leading-none text-primary-strong">{title}</p>
+      <p className="px-3 font-roco text-2xl leading-none text-primary-strong">{title}</p>
       <div className="mt-2" ref={scrollerRef}>
         <ToggleGroup
           aria-label={`${title} 文档导航`}
@@ -249,7 +238,7 @@ function DocsLayout() {
           </label>
           <div className="flex items-center rounded-lg border border-stone/15 bg-white/55 px-3 py-2">
             <input
-              className="min-w-0 flex-1 bg-transparent text-sm font-bold text-on-paper outline-none placeholder:text-stone/45"
+              className="min-w-0 flex-1 bg-transparent text-sm text-on-paper outline-none placeholder:text-stone/45"
               id="docs-search-input"
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="搜索文档"
@@ -264,7 +253,7 @@ function DocsLayout() {
                 {visibleSearchLinks.map((link) => (
                   <Link
                     className={[
-                      'rounded-lg px-3 py-2 text-sm font-black transition hover:bg-primary hover:text-on-primary',
+                      'rounded-lg px-3 py-2 text-sm transition hover:bg-primary hover:text-on-primary',
                       link.to === pathname ? 'bg-stone text-on-stone' : 'text-on-paper',
                     ].join(' ')}
                     key={`${link.section}-${link.to}`}
@@ -279,7 +268,7 @@ function DocsLayout() {
                 ))}
               </div>
             ) : (
-              <p className="px-3 py-4 text-sm font-bold text-stone/60">没有找到相关文档</p>
+              <p className="px-3 py-4 text-sm text-stone/60">没有找到相关文档</p>
             )}
           </div>
         </section>
@@ -295,7 +284,7 @@ function DocsLayout() {
             contentClassName="flex h-full min-h-0 !p-0"
             curve="right"
             curveInset="var(--docs-sidebar-curve-inset)"
-            style={sidebarPanelStyle}
+            material="stone"
           >
             <div className="box-border scrollbar-none h-full w-[calc(100%-var(--docs-sidebar-curve-inset))] min-w-0 overflow-y-auto px-6 py-8 max-[980px]:px-5 max-[980px]:py-5">
               <nav className="grid gap-7 max-[980px]:gap-5">

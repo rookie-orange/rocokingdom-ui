@@ -61,7 +61,7 @@ function CheckboxExamplePage() {
             >
               开启每日提醒
             </Checkbox>
-            <p className="text-base font-black text-stone/70">
+            <p className="text-base text-stone/70">
               当前状态：<span className="text-on-paper">{checked ? '已开启' : '已关闭'}</span>
             </p>
           </div>

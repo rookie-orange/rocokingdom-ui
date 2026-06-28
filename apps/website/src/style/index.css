@@ -31,7 +31,7 @@
 
 @layer base {
   body {
-    @apply bg-paper text-on-paper;
+    @apply bg-paper text-on-paper font-medium;
   }
   #app {
     @apply min-h-svh;

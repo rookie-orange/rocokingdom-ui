@@ -51,7 +51,7 @@ function DrawerExamplePage() {
                 }
               >
                 <div className="grid gap-5">
-                  <p className="text-base font-bold leading-7">
+                  <p className="text-base leading-7">
                     这里可以放置长内容、公告列表、筛选条件或配置项。
                   </p>
                   <DrawerClose asChild>
@@ -81,8 +81,8 @@ function DrawerExamplePage() {
               }
             >
               <div className="grid gap-5 text-on-stone">
-                <p className="font-roco text-5xl font-black leading-none">背包</p>
-                <p className="max-w-2xl text-base font-bold leading-7">
+                <p className="font-roco text-5xl leading-none">背包</p>
+                <p className="max-w-2xl text-base leading-7">
                   size=&quot;full&quot; 会根据方向展开到 100vw 或 100svh，适合移动端主流程。
                 </p>
               </div>

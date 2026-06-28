@@ -60,7 +60,12 @@ export type {
   ToggleItemProps,
 } from './toggle-group'
 export { RocoTheme, rocoThemePrefixCls, useRocoTheme, useRocoThemeStyle } from './theme'
-export type { RocoThemeColors, RocoThemeProps, RocoThemeContextValue } from './theme'
+export type {
+  RocoThemeColors,
+  RocoThemeContextValue,
+  RocoThemeProps,
+  RocoThemeTokens,
+} from './theme'
 export { RocoShape, rocoShapePrefixCls } from './roco-shape'
 export type {
   RocoShapeKind,

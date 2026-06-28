@@ -1,10 +1,6 @@
 .trigger {
   --rk-material-background: var(--rk-stone);
   --rk-material-color: var(--rk-on-stone);
-  --rk-roco-shape-height: 36px;
-  --rk-roco-shape-min-width: 176px;
-  --rk-roco-shape-padding-block: 0;
-  --rk-roco-shape-padding-inline: 18px;
 
   appearance: none;
   align-items: center;
@@ -16,10 +12,12 @@
   display: inline-flex;
   font: inherit;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
-  font-size: 18px;
-  font-weight: 900;
+  font-size: calc(var(--rk-font-size-base, 16px) + 2px);
+  height: calc(var(--rk-control-height-middle, 32px) + 4px);
   justify-content: center;
   line-height: 1;
+  min-width: 176px;
+  padding: 0 var(--rk-control-padding-inline-middle, 18px);
   text-align: start;
   transition: filter 160ms ease;
   user-select: none;
@@ -117,11 +115,10 @@
 
 .contentShell {
   background: var(--rk-stone);
-  border-radius: 8px;
+  border-radius: var(--rk-radius, 8px);
   box-shadow: 0 4px 0 var(--rk-shadow-color);
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
-  font-size: 18px;
-  font-weight: 900;
+  font-size: calc(var(--rk-font-size-base, 16px) + 2px);
   line-height: 1;
   overflow: hidden;
   transform-origin: inherit;
@@ -147,7 +144,7 @@
 
 .item {
   align-items: center;
-  border-radius: 6px;
+  border-radius: calc(var(--rk-radius, 8px) - 2px);
   color: var(--rk-on-stone);
   cursor: pointer;
   display: flex;

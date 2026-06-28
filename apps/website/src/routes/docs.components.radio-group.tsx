@@ -68,7 +68,7 @@ function RadioGroupExamplePage() {
               <RadioItem value="hard">困难</RadioItem>
               <RadioItem value="nightmare">噩梦</RadioItem>
             </RadioGroup>
-            <p className="text-base font-black text-stone/70">
+            <p className="text-base text-stone/70">
               当前难度：<span className="text-on-paper">{controlledValue}</span>
             </p>
           </div>

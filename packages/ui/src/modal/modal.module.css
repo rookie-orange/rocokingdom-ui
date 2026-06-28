@@ -34,7 +34,7 @@
 .panel {
   background: var(--rk-paper);
   border: 4px solid var(--rk-paper);
-  border-radius: 7px;
+  border-radius: var(--rk-radius, 8px);
   color: var(--rk-on-paper);
   display: flex;
   flex-direction: column;
@@ -77,12 +77,10 @@
 }
 
 .title {
-  --rk-rune-text-base-font-family: var(--rk-font-family-base, system-ui, sans-serif);
-  --rk-rune-text-base-font-weight: 900;
-  --rk-rune-text-font-size: 22px;
-  --rk-rune-text-line-height: 1;
-
   display: block;
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
+  font-size: 22px;
+  line-height: 1;
   letter-spacing: 0;
   margin: 0;
   overflow-wrap: anywhere;
@@ -103,11 +101,10 @@
 }
 
 .headerRuneText {
-  --rk-rune-text-color: color-mix(in srgb, var(--rk-on-stone) 20%, var(--rk-stone));
-  --rk-rune-text-font-size: 28px;
-  --rk-rune-text-line-height: 1;
-
+  color: color-mix(in srgb, var(--rk-on-stone) 20%, var(--rk-stone));
+  font-size: 28px;
   inset-inline: 56px;
+  line-height: 1;
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -126,7 +123,6 @@
   flex: 1 1 auto;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
   font-size: 16px;
-  font-weight: 800;
   line-height: 1.5;
   min-height: 0;
   overflow: auto;
@@ -323,8 +319,7 @@
   }
 
   .headerRuneText {
-    --rk-rune-text-font-size: 22px;
-
+    font-size: 22px;
     inset-inline: 38px;
   }
 

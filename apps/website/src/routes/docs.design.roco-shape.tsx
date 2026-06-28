@@ -75,18 +75,10 @@ function RocoShapeExamplePage() {
       <ExampleSection title="文字背景">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-5">
-            <RocoShape
-              className="h-[72px] [--rk-roco-shape-padding-inline:42px] font-roco text-3xl font-black"
-              material="stone"
-              shadow
-            >
+            <RocoShape className="!h-[72px] !px-[42px] font-roco text-3xl" material="stone" shadow>
               今日活动
             </RocoShape>
-            <RocoShape
-              className="h-14 [--rk-roco-shape-padding-inline:34px] font-roco text-2xl font-black"
-              material="paper"
-              shadow
-            >
+            <RocoShape className="!h-14 !px-[34px] font-roco text-2xl" material="paper" shadow>
               宠物档案
             </RocoShape>
           </div>
@@ -96,16 +88,12 @@ function RocoShapeExamplePage() {
       <ExampleSection title="材质与自定义颜色">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-5">
-            <RocoShape
-              className="h-14 [--rk-roco-shape-padding-inline:34px] font-roco text-2xl font-black"
-              material="paper"
-              shadow
-            >
+            <RocoShape className="!h-14 !px-[34px] font-roco text-2xl" material="paper" shadow>
               纸张表面
             </RocoShape>
             <RocoShape
               background="#2f7dd1"
-              className="h-14 [--rk-roco-shape-padding-inline:34px] font-roco text-2xl font-black"
+              className="!h-14 !px-[34px] font-roco text-2xl"
               color="#f7fbff"
               shadow
             >

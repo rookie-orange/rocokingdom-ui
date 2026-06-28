@@ -49,8 +49,8 @@ function MaterialExamplePage() {
                 key={material}
                 material={material}
               >
-                <p className="font-roco text-3xl font-black leading-none">{material}</p>
-                <p className="mt-4 text-sm font-bold leading-6 opacity-75">
+                <p className="font-roco text-3xl leading-none">{material}</p>
+                <p className="mt-4 text-sm leading-6 opacity-75">
                   背景和前景色来自 Rocokingdom 主题变量。
                 </p>
               </Material>
@@ -69,8 +69,8 @@ function MaterialExamplePage() {
               color="#f7fbff"
               type="button"
             >
-              <span className="block font-roco text-2xl font-black leading-none">水系活动</span>
-              <span className="mt-3 block text-sm font-bold opacity-80">as=&quot;button&quot;</span>
+              <span className="block font-roco text-2xl leading-none">水系活动</span>
+              <span className="mt-3 block text-sm opacity-80">as=&quot;button&quot;</span>
             </Material>
             <Material
               as="article"
@@ -78,8 +78,8 @@ function MaterialExamplePage() {
               className="rounded-lg p-5 shadow-[0_6px_0_var(--rk-shadow-color)]"
               color="#2b2414"
             >
-              <span className="block font-roco text-2xl font-black leading-none">宠物档案</span>
-              <span className="mt-3 block text-sm font-bold opacity-75">自定义 foreground</span>
+              <span className="block font-roco text-2xl leading-none">宠物档案</span>
+              <span className="mt-3 block text-sm opacity-75">自定义 foreground</span>
             </Material>
           </div>
         </PreviewSurface>

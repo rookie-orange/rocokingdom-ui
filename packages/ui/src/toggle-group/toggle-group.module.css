@@ -15,12 +15,6 @@
 }
 
 .item {
-  --rk-roco-shape-height: 32px;
-  --rk-roco-shape-min-width: auto;
-  --rk-roco-shape-padding-block: 2px;
-  --rk-roco-shape-padding-inline: 18px;
-  --rk-roco-shape-width: auto;
-
   appearance: none;
   background: transparent;
   border: 0;
@@ -29,8 +23,9 @@
   flex: 0 0 auto;
   font: inherit;
   font-family: var(--rk-font-family-base, inherit);
-  font-size: 14px;
-  font-weight: 400;
+  font-size: calc(var(--rk-font-size-base, 16px) - 2px);
+  height: var(--rk-control-height-middle, 32px);
+  padding: 2px var(--rk-control-padding-inline-middle, 18px);
   text-decoration: none;
   transform-origin: center;
   transition:
@@ -84,21 +79,19 @@
 }
 
 .small {
-  --rk-roco-shape-height: 24px;
-  --rk-roco-shape-padding-inline: 14px;
-
-  font-size: 12px;
+  font-size: calc(var(--rk-font-size-base, 16px) - 4px);
+  height: var(--rk-control-height-small, 24px);
+  padding-inline: var(--rk-control-padding-inline-small, 14px);
 }
 
 .middle {
-  --rk-roco-shape-height: 32px;
+  height: var(--rk-control-height-middle, 32px);
 }
 
 .large {
-  --rk-roco-shape-height: 40px;
-  --rk-roco-shape-padding-inline: 22px;
-
-  font-size: 16px;
+  font-size: var(--rk-font-size-base, 16px);
+  height: var(--rk-control-height-large, 40px);
+  padding-inline: var(--rk-control-padding-inline-large, 22px);
 }
 
 .solid {
@@ -108,7 +101,7 @@
 }
 
 .text {
-  --rk-roco-shape-padding-inline: 8px;
+  padding-inline: 8px;
 }
 
 .item:hover {
@@ -133,22 +126,20 @@
 }
 
 .selected {
-  --rk-roco-shape-min-width: 118px;
-  --rk-roco-shape-padding-inline: 30px;
-  --rk-roco-shape-width: auto;
-
   animation: rk-toggle-item-spring-select 260ms linear;
+  min-width: 118px;
+  padding-inline: 30px;
   z-index: 1;
 }
 
 .small.selected {
-  --rk-roco-shape-min-width: 96px;
-  --rk-roco-shape-padding-inline: 22px;
+  min-width: 96px;
+  padding-inline: 22px;
 }
 
 .large.selected {
-  --rk-roco-shape-min-width: 136px;
-  --rk-roco-shape-padding-inline: 34px;
+  min-width: 136px;
+  padding-inline: 34px;
 }
 
 .unselected {
@@ -161,8 +152,7 @@
 }
 
 .itemText {
-  --rk-rune-text-base-font-family: var(--rk-font-family-base, inherit);
-  --rk-rune-text-base-font-weight: 400;
+  font: inherit;
 }
 
 @keyframes rk-toggle-item-spring-select {

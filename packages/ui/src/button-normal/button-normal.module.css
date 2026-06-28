@@ -1,6 +1,4 @@
 .button {
-  --rk-button-normal-font-family: var(--rk-font-family-base, inherit);
-
   appearance: none;
   align-items: center;
   background: var(--rk-material-background);
@@ -11,12 +9,12 @@
   cursor: pointer;
   display: inline-flex;
   font: inherit;
-  font-family: var(--rk-button-normal-font-family);
-  font-weight: 700;
+  font-family: var(--rk-font-family-base, inherit);
+  font-size: calc(var(--rk-font-size-base, 16px) - 2px);
   justify-content: center;
   line-height: 1.4;
-  height: 40px;
-  padding: 0 18px;
+  height: var(--rk-control-height-middle, 32px);
+  padding: 0 var(--rk-control-padding-inline-middle, 18px);
   transition:
     background-color 160ms ease,
     border-color 160ms ease,
@@ -88,17 +86,19 @@
 }
 
 .small {
-  height: 24px;
-  padding-inline: 14px;
+  font-size: calc(var(--rk-font-size-base, 16px) - 4px);
+  height: var(--rk-control-height-small, 24px);
+  padding-inline: var(--rk-control-padding-inline-small, 14px);
 }
 
 .middle {
-  height: 32px;
+  height: var(--rk-control-height-middle, 32px);
 }
 
 .large {
-  height: 48px;
-  padding-inline: 22px;
+  font-size: var(--rk-font-size-base, 16px);
+  height: calc(var(--rk-control-height-large, 40px) + 8px);
+  padding-inline: var(--rk-control-padding-inline-large, 22px);
 }
 
 .solid {

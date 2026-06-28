@@ -72,7 +72,7 @@ function RocoThemeExamplePage() {
                 <RuneText className="text-5xl leading-none text-primary max-sm:text-4xl">
                   {customThemeEnabled ? 'GREEN THEME' : 'DEFAULT THEME'}
                 </RuneText>
-                <p className="max-w-2xl text-base font-bold leading-7 text-on-stone/80">
+                <p className="max-w-2xl text-base leading-7 text-on-stone/80">
                   RocoTheme 通过包裹元素创建主题作用域，内部组件会读取最近的 --rk-* 变量。
                 </p>
                 <div className="flex flex-wrap gap-4">

@@ -27,14 +27,12 @@ export function ExampleSection({ children, description, title }: ExampleSectionP
   return (
     <section className="grid gap-5">
       <div>
-        <p className="text-sm font-black text-primary-strong">Example</p>
-        <h2 className="mt-2 font-roco text-3xl font-black leading-none text-on-paper max-sm:text-2xl">
+        <p className="text-sm text-primary-strong">Example</p>
+        <h2 className="mt-2 font-roco text-3xl leading-none text-on-paper max-sm:text-2xl">
           {title}
         </h2>
         {description ? (
-          <p className="mt-2 max-w-2xl text-base font-bold leading-7 text-stone/70">
-            {description}
-          </p>
+          <p className="mt-2 max-w-2xl text-base leading-7 text-stone/70">{description}</p>
         ) : null}
       </div>
       {children}
@@ -75,12 +73,12 @@ export function ExampleShell({
               </RuneText>
               <RuneText
                 as="h1"
-                className="relative z-1 m-0 w-full text-6xl! font-black leading-none text-on-stone wrap:anywhere max-sm:text-lg"
+                className="relative z-1 m-0 w-full text-6xl! leading-none text-on-stone wrap:anywhere max-sm:text-lg"
               >
                 {title}
               </RuneText>
             </header>
-            <div className="p-4 flex flex-col gap-4 font-black ">
+            <div className="p-4 flex flex-col gap-4 ">
               <p>{description}</p>
               <div className="flex flex-col gap-2">
                 {highlights.length > 0 ? (
@@ -108,12 +106,10 @@ export function ExampleShell({
         {code ? (
           <section className="border-t border-stone/15 pt-10">
             <div>
-              <p className="text-sm font-black text-danger">Code</p>
-              <h2 className="mt-2 font-roco text-3xl font-black leading-none text-on-paper">
-                最小用法
-              </h2>
+              <p className="text-sm text-danger">Code</p>
+              <h2 className="mt-2 font-roco text-3xl leading-none text-on-paper">最小用法</h2>
             </div>
-            <pre className="mt-5 overflow-x-auto rounded-lg bg-stone p-5 text-sm font-bold leading-6 text-on-stone shadow-[0_10px_0_var(--rk-shadow-color)]">
+            <pre className="mt-5 overflow-x-auto rounded-lg bg-stone p-5 text-sm leading-6 text-on-stone shadow-[0_10px_0_var(--rk-shadow-color)]">
               <code>{code}</code>
             </pre>
           </section>

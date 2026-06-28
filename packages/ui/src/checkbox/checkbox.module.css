@@ -1,8 +1,6 @@
 .checkbox {
   --rk-material-background: var(--rk-primary);
   --rk-material-color: var(--rk-on-primary);
-  --rk-roco-shape-height: 28px;
-  --rk-roco-shape-min-width: 28px;
 
   align-items: center;
   box-sizing: border-box;
@@ -11,8 +9,7 @@
   display: inline-flex;
   font: inherit;
   font-family: var(--rk-font-family-base, inherit);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: calc(var(--rk-font-size-base, 16px) - 2px);
   gap: 8px;
   line-height: 1.25;
   position: relative;
@@ -61,22 +58,11 @@
 }
 
 .small {
-  --rk-roco-shape-height: 22px;
-  --rk-roco-shape-min-width: 22px;
-
-  font-size: 12px;
-}
-
-.middle {
-  --rk-roco-shape-height: 28px;
-  --rk-roco-shape-min-width: 28px;
+  font-size: calc(var(--rk-font-size-base, 16px) - 4px);
 }
 
 .large {
-  --rk-roco-shape-height: 36px;
-  --rk-roco-shape-min-width: 36px;
-
-  font-size: 16px;
+  font-size: var(--rk-font-size-base, 16px);
 }
 
 .input {
@@ -93,41 +79,65 @@
 }
 
 .control {
-  --rk-roco-shape-padding-block: 0;
-  --rk-roco-shape-padding-inline: 0;
-
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  height: var(--rk-roco-shape-height);
+  height: calc(var(--rk-control-height-middle, 32px) - 4px);
+  min-height: calc(var(--rk-control-height-middle, 32px) - 4px);
+  min-width: calc(var(--rk-control-height-middle, 32px) - 4px);
+  padding: 0;
   transform: scale(1);
   transition:
     filter 160ms ease,
     transform 120ms ease;
-  width: var(--rk-roco-shape-min-width);
+  width: calc(var(--rk-control-height-middle, 32px) - 4px);
 }
 
-.checkbox .control {
-  height: var(--rk-roco-shape-height);
-  width: var(--rk-roco-shape-min-width);
+.checkbox .control.control {
+  height: calc(var(--rk-control-height-middle, 32px) - 4px);
+  width: calc(var(--rk-control-height-middle, 32px) - 4px);
+}
+
+.small .control {
+  height: calc(var(--rk-control-height-small, 24px) - 2px);
+  min-height: calc(var(--rk-control-height-small, 24px) - 2px);
+  min-width: calc(var(--rk-control-height-small, 24px) - 2px);
+  width: calc(var(--rk-control-height-small, 24px) - 2px);
+}
+
+.small .control.control {
+  height: calc(var(--rk-control-height-small, 24px) - 2px);
+  width: calc(var(--rk-control-height-small, 24px) - 2px);
+}
+
+.large .control {
+  height: calc(var(--rk-control-height-large, 40px) - 4px);
+  min-height: calc(var(--rk-control-height-large, 40px) - 4px);
+  min-width: calc(var(--rk-control-height-large, 40px) - 4px);
+  width: calc(var(--rk-control-height-large, 40px) - 4px);
+}
+
+.large .control.control {
+  height: calc(var(--rk-control-height-large, 40px) - 4px);
+  width: calc(var(--rk-control-height-large, 40px) - 4px);
 }
 
 .icon {
   align-items: center;
   color: var(--rk-material-color);
   display: inline-flex;
-  font-size: 40px;
+  font-size: calc(var(--rk-control-height-middle, 32px) * 1.25);
   justify-content: center;
   line-height: 1;
   transform-origin: center;
 }
 
 .small .icon {
-  font-size: 15px;
+  font-size: calc(var(--rk-control-height-small, 24px) * 0.625);
 }
 
 .large .icon {
-  font-size: 22px;
+  font-size: calc(var(--rk-control-height-large, 40px) * 0.55);
 }
 
 .outline .icon {

@@ -32,10 +32,10 @@ function DocsOverviewPage() {
             <RuneText className="block text-base leading-none text-primary-strong">
               OVERVIEW
             </RuneText>
-            <h1 className="mt-4 font-roco text-6xl font-black leading-none text-on-paper max-sm:text-4xl">
+            <h1 className="mt-4 font-roco text-6xl leading-none text-on-paper max-sm:text-4xl">
               文档总览
             </h1>
-            <p className="mt-5 max-w-3xl text-lg font-bold leading-8 text-stone/70">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-stone/70">
               Rocokingdom UI 将洛克王国风格的材质、造型、图标和交互组件整理成
               Overview、Design、Components、Icon 四类文档入口。
             </p>
@@ -49,10 +49,8 @@ function DocsOverviewPage() {
                 key={stat.label}
                 material="paper"
               >
-                <p className="text-sm font-black text-primary-strong">{stat.label}</p>
-                <p className="font-roco text-5xl font-black leading-none text-on-paper">
-                  {stat.value}
-                </p>
+                <p className="text-sm text-primary-strong">{stat.label}</p>
+                <p className="font-roco text-5xl leading-none text-on-paper">{stat.value}</p>
               </Panel>
             ))}
           </div>
@@ -60,11 +58,9 @@ function DocsOverviewPage() {
 
         <section className="grid gap-5 py-12">
           <div>
-            <p className="text-sm font-black text-primary-strong">Start</p>
-            <h2 className="mt-2 font-roco text-3xl font-black leading-none text-on-paper">
-              开始浏览
-            </h2>
-            <p className="mt-3 max-w-2xl text-base font-bold leading-7 text-stone/70">
+            <p className="text-sm text-primary-strong">Start</p>
+            <h2 className="mt-2 font-roco text-3xl leading-none text-on-paper">开始浏览</h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-stone/70">
               先从组件总览进入，再按需打开 Button、Panel、Modal、Select 等具体页面。
             </p>
           </div>
@@ -72,7 +68,7 @@ function DocsOverviewPage() {
             <Button
               material="primaryStrong"
               onClick={() => navigate({ to: '/docs/overview/components' })}
-              rootClassName="font-roco font-black"
+              rootClassName="font-roco"
               shadow
             >
               查看 Components

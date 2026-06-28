@@ -1,13 +1,11 @@
 .panel {
-  --rk-panel-background: var(--rk-paper);
-  --rk-panel-color: var(--rk-on-paper);
   --rk-panel-curve-inset: 88px;
-  --rk-panel-padding: 28px;
-  --rk-panel-radius: 7px;
+  --rk-material-background: var(--rk-paper);
+  --rk-material-color: var(--rk-on-paper);
 
-  background: var(--rk-panel-background);
-  border-radius: var(--rk-panel-radius);
-  color: var(--rk-panel-color);
+  background: var(--rk-material-background);
+  border-radius: var(--rk-radius, 8px);
+  color: var(--rk-material-color);
   display: block;
   min-height: 0;
   overflow: hidden;
@@ -15,13 +13,13 @@
 }
 
 .paper {
-  --rk-panel-background: var(--rk-paper);
-  --rk-panel-color: var(--rk-on-paper);
+  --rk-material-background: var(--rk-paper);
+  --rk-material-color: var(--rk-on-paper);
 }
 
 .stone {
-  --rk-panel-background: var(--rk-stone);
-  --rk-panel-color: var(--rk-on-stone);
+  --rk-material-background: var(--rk-stone);
+  --rk-material-color: var(--rk-on-stone);
 }
 
 .curved {
@@ -30,7 +28,7 @@
 }
 
 .shape {
-  color: var(--rk-panel-background);
+  color: var(--rk-material-background);
   display: block;
   height: 100%;
   inset: 0;
@@ -47,25 +45,25 @@
 .content {
   min-height: inherit;
   min-width: 0;
-  padding: var(--rk-panel-padding);
+  padding: 28px;
   position: relative;
   z-index: 1;
 }
 
 .left .content,
 .both .content {
-  padding-inline-start: max(var(--rk-panel-padding), var(--rk-panel-curve-inset));
+  padding-inline-start: max(28px, var(--rk-panel-curve-inset));
 }
 
 .right .content,
 .both .content {
-  padding-inline-end: max(var(--rk-panel-padding), var(--rk-panel-curve-inset));
+  padding-inline-end: max(28px, var(--rk-panel-curve-inset));
 }
 
 .top .content {
-  padding-block-start: max(var(--rk-panel-padding), var(--rk-panel-curve-inset));
+  padding-block-start: max(28px, var(--rk-panel-curve-inset));
 }
 
 .bottom .content {
-  padding-block-end: max(var(--rk-panel-padding), var(--rk-panel-curve-inset));
+  padding-block-end: max(28px, var(--rk-panel-curve-inset));
 }

@@ -54,7 +54,7 @@ function HomePage() {
           <Button
             material="paper"
             onClick={() => navigate({ to: '/docs' })}
-            rootClassName="font-roco text-lg font-black min-w-44"
+            rootClassName="font-roco text-lg min-w-44"
             shadow
             size="large"
           >

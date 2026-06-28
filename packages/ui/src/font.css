@@ -2,7 +2,6 @@
   font-family: 'Roco Kingdom Sans';
   font-display: swap;
   font-style: normal;
-  font-weight: 400;
   src: url('./fonts/roco-kingdom-sans.ttf') format('truetype');
 }
 
@@ -10,7 +9,6 @@
   font-family: 'Roco Kingdom Rune';
   font-display: swap;
   font-style: normal;
-  font-weight: 400;
   src: url('./fonts/roco-kingdom-rune.ttf') format('truetype');
 }
 

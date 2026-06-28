@@ -20,7 +20,7 @@ function RuneTextExamplePage() {
       highlights={[
         'as 可切换渲染元素。',
         '默认使用 roco base 字体，font="rune" 可切换为装饰字体。',
-        '继承当前颜色，也可通过 --rk-rune-text-* 变量定制。',
+        '继承当前颜色、字号和行高，使用 className 控制局部排版。',
         '适合短文本，不建议承载正文。',
       ]}
       title="RuneText"
@@ -63,8 +63,8 @@ function RuneTextExamplePage() {
               QUEST BOARD
             </RuneText>
             <div className="relative z-10">
-              <p className="font-roco text-4xl font-black leading-none">任务公告</p>
-              <p className="mt-4 max-w-xl text-base font-bold leading-7 text-on-stone/75">
+              <p className="font-roco text-4xl leading-none">任务公告</p>
+              <p className="mt-4 max-w-xl text-base leading-7 text-on-stone/75">
                 背景符文文本保留装饰性，不参与主要信息层级。
               </p>
             </div>

@@ -48,7 +48,7 @@ function ButtonExamplePage() {
           <div className="grid gap-8">
             {materials.map((material) => (
               <div className="flex flex-wrap items-center gap-4" key={material}>
-                <span className="w-20 text-sm font-black uppercase text-stone/60">{material}</span>
+                <span className="w-36 capitalize text-sm text-stone/60">{material}</span>
                 <Button material={material} shadow>
                   实心按钮
                 </Button>
@@ -83,22 +83,13 @@ function ButtonExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection description="可通过形状变量压缩高度和文字内边距。" title="紧凑按钮">
+      <ExampleSection description="小尺寸按钮适合密集工具栏和紧凑操作区。" title="紧凑按钮">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-4">
-            <Button
-              material="default"
-              rootClassName="[--rk-roco-shape-height:28px] [--rk-roco-shape-padding-inline:16px] text-xs"
-              shadow
-            >
+            <Button material="default" shadow size="small">
               背包
             </Button>
-            <Button
-              material="stone"
-              rootClassName="[--rk-roco-shape-height:28px] [--rk-roco-shape-padding-inline:16px] text-xs"
-              shadow
-              variant="outline"
-            >
+            <Button material="stone" shadow size="small" variant="outline">
               任务
             </Button>
           </div>

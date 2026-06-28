@@ -106,7 +106,6 @@
 }
 
 .panel {
-  --rk-panel-padding: 0;
   --rk-panel-curve-inset: 12%;
 
   flex: 1 1 auto;
@@ -202,7 +201,6 @@
 .title {
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
   font-size: 40px;
-  font-weight: 900;
   margin: 0 0 28px;
 }
 
@@ -210,7 +208,6 @@
   flex: 1 1 auto;
   font-family: var(--rk-font-family-base, system-ui, sans-serif);
   font-size: 16px;
-  font-weight: 800;
   line-height: 1.5;
   min-height: 0;
 }

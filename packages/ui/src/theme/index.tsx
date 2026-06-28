@@ -33,11 +33,23 @@ export interface RocoThemeColors {
   success?: string
 }
 
+export interface RocoThemeTokens {
+  controlHeightLarge?: string
+  controlHeightMiddle?: string
+  controlHeightSmall?: string
+  controlPaddingInlineLarge?: string
+  controlPaddingInlineMiddle?: string
+  controlPaddingInlineSmall?: string
+  fontSizeBase?: string
+  radius?: string
+}
+
 type RocoThemeVariableName = `--rk-${string}`
 type RocoThemeVariable = readonly [name: RocoThemeVariableName, value: string | undefined]
 
 type RocoThemeStyle = CSSProperties & Partial<Record<RocoThemeVariableName, string>>
 type RocoThemeColorName = keyof RocoThemeColors
+type RocoThemeTokenName = keyof RocoThemeTokens
 
 const rocoThemeColorNames: RocoThemeColorName[] = [
   'paper',
@@ -61,14 +73,27 @@ const rocoThemeColorNames: RocoThemeColorName[] = [
   'shadowStrongColor',
 ]
 
+const rocoThemeTokenNames: RocoThemeTokenName[] = [
+  'fontSizeBase',
+  'radius',
+  'controlHeightSmall',
+  'controlHeightMiddle',
+  'controlHeightLarge',
+  'controlPaddingInlineSmall',
+  'controlPaddingInlineMiddle',
+  'controlPaddingInlineLarge',
+]
+
 const defaultRocoThemeContext: RocoThemeContextValue = {
   colors: {},
+  tokens: {},
 }
 
 const RocoThemeContext = createContext<RocoThemeContextValue | undefined>(undefined)
 
 export interface RocoThemeContextValue {
   colors: RocoThemeColors
+  tokens: RocoThemeTokens
 }
 
 export interface RocoThemeProps extends HTMLAttributes<HTMLDivElement> {
@@ -77,6 +102,7 @@ export interface RocoThemeProps extends HTMLAttributes<HTMLDivElement> {
   prefixCls?: string
   ref?: Ref<HTMLDivElement>
   rootClassName?: string
+  tokens?: RocoThemeTokens
 }
 
 function toColorVariables(colors?: RocoThemeColors): RocoThemeVariable[] {
@@ -103,10 +129,23 @@ function toColorVariables(colors?: RocoThemeColors): RocoThemeVariable[] {
   ]
 }
 
-function toThemeStyle(colors?: RocoThemeColors): RocoThemeStyle {
+function toTokenVariables(tokens?: RocoThemeTokens): RocoThemeVariable[] {
+  return [
+    ['--rk-font-size-base', tokens?.fontSizeBase],
+    ['--rk-radius', tokens?.radius],
+    ['--rk-control-height-small', tokens?.controlHeightSmall],
+    ['--rk-control-height-middle', tokens?.controlHeightMiddle],
+    ['--rk-control-height-large', tokens?.controlHeightLarge],
+    ['--rk-control-padding-inline-small', tokens?.controlPaddingInlineSmall],
+    ['--rk-control-padding-inline-middle', tokens?.controlPaddingInlineMiddle],
+    ['--rk-control-padding-inline-large', tokens?.controlPaddingInlineLarge],
+  ]
+}
+
+function toThemeStyle(colors?: RocoThemeColors, tokens?: RocoThemeTokens): RocoThemeStyle {
   const themeStyle: RocoThemeStyle = {}
 
-  for (const [name, value] of toColorVariables(colors)) {
+  for (const [name, value] of [...toColorVariables(colors), ...toTokenVariables(tokens)]) {
     if (value === undefined) {
       continue
     }
@@ -117,25 +156,29 @@ function toThemeStyle(colors?: RocoThemeColors): RocoThemeStyle {
   return themeStyle
 }
 
-function mergeColors(parentColors: RocoThemeColors, colors?: RocoThemeColors) {
-  if (!colors) {
-    return parentColors
+function mergeThemeRecord<RecordType extends object>(
+  keys: (keyof RecordType)[],
+  parentRecord: RecordType,
+  record?: RecordType,
+) {
+  if (!record) {
+    return parentRecord
   }
 
-  let mergedColors: RocoThemeColors | undefined
+  let mergedRecord: RecordType | undefined
 
-  for (const colorName of rocoThemeColorNames) {
-    const value = colors[colorName]
+  for (const key of keys) {
+    const value = record[key]
 
     if (value === undefined) {
       continue
     }
 
-    mergedColors ??= { ...parentColors }
-    mergedColors[colorName] = value
+    mergedRecord ??= { ...parentRecord }
+    mergedRecord[key] = value
   }
 
-  return mergedColors ?? parentColors
+  return mergedRecord ?? parentRecord
 }
 
 function useOptionalRocoTheme() {
@@ -155,7 +198,7 @@ export function useRocoTheme() {
 export function useRocoThemeStyle(): CSSProperties {
   const theme = useRocoTheme()
 
-  return useMemo(() => toThemeStyle(theme.colors), [theme.colors])
+  return useMemo(() => toThemeStyle(theme.colors, theme.tokens), [theme.colors, theme.tokens])
 }
 
 export function RocoTheme({
@@ -167,20 +210,29 @@ export function RocoTheme({
   ref,
   rootClassName,
   style,
+  tokens,
   ...props
 }: RocoThemeProps) {
   const parentTheme = useOptionalRocoTheme()
   const Root = asChild ? Slot.Root : 'div'
   const themeColors = useMemo(
-    () => mergeColors(parentTheme.colors, colors),
+    () => mergeThemeRecord(rocoThemeColorNames, parentTheme.colors, colors),
     [colors, parentTheme.colors],
   )
-  const themeStyle = useMemo(() => toThemeStyle(themeColors), [themeColors])
+  const themeTokens = useMemo(
+    () => mergeThemeRecord(rocoThemeTokenNames, parentTheme.tokens, tokens),
+    [tokens, parentTheme.tokens],
+  )
+  const themeStyle = useMemo(
+    () => toThemeStyle(themeColors, themeTokens),
+    [themeColors, themeTokens],
+  )
   const theme = useMemo<RocoThemeContextValue>(
     () => ({
       colors: themeColors,
+      tokens: themeTokens,
     }),
-    [themeColors],
+    [themeColors, themeTokens],
   )
 
   return (
