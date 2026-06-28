@@ -14,7 +14,13 @@ const buttonBackground = primary
 ## Structure
 
 - `paper`
+- `paperSoft`
+- `paperMuted`
+- `paperStrong`
 - `stone`
+- `stoneSoft`
+- `stoneMuted`
+- `stoneStrong`
 - `primary`
 - `primarySoft`
 - `primaryMuted`
@@ -22,7 +28,13 @@ const buttonBackground = primary
 - `success`
 - `danger`
 - `onPaper`
+- `onPaperSoft`
+- `onPaperMuted`
+- `onPaperStrong`
 - `onStone`
+- `onStoneSoft`
+- `onStoneMuted`
+- `onStoneStrong`
 - `onPrimary`
 - `onPrimarySoft`
 - `onPrimaryMuted`

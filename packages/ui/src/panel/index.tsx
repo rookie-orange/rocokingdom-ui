@@ -1,11 +1,22 @@
 import type { CSSProperties, ElementType, HTMLAttributes, ReactNode } from 'react'
 import { clsx } from 'clsx'
+import type { MaterialPreset } from '../material'
 import styles from './panel.module.css'
 
 export const panelPrefixCls = 'rk-panel'
 
 export type PanelCurve = 'none' | 'bottom' | 'left' | 'right' | 'top' | 'both'
-export type PanelMaterial = 'paper' | 'stone'
+export type PanelMaterial = Extract<
+  MaterialPreset,
+  | 'paper'
+  | 'paperMuted'
+  | 'paperSoft'
+  | 'paperStrong'
+  | 'stone'
+  | 'stoneMuted'
+  | 'stoneSoft'
+  | 'stoneStrong'
+>
 
 interface PanelStyle extends CSSProperties {
   '--rk-panel-curve-inset'?: string

@@ -284,7 +284,7 @@ function DocsLayout() {
             contentClassName="flex h-full min-h-0 !p-0"
             curve="right"
             curveInset="var(--docs-sidebar-curve-inset)"
-            material="stone"
+            material="stoneSoft"
           >
             <div className="box-border scrollbar-none h-full w-[calc(100%-var(--docs-sidebar-curve-inset))] min-w-0 overflow-y-auto px-6 py-8 max-[980px]:px-5 max-[980px]:py-5">
               <nav className="grid gap-7 max-[980px]:gap-5">

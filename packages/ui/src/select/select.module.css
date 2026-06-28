@@ -50,9 +50,39 @@
   --rk-material-color: var(--rk-on-paper);
 }
 
+.paperSoft {
+  --rk-material-background: var(--rk-paper-soft);
+  --rk-material-color: var(--rk-on-paper-soft);
+}
+
+.paperMuted {
+  --rk-material-background: var(--rk-paper-muted);
+  --rk-material-color: var(--rk-on-paper-muted);
+}
+
+.paperStrong {
+  --rk-material-background: var(--rk-paper-strong);
+  --rk-material-color: var(--rk-on-paper-strong);
+}
+
 .stone {
   --rk-material-background: var(--rk-stone);
   --rk-material-color: var(--rk-on-stone);
+}
+
+.stoneSoft {
+  --rk-material-background: var(--rk-stone-soft);
+  --rk-material-color: var(--rk-on-stone-soft);
+}
+
+.stoneMuted {
+  --rk-material-background: var(--rk-stone-muted);
+  --rk-material-color: var(--rk-on-stone-muted);
+}
+
+.stoneStrong {
+  --rk-material-background: var(--rk-stone-strong);
+  --rk-material-color: var(--rk-on-stone-strong);
 }
 
 .primarySoft {

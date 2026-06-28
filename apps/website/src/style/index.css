@@ -8,7 +8,13 @@
 
 @theme inline {
   --color-paper: var(--rk-paper, #f4f0e8);
+  --color-paper-soft: var(--rk-paper-soft, #fffaf2);
+  --color-paper-muted: var(--rk-paper-muted, #e5dccd);
+  --color-paper-strong: var(--rk-paper-strong, #cdbcaa);
   --color-stone: var(--rk-stone, #242628);
+  --color-stone-soft: var(--rk-stone-soft, #393d40);
+  --color-stone-muted: var(--rk-stone-muted, #4d5358);
+  --color-stone-strong: var(--rk-stone-strong, #141719);
   --color-primary: var(--rk-primary, #ffc65f);
   --color-primary-soft: var(--rk-primary-soft, #fff1cf);
   --color-primary-muted: var(--rk-primary-muted, #f7d56f);
@@ -16,7 +22,13 @@
   --color-success: var(--rk-success, #2f9e66);
   --color-danger: var(--rk-danger, #d94b4b);
   --color-on-paper: var(--rk-on-paper, #222222);
+  --color-on-paper-soft: var(--rk-on-paper-soft, #222222);
+  --color-on-paper-muted: var(--rk-on-paper-muted, #222222);
+  --color-on-paper-strong: var(--rk-on-paper-strong, #222222);
   --color-on-stone: var(--rk-on-stone, #f4f0e8);
+  --color-on-stone-soft: var(--rk-on-stone-soft, #f4f0e8);
+  --color-on-stone-muted: var(--rk-on-stone-muted, #f4f0e8);
+  --color-on-stone-strong: var(--rk-on-stone-strong, #f4f0e8);
   --color-on-primary: var(--rk-on-primary, #242628);
   --color-on-primary-soft: var(--rk-on-primary-soft, #2b2414);
   --color-on-primary-muted: var(--rk-on-primary-muted, #2b2414);

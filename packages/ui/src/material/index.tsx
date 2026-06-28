@@ -8,11 +8,17 @@ export type MaterialPreset =
   | 'danger'
   | 'default'
   | 'paper'
+  | 'paperMuted'
+  | 'paperSoft'
+  | 'paperStrong'
   | 'primary'
   | 'primaryMuted'
   | 'primarySoft'
   | 'primaryStrong'
   | 'stone'
+  | 'stoneMuted'
+  | 'stoneSoft'
+  | 'stoneStrong'
   | 'success'
 
 interface MaterialStyle extends CSSProperties {

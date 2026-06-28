@@ -15,13 +15,22 @@ export interface RocoThemeColors {
   danger?: string
   onDanger?: string
   onPaper?: string
+  onPaperMuted?: string
+  onPaperSoft?: string
+  onPaperStrong?: string
   onPrimary?: string
   onPrimaryMuted?: string
   onPrimarySoft?: string
   onPrimaryStrong?: string
   onSuccess?: string
   onStone?: string
+  onStoneMuted?: string
+  onStoneSoft?: string
+  onStoneStrong?: string
   paper?: string
+  paperMuted?: string
+  paperSoft?: string
+  paperStrong?: string
   primary?: string
   primaryMuted?: string
   primarySoft?: string
@@ -30,6 +39,9 @@ export interface RocoThemeColors {
   shadowSoftColor?: string
   shadowStrongColor?: string
   stone?: string
+  stoneMuted?: string
+  stoneSoft?: string
+  stoneStrong?: string
   success?: string
 }
 
@@ -53,7 +65,13 @@ type RocoThemeTokenName = keyof RocoThemeTokens
 
 const rocoThemeColorNames: RocoThemeColorName[] = [
   'paper',
+  'paperSoft',
+  'paperMuted',
+  'paperStrong',
   'stone',
+  'stoneSoft',
+  'stoneMuted',
+  'stoneStrong',
   'primary',
   'primarySoft',
   'primaryMuted',
@@ -61,7 +79,13 @@ const rocoThemeColorNames: RocoThemeColorName[] = [
   'success',
   'danger',
   'onPaper',
+  'onPaperSoft',
+  'onPaperMuted',
+  'onPaperStrong',
   'onStone',
+  'onStoneSoft',
+  'onStoneMuted',
+  'onStoneStrong',
   'onPrimary',
   'onPrimarySoft',
   'onPrimaryMuted',
@@ -108,7 +132,13 @@ export interface RocoThemeProps extends HTMLAttributes<HTMLDivElement> {
 function toColorVariables(colors?: RocoThemeColors): RocoThemeVariable[] {
   return [
     ['--rk-paper', colors?.paper],
+    ['--rk-paper-soft', colors?.paperSoft],
+    ['--rk-paper-muted', colors?.paperMuted],
+    ['--rk-paper-strong', colors?.paperStrong],
     ['--rk-stone', colors?.stone],
+    ['--rk-stone-soft', colors?.stoneSoft],
+    ['--rk-stone-muted', colors?.stoneMuted],
+    ['--rk-stone-strong', colors?.stoneStrong],
     ['--rk-primary', colors?.primary],
     ['--rk-primary-soft', colors?.primarySoft],
     ['--rk-primary-muted', colors?.primaryMuted],
@@ -116,7 +146,13 @@ function toColorVariables(colors?: RocoThemeColors): RocoThemeVariable[] {
     ['--rk-success', colors?.success],
     ['--rk-danger', colors?.danger],
     ['--rk-on-paper', colors?.onPaper],
+    ['--rk-on-paper-soft', colors?.onPaperSoft],
+    ['--rk-on-paper-muted', colors?.onPaperMuted],
+    ['--rk-on-paper-strong', colors?.onPaperStrong],
     ['--rk-on-stone', colors?.onStone],
+    ['--rk-on-stone-soft', colors?.onStoneSoft],
+    ['--rk-on-stone-muted', colors?.onStoneMuted],
+    ['--rk-on-stone-strong', colors?.onStoneStrong],
     ['--rk-on-primary', colors?.onPrimary],
     ['--rk-on-primary-soft', colors?.onPrimarySoft],
     ['--rk-on-primary-muted', colors?.onPrimaryMuted],

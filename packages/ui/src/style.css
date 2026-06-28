@@ -1,6 +1,12 @@
 :root {
   --rk-paper: #f4f0e8;
+  --rk-paper-soft: #fffaf2;
+  --rk-paper-muted: #e5dccd;
+  --rk-paper-strong: #cdbcaa;
   --rk-stone: #242628;
+  --rk-stone-soft: #272b2d;
+  --rk-stone-muted: #4d5358;
+  --rk-stone-strong: #141719;
   --rk-primary: #ffc65f;
   --rk-primary-soft: #fff1cf;
   --rk-primary-muted: #f7d56f;
@@ -8,7 +14,13 @@
   --rk-success: #2f9e66;
   --rk-danger: #d94b4b;
   --rk-on-paper: #222222;
+  --rk-on-paper-soft: #222222;
+  --rk-on-paper-muted: #222222;
+  --rk-on-paper-strong: #222222;
   --rk-on-stone: #f4f0e8;
+  --rk-on-stone-soft: #f4f0e8;
+  --rk-on-stone-muted: #f4f0e8;
+  --rk-on-stone-strong: #f4f0e8;
   --rk-on-primary: #242628;
   --rk-on-primary-soft: #2b2414;
   --rk-on-primary-muted: #2b2414;
