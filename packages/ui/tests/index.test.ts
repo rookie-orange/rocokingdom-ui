@@ -692,9 +692,7 @@ test('lets toggle group item styles be customized and expands selected items', (
       ToggleGroup,
       {
         selectedMaterial: 'primaryStrong',
-        selectedVariant: 'outline',
         unselectedMaterial: 'paper',
-        unselectedVariant: 'text',
         value: 'map',
       },
       createElement(ToggleItem, { style: { minWidth: 96 }, value: 'map' }, 'Map'),
@@ -711,14 +709,16 @@ test('lets toggle group item styles be customized and expands selected items', (
   )
 
   expect(html).toContain('primaryStrong')
-  expect(html).toContain('outline')
   expect(html).toContain('stone')
-  expect(html).toContain('text')
   expect(html).toContain('bag-toggle')
   expect(html).toContain('min-width:96px')
   expect(toggleGroupSource).not.toContain("from '../button'")
   expect(toggleGroupSource).toContain("import { RocoShape } from '../roco-shape'")
   expect(toggleGroupSource).toContain("import { RuneText } from '../rune-text'")
+  expect(toggleGroupSource).not.toContain('ToggleGroupVariant')
+  expect(toggleGroupSource).not.toContain('selectedVariant')
+  expect(toggleGroupSource).not.toContain('unselectedVariant')
+  expect(toggleGroupSource).not.toContain('variant={')
   expect(toggleGroupCss).toContain('min-width: 118px;')
   expect(toggleGroupCss).toContain('padding-inline: 30px;')
   expect(toggleGroupCss).toContain('min-width: 96px;')

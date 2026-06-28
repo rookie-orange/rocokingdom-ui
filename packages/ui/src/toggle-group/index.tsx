@@ -18,7 +18,6 @@ export const toggleItemPrefixCls = 'rk-toggle-item'
 export type ToggleGroupMaterial = MaterialPreset
 export type ToggleGroupOrientation = 'horizontal' | 'vertical'
 export type ToggleGroupSize = 'small' | 'middle' | 'large'
-export type ToggleGroupVariant = 'solid' | 'outline' | 'text'
 
 interface ToggleGroupContextValue<Value extends string = string> {
   disabled: boolean
@@ -26,11 +25,9 @@ interface ToggleGroupContextValue<Value extends string = string> {
   selectedMaterial: ToggleGroupMaterial
   selectedShadow: boolean
   selectedValue: Value | undefined
-  selectedVariant: ToggleGroupVariant
   size: ToggleGroupSize
   unselectedMaterial: ToggleGroupMaterial
   unselectedShadow: boolean
-  unselectedVariant: ToggleGroupVariant
 }
 
 const ToggleGroupContext = createContext<ToggleGroupContextValue | null>(null)
@@ -49,11 +46,9 @@ export interface ToggleGroupProps<Value extends string = string> extends Omit<
   rootClassName?: string
   selectedMaterial?: ToggleGroupMaterial
   selectedShadow?: boolean
-  selectedVariant?: ToggleGroupVariant
   size?: ToggleGroupSize
   unselectedMaterial?: ToggleGroupMaterial
   unselectedShadow?: boolean
-  unselectedVariant?: ToggleGroupVariant
   value?: Value
 }
 
@@ -68,15 +63,12 @@ export interface ToggleItemProps<Value extends string = string> extends Omit<
   selectedClassName?: string
   selectedMaterial?: ToggleGroupMaterial
   selectedShadow?: boolean
-  selectedVariant?: ToggleGroupVariant
   shadow?: boolean
   size?: ToggleGroupSize
   unselectedClassName?: string
   unselectedMaterial?: ToggleGroupMaterial
   unselectedShadow?: boolean
-  unselectedVariant?: ToggleGroupVariant
   value: Value
-  variant?: ToggleGroupVariant
 }
 
 function getToggleItems(root: HTMLElement) {
@@ -98,11 +90,9 @@ export function ToggleGroup<Value extends string = string>({
   rootClassName,
   selectedMaterial = 'paper',
   selectedShadow = false,
-  selectedVariant = 'solid',
   size = 'middle',
   unselectedMaterial = 'stone',
   unselectedShadow = false,
-  unselectedVariant = 'solid',
   value,
   ...props
 }: ToggleGroupProps<Value>) {
@@ -183,11 +173,9 @@ export function ToggleGroup<Value extends string = string>({
         selectedMaterial,
         selectedShadow,
         selectedValue,
-        selectedVariant,
         size,
         unselectedMaterial,
         unselectedShadow,
-        unselectedVariant,
       }}
     >
       <div
@@ -218,15 +206,12 @@ export function ToggleItem<Value extends string = string>({
   selectedClassName,
   selectedMaterial,
   selectedShadow,
-  selectedVariant,
   shadow,
   size,
   unselectedClassName,
   unselectedMaterial,
   unselectedShadow,
-  unselectedVariant,
   value,
-  variant,
   ...props
 }: ToggleItemProps<Value>) {
   const context = useContext(ToggleGroupContext)
@@ -248,16 +233,10 @@ export function ToggleItem<Value extends string = string>({
     shadow ??
     (isSelected ? toggleGroup.selectedShadow : toggleGroup.unselectedShadow)
   const resolvedSize = size ?? toggleGroup.size
-  const resolvedVariant =
-    (isSelected ? selectedVariant : unselectedVariant) ??
-    variant ??
-    (isSelected ? toggleGroup.selectedVariant : toggleGroup.unselectedVariant)
   const resolvedClassName = clsx(
     prefixCls,
     styles.item,
-    styles[resolvedMaterial],
     styles[resolvedSize],
-    styles[resolvedVariant],
     isSelected ? styles.selected : styles.unselected,
     rootClassName,
     className,
@@ -280,21 +259,17 @@ export function ToggleItem<Value extends string = string>({
       aria-disabled={isDisabled || undefined}
       aria-pressed={isSelected}
       as="button"
-      background="var(--rk-material-background)"
       className={resolvedClassName}
-      color={
-        resolvedVariant === 'solid' ? 'var(--rk-material-color)' : 'var(--rk-material-background)'
-      }
       contentClassName={styles.itemContent}
       data-rk-toggle-item="true"
       data-state={isSelected ? 'selected' : 'unselected'}
       disabled={isDisabled}
+      material={resolvedMaterial}
       onClick={handleClick}
-      shadow={resolvedVariant === 'text' ? false : resolvedShadow}
+      shadow={resolvedShadow}
       tabIndex={isTabbable ? 0 : -1}
       type="button"
       value={value}
-      variant={resolvedVariant}
     >
       <RuneText className={styles.itemText}>{children}</RuneText>
     </RocoShape>

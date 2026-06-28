@@ -29,7 +29,7 @@ function ToggleGroupExamplePage() {
       highlights={[
         'selectedMaterial 和 unselectedMaterial 可分别配置选中、未选中的材质。',
         'value/onValueChange 与 defaultValue 都可用。',
-        'orientation、size、variant、shadow 与 Button 风格保持一致。',
+        'orientation、size、shadow 与 Button 风格保持一致。',
       ]}
       title="ToggleGroup"
     >
@@ -82,7 +82,6 @@ function ToggleGroupExamplePage() {
               selectedMaterial="stone"
               selectedShadow
               unselectedMaterial="paper"
-              unselectedVariant="outline"
               size="large"
             >
               <ToggleItem value="solo">单人</ToggleItem>

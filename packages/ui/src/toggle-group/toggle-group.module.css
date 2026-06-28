@@ -37,47 +37,6 @@
   user-select: none;
 }
 
-.default,
-.primary {
-  --rk-material-background: var(--rk-primary);
-  --rk-material-color: var(--rk-on-primary);
-}
-
-.paper {
-  --rk-material-background: var(--rk-paper);
-  --rk-material-color: var(--rk-on-paper);
-}
-
-.stone {
-  --rk-material-background: var(--rk-stone);
-  --rk-material-color: var(--rk-on-stone);
-}
-
-.primarySoft {
-  --rk-material-background: var(--rk-primary-soft);
-  --rk-material-color: var(--rk-on-primary-soft);
-}
-
-.primaryMuted {
-  --rk-material-background: var(--rk-primary-muted);
-  --rk-material-color: var(--rk-on-primary-muted);
-}
-
-.primaryStrong {
-  --rk-material-background: var(--rk-primary-strong);
-  --rk-material-color: var(--rk-on-primary-strong);
-}
-
-.success {
-  --rk-material-background: var(--rk-success);
-  --rk-material-color: var(--rk-on-success);
-}
-
-.danger {
-  --rk-material-background: var(--rk-danger);
-  --rk-material-color: var(--rk-on-danger);
-}
-
 .small {
   font-size: calc(var(--rk-font-size-base, 16px) - 4px);
   height: var(--rk-control-height-small, 24px);
@@ -92,16 +51,6 @@
   font-size: var(--rk-font-size-base, 16px);
   height: var(--rk-control-height-large, 40px);
   padding-inline: var(--rk-control-padding-inline-large, 22px);
-}
-
-.solid {
-}
-
-.outline {
-}
-
-.text {
-  padding-inline: 8px;
 }
 
 .item:hover {

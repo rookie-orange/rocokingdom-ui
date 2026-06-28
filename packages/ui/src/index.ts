@@ -56,7 +56,6 @@ export type {
   ToggleGroupOrientation,
   ToggleGroupProps,
   ToggleGroupSize,
-  ToggleGroupVariant,
   ToggleItemProps,
 } from './toggle-group'
 export { RocoTheme, rocoThemePrefixCls, useRocoTheme, useRocoThemeStyle } from './theme'
