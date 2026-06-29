@@ -19,7 +19,10 @@ export function Notice() {
 interface MaterialVariant {
   label: string
   material: MaterialPreset
+  onToken: string
+  onValue: string
   token: string
+  value: string
 }
 
 interface MaterialFamily {
@@ -29,35 +32,153 @@ interface MaterialFamily {
 
 const materialFamilies: readonly MaterialFamily[] = [
   {
-    base: { label: 'primary', material: 'primary', token: '--rk-primary' },
+    base: {
+      label: 'primary',
+      material: 'primary',
+      onToken: '--rk-on-primary',
+      onValue: '#242628',
+      token: '--rk-primary',
+      value: '#ffc65f',
+    },
     variants: [
-      { label: 'soft', material: 'primarySoft', token: '--rk-primary-soft' },
-      { label: 'muted', material: 'primaryMuted', token: '--rk-primary-muted' },
-      { label: 'strong', material: 'primaryStrong', token: '--rk-primary-strong' },
+      {
+        label: 'soft',
+        material: 'primarySoft',
+        onToken: '--rk-on-primary-soft',
+        onValue: '#2b2414',
+        token: '--rk-primary-soft',
+        value: '#fff1cf',
+      },
+      {
+        label: 'muted',
+        material: 'primaryMuted',
+        onToken: '--rk-on-primary-muted',
+        onValue: '#2b2414',
+        token: '--rk-primary-muted',
+        value: '#f7d56f',
+      },
+      {
+        label: 'strong',
+        material: 'primaryStrong',
+        onToken: '--rk-on-primary-strong',
+        onValue: '#fff9ec',
+        token: '--rk-primary-strong',
+        value: '#d89522',
+      },
     ],
   },
   {
-    base: { label: 'paper', material: 'paper', token: '--rk-paper' },
+    base: {
+      label: 'paper',
+      material: 'paper',
+      onToken: '--rk-on-paper',
+      onValue: '#222222',
+      token: '--rk-paper',
+      value: '#f4f0e8',
+    },
     variants: [
-      { label: 'soft', material: 'paperSoft', token: '--rk-paper-soft' },
-      { label: 'muted', material: 'paperMuted', token: '--rk-paper-muted' },
-      { label: 'strong', material: 'paperStrong', token: '--rk-paper-strong' },
+      {
+        label: 'soft',
+        material: 'paperSoft',
+        onToken: '--rk-on-paper-soft',
+        onValue: '#222222',
+        token: '--rk-paper-soft',
+        value: '#fffaf2',
+      },
+      {
+        label: 'muted',
+        material: 'paperMuted',
+        onToken: '--rk-on-paper-muted',
+        onValue: '#222222',
+        token: '--rk-paper-muted',
+        value: '#e5dccd',
+      },
+      {
+        label: 'strong',
+        material: 'paperStrong',
+        onToken: '--rk-on-paper-strong',
+        onValue: '#222222',
+        token: '--rk-paper-strong',
+        value: '#cdbcaa',
+      },
     ],
   },
   {
-    base: { label: 'stone', material: 'stone', token: '--rk-stone' },
+    base: {
+      label: 'stone',
+      material: 'stone',
+      onToken: '--rk-on-stone',
+      onValue: '#f4f0e8',
+      token: '--rk-stone',
+      value: '#1f1f1f',
+    },
     variants: [
-      { label: 'soft', material: 'stoneSoft', token: '--rk-stone-soft' },
-      { label: 'muted', material: 'stoneMuted', token: '--rk-stone-muted' },
-      { label: 'strong', material: 'stoneStrong', token: '--rk-stone-strong' },
+      {
+        label: 'soft',
+        material: 'stoneSoft',
+        onToken: '--rk-on-stone-soft',
+        onValue: '#f4f0e8',
+        token: '--rk-stone-soft',
+        value: '#292d2d',
+      },
+      {
+        label: 'muted',
+        material: 'stoneMuted',
+        onToken: '--rk-on-stone-muted',
+        onValue: '#f4f0e8',
+        token: '--rk-stone-muted',
+        value: '#4d5358',
+      },
+      {
+        label: 'strong',
+        material: 'stoneStrong',
+        onToken: '--rk-on-stone-strong',
+        onValue: '#f4f0e8',
+        token: '--rk-stone-strong',
+        value: '#151515',
+      },
     ],
   },
 ]
 
 const stateMaterials: readonly MaterialVariant[] = [
-  { label: 'success', material: 'success', token: '--rk-success' },
-  { label: 'danger', material: 'danger', token: '--rk-danger' },
+  {
+    label: 'success',
+    material: 'success',
+    onToken: '--rk-on-success',
+    onValue: '#f3fff8',
+    token: '--rk-success',
+    value: '#2f9e66',
+  },
+  {
+    label: 'danger',
+    material: 'danger',
+    onToken: '--rk-on-danger',
+    onValue: '#fff6f4',
+    token: '--rk-danger',
+    value: '#d94b4b',
+  },
 ]
+
+function MaterialValueLines({
+  onToken,
+  onValue,
+  token,
+  value,
+}: Pick<MaterialVariant, 'onToken' | 'onValue' | 'token' | 'value'>) {
+  return (
+    <dl className="mt-3 grid gap-1 font-mono text-xs leading-5 opacity-75">
+      <div className="flex flex-wrap gap-x-2">
+        <dt>{token}</dt>
+        <dd>{value}</dd>
+      </div>
+      <div className="flex flex-wrap gap-x-2">
+        <dt>{onToken}</dt>
+        <dd>{onValue}</dd>
+      </div>
+    </dl>
+  )
+}
 
 function MaterialExamplePage() {
   return (
@@ -84,7 +205,7 @@ function MaterialExamplePage() {
                   <p className="font-roco text-4xl leading-none max-sm:text-3xl">
                     {family.base.label}
                   </p>
-                  <p className="mt-3 text-sm leading-6 opacity-75">{family.base.token}</p>
+                  <MaterialValueLines {...family.base} />
                 </Material>
                 <div className="grid grid-cols-3 border-t border-black/10 max-md:grid-cols-1">
                   {family.variants.map((variant) => (
@@ -96,7 +217,7 @@ function MaterialExamplePage() {
                       <p className="font-roco text-3xl leading-none max-sm:text-2xl">
                         {variant.label}
                       </p>
-                      <p className="mt-3 text-xs leading-5 opacity-75">{variant.token}</p>
+                      <MaterialValueLines {...variant} />
                     </Material>
                   ))}
                 </div>
@@ -116,7 +237,7 @@ function MaterialExamplePage() {
                 material={material.material}
               >
                 <p className="font-roco text-3xl leading-none">{material.label}</p>
-                <p className="mt-3 text-sm leading-6 opacity-75">{material.token}</p>
+                <MaterialValueLines {...material} />
               </Material>
             ))}
           </div>
@@ -134,7 +255,11 @@ function MaterialExamplePage() {
               type="button"
             >
               <span className="block font-roco text-2xl leading-none">水系活动</span>
-              <span className="mt-3 block text-sm opacity-80">as=&quot;button&quot;</span>
+              <span className="mt-3 block font-mono text-xs leading-5 opacity-80">
+                background #2f7dd1
+              </span>
+              <span className="block font-mono text-xs leading-5 opacity-80">color #f7fbff</span>
+              <span className="mt-2 block text-sm opacity-80">as=&quot;button&quot;</span>
             </Material>
             <Material
               as="article"
@@ -143,7 +268,11 @@ function MaterialExamplePage() {
               color="#2b2414"
             >
               <span className="block font-roco text-2xl leading-none">宠物档案</span>
-              <span className="mt-3 block text-sm opacity-75">自定义 foreground</span>
+              <span className="mt-3 block font-mono text-xs leading-5 opacity-75">
+                background #f7d56f
+              </span>
+              <span className="block font-mono text-xs leading-5 opacity-75">color #2b2414</span>
+              <span className="mt-2 block text-sm opacity-75">自定义 foreground</span>
             </Material>
           </div>
         </PreviewSurface>
