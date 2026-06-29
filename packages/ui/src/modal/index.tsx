@@ -1,3 +1,4 @@
+import { Cross } from '@rocokingdom-ui/icons'
 import type { ComponentPropsWithoutRef, CSSProperties, ReactElement, ReactNode } from 'react'
 import { clsx } from 'clsx'
 import {
@@ -19,6 +20,7 @@ export const ModalClose = RadixDialogClose
 
 type DialogRootProps = ComponentPropsWithoutRef<typeof RadixDialogRoot>
 export type ModalCloseProps = ComponentPropsWithoutRef<typeof RadixDialogClose>
+export type ModalClosePosition = 'inside' | 'outside'
 type DialogContentProps = Omit<
   ComponentPropsWithoutRef<typeof RadixDialogContent>,
   'children' | 'className'
@@ -35,6 +37,7 @@ export interface ModalProps extends Omit<DialogRootProps, 'children'> {
   closable?: boolean
   closeClassName?: string
   closeLabel?: string
+  closePosition?: ModalClosePosition
   contentClassName?: string
   contentProps?: DialogContentProps
   description?: ReactNode
@@ -74,6 +77,7 @@ export function Modal({
   closable = true,
   closeClassName,
   closeLabel = '关闭',
+  closePosition = 'inside',
   contentClassName,
   contentProps,
   description,
@@ -99,8 +103,10 @@ export function Modal({
   const hasFooter = hasContent(footer)
   const hasCustomHeader = header !== undefined && header !== false
   const hasHeaderRuneText = hasContent(headerRuneText)
+  const isCloseInside = closePosition === 'inside'
   const hasVisibleHeader =
-    header !== false && (hasCustomHeader || hasTitle || hasHeaderRuneText || closable)
+    header !== false &&
+    (hasCustomHeader || hasTitle || hasHeaderRuneText || (closable && isCloseInside))
   const titleForAssistiveTech = hasTitle ? title : (ariaLabel ?? 'Modal')
   const contentStyle: ModalStyle = { ...contentProps?.style }
   const resolvedWidth = resolveWidth(width)
@@ -115,7 +121,9 @@ export function Modal({
       className={clsx(`${prefixCls}-close`, styles.close, closeClassName)}
       type="button"
     >
-      <span aria-hidden="true" className={styles.closeIcon} />
+      <span aria-hidden="true" className={styles.closeIcon}>
+        <Cross />
+      </span>
     </RadixDialogClose>
   ) : null
 
@@ -138,6 +146,11 @@ export function Modal({
               className={clsx(prefixCls, styles.content, rootClassName, contentClassName)}
               style={contentStyle}
             >
+              {closeButton && !isCloseInside ? (
+                <div className={clsx(`${prefixCls}-outside-close`, styles.outsideClose)}>
+                  {closeButton}
+                </div>
+              ) : null}
               <section className={clsx(`${prefixCls}-panel`, styles.panel, panelClassName)}>
                 {hasVisibleHeader ? (
                   <header className={clsx(`${prefixCls}-header`, styles.header, headerClassName)}>
@@ -173,14 +186,14 @@ export function Modal({
                         </RuneText>
                       </RadixDialogTitle>
                     )}
-                    {closeButton}
+                    {isCloseInside ? closeButton : null}
                   </header>
                 ) : (
                   <>
                     <RadixDialogTitle className={styles.visuallyHidden}>
                       {titleForAssistiveTech}
                     </RadixDialogTitle>
-                    {closeButton ? (
+                    {closeButton && isCloseInside ? (
                       <div className={clsx(`${prefixCls}-floating-close`, styles.floatingClose)}>
                         {closeButton}
                       </div>

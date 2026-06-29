@@ -96,6 +96,10 @@
   animation: rk-drawer-panel-in 300ms linear;
 }
 
+.content[data-state='open'] .closeIcon {
+  animation: rk-drawer-close-icon-in 240ms ease-out;
+}
+
 .content[data-state='open'].top .panel,
 .content[data-state='open'].bottom .panel {
   animation-name: rk-drawer-panel-y-in;
@@ -103,6 +107,10 @@
 
 .content[data-state='closed'] .panel {
   animation: rk-drawer-panel-out 180ms ease-in;
+}
+
+.content[data-state='closed'] .closeIcon {
+  animation: rk-drawer-close-icon-out 180ms ease-in forwards;
 }
 
 .panel {
@@ -248,37 +256,18 @@
   outline-offset: -4px;
 }
 
-.closeIcon,
-.closeIcon::before,
-.closeIcon::after {
-  display: block;
-}
-
 .closeIcon {
+  display: block;
   filter: drop-shadow(0 3px 0 var(--rk-shadow-strong-color));
   height: 34px;
-  position: relative;
+  transform-origin: center;
   width: 34px;
 }
 
-.closeIcon::before,
-.closeIcon::after {
-  background: currentColor;
-  border-radius: 999px;
-  content: '';
-  height: 10px;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  width: 40px;
-}
-
-.closeIcon::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.closeIcon::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
+.closeIcon svg {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .visuallyHidden {
@@ -410,13 +399,38 @@
   }
 }
 
+@keyframes rk-drawer-close-icon-in {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.65);
+  }
+
+  72% {
+    opacity: 1;
+    transform: rotate(10deg) scale(1.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes rk-drawer-close-icon-out {
+  to {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.65);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .overlay[data-state='open'],
   .overlay[data-state='closed'],
   .content[data-state='open'],
   .content[data-state='closed'],
   .content[data-state='open'] .panel,
-  .content[data-state='closed'] .panel {
+  .content[data-state='closed'] .panel,
+  .content[data-state] .closeIcon {
     animation-duration: 1ms;
     animation-timing-function: linear;
   }

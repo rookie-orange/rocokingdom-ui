@@ -1,3 +1,4 @@
+import { Cross } from '@rocokingdom-ui/icons'
 import type { ComponentPropsWithoutRef, CSSProperties, ReactElement, ReactNode } from 'react'
 import { clsx } from 'clsx'
 import { Panel } from '../panel'
@@ -261,7 +262,9 @@ export function Drawer({
                         className={clsx(`${prefixCls}-close`, styles.close, closeClassName)}
                         type="button"
                       >
-                        <span aria-hidden="true" className={styles.closeIcon} />
+                        <span aria-hidden="true" className={styles.closeIcon}>
+                          <Cross />
+                        </span>
                       </RadixDialogClose>
                     ) : null}
                   </header>

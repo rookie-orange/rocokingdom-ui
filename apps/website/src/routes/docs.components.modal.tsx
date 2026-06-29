@@ -33,6 +33,7 @@ function ModalExamplePage() {
       highlights={[
         'trigger、title、description、footer 是最常用组合。',
         'headerRuneText 可增加标题栏装饰文字。',
+        '保留标题栏时建议使用默认关闭按钮位置；隐藏标题栏时可将关闭按钮放到面板外侧。',
         'header={false}、closable={false}、width 可覆盖特殊弹窗。',
       ]}
       title="Modal"
@@ -104,6 +105,7 @@ function ModalExamplePage() {
         <PreviewSurface>
           <Modal
             ariaLabel="无标题提示"
+            closePosition="outside"
             footer={
               <ModalClose asChild>
                 <Button material="stone" shadow>

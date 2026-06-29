@@ -40,7 +40,7 @@ export type {
   SideNavVariant,
 } from './side-nav'
 export { Modal, ModalClose, modalPrefixCls } from './modal'
-export type { ModalCloseProps, ModalProps } from './modal'
+export type { ModalClosePosition, ModalCloseProps, ModalProps } from './modal'
 export { RadioGroup, RadioItem, radioGroupPrefixCls, radioItemPrefixCls } from './radio-group'
 export type {
   RadioItemProps,
