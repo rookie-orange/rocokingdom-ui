@@ -9,7 +9,7 @@ catalog:
   '@types/node': ^24
   typescript: ^5
   vite: npm:@voidzero-dev/vite-plus-core@latest
-  vitest: npm:@voidzero-dev/vite-plus-test@latest
+  vitest: 4.1.9
   vite-plus: latest
   react: ^19.2.7
   react-dom: ^19.2.7

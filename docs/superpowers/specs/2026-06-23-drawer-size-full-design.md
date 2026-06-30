@@ -73,8 +73,8 @@ if (resolvedSize) {
 - `<Drawer size="50vw" />` → 原样透传（回归，行为不变）。
 - `<Drawer />`（未传 `size`）→ 不含 `--rk-drawer-size`（回归，行为不变）。
 
-测试命令：`vp test`（本环境当前因 vitest bin 缺失无法运行，见「已知限制」）。
+测试命令：`vp run -r test`。
 
-## 已知限制
+## 验证状态
 
-`vp test` 在当前环境无法运行：`vitest` 未安装（不在 `node_modules/.bin` 与 `.pnpm`），且 `@voidzero-dev/vite-plus-test@0.1.24` 的 `package.json` 无 `bin` 字段。`vp env doctor` 提示缺失 node/npm/npx 等 shim 并检测到 nvm 冲突。验证将用 node 复刻断言逻辑代替，直到环境修复。
+2026-06-30 已修复 workspace 的 `vitest` pin，`vp run -r test` 可正常执行。
