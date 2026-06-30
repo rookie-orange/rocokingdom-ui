@@ -26,6 +26,7 @@ import { Route as DocsComponentsRuneTextRouteImport } from './routes/docs.compon
 import { Route as DocsComponentsRadioGroupRouteImport } from './routes/docs.components.radio-group'
 import { Route as DocsComponentsPanelRouteImport } from './routes/docs.components.panel'
 import { Route as DocsComponentsModalRouteImport } from './routes/docs.components.modal'
+import { Route as DocsComponentsInputRouteImport } from './routes/docs.components.input'
 import { Route as DocsComponentsDrawerRouteImport } from './routes/docs.components.drawer'
 import { Route as DocsComponentsCheckboxRouteImport } from './routes/docs.components.checkbox'
 import { Route as DocsComponentsButtonNormalRouteImport } from './routes/docs.components.button-normal'
@@ -118,6 +119,11 @@ const DocsComponentsModalRoute = DocsComponentsModalRouteImport.update({
   path: '/components/modal',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsInputRoute = DocsComponentsInputRouteImport.update({
+  id: '/components/input',
+  path: '/components/input',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsDrawerRoute = DocsComponentsDrawerRouteImport.update({
   id: '/components/drawer',
   path: '/components/drawer',
@@ -151,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
+  '/docs/components/input': typeof DocsComponentsInputRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
@@ -173,6 +180,7 @@ export interface FileRoutesByTo {
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
+  '/docs/components/input': typeof DocsComponentsInputRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
@@ -197,6 +205,7 @@ export interface FileRoutesById {
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
+  '/docs/components/input': typeof DocsComponentsInputRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
@@ -222,6 +231,7 @@ export interface FileRouteTypes {
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
     | '/docs/components/drawer'
+    | '/docs/components/input'
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
@@ -244,6 +254,7 @@ export interface FileRouteTypes {
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
     | '/docs/components/drawer'
+    | '/docs/components/input'
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
@@ -267,6 +278,7 @@ export interface FileRouteTypes {
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
     | '/docs/components/drawer'
+    | '/docs/components/input'
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
@@ -407,6 +419,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsModalRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/input': {
+      id: '/docs/components/input'
+      path: '/components/input'
+      fullPath: '/docs/components/input'
+      preLoaderRoute: typeof DocsComponentsInputRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/components/drawer': {
       id: '/docs/components/drawer'
       path: '/components/drawer'
@@ -445,6 +464,7 @@ interface DocsRouteChildren {
   DocsComponentsButtonNormalRoute: typeof DocsComponentsButtonNormalRoute
   DocsComponentsCheckboxRoute: typeof DocsComponentsCheckboxRoute
   DocsComponentsDrawerRoute: typeof DocsComponentsDrawerRoute
+  DocsComponentsInputRoute: typeof DocsComponentsInputRoute
   DocsComponentsModalRoute: typeof DocsComponentsModalRoute
   DocsComponentsPanelRoute: typeof DocsComponentsPanelRoute
   DocsComponentsRadioGroupRoute: typeof DocsComponentsRadioGroupRoute
@@ -465,6 +485,7 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsComponentsButtonNormalRoute: DocsComponentsButtonNormalRoute,
   DocsComponentsCheckboxRoute: DocsComponentsCheckboxRoute,
   DocsComponentsDrawerRoute: DocsComponentsDrawerRoute,
+  DocsComponentsInputRoute: DocsComponentsInputRoute,
   DocsComponentsModalRoute: DocsComponentsModalRoute,
   DocsComponentsPanelRoute: DocsComponentsPanelRoute,
   DocsComponentsRadioGroupRoute: DocsComponentsRadioGroupRoute,

@@ -53,6 +53,13 @@ export const examples: ExampleMeta[] = [
   },
   {
     category: 'components',
+    description: '与按钮保持同款 RocoShape 底形的单行输入框。',
+    name: 'Input',
+    path: '/docs/components/input',
+    slug: 'input',
+  },
+  {
+    category: 'components',
     description: '游戏面板风格弹窗，覆盖标题、描述、页脚和自定义头部。',
     name: 'Modal',
     path: '/docs/components/modal',

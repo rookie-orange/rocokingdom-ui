@@ -109,6 +109,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
     items: [
       {
         description: '单行文本、前后缀、错误和禁用状态。',
+        implementedSlug: 'input',
         name: 'Input 输入框',
       },
       {

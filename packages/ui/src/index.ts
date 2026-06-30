@@ -6,6 +6,8 @@ export { Checkbox, checkboxPrefixCls } from './checkbox'
 export type { CheckboxMaterial, CheckboxProps, CheckboxSize, CheckboxVariant } from './checkbox'
 export { Drawer, DrawerClose, drawerPrefixCls } from './drawer'
 export type { DrawerCloseProps, DrawerProps, DrawerSide } from './drawer'
+export { Input, inputPrefixCls } from './input'
+export type { InputMaterial, InputProps, InputSize, InputVariant } from './input'
 export { Material, materialPrefixCls, resolveMaterial } from './material'
 export type {
   MaterialPreset,

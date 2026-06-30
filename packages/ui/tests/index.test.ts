@@ -9,6 +9,7 @@ import {
   Checkbox,
   Drawer,
   DrawerClose,
+  Input,
   Material,
   Panel,
   Select,
@@ -29,6 +30,7 @@ import {
   buttonPrefixCls,
   checkboxPrefixCls,
   drawerPrefixCls,
+  inputPrefixCls,
   materialPrefixCls,
   panelPrefixCls,
   selectItemPrefixCls,
@@ -92,6 +94,8 @@ const materialCss = readFileSync(
 const panelCss = readFileSync(new URL('../src/panel/panel.module.css', import.meta.url), 'utf8')
 const drawerCss = readFileSync(new URL('../src/drawer/drawer.module.css', import.meta.url), 'utf8')
 const drawerSource = readFileSync(new URL('../src/drawer/index.tsx', import.meta.url), 'utf8')
+const inputCss = readFileSync(new URL('../src/input/input.module.css', import.meta.url), 'utf8')
+const inputSource = readFileSync(new URL('../src/input/index.tsx', import.meta.url), 'utf8')
 const radixDialogSource = readFileSync(new URL('../src/radix-dialog.ts', import.meta.url), 'utf8')
 const sideNavCss = readFileSync(
   new URL('../src/side-nav/side-nav.module.css', import.meta.url),
@@ -118,6 +122,7 @@ test('exports a single button prefix class', () => {
   expect(checkboxPrefixCls).toBe('rk-checkbox')
   expect(drawerPrefixCls).toBe('rk-drawer')
   expect(DrawerClose).toBeTruthy()
+  expect(inputPrefixCls).toBe('rk-input')
   expect(materialPrefixCls).toBe('rk-material')
   expect(panelPrefixCls).toBe('rk-panel')
   expect(selectPrefixCls).toBe('rk-select')
@@ -386,6 +391,59 @@ test('passes the optional shadow prop from button to its shape', () => {
 
   expect(defaultHtml).not.toContain('withShadow')
   expect(shadowHtml).toContain('withShadow')
+})
+
+test('renders a roco-shaped input with default stone material', () => {
+  const html = renderToString(
+    createElement(Input, {
+      className: 'custom-input',
+      inputClassName: 'field-input',
+      placeholder: 'Search',
+      prefix: 'ID',
+      rootClassName: 'app-input',
+      shadow: true,
+      suffix: '#',
+    }),
+  )
+
+  expect(html).toContain('<label')
+  expect(html).toContain('<input')
+  expect(html).toContain('<svg')
+  expect(html).toContain('<path')
+  expect(html).toContain('rk-input')
+  expect(html).toContain('rk-input-control')
+  expect(html).toContain('rk-material')
+  expect(html).toContain('rk-roco-shape')
+  expect(html).toContain('app-input')
+  expect(html).toContain('custom-input')
+  expect(html).toContain('field-input')
+  expect(html).toContain('placeholder="Search"')
+  expect(html).toContain('type="text"')
+  expect(html).toContain('withShadow')
+  expect(html).toContain('--rk-material-background:var(--rk-stone)')
+  expect(html).toContain('--rk-material-color:var(--rk-on-stone)')
+  expect(html).toContain('ID')
+  expect(html).toContain('#')
+})
+
+test('uses the shared button shape and stone material for input', () => {
+  expect(inputSource).toContain("import { Material, type MaterialPreset } from '../material'")
+  expect(inputSource).toContain("import { RocoShape } from '../roco-shape'")
+  expect(inputSource).toContain("material = 'stone'")
+  expect(inputSource).toContain('<Material asChild material={material}>')
+  expect(inputSource).toContain('as="label"')
+  expect(inputSource).toContain('variant={variant}')
+  expect(inputSource).toContain('ref?: Ref<HTMLInputElement>')
+  expect(inputSource).toContain('ref={ref}')
+  expect(inputSource).not.toContain('forwardRef')
+  expect(inputCss).toContain('height: var(--rk-control-height-middle, 32px);')
+  expect(inputCss).toContain('height: var(--rk-control-height-small, 24px);')
+  expect(inputCss).toContain('height: var(--rk-control-height-large, 40px);')
+  expect(inputCss).toContain('padding: 2px var(--rk-control-padding-inline-middle, 18px);')
+  expect(inputCss).not.toContain(':focus-within')
+  expect(inputCss).not.toContain('outline: 3px solid var(--rk-primary);')
+  expect(inputCss).not.toContain('--rk-input-')
+  expect(inputCss).not.toContain('--rk-roco-shape-')
 })
 
 test('pins button sizes with explicit heights in flex rows', () => {
