@@ -133,6 +133,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '二元开关，适合即时启用或关闭设置。',
+        implementedSlug: 'switch',
         name: 'Switch 开关',
       },
       {

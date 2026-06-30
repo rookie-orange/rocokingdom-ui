@@ -116,6 +116,13 @@ export const examples: ExampleMeta[] = [
   },
   {
     category: 'components',
+    description: '二元开关控件，覆盖表单语义、尺寸、材质和受控状态。',
+    name: 'Switch',
+    path: '/docs/components/switch',
+    slug: 'switch',
+  },
+  {
+    category: 'components',
     description: '游戏侧边导航，覆盖堆叠模式、窄轨模式、徽标和禁用项。',
     name: 'SideNav',
     path: '/docs/components/side-nav',

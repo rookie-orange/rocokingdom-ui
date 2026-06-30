@@ -32,6 +32,8 @@ export {
   selectPrefixCls,
 } from './select'
 export type { SelectItemProps, SelectMaterial, SelectOption, SelectProps } from './select'
+export { Switch, switchPrefixCls } from './switch'
+export type { SwitchMaterial, SwitchProps, SwitchSize } from './switch'
 export {
   SideNav,
   SideNavHeader,

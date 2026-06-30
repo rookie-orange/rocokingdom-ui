@@ -22,6 +22,7 @@ import { Route as DocsDesignRocoShapeRouteImport } from './routes/docs.design.ro
 import { Route as DocsDesignMaterialRouteImport } from './routes/docs.design.material'
 import { Route as DocsComponentsToggleGroupRouteImport } from './routes/docs.components.toggle-group'
 import { Route as DocsComponentsTabsRouteImport } from './routes/docs.components.tabs'
+import { Route as DocsComponentsSwitchRouteImport } from './routes/docs.components.switch'
 import { Route as DocsComponentsSideNavRouteImport } from './routes/docs.components.side-nav'
 import { Route as DocsComponentsSelectRouteImport } from './routes/docs.components.select'
 import { Route as DocsComponentsRuneTextRouteImport } from './routes/docs.components.rune-text'
@@ -101,6 +102,11 @@ const DocsComponentsTabsRoute = DocsComponentsTabsRouteImport.update({
   path: '/components/tabs',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsSwitchRoute = DocsComponentsSwitchRouteImport.update({
+  id: '/components/switch',
+  path: '/components/switch',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsSideNavRoute = DocsComponentsSideNavRouteImport.update({
   id: '/components/side-nav',
   path: '/components/side-nav',
@@ -177,6 +183,7 @@ export interface FileRoutesByFullPath {
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
   '/docs/components/toggle-group': typeof DocsComponentsToggleGroupRoute
   '/docs/design/material': typeof DocsDesignMaterialRoute
@@ -202,6 +209,7 @@ export interface FileRoutesByTo {
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
   '/docs/components/toggle-group': typeof DocsComponentsToggleGroupRoute
   '/docs/design/material': typeof DocsDesignMaterialRoute
@@ -229,6 +237,7 @@ export interface FileRoutesById {
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
   '/docs/components/toggle-group': typeof DocsComponentsToggleGroupRoute
   '/docs/design/material': typeof DocsDesignMaterialRoute
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/switch'
     | '/docs/components/tabs'
     | '/docs/components/toggle-group'
     | '/docs/design/material'
@@ -282,6 +292,7 @@ export interface FileRouteTypes {
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/switch'
     | '/docs/components/tabs'
     | '/docs/components/toggle-group'
     | '/docs/design/material'
@@ -308,6 +319,7 @@ export interface FileRouteTypes {
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/switch'
     | '/docs/components/tabs'
     | '/docs/components/toggle-group'
     | '/docs/design/material'
@@ -416,6 +428,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsTabsRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/switch': {
+      id: '/docs/components/switch'
+      path: '/components/switch'
+      fullPath: '/docs/components/switch'
+      preLoaderRoute: typeof DocsComponentsSwitchRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/components/side-nav': {
       id: '/docs/components/side-nav'
       path: '/components/side-nav'
@@ -510,6 +529,7 @@ interface DocsRouteChildren {
   DocsComponentsRuneTextRoute: typeof DocsComponentsRuneTextRoute
   DocsComponentsSelectRoute: typeof DocsComponentsSelectRoute
   DocsComponentsSideNavRoute: typeof DocsComponentsSideNavRoute
+  DocsComponentsSwitchRoute: typeof DocsComponentsSwitchRoute
   DocsComponentsTabsRoute: typeof DocsComponentsTabsRoute
   DocsComponentsToggleGroupRoute: typeof DocsComponentsToggleGroupRoute
   DocsDesignMaterialRoute: typeof DocsDesignMaterialRoute
@@ -533,6 +553,7 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsComponentsRuneTextRoute: DocsComponentsRuneTextRoute,
   DocsComponentsSelectRoute: DocsComponentsSelectRoute,
   DocsComponentsSideNavRoute: DocsComponentsSideNavRoute,
+  DocsComponentsSwitchRoute: DocsComponentsSwitchRoute,
   DocsComponentsTabsRoute: DocsComponentsTabsRoute,
   DocsComponentsToggleGroupRoute: DocsComponentsToggleGroupRoute,
   DocsDesignMaterialRoute: DocsDesignMaterialRoute,
