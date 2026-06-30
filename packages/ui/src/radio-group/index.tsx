@@ -7,7 +7,7 @@ import type {
 } from 'react'
 import { createContext, useContext, useState } from 'react'
 import { clsx } from 'clsx'
-import type { MaterialPreset } from '../material'
+import { Material, type MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
 import styles from './radio-group.module.css'
 
@@ -254,7 +254,6 @@ export function RadioItem<Value extends string = string>({
   const resolvedClassName = clsx(
     prefixCls,
     styles.item,
-    styles[resolvedMaterial],
     styles[resolvedSize],
     styles[resolvedVariant],
     isSelected ? styles.active : styles.inactive,
@@ -274,29 +273,27 @@ export function RadioItem<Value extends string = string>({
   }
 
   return (
-    <RocoShape
-      {...props}
-      aria-checked={isSelected}
-      aria-disabled={isDisabled || undefined}
-      as="button"
-      background="var(--rk-material-background)"
-      className={resolvedClassName}
-      color={
-        resolvedVariant === 'solid' ? 'var(--rk-material-color)' : 'var(--rk-material-background)'
-      }
-      data-rk-radio-item="true"
-      data-state={isSelected ? 'checked' : 'unchecked'}
-      disabled={isDisabled}
-      onClick={handleClick}
-      role="radio"
-      shadow={resolvedVariant === 'text' ? false : resolvedShadow}
-      tabIndex={isTabbable ? 0 : -1}
-      type="button"
-      value={value}
-      variant={resolvedVariant}
-      contentClassName={styles.itemContent}
-    >
-      {children}
-    </RocoShape>
+    <Material asChild material={resolvedMaterial}>
+      <RocoShape
+        {...props}
+        aria-checked={isSelected}
+        aria-disabled={isDisabled || undefined}
+        as="button"
+        className={resolvedClassName}
+        data-rk-radio-item="true"
+        data-state={isSelected ? 'checked' : 'unchecked'}
+        disabled={isDisabled}
+        onClick={handleClick}
+        role="radio"
+        shadow={resolvedVariant === 'text' ? false : resolvedShadow}
+        tabIndex={isTabbable ? 0 : -1}
+        type="button"
+        value={value}
+        variant={resolvedVariant}
+        contentClassName={styles.itemContent}
+      >
+        {children}
+      </RocoShape>
+    </Material>
   )
 }

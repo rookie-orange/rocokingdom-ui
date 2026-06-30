@@ -1,18 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { RocoShape } from 'rocokingdom-ui'
+import { Material, RocoShape } from 'rocokingdom-ui'
 import { ExampleSection, ExampleShell, PreviewSurface } from '../examples/example-shell'
 
 export const Route = createFileRoute('/docs/design/roco-shape')({
   component: RocoShapeExamplePage,
 })
 
-const rocoShapeCode = `import { RocoShape } from 'rocokingdom-ui'
+const rocoShapeCode = `import { Material, RocoShape } from 'rocokingdom-ui'
 
 export function NoticeBadge() {
   return (
-    <RocoShape material="paper" shadow>
-      今日活动
-    </RocoShape>
+    <Material asChild material="paper">
+      <RocoShape shadow>
+        今日活动
+      </RocoShape>
+    </Material>
   )
 }`
 
@@ -26,7 +28,7 @@ function RocoShapeExamplePage() {
         'variant 覆盖 solid、outline。',
         'shadow 仅对实心填充生效。',
         'children 会自动生成内容层，不需要手写 position、inset 或 z-index。',
-        'material、background 和 color 与 Material 使用同一组表面变量。',
+        'Material 可以通过 asChild 提供表面变量，RocoShape 负责消费这些颜色。',
       ]}
       title="RocoShape"
     >
@@ -75,12 +77,16 @@ function RocoShapeExamplePage() {
       <ExampleSection title="文字背景">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-5">
-            <RocoShape className="!h-[72px] !px-[42px] font-roco text-3xl" material="stone" shadow>
-              今日活动
-            </RocoShape>
-            <RocoShape className="!h-14 !px-[34px] font-roco text-2xl" material="paper" shadow>
-              宠物档案
-            </RocoShape>
+            <Material asChild material="stone">
+              <RocoShape className="!h-[72px] !px-[42px] font-roco text-3xl" shadow>
+                今日活动
+              </RocoShape>
+            </Material>
+            <Material asChild material="paper">
+              <RocoShape className="!h-14 !px-[34px] font-roco text-2xl" shadow>
+                宠物档案
+              </RocoShape>
+            </Material>
           </div>
         </PreviewSurface>
       </ExampleSection>
@@ -88,9 +94,11 @@ function RocoShapeExamplePage() {
       <ExampleSection title="材质与自定义颜色">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-5">
-            <RocoShape className="!h-14 !px-[34px] font-roco text-2xl" material="paper" shadow>
-              纸张表面
-            </RocoShape>
+            <Material asChild material="paper">
+              <RocoShape className="!h-14 !px-[34px] font-roco text-2xl" shadow>
+                纸张表面
+              </RocoShape>
+            </Material>
             <RocoShape
               background="#2f7dd1"
               className="!h-14 !px-[34px] font-roco text-2xl"

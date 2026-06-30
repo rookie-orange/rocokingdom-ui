@@ -1,13 +1,10 @@
 import type { ComponentPropsWithRef, CSSProperties, ElementType, ReactNode } from 'react'
 import { clsx } from 'clsx'
-import type { MaterialPreset } from '../material'
-import materialStyles from '../material/material.module.css'
 import styles from './roco-shape.module.css'
 
 export const rocoShapePrefixCls = 'rk-roco-shape'
 
 export type RocoShapeKind = 'stretch' | 'circle' | 'square'
-export type RocoShapeMaterial = MaterialPreset
 export type RocoShapeVariant = 'outline' | 'solid' | 'text'
 
 interface RocoShapeStyle extends CSSProperties {
@@ -22,7 +19,6 @@ interface RocoShapeOwnProps<As extends ElementType> {
   className?: string
   color?: string
   contentClassName?: string
-  material?: RocoShapeMaterial
   prefixCls?: string
   rootClassName?: string
   shadow?: boolean
@@ -142,7 +138,6 @@ export function RocoShape<As extends ElementType = 'span'>({
   className,
   color,
   contentClassName,
-  material,
   prefixCls = rocoShapePrefixCls,
   rootClassName,
   shadow = false,
@@ -176,7 +171,6 @@ export function RocoShape<As extends ElementType = 'span'>({
         styles.shape,
         styles[shape],
         styles[variant],
-        material && materialStyles[material],
         hasContent && styles.withContent,
         shadow && hasFill && styles.withShadow,
         rootClassName,

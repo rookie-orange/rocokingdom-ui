@@ -6,8 +6,16 @@ export { Checkbox, checkboxPrefixCls } from './checkbox'
 export type { CheckboxMaterial, CheckboxProps, CheckboxSize, CheckboxVariant } from './checkbox'
 export { Drawer, DrawerClose, drawerPrefixCls } from './drawer'
 export type { DrawerCloseProps, DrawerProps, DrawerSide } from './drawer'
-export { Material, materialPrefixCls } from './material'
-export type { MaterialPreset, MaterialProps } from './material'
+export { Material, materialPrefixCls, resolveMaterial } from './material'
+export type {
+  MaterialPreset,
+  MaterialProps,
+  MaterialRender,
+  MaterialRenderProps,
+  MaterialResolveOptions,
+  MaterialStyle,
+  MaterialValue,
+} from './material'
 export { Panel, panelPrefixCls } from './panel'
 export type { PanelCurve, PanelMaterial, PanelProps } from './panel'
 export {
@@ -66,11 +74,6 @@ export type {
   RocoThemeTokens,
 } from './theme'
 export { RocoShape, rocoShapePrefixCls } from './roco-shape'
-export type {
-  RocoShapeKind,
-  RocoShapeMaterial,
-  RocoShapeProps,
-  RocoShapeVariant,
-} from './roco-shape'
+export type { RocoShapeKind, RocoShapeProps, RocoShapeVariant } from './roco-shape'
 export { RuneText, runeTextPrefixCls } from './rune-text'
 export type { RuneTextFont, RuneTextProps } from './rune-text'

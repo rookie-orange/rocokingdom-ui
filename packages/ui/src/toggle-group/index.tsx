@@ -7,7 +7,7 @@ import type {
 } from 'react'
 import { createContext, useContext, useState } from 'react'
 import { clsx } from 'clsx'
-import type { MaterialPreset } from '../material'
+import { Material, type MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
 import { RuneText } from '../rune-text'
 import styles from './toggle-group.module.css'
@@ -254,24 +254,25 @@ export function ToggleItem<Value extends string = string>({
   }
 
   return (
-    <RocoShape
-      {...props}
-      aria-disabled={isDisabled || undefined}
-      aria-pressed={isSelected}
-      as="button"
-      className={resolvedClassName}
-      contentClassName={styles.itemContent}
-      data-rk-toggle-item="true"
-      data-state={isSelected ? 'selected' : 'unselected'}
-      disabled={isDisabled}
-      material={resolvedMaterial}
-      onClick={handleClick}
-      shadow={resolvedShadow}
-      tabIndex={isTabbable ? 0 : -1}
-      type="button"
-      value={value}
-    >
-      <RuneText className={styles.itemText}>{children}</RuneText>
-    </RocoShape>
+    <Material asChild material={resolvedMaterial}>
+      <RocoShape
+        {...props}
+        aria-disabled={isDisabled || undefined}
+        aria-pressed={isSelected}
+        as="button"
+        className={resolvedClassName}
+        contentClassName={styles.itemContent}
+        data-rk-toggle-item="true"
+        data-state={isSelected ? 'selected' : 'unselected'}
+        disabled={isDisabled}
+        onClick={handleClick}
+        shadow={resolvedShadow}
+        tabIndex={isTabbable ? 0 : -1}
+        type="button"
+        value={value}
+      >
+        <RuneText className={styles.itemText}>{children}</RuneText>
+      </RocoShape>
+    </Material>
   )
 }

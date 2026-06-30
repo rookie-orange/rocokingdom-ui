@@ -18,10 +18,6 @@
 }
 
 .header {
-  --rk-material-background: var(--rk-stone);
-  --rk-material-color: var(--rk-on-stone);
-
-  color: var(--rk-material-color);
   flex: 0 0 auto;
   height: auto;
   min-width: min(100%, 232px);

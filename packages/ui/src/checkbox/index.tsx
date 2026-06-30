@@ -2,7 +2,7 @@ import { Check } from '@rocokingdom-ui/icons'
 import type { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react'
 import { useState } from 'react'
 import { clsx } from 'clsx'
-import type { MaterialPreset } from '../material'
+import { Material, type MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
 import styles from './checkbox.module.css'
 
@@ -55,7 +55,6 @@ export function Checkbox({
   const resolvedClassName = clsx(
     prefixCls,
     styles.checkbox,
-    styles[material],
     styles[size],
     styles[shapeVariant],
     isChecked ? styles.checked : styles.unchecked,
@@ -87,20 +86,18 @@ export function Checkbox({
         onChange={handleChange}
         type="checkbox"
       />
-      <RocoShape
-        aria-hidden="true"
-        background="var(--rk-material-background)"
-        className={styles.control}
-        color={
-          shapeVariant === 'solid' ? 'var(--rk-material-color)' : 'var(--rk-material-background)'
-        }
-        contentClassName={styles.icon}
-        shadow={isChecked && shadow}
-        shape="square"
-        variant={shapeVariant}
-      >
-        {isChecked ? (icon ?? <Check />) : null}
-      </RocoShape>
+      <Material asChild material={material}>
+        <RocoShape
+          aria-hidden="true"
+          className={styles.control}
+          contentClassName={styles.icon}
+          shadow={isChecked && shadow}
+          shape="square"
+          variant={shapeVariant}
+        >
+          {isChecked ? (icon ?? <Check />) : null}
+        </RocoShape>
+      </Material>
       {children ? <span className={styles.label}>{children}</span> : null}
     </label>
   )

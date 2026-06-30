@@ -1,13 +1,9 @@
 .trigger {
-  --rk-material-background: var(--rk-stone);
-  --rk-material-color: var(--rk-on-stone);
-
   appearance: none;
   align-items: center;
   background: transparent;
   border: 0;
   box-sizing: border-box;
-  color: var(--rk-material-color);
   cursor: pointer;
   display: inline-flex;
   font: inherit;
@@ -37,77 +33,6 @@
   filter: grayscale(0.2);
   opacity: 0.5;
   transform: none;
-}
-
-.default,
-.primary {
-  --rk-material-background: var(--rk-primary);
-  --rk-material-color: var(--rk-on-primary);
-}
-
-.paper {
-  --rk-material-background: var(--rk-paper);
-  --rk-material-color: var(--rk-on-paper);
-}
-
-.paperSoft {
-  --rk-material-background: var(--rk-paper-soft);
-  --rk-material-color: var(--rk-on-paper-soft);
-}
-
-.paperMuted {
-  --rk-material-background: var(--rk-paper-muted);
-  --rk-material-color: var(--rk-on-paper-muted);
-}
-
-.paperStrong {
-  --rk-material-background: var(--rk-paper-strong);
-  --rk-material-color: var(--rk-on-paper-strong);
-}
-
-.stone {
-  --rk-material-background: var(--rk-stone);
-  --rk-material-color: var(--rk-on-stone);
-}
-
-.stoneSoft {
-  --rk-material-background: var(--rk-stone-soft);
-  --rk-material-color: var(--rk-on-stone-soft);
-}
-
-.stoneMuted {
-  --rk-material-background: var(--rk-stone-muted);
-  --rk-material-color: var(--rk-on-stone-muted);
-}
-
-.stoneStrong {
-  --rk-material-background: var(--rk-stone-strong);
-  --rk-material-color: var(--rk-on-stone-strong);
-}
-
-.primarySoft {
-  --rk-material-background: var(--rk-primary-soft);
-  --rk-material-color: var(--rk-on-primary-soft);
-}
-
-.primaryMuted {
-  --rk-material-background: var(--rk-primary-muted);
-  --rk-material-color: var(--rk-on-primary-muted);
-}
-
-.primaryStrong {
-  --rk-material-background: var(--rk-primary-strong);
-  --rk-material-color: var(--rk-on-primary-strong);
-}
-
-.success {
-  --rk-material-background: var(--rk-success);
-  --rk-material-color: var(--rk-on-success);
-}
-
-.danger {
-  --rk-material-background: var(--rk-danger);
-  --rk-material-color: var(--rk-on-danger);
 }
 
 .triggerContent {

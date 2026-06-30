@@ -1,5 +1,6 @@
 import type { ButtonHTMLAttributes, ElementType, HTMLAttributes, ReactNode } from 'react'
 import { clsx } from 'clsx'
+import { Material } from '../material'
 import { RocoShape } from '../roco-shape'
 import styles from './side-nav.module.css'
 
@@ -82,30 +83,30 @@ export function SideNavHeader({
   const hasStructuredContent = icon || eyebrow || title
 
   return (
-    <RocoShape
-      {...props}
-      as={Component}
-      background="var(--rk-material-background)"
-      className={clsx(prefixCls, styles.header, rootClassName, className)}
-      color="var(--rk-material-color)"
-      contentClassName={styles.headerContent}
-    >
-      {hasStructuredContent ? (
-        <>
-          {icon ? (
-            <span aria-hidden="true" className={styles.headerIcon}>
-              {icon}
+    <Material asChild material="stone">
+      <RocoShape
+        {...props}
+        as={Component}
+        className={clsx(prefixCls, styles.header, rootClassName, className)}
+        contentClassName={styles.headerContent}
+      >
+        {hasStructuredContent ? (
+          <>
+            {icon ? (
+              <span aria-hidden="true" className={styles.headerIcon}>
+                {icon}
+              </span>
+            ) : null}
+            <span className={styles.headerText}>
+              {eyebrow ? <span className={styles.headerEyebrow}>{eyebrow}</span> : null}
+              {title ? <span className={styles.headerTitle}>{title}</span> : null}
             </span>
-          ) : null}
-          <span className={styles.headerText}>
-            {eyebrow ? <span className={styles.headerEyebrow}>{eyebrow}</span> : null}
-            {title ? <span className={styles.headerTitle}>{title}</span> : null}
-          </span>
-        </>
-      ) : (
-        children
-      )}
-    </RocoShape>
+          </>
+        ) : (
+          children
+        )}
+      </RocoShape>
+    </Material>
   )
 }
 

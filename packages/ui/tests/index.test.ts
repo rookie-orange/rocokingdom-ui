@@ -43,6 +43,7 @@ import {
   rocoThemePrefixCls,
   runeTextPrefixCls,
   rocoShapePrefixCls,
+  resolveMaterial,
   toggleGroupPrefixCls,
   toggleItemPrefixCls,
   useRocoTheme,
@@ -157,43 +158,135 @@ test('renders a polymorphic material surface with background and color variables
   expect(html).toContain('rk-material')
   expect(html).toContain('app-material')
   expect(html).toContain('custom-material')
-  expect(html).toContain('stone')
   expect(html).toContain('--rk-material-background:var(--rk-primary)')
   expect(html).toContain('--rk-material-color:var(--rk-on-primary)')
   expect(html).toContain('Kingdom')
 })
 
-test('maps material presets to base background and foreground variables', () => {
+test('lets material render colors without adding a wrapper', () => {
+  const html = renderToString(
+    createElement(Material, {
+      material: 'stone',
+      render: ({ background, color, style }) =>
+        createElement(
+          RocoShape,
+          {
+            'data-background': background,
+            'data-color': color,
+            style,
+          },
+          'Stone shape',
+        ),
+    }),
+  )
+
+  expect(html.startsWith('<span class="rk-roco-shape')).toBe(true)
+  expect(html).not.toContain('rk-material')
+  expect(html).toContain('data-background="var(--rk-stone)"')
+  expect(html).toContain('data-color="var(--rk-on-stone)"')
+  expect(html).toContain('--rk-material-background:var(--rk-stone)')
+  expect(html).toContain('--rk-material-color:var(--rk-on-stone)')
+  expect(html).toContain('Stone shape')
+})
+
+test('lets material provide colors to an asChild roco shape', () => {
+  const html = renderToString(
+    createElement(
+      Material,
+      {
+        asChild: true,
+        material: 'paper',
+      },
+      createElement(RocoShape, { shadow: true }, 'Paper shape'),
+    ),
+  )
+
+  expect(html.startsWith('<span')).toBe(true)
+  expect(html).toContain('rk-material')
+  expect(html).toContain('rk-roco-shape')
+  expect(html).toContain('--rk-material-background:var(--rk-paper)')
+  expect(html).toContain('--rk-material-color:var(--rk-on-paper)')
+  expect(html).toContain('withShadow')
+  expect(html).toContain('Paper shape')
+})
+
+test('resolves material presets to base background and foreground variables', () => {
+  expect(resolveMaterial()).toMatchObject({
+    background: 'var(--rk-paper)',
+    color: 'var(--rk-on-paper)',
+  })
+  expect(resolveMaterial({ material: 'default' })).toMatchObject({
+    background: 'var(--rk-primary)',
+    color: 'var(--rk-on-primary)',
+  })
+  expect(resolveMaterial({ material: 'stone' })).toMatchObject({
+    background: 'var(--rk-stone)',
+    color: 'var(--rk-on-stone)',
+  })
+  expect(resolveMaterial({ material: 'paperSoft' })).toMatchObject({
+    background: 'var(--rk-paper-soft)',
+    color: 'var(--rk-on-paper-soft)',
+  })
+  expect(resolveMaterial({ material: 'paperMuted' })).toMatchObject({
+    background: 'var(--rk-paper-muted)',
+    color: 'var(--rk-on-paper-muted)',
+  })
+  expect(resolveMaterial({ material: 'paperStrong' })).toMatchObject({
+    background: 'var(--rk-paper-strong)',
+    color: 'var(--rk-on-paper-strong)',
+  })
+  expect(resolveMaterial({ material: 'stoneSoft' })).toMatchObject({
+    background: 'var(--rk-stone-soft)',
+    color: 'var(--rk-on-stone-soft)',
+  })
+  expect(resolveMaterial({ material: 'stoneMuted' })).toMatchObject({
+    background: 'var(--rk-stone-muted)',
+    color: 'var(--rk-on-stone-muted)',
+  })
+  expect(resolveMaterial({ material: 'stoneStrong' })).toMatchObject({
+    background: 'var(--rk-stone-strong)',
+    color: 'var(--rk-on-stone-strong)',
+  })
+  expect(resolveMaterial({ material: 'primarySoft' })).toMatchObject({
+    background: 'var(--rk-primary-soft)',
+    color: 'var(--rk-on-primary-soft)',
+  })
+  expect(resolveMaterial({ material: 'primaryMuted' })).toMatchObject({
+    background: 'var(--rk-primary-muted)',
+    color: 'var(--rk-on-primary-muted)',
+  })
+  expect(resolveMaterial({ material: 'primaryStrong' })).toMatchObject({
+    background: 'var(--rk-primary-strong)',
+    color: 'var(--rk-on-primary-strong)',
+  })
+  expect(resolveMaterial({ material: 'success' })).toMatchObject({
+    background: 'var(--rk-success)',
+    color: 'var(--rk-on-success)',
+  })
+  expect(resolveMaterial({ material: 'danger' })).toMatchObject({
+    background: 'var(--rk-danger)',
+    color: 'var(--rk-on-danger)',
+  })
+  expect(
+    resolveMaterial({
+      background: 'var(--rk-primary)',
+      color: 'var(--rk-on-primary)',
+      material: 'stone',
+    }),
+  ).toMatchObject({
+    background: 'var(--rk-primary)',
+    color: 'var(--rk-on-primary)',
+    style: {
+      '--rk-material-background': 'var(--rk-primary)',
+      '--rk-material-color': 'var(--rk-on-primary)',
+    },
+  })
   expect(materialCss).toContain('--rk-material-background: var(--rk-paper);')
   expect(materialCss).toContain('--rk-material-color: var(--rk-on-paper);')
   expect(materialCss).toContain('background: var(--rk-material-background);')
   expect(materialCss).toContain('color: var(--rk-material-color);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-primary);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-stone);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-stone);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-paper-soft);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-paper-soft);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-paper-muted);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-paper-muted);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-paper-strong);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-paper-strong);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-stone-soft);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-stone-soft);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-stone-muted);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-stone-muted);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-stone-strong);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-stone-strong);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-primary-soft);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary-soft);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-primary-muted);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary-muted);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-primary-strong);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary-strong);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-success);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-success);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-danger);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-danger);')
+  expect(materialCss).not.toContain('.primary')
+  expect(materialCss).not.toContain('.stone')
 })
 
 test('renders an svg-backed React button component with css module classes', () => {
@@ -220,15 +313,17 @@ test('renders an svg-backed React button component with css module classes', () 
 })
 
 test('uses roco shape as the button root color primitive', () => {
-  expect(buttonSource).toContain("import type { MaterialPreset } from '../material'")
+  expect(buttonSource).toContain("import { Material, type MaterialPreset } from '../material'")
   expect(buttonSource).toContain("import { RocoShape } from '../roco-shape'")
   expect(buttonSource).toContain("import { RuneText } from '../rune-text'")
+  expect(buttonSource).toContain('<Material')
   expect(buttonSource).toContain('<RocoShape')
   expect(buttonSource).toContain('as="button"')
   expect(buttonSource).toContain('material={material}')
+  expect(buttonSource).toContain('<Material asChild material={material}>')
   expect(buttonSource).toContain('variant={variant}')
   expect(buttonSource).toContain('<RuneText className={styles.content}>')
-  expect(buttonSource).not.toContain('<Material')
+  expect(buttonSource).not.toContain('color={variant ===')
   expect(buttonSource).not.toContain('<button className={resolvedClassName}')
   expect(buttonCss).toContain('height: var(--rk-control-height-middle, 32px);')
   expect(buttonCss).toContain('padding: 2px var(--rk-control-padding-inline-middle, 18px);')
@@ -264,69 +359,24 @@ test('supports semantic materials for lightweight controls', () => {
   expect(buttonNormalCss).toContain('--rk-material-color: var(--rk-on-danger);')
   expect(buttonNormalCss).not.toContain('--rk-button-material')
   expect(buttonNormalCss).not.toContain('--rk-button-on-material')
-  expect(radioGroupSource).toContain("import type { MaterialPreset } from '../material'")
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-paper-soft);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-paper-soft);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-paper-muted);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-paper-muted);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-paper-strong);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-paper-strong);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-stone-soft);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-stone-soft);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-stone-muted);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-stone-muted);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-stone-strong);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-stone-strong);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-primary-soft);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-primary-soft);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-primary-muted);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-primary-muted);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-primary-strong);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-primary-strong);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-success);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-success);')
-  expect(radioGroupCss).toContain('--rk-material-background: var(--rk-danger);')
-  expect(radioGroupCss).toContain('--rk-material-color: var(--rk-on-danger);')
+  expect(radioGroupSource).toContain("import { Material, type MaterialPreset } from '../material'")
+  expect(radioGroupSource).toContain('<Material asChild material={resolvedMaterial}>')
+  expect(radioGroupCss).not.toContain('--rk-material-background')
+  expect(radioGroupCss).not.toContain('--rk-material-color')
   expect(radioGroupCss).not.toContain('--rk-radio-item-material')
   expect(radioGroupCss).not.toContain('--rk-radio-item-on-material')
-  expect(toggleGroupSource).toContain("import type { MaterialPreset } from '../material'")
+  expect(toggleGroupSource).toContain("import { Material, type MaterialPreset } from '../material'")
   expect(toggleGroupSource).toContain("import { RocoShape } from '../roco-shape'")
   expect(toggleGroupSource).toContain('material={resolvedMaterial}')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-primary-soft);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary-soft);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-primary-muted);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary-muted);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-primary-strong);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-primary-strong);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-success);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-success);')
-  expect(materialCss).toContain('--rk-material-background: var(--rk-danger);')
-  expect(materialCss).toContain('--rk-material-color: var(--rk-on-danger);')
+  expect(toggleGroupSource).toContain('<Material asChild material={resolvedMaterial}>')
   expect(toggleGroupCss).not.toContain('--rk-toggle-item-material')
   expect(toggleGroupCss).not.toContain('--rk-toggle-item-on-material')
-  expect(checkboxSource).toContain("import type { MaterialPreset } from '../material'")
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-paper-soft);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-paper-soft);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-paper-muted);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-paper-muted);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-paper-strong);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-paper-strong);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-stone-soft);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-stone-soft);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-stone-muted);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-stone-muted);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-stone-strong);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-stone-strong);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-primary-soft);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-primary-soft);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-primary-muted);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-primary-muted);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-primary-strong);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-primary-strong);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-success);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-success);')
-  expect(checkboxCss).toContain('--rk-material-background: var(--rk-danger);')
-  expect(checkboxCss).toContain('--rk-material-color: var(--rk-on-danger);')
+  expect(checkboxSource).toContain("import { Material, type MaterialPreset } from '../material'")
+  expect(checkboxSource).toContain('<Material asChild material={material}>')
+  expect(checkboxCss).not.toContain('--rk-material-background: var(--rk-paper-soft);')
+  expect(checkboxCss).not.toContain('--rk-material-color: var(--rk-on-primary-strong);')
+  expect(checkboxCss).not.toContain('.paperSoft')
+  expect(checkboxCss).not.toContain('.primaryStrong')
   expect(checkboxCss).not.toContain('--rk-checkbox-')
 })
 
@@ -412,7 +462,6 @@ test('renders roco shape as a content surface with material colors', () => {
         background: 'var(--rk-stone)',
         color: 'var(--rk-on-stone)',
         contentClassName: 'shape-label',
-        material: 'paper',
         style: { height: 44, width: 180 },
       },
       '今日活动',
@@ -420,11 +469,13 @@ test('renders roco shape as a content surface with material colors', () => {
   )
 
   expect(html.startsWith('<span class="rk-roco-shape')).toBe(true)
-  expect(html).toContain('paper')
   expect(html).toContain('withContent')
   expect(html).toContain('shape-label')
   expect(html).toContain('--rk-roco-shape-background:var(--rk-stone)')
   expect(html).toContain('--rk-roco-shape-color:var(--rk-on-stone)')
+  expect(rocoShapeSource).not.toContain("from '../material'")
+  expect(rocoShapeSource).not.toContain('materialStyles')
+  expect(rocoShapeSource).not.toContain('material?:')
   expect(rocoShapeSource).toContain("shapeStyle['--rk-roco-shape-background'] = background")
   expect(rocoShapeSource).toContain("shapeStyle['--rk-roco-shape-color'] = color")
   expect(rocoShapeSource).not.toContain("shapeStyle['--rk-material-background'] = background")
@@ -453,7 +504,8 @@ test('lets material render the roco shape root for combined surfaces', () => {
   expect(html).toContain('rk-material')
   expect(html).toContain('rk-roco-shape')
   expect(html).toContain('material-shape')
-  expect(html).toContain('paper')
+  expect(html).toContain('--rk-material-background:var(--rk-paper)')
+  expect(html).toContain('--rk-material-color:var(--rk-on-paper)')
   expect(html).toContain('withContent')
   expect(html).toContain('withShadow')
   expect(html).toContain('Notice')
@@ -575,8 +627,8 @@ test('styles side nav as icon rail and text stack variants', () => {
   expect(sideNavCss).toContain('.rail')
   expect(sideNavCss).toContain('.stack')
   expect(sideNavCss).toContain('.headerContent')
-  expect(sideNavCss).toContain('--rk-material-background: var(--rk-stone);')
-  expect(sideNavCss).toContain('--rk-material-color: var(--rk-on-stone);')
+  expect(sideNavCss).not.toContain('--rk-material-background')
+  expect(sideNavCss).not.toContain('--rk-material-color')
   expect(sideNavCss).toContain('width: 320px;')
   expect(sideNavCss).toContain('width: 96px;')
   expect(sideNavCss).not.toContain('.headerShape')
@@ -758,7 +810,7 @@ test('lets toggle group item styles be customized and expands selected items', (
     ),
   )
 
-  expect(html).toContain('primaryStrong')
+  expect(html).toContain('--rk-primary-strong')
   expect(html).toContain('stone')
   expect(html).toContain('bag-toggle')
   expect(html).toContain('min-width:96px')
@@ -1027,18 +1079,19 @@ test('renders a radix-backed select trigger on the server', () => {
 
 test('uses radix select and animates select content with scale', () => {
   expect(selectSource).toContain("import * as RadixSelect from '@radix-ui/react-select'")
-  expect(selectSource).toContain("import type { MaterialPreset } from '../material'")
+  expect(selectSource).toContain("import { Material, type MaterialPreset } from '../material'")
   expect(selectSource).toContain("import { RocoTheme } from '../theme'")
   expect(selectSource).toContain("import { RocoShape } from '../roco-shape'")
   expect(selectSource).toContain('export type SelectMaterial = MaterialPreset')
   expect(selectSource).toContain("material = 'stone'")
-  expect(selectSource).toContain('styles[material]')
   expect(selectSource).toContain(
     '<RadixSelect.Trigger {...triggerProps} aria-label={triggerAriaLabel} asChild>',
   )
+  expect(selectSource).toContain('<Material asChild material={material}>')
   expect(selectSource).toContain('<RocoShape')
   expect(selectSource).toContain('as="button"')
   expect(selectSource).toContain('contentClassName={styles.triggerContent}')
+  expect(selectSource).not.toContain('styles[material]')
   expect(selectSource).not.toContain('triggerShape')
   expect(selectSource).toContain('<RocoTheme asChild>')
   expect(selectSource).not.toContain('useRocoThemeStyle')
@@ -1050,12 +1103,10 @@ test('uses radix select and animates select content with scale', () => {
   expect(selectSource).toContain('contentShellClassName')
   expect(selectSource).not.toContain('scrollHeight')
   expect(selectSource).not.toContain('ResizeObserver')
-  expect(selectCss).toContain('--rk-material-background: var(--rk-stone);')
-  expect(selectCss).toContain('--rk-material-color: var(--rk-on-stone);')
-  expect(selectCss).toContain('.paper')
-  expect(selectCss).toContain('--rk-material-background: var(--rk-paper);')
-  expect(selectCss).toContain('--rk-material-color: var(--rk-on-paper);')
-  expect(selectCss).toContain('.primaryStrong')
+  expect(selectCss).not.toContain('--rk-material-background')
+  expect(selectCss).not.toContain('--rk-material-color')
+  expect(selectCss).not.toContain('.paper')
+  expect(selectCss).not.toContain('.primaryStrong')
   expect(selectCss).not.toContain('--rk-select-material')
   expect(selectCss).not.toContain('--rk-select-on-material')
   expect(selectCss).not.toContain('--rk-select-background')

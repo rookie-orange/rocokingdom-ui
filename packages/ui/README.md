@@ -50,9 +50,11 @@ export function App() {
         更新完成！请手动重启游戏...
       </Modal>
       <RuneText>START</RuneText>
-      <RocoShape material="paper" shadow>
-        今日活动
-      </RocoShape>
+      <Material asChild material="paper">
+        <RocoShape shadow>
+          今日活动
+        </RocoShape>
+      </Material>
       <RocoShape shape="circle" variant="outline" style={{ color: '#2f7dd1', height: 49, width: 49 }} />
       <RocoShape shape="square" style={{ color: '#d94b4b', height: 49, width: 49 }} />
     </RocoTheme>
@@ -76,13 +78,14 @@ as a content surface. Pass children to place text above the generated shape
 without writing separate positioning layers:
 
 ```tsx
-<RocoShape material="paper" shadow>
-  今日活动
-</RocoShape>
+<Material asChild material="paper">
+  <RocoShape shadow>今日活动</RocoShape>
+</Material>
 ```
 
-It uses the same material variables as `Material`, so `material`, `background`,
-and `color` set the shape fill and foreground color together:
+It consumes the same material variables as `Material`. Use `Material asChild` to
+provide those variables, or use `background` and `color` when the shape needs an
+explicit one-off fill and foreground color:
 
 ```tsx
 <RocoShape background="#2f7dd1" color="#f7fbff" shadow>
@@ -90,10 +93,10 @@ and `color` set the shape fill and foreground color together:
 </RocoShape>
 ```
 
-Set its `material`, `background`, and `color` from props or CSS when you want a
-surface with text on top. The left and right arcs keep their aspect ratio while
-the center segment stretches. Pass `shape="circle"` or `shape="square"` for the
-fixed 49x49 SVG-backed shapes.
+Set `background` and `color` from props or set the material CSS variables when
+you want a surface with text on top. The left and right arcs keep their aspect
+ratio while the center segment stretches. Pass `shape="circle"` or
+`shape="square"` for the fixed 49x49 SVG-backed shapes.
 
 `Button` does not render a shadow by default. Pass `shadow` to enable the
 shape shadow.

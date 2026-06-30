@@ -2,7 +2,7 @@ import * as RadixSelect from '@radix-ui/react-select'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 import { clsx } from 'clsx'
-import type { MaterialPreset } from '../material'
+import { Material, type MaterialPreset } from '../material'
 import { RocoTheme } from '../theme'
 import { RocoShape } from '../roco-shape'
 import styles from './select.module.css'
@@ -151,28 +151,22 @@ export function Select({
   return (
     <RadixSelect.Root {...rootProps}>
       <RadixSelect.Trigger {...triggerProps} aria-label={triggerAriaLabel} asChild>
-        <RocoShape
-          as="button"
-          background="var(--rk-material-background)"
-          className={clsx(
-            prefixCls,
-            styles.trigger,
-            styles[material],
-            rootClassName,
-            triggerClassName,
-          )}
-          color="var(--rk-material-color)"
-          contentClassName={styles.triggerContent}
-          type="button"
-        >
-          <RadixSelect.Value
-            className={clsx(`${prefixCls}-value`, styles.value, valueClassName)}
-            placeholder={placeholder}
-          />
-          <RadixSelect.Icon asChild>
-            {icon ?? <span aria-hidden="true" className={styles.triggerIcon} />}
-          </RadixSelect.Icon>
-        </RocoShape>
+        <Material asChild material={material}>
+          <RocoShape
+            as="button"
+            className={clsx(prefixCls, styles.trigger, rootClassName, triggerClassName)}
+            contentClassName={styles.triggerContent}
+            type="button"
+          >
+            <RadixSelect.Value
+              className={clsx(`${prefixCls}-value`, styles.value, valueClassName)}
+              placeholder={placeholder}
+            />
+            <RadixSelect.Icon asChild>
+              {icon ?? <span aria-hidden="true" className={styles.triggerIcon} />}
+            </RadixSelect.Icon>
+          </RocoShape>
+        </Material>
       </RadixSelect.Trigger>
       <RadixSelect.Portal>
         <SelectContent {...contentProps} contentClassName={contentClassName}>

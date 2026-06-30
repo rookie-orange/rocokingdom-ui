@@ -1,11 +1,17 @@
 .shape {
   --rk-roco-shape-background: var(--rk-material-background, currentColor);
-  --rk-roco-shape-color: var(--rk-material-color, currentColor);
+  --rk-roco-shape-on-background: var(--rk-material-color, currentColor);
+  --rk-roco-shape-color: var(--rk-roco-shape-on-background);
 
   color: var(--rk-roco-shape-color);
   display: block;
   overflow: visible;
   position: relative;
+}
+
+.outline,
+.text {
+  --rk-roco-shape-color: var(--rk-roco-shape-background);
 }
 
 .shape.shape {
