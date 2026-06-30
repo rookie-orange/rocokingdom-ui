@@ -433,7 +433,6 @@ function DocsComponentsPage() {
                           aria-label={`${item.name} ${isDone ? '已实现' : '待实现'}`}
                           checked={isDone}
                           className="mt-1 shrink-0"
-                          material={isDone ? 'success' : 'stone'}
                           onClick={(event) => event.preventDefault()}
                           readOnly
                         />

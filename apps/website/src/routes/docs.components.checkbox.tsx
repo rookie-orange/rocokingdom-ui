@@ -23,11 +23,11 @@ function CheckboxExamplePage() {
   return (
     <ExampleShell
       code={checkboxCode}
-      description="Checkbox 使用原生 input 承载表单语义，以 square RocoShape 作为底形，选中状态渲染 Check 图标。"
+      description="Checkbox 使用原生 input 承载表单语义，以 square RocoShape 作为底形，选中状态渲染外溢的 Check 图标。"
       highlights={[
         'checked/defaultChecked 与 onChange 均可使用。',
-        '未选中时保留方形底形，选中时渲染 Check 图标。',
-        'material、size、variant、shadow 可组合出不同状态。',
+        '默认使用 success 勾选图标与 stone 方形底框。',
+        'checkMaterial、boxMaterial、size、variant、shadow 可组合出不同状态。',
       ]}
       title="Checkbox"
     >
@@ -40,10 +40,16 @@ function CheckboxExamplePage() {
             <Checkbox defaultChecked name="reward" value="coin">
               金币
             </Checkbox>
-            <Checkbox material="success" name="reward" value="badge">
+            <Checkbox
+              boxMaterial="paperStrong"
+              checkMaterial="danger"
+              defaultChecked
+              name="reward"
+              value="badge"
+            >
               徽章
             </Checkbox>
-            <Checkbox disabled defaultChecked material="stone" name="reward" value="locked">
+            <Checkbox disabled defaultChecked name="reward" value="locked">
               已锁定
             </Checkbox>
           </div>
@@ -54,8 +60,9 @@ function CheckboxExamplePage() {
         <PreviewSurface>
           <div className="grid gap-5">
             <Checkbox
+              boxMaterial="stoneStrong"
               checked={checked}
-              material="primaryStrong"
+              checkMaterial="success"
               onChange={(event) => setChecked(event.currentTarget.checked)}
               shadow
             >
@@ -71,13 +78,13 @@ function CheckboxExamplePage() {
       <ExampleSection title="尺寸与描边">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-7">
-            <Checkbox defaultChecked material="danger" size="small">
+            <Checkbox boxMaterial="stone" checkMaterial="danger" defaultChecked size="small">
               small
             </Checkbox>
-            <Checkbox defaultChecked material="primaryMuted" size="middle" variant="outline">
+            <Checkbox boxMaterial="primaryMuted" defaultChecked size="middle" variant="outline">
               middle
             </Checkbox>
-            <Checkbox defaultChecked material="success" shadow size="large">
+            <Checkbox boxMaterial="paperStrong" defaultChecked shadow size="large">
               large
             </Checkbox>
           </div>

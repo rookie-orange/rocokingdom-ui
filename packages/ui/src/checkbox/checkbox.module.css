@@ -34,69 +34,74 @@
 }
 
 .control {
+  --rk-checkbox-control-size: calc(var(--rk-control-height-middle, 32px) - 4px);
+  --rk-checkbox-check-size: calc(var(--rk-checkbox-control-size) * 1.55);
+
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  height: calc(var(--rk-control-height-middle, 32px) - 4px);
-  min-height: calc(var(--rk-control-height-middle, 32px) - 4px);
-  min-width: calc(var(--rk-control-height-middle, 32px) - 4px);
+  height: var(--rk-checkbox-control-size);
+  min-height: var(--rk-checkbox-control-size);
+  min-width: var(--rk-checkbox-control-size);
+  overflow: visible;
   padding: 0;
   transform: scale(1);
   transition:
     filter 160ms ease,
     transform 120ms ease;
-  width: calc(var(--rk-control-height-middle, 32px) - 4px);
+  width: var(--rk-checkbox-control-size);
 }
 
 .checkbox .control.control {
-  height: calc(var(--rk-control-height-middle, 32px) - 4px);
-  width: calc(var(--rk-control-height-middle, 32px) - 4px);
+  height: var(--rk-checkbox-control-size);
+  min-height: var(--rk-checkbox-control-size);
+  min-width: var(--rk-checkbox-control-size);
+  padding: 0;
+  width: var(--rk-checkbox-control-size);
 }
 
 .small .control {
-  height: calc(var(--rk-control-height-small, 24px) - 2px);
-  min-height: calc(var(--rk-control-height-small, 24px) - 2px);
-  min-width: calc(var(--rk-control-height-small, 24px) - 2px);
-  width: calc(var(--rk-control-height-small, 24px) - 2px);
+  --rk-checkbox-control-size: calc(var(--rk-control-height-small, 24px) - 2px);
 }
 
 .small .control.control {
-  height: calc(var(--rk-control-height-small, 24px) - 2px);
-  width: calc(var(--rk-control-height-small, 24px) - 2px);
+  height: var(--rk-checkbox-control-size);
+  width: var(--rk-checkbox-control-size);
 }
 
 .large .control {
-  height: calc(var(--rk-control-height-large, 40px) - 4px);
-  min-height: calc(var(--rk-control-height-large, 40px) - 4px);
-  min-width: calc(var(--rk-control-height-large, 40px) - 4px);
-  width: calc(var(--rk-control-height-large, 40px) - 4px);
+  --rk-checkbox-control-size: calc(var(--rk-control-height-large, 40px) - 4px);
 }
 
 .large .control.control {
-  height: calc(var(--rk-control-height-large, 40px) - 4px);
-  width: calc(var(--rk-control-height-large, 40px) - 4px);
+  height: var(--rk-checkbox-control-size);
+  width: var(--rk-checkbox-control-size);
 }
 
 .icon {
   align-items: center;
-  color: var(--rk-material-color);
   display: inline-flex;
-  font-size: calc(var(--rk-control-height-middle, 32px) * 1.25);
+  font-size: var(--rk-checkbox-check-size);
   justify-content: center;
   line-height: 1;
+  overflow: visible;
   transform-origin: center;
 }
 
-.small .icon {
-  font-size: calc(var(--rk-control-height-small, 24px) * 0.625);
-}
-
-.large .icon {
-  font-size: calc(var(--rk-control-height-large, 40px) * 0.55);
-}
-
-.outline .icon {
+.check {
   color: var(--rk-material-background);
+  display: inline-flex;
+  height: 1em;
+  justify-content: center;
+  transform: translate(-5%, -4%) rotate(-2deg);
+  width: 1em;
+}
+
+.check > svg {
+  display: block;
+  height: 1em;
+  overflow: visible;
+  width: 1em;
 }
 
 .checked .control {

@@ -2,7 +2,7 @@ import { Check } from '@rocokingdom-ui/icons'
 import type { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react'
 import { useState } from 'react'
 import { clsx } from 'clsx'
-import { Material, type MaterialPreset } from '../material'
+import { Material, resolveMaterial, type MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
 import styles from './checkbox.module.css'
 
@@ -16,9 +16,14 @@ export interface CheckboxProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'children' | 'size' | 'type'
 > {
+  boxMaterial?: CheckboxMaterial
+  checkMaterial?: CheckboxMaterial
   checkedClassName?: string
   children?: ReactNode
   icon?: ReactNode
+  /**
+   * @deprecated Use boxMaterial for the square background material.
+   */
   material?: CheckboxMaterial
   prefixCls?: string
   rootClassName?: string
@@ -30,6 +35,8 @@ export interface CheckboxProps extends Omit<
 }
 
 export function Checkbox({
+  boxMaterial,
+  checkMaterial = 'success',
   checked,
   checkedClassName,
   children,
@@ -37,7 +44,7 @@ export function Checkbox({
   defaultChecked = false,
   disabled = false,
   icon,
-  material = 'primary',
+  material,
   onChange,
   prefixCls = checkboxPrefixCls,
   rootClassName,
@@ -52,6 +59,8 @@ export function Checkbox({
   const isControlled = checked !== undefined
   const isChecked = checked ?? uncontrolledChecked
   const shapeVariant = isChecked ? variant : uncheckedVariant
+  const resolvedBoxMaterial = boxMaterial ?? material ?? 'stone'
+  const checkMaterialValue = resolveMaterial({ material: checkMaterial })
   const resolvedClassName = clsx(
     prefixCls,
     styles.checkbox,
@@ -86,7 +95,7 @@ export function Checkbox({
         onChange={handleChange}
         type="checkbox"
       />
-      <Material asChild material={material}>
+      <Material asChild material={resolvedBoxMaterial}>
         <RocoShape
           aria-hidden="true"
           className={styles.control}
@@ -95,7 +104,11 @@ export function Checkbox({
           shape="square"
           variant={shapeVariant}
         >
-          {isChecked ? (icon ?? <Check />) : null}
+          {isChecked ? (
+            <span className={styles.check} style={checkMaterialValue.style}>
+              {icon ?? <Check />}
+            </span>
+          ) : null}
         </RocoShape>
       </Material>
       {children ? <span className={styles.label}>{children}</span> : null}
