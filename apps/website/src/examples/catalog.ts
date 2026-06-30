@@ -121,6 +121,13 @@ export const examples: ExampleMeta[] = [
     path: '/docs/components/side-nav',
     slug: 'side-nav',
   },
+  {
+    category: 'components',
+    description: '外层与选中项都使用按钮同款 RocoShape 的标签页。',
+    name: 'Tabs',
+    path: '/docs/components/tabs',
+    slug: 'tabs',
+  },
 ]
 
 export const componentExamples = examples.filter((example) => example.category === 'components')

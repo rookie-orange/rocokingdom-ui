@@ -49,6 +49,24 @@ export type {
   SideNavProps,
   SideNavVariant,
 } from './side-nav'
+export {
+  Tab,
+  TabList,
+  TabPanel,
+  Tabs,
+  tabListPrefixCls,
+  tabPanelPrefixCls,
+  tabPrefixCls,
+  tabsPrefixCls,
+} from './tabs'
+export type {
+  TabListProps,
+  TabPanelProps,
+  TabProps,
+  TabsMaterial,
+  TabsProps,
+  TabsSize,
+} from './tabs'
 export { Modal, ModalClose, modalPrefixCls } from './modal'
 export type { ModalClosePosition, ModalCloseProps, ModalProps } from './modal'
 export { RadioGroup, RadioItem, radioGroupPrefixCls, radioItemPrefixCls } from './radio-group'

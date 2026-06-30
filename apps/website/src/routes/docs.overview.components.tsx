@@ -179,6 +179,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '同层内容切换和受控激活状态。',
+        implementedSlug: 'tabs',
         name: 'Tabs 标签页',
       },
       {

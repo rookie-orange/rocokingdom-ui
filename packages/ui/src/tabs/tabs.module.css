@@ -1,0 +1,151 @@
+.tabs {
+  align-items: start;
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.list {
+  box-sizing: border-box;
+  display: inline-flex;
+  font: inherit;
+  height: auto;
+  max-width: 100%;
+  min-height: calc(var(--rk-control-height-middle, 32px) + 6px);
+  padding: 2px;
+}
+
+.listContent {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.tab {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font: inherit;
+  font-family: var(--rk-font-family-base, inherit);
+  font-size: calc(var(--rk-font-size-base, 16px) - 2px);
+  height: var(--rk-control-height-middle, 32px);
+  padding: 2px var(--rk-control-padding-inline-middle, 18px);
+  text-decoration: none;
+  transform-origin: center;
+  transition:
+    filter 160ms ease,
+    transform 120ms ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.small {
+  font-size: calc(var(--rk-font-size-base, 16px) - 4px);
+  height: var(--rk-control-height-small, 24px);
+  padding-inline: var(--rk-control-padding-inline-small, 14px);
+}
+
+.middle {
+  height: var(--rk-control-height-middle, 32px);
+}
+
+.large {
+  font-size: var(--rk-font-size-base, 16px);
+  height: var(--rk-control-height-large, 40px);
+  padding-inline: var(--rk-control-padding-inline-large, 22px);
+}
+
+.tab:hover {
+  filter: brightness(1.08);
+}
+
+.tab:active {
+  filter: brightness(0.9);
+  transform: scale(0.96) translateY(2px);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--rk-primary);
+  outline-offset: 2px;
+}
+
+.tab:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  opacity: 0.48;
+  transform: none;
+}
+
+.selected {
+  animation: rk-tab-selected-pop 240ms linear;
+  z-index: 1;
+}
+
+.unselected {
+  opacity: 0.76;
+  z-index: 0;
+}
+
+.tabContent {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.tabText {
+  font: inherit;
+}
+
+.panel {
+  box-sizing: border-box;
+  color: var(--rk-on-paper);
+  min-width: 0;
+  outline: none;
+}
+
+.panel:focus-visible {
+  outline: 2px solid var(--rk-primary);
+  outline-offset: 4px;
+}
+
+.panelActive {
+  display: block;
+}
+
+.panelInactive {
+  display: none;
+}
+
+@keyframes rk-tab-selected-pop {
+  0% {
+    transform: scale(0.94);
+  }
+
+  35% {
+    transform: scaleY(0.92) scaleX(1.08);
+  }
+
+  70% {
+    transform: scaleY(1.04) scaleX(0.97);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition-duration: 1ms;
+  }
+
+  .selected {
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+  }
+}
