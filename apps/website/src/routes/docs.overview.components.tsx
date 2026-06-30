@@ -114,6 +114,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '多行文本、计数和自适应高度。',
+        implementedSlug: 'textarea',
         name: 'Textarea 文本域',
       },
       {

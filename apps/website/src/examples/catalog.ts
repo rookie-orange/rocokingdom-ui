@@ -60,6 +60,13 @@ export const examples: ExampleMeta[] = [
   },
   {
     category: 'components',
+    description: '四角不规则形状的多行文本输入，支持自由尺寸和字数统计。',
+    name: 'Textarea',
+    path: '/docs/components/textarea',
+    slug: 'textarea',
+  },
+  {
+    category: 'components',
     description: '游戏面板风格弹窗，覆盖标题、描述、页脚和自定义头部。',
     name: 'Modal',
     path: '/docs/components/modal',

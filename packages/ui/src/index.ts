@@ -69,6 +69,14 @@ export type {
   TabsProps,
   TabsSize,
 } from './tabs'
+export { Textarea, textareaPrefixCls } from './textarea'
+export type {
+  TextareaMaterial,
+  TextareaProps,
+  TextareaResize,
+  TextareaSize,
+  TextareaVariant,
+} from './textarea'
 export { Modal, ModalClose, modalPrefixCls } from './modal'
 export type { ModalClosePosition, ModalCloseProps, ModalProps } from './modal'
 export { RadioGroup, RadioItem, radioGroupPrefixCls, radioItemPrefixCls } from './radio-group'

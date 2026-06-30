@@ -21,6 +21,7 @@ import { Route as DocsOverviewComponentsRouteImport } from './routes/docs.overvi
 import { Route as DocsDesignRocoShapeRouteImport } from './routes/docs.design.roco-shape'
 import { Route as DocsDesignMaterialRouteImport } from './routes/docs.design.material'
 import { Route as DocsComponentsToggleGroupRouteImport } from './routes/docs.components.toggle-group'
+import { Route as DocsComponentsTextareaRouteImport } from './routes/docs.components.textarea'
 import { Route as DocsComponentsTabsRouteImport } from './routes/docs.components.tabs'
 import { Route as DocsComponentsSwitchRouteImport } from './routes/docs.components.switch'
 import { Route as DocsComponentsSideNavRouteImport } from './routes/docs.components.side-nav'
@@ -97,6 +98,11 @@ const DocsComponentsToggleGroupRoute =
     path: '/components/toggle-group',
     getParentRoute: () => DocsRoute,
   } as any)
+const DocsComponentsTextareaRoute = DocsComponentsTextareaRouteImport.update({
+  id: '/components/textarea',
+  path: '/components/textarea',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsTabsRoute = DocsComponentsTabsRouteImport.update({
   id: '/components/tabs',
   path: '/components/tabs',
@@ -185,6 +191,7 @@ export interface FileRoutesByFullPath {
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
+  '/docs/components/textarea': typeof DocsComponentsTextareaRoute
   '/docs/components/toggle-group': typeof DocsComponentsToggleGroupRoute
   '/docs/design/material': typeof DocsDesignMaterialRoute
   '/docs/design/roco-shape': typeof DocsDesignRocoShapeRoute
@@ -211,6 +218,7 @@ export interface FileRoutesByTo {
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
+  '/docs/components/textarea': typeof DocsComponentsTextareaRoute
   '/docs/components/toggle-group': typeof DocsComponentsToggleGroupRoute
   '/docs/design/material': typeof DocsDesignMaterialRoute
   '/docs/design/roco-shape': typeof DocsDesignRocoShapeRoute
@@ -239,6 +247,7 @@ export interface FileRoutesById {
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
+  '/docs/components/textarea': typeof DocsComponentsTextareaRoute
   '/docs/components/toggle-group': typeof DocsComponentsToggleGroupRoute
   '/docs/design/material': typeof DocsDesignMaterialRoute
   '/docs/design/roco-shape': typeof DocsDesignRocoShapeRoute
@@ -268,6 +277,7 @@ export interface FileRouteTypes {
     | '/docs/components/side-nav'
     | '/docs/components/switch'
     | '/docs/components/tabs'
+    | '/docs/components/textarea'
     | '/docs/components/toggle-group'
     | '/docs/design/material'
     | '/docs/design/roco-shape'
@@ -294,6 +304,7 @@ export interface FileRouteTypes {
     | '/docs/components/side-nav'
     | '/docs/components/switch'
     | '/docs/components/tabs'
+    | '/docs/components/textarea'
     | '/docs/components/toggle-group'
     | '/docs/design/material'
     | '/docs/design/roco-shape'
@@ -321,6 +332,7 @@ export interface FileRouteTypes {
     | '/docs/components/side-nav'
     | '/docs/components/switch'
     | '/docs/components/tabs'
+    | '/docs/components/textarea'
     | '/docs/components/toggle-group'
     | '/docs/design/material'
     | '/docs/design/roco-shape'
@@ -419,6 +431,13 @@ declare module '@tanstack/react-router' {
       path: '/components/toggle-group'
       fullPath: '/docs/components/toggle-group'
       preLoaderRoute: typeof DocsComponentsToggleGroupRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/components/textarea': {
+      id: '/docs/components/textarea'
+      path: '/components/textarea'
+      fullPath: '/docs/components/textarea'
+      preLoaderRoute: typeof DocsComponentsTextareaRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/components/tabs': {
@@ -531,6 +550,7 @@ interface DocsRouteChildren {
   DocsComponentsSideNavRoute: typeof DocsComponentsSideNavRoute
   DocsComponentsSwitchRoute: typeof DocsComponentsSwitchRoute
   DocsComponentsTabsRoute: typeof DocsComponentsTabsRoute
+  DocsComponentsTextareaRoute: typeof DocsComponentsTextareaRoute
   DocsComponentsToggleGroupRoute: typeof DocsComponentsToggleGroupRoute
   DocsDesignMaterialRoute: typeof DocsDesignMaterialRoute
   DocsDesignRocoShapeRoute: typeof DocsDesignRocoShapeRoute
@@ -555,6 +575,7 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsComponentsSideNavRoute: DocsComponentsSideNavRoute,
   DocsComponentsSwitchRoute: DocsComponentsSwitchRoute,
   DocsComponentsTabsRoute: DocsComponentsTabsRoute,
+  DocsComponentsTextareaRoute: DocsComponentsTextareaRoute,
   DocsComponentsToggleGroupRoute: DocsComponentsToggleGroupRoute,
   DocsDesignMaterialRoute: DocsDesignMaterialRoute,
   DocsDesignRocoShapeRoute: DocsDesignRocoShapeRoute,

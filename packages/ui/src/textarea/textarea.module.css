@@ -1,0 +1,289 @@
+.textarea {
+  --rk-textarea-corner-size: 48px;
+  --rk-textarea-min-control-height: 96px;
+  --rk-textarea-padding-block: 22px;
+  --rk-textarea-padding-inline: 28px;
+  --rk-textarea-resize: vertical;
+  --rk-textarea-shape-background: var(--rk-material-background, currentColor);
+  --rk-textarea-shape-color: var(--rk-material-color, currentColor);
+  --rk-textarea-stroke-width: 2px;
+
+  background: transparent;
+  box-sizing: border-box;
+  color: var(--rk-textarea-shape-color);
+  cursor: text;
+  display: inline-flex;
+  flex-direction: column;
+  font: inherit;
+  font-family: var(--rk-font-family-base, inherit);
+  font-size: calc(var(--rk-font-size-base, 16px) - 2px);
+  min-height: calc(var(--rk-textarea-min-control-height) + var(--rk-textarea-padding-block) * 2);
+  min-width: 260px;
+  overflow: visible;
+  padding: var(--rk-textarea-padding-block) var(--rk-textarea-padding-inline);
+  position: relative;
+  transition:
+    filter 160ms ease,
+    transform 120ms ease;
+  width: 360px;
+}
+
+.textarea.textarea {
+  background: transparent;
+}
+
+.outline {
+  --rk-textarea-shape-color: var(--rk-textarea-shape-background);
+}
+
+.small {
+  --rk-textarea-corner-size: 40px;
+  --rk-textarea-min-control-height: 80px;
+  --rk-textarea-padding-block: 16px;
+  --rk-textarea-padding-inline: 22px;
+
+  font-size: calc(var(--rk-font-size-base, 16px) - 4px);
+}
+
+.middle {
+}
+
+.large {
+  --rk-textarea-corner-size: 58px;
+  --rk-textarea-min-control-height: 128px;
+  --rk-textarea-padding-block: 26px;
+  --rk-textarea-padding-inline: 34px;
+
+  font-size: var(--rk-font-size-base, 16px);
+}
+
+.textarea:hover {
+  filter: brightness(1.08);
+}
+
+.textarea:active {
+  filter: brightness(0.96);
+}
+
+.disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  opacity: 0.48;
+  transform: none;
+}
+
+.readonly {
+  cursor: default;
+}
+
+.disabled:hover,
+.disabled:active,
+.readonly:hover,
+.readonly:active {
+  filter: none;
+  transform: none;
+}
+
+.frame {
+  color: var(--rk-textarea-shape-background);
+  display: block;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.withShadow .fill {
+  filter: drop-shadow(0 2px 0 var(--rk-shadow-strong-color));
+}
+
+.frameLayer {
+  display: grid;
+  grid-template-columns: var(--rk-textarea-corner-size) minmax(0, 1fr) var(
+      --rk-textarea-corner-size
+    );
+  grid-template-rows: var(--rk-textarea-corner-size) minmax(0, 1fr) var(--rk-textarea-corner-size);
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.framePart {
+  display: block;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+}
+
+.cornerSvg {
+  display: block;
+  height: 100%;
+  overflow: visible;
+  width: 100%;
+}
+
+.fill .cornerPath {
+  fill: currentColor;
+}
+
+.fill .edgeTop,
+.fill .edgeBottom,
+.fill .edgeLeft,
+.fill .edgeRight,
+.fill .frameCenter {
+  background: currentColor;
+}
+
+.stroke .cornerPath {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: var(--rk-textarea-stroke-width);
+}
+
+.stroke .edgeTop,
+.stroke .edgeBottom,
+.stroke .edgeLeft,
+.stroke .edgeRight {
+  overflow: visible;
+}
+
+.stroke .edgeTop::before,
+.stroke .edgeBottom::before,
+.stroke .edgeLeft::before,
+.stroke .edgeRight::before {
+  background: currentColor;
+  border-radius: 999px;
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+.stroke .edgeTop::before,
+.stroke .edgeBottom::before {
+  height: var(--rk-textarea-stroke-width);
+  inset-inline: calc(var(--rk-textarea-stroke-width) / -2);
+}
+
+.stroke .edgeTop::before {
+  top: calc(var(--rk-textarea-stroke-width) / -2);
+}
+
+.stroke .edgeBottom::before {
+  bottom: calc(var(--rk-textarea-stroke-width) / -2);
+}
+
+.stroke .edgeLeft::before,
+.stroke .edgeRight::before {
+  inset-block: calc(var(--rk-textarea-stroke-width) / -2);
+  width: var(--rk-textarea-stroke-width);
+}
+
+.stroke .edgeLeft::before {
+  left: calc(var(--rk-textarea-stroke-width) / -2);
+}
+
+.stroke .edgeRight::before {
+  right: calc(var(--rk-textarea-stroke-width) / -2);
+}
+
+.cornerTopLeft {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.edgeTop {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.cornerTopRight {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.edgeLeft {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.frameCenter {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.edgeRight {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.cornerBottomLeft {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.edgeBottom {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.cornerBottomRight {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.content {
+  color: var(--rk-textarea-shape-color);
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.control {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  flex: 1 1 auto;
+  font: inherit;
+  line-height: 1.45;
+  min-height: var(--rk-textarea-min-control-height);
+  min-width: 0;
+  outline: none;
+  padding: 0;
+  resize: var(--rk-textarea-resize);
+  width: 100%;
+}
+
+.control::placeholder {
+  color: color-mix(in srgb, currentColor 54%, transparent);
+}
+
+.control:disabled {
+  cursor: not-allowed;
+}
+
+.control:focus-visible {
+  outline: none;
+}
+
+.count {
+  align-self: flex-end;
+  color: color-mix(in srgb, currentColor 68%, transparent);
+  font-size: calc(1em - 2px);
+  line-height: 1;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .textarea {
+    transition-duration: 1ms;
+  }
+}
