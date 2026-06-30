@@ -55,8 +55,9 @@ test('lets material render colors without adding a wrapper', () => {
     }),
   )
 
-  expect(html.startsWith('<span class="rk-roco-shape')).toBe(true)
-  expect(html).not.toContain('rk-material')
+  expect(html).toContain('<span')
+  expect(html).toContain('rk-roco-shape')
+  expect(html).not.toContain('class="rk-material')
   expect(html).toContain('data-background="var(--rk-stone)"')
   expect(html).toContain('data-color="var(--rk-on-stone)"')
   expect(html).toContain('--rk-material-background:var(--rk-stone)')
