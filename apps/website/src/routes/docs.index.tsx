@@ -1,40 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
-import { Input, Panel, RuneText, Tab, TabList, TabPanel, Tabs } from 'rocokingdom-ui'
-import { componentExamples } from '../examples/catalog'
-
-const overviewStats = [
-  {
-    label: '主题',
-    value: '2',
-  },
-  {
-    label: '组件',
-    value: String(componentExamples.length),
-  },
-  {
-    label: '材质',
-    value: '9',
-  },
-]
-
-const introductionCards = [
-  {
-    description:
-      'Rocokingdom UI 是一个面向 React 应用的游戏化组件库，目标是复刻游戏《洛克王国：世界》的 UI 观感与交互质感。',
-    title: '项目定位',
-  },
-  {
-    description:
-      '组件将纸面、石质、金色强调、符文文字和可拉伸造型沉淀为设计 token 与基础组件，方便在业务界面中稳定复用。',
-    title: '视觉语言',
-  },
-  {
-    description:
-      '当前文档覆盖主题、材质、造型、图标和常用交互组件，后续会继续补齐表单、导航、反馈和数据展示能力。',
-    title: '文档范围',
-  },
-]
+import { Input, Panel, Tab, TabList, TabPanel, Tabs } from 'rocokingdom-ui'
 
 const packageManagers = [
   {
@@ -178,63 +144,12 @@ function DocsOverviewPage() {
   return (
     <article className="h-full min-h-0 overflow-y-auto">
       <div className="mx-auto w-full max-w-6xl px-10 py-14 max-[980px]:px-5 max-[980px]:py-10">
-        <section className="grid gap-7 border-b border-stone/15 pb-10">
-          <div>
-            <RuneText className="block text-base leading-none text-primary-strong">
-              OVERVIEW
-            </RuneText>
-            <h1 className="mt-4 font-roco text-6xl leading-none text-on-paper max-sm:text-4xl">
-              文档总览
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-stone/70">
-              Rocokingdom UI 将洛克王国风格的材质、造型、图标和交互组件整理成
-              Overview、Design、Components、Icon 四类文档入口。
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 max-sm:grid-cols-1">
-            {overviewStats.map((stat) => (
-              <Panel
-                className="min-h-32"
-                contentClassName="grid content-between gap-4 p-5"
-                key={stat.label}
-                material="paper"
-              >
-                <p className="text-sm text-primary-strong">{stat.label}</p>
-                <p className="font-roco text-5xl leading-none text-on-paper">{stat.value}</p>
-              </Panel>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-6 py-12">
-          <div>
-            <p className="text-sm text-primary-strong">About</p>
-            <h2 className="mt-2 font-roco text-3xl leading-none text-on-paper">介绍</h2>
-            <p className="mt-3 max-w-3xl text-base leading-7 text-stone/70">
-              当前项目围绕《洛克王国：世界》的界面气质搭建 React
-              组件库，把游戏里的材质层次、按钮形态、面板结构和装饰文字整理成可复用的前端基础设施。
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-5 max-lg:grid-cols-1">
-            {introductionCards.map((card) => (
-              <Panel
-                contentClassName="grid min-h-48 content-between gap-5 p-6"
-                key={card.title}
-                material="paper"
-              >
-                <h3 className="font-roco text-3xl leading-none text-on-paper">{card.title}</h3>
-                <p className="text-base leading-7 text-stone/70">{card.description}</p>
-              </Panel>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-8 border-t border-stone/15 py-12">
+        <section className="grid gap-8">
           <div>
             <p className="text-sm text-primary-strong">Quick Start</p>
-            <h2 className="mt-2 font-roco text-3xl leading-none text-on-paper">快速开始</h2>
+            <h1 className="mt-4 font-roco text-6xl leading-none text-on-paper max-sm:text-4xl">
+              快速开始
+            </h1>
             <p className="mt-3 max-w-3xl text-base leading-7 text-stone/70">
               按常规 React 组件库方式安装包、引入样式，再从{' '}
               <code className="rounded bg-stone/10 px-1.5 py-0.5 text-sm text-on-paper">
@@ -244,7 +159,7 @@ function DocsOverviewPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.92fr)] gap-6 max-lg:grid-cols-1">
+          <div className="grid gap-6">
             <Panel contentClassName="grid gap-6 p-6" material="paper">
               <div>
                 <h3 className="font-roco text-3xl leading-none text-on-paper">安装</h3>
@@ -297,35 +212,31 @@ function DocsOverviewPage() {
               </Tabs>
             </Panel>
 
-            <Panel contentClassName="grid gap-5 p-6" material="stoneSoft">
+            <Panel contentClassName="grid gap-6 p-6" material="paper">
               <div>
-                <h3 className="font-roco text-3xl leading-none text-on-stone">环境与依赖</h3>
-                <p className="mt-3 text-base leading-7 text-on-stone/70">
+                <h3 className="font-roco text-3xl leading-none text-on-paper">环境与依赖</h3>
+                <p className="mt-3 text-base leading-7 text-stone/70">
                   安装前确认项目满足运行环境和 peer dependency 要求。
                 </p>
               </div>
 
-              <div className="grid gap-4">
+              <div className="grid grid-cols-3 gap-5 max-lg:grid-cols-1">
                 {requirements.map((requirement) => (
-                  <div className="border-t border-on-stone/15 pt-4" key={requirement.label}>
-                    <div className="flex flex-wrap items-baseline justify-between gap-3">
-                      <p className="font-roco text-2xl leading-none text-on-stone">
+                  <div className="grid min-h-40 content-between gap-5" key={requirement.label}>
+                    <div className="grid gap-3">
+                      <p className="font-roco text-2xl leading-none text-on-paper">
                         {requirement.label}
                       </p>
-                      <code className="rounded bg-on-stone/10 px-2 py-1 text-sm text-on-stone">
+                      <code className="rounded bg-stone/10 px-2 py-1 text-sm text-on-paper">
                         {requirement.value}
                       </code>
                     </div>
-                    <p className="mt-2 text-sm leading-6 text-on-stone/65">
-                      {requirement.description}
-                    </p>
+                    <p className="text-sm leading-6 text-stone/65">{requirement.description}</p>
                   </div>
                 ))}
               </div>
             </Panel>
-          </div>
 
-          <div className="grid grid-cols-2 gap-6 max-lg:grid-cols-1">
             {setupSnippets.map((snippet) => (
               <Panel contentClassName="grid gap-4 p-6" key={snippet.title} material="paper">
                 <div>

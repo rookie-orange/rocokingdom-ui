@@ -16,6 +16,7 @@ import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as ExamplesSlugRouteImport } from './routes/examples.$slug'
 import { Route as DocsIconRouteImport } from './routes/docs.icon'
 import { Route as DocsOverviewRocoThemeRouteImport } from './routes/docs.overview.roco-theme'
+import { Route as DocsOverviewIntroductionRouteImport } from './routes/docs.overview.introduction'
 import { Route as DocsOverviewComponentsRouteImport } from './routes/docs.overview.components'
 import { Route as DocsDesignRocoShapeRouteImport } from './routes/docs.design.roco-shape'
 import { Route as DocsDesignMaterialRouteImport } from './routes/docs.design.material'
@@ -68,6 +69,12 @@ const DocsOverviewRocoThemeRoute = DocsOverviewRocoThemeRouteImport.update({
   path: '/overview/roco-theme',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsOverviewIntroductionRoute =
+  DocsOverviewIntroductionRouteImport.update({
+    id: '/overview/introduction',
+    path: '/overview/introduction',
+    getParentRoute: () => DocsRoute,
+  } as any)
 const DocsOverviewComponentsRoute = DocsOverviewComponentsRouteImport.update({
   id: '/overview/components',
   path: '/overview/components',
@@ -175,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/docs/design/material': typeof DocsDesignMaterialRoute
   '/docs/design/roco-shape': typeof DocsDesignRocoShapeRoute
   '/docs/overview/components': typeof DocsOverviewComponentsRoute
+  '/docs/overview/introduction': typeof DocsOverviewIntroductionRoute
   '/docs/overview/roco-theme': typeof DocsOverviewRocoThemeRoute
 }
 export interface FileRoutesByTo {
@@ -199,6 +207,7 @@ export interface FileRoutesByTo {
   '/docs/design/material': typeof DocsDesignMaterialRoute
   '/docs/design/roco-shape': typeof DocsDesignRocoShapeRoute
   '/docs/overview/components': typeof DocsOverviewComponentsRoute
+  '/docs/overview/introduction': typeof DocsOverviewIntroductionRoute
   '/docs/overview/roco-theme': typeof DocsOverviewRocoThemeRoute
 }
 export interface FileRoutesById {
@@ -225,6 +234,7 @@ export interface FileRoutesById {
   '/docs/design/material': typeof DocsDesignMaterialRoute
   '/docs/design/roco-shape': typeof DocsDesignRocoShapeRoute
   '/docs/overview/components': typeof DocsOverviewComponentsRoute
+  '/docs/overview/introduction': typeof DocsOverviewIntroductionRoute
   '/docs/overview/roco-theme': typeof DocsOverviewRocoThemeRoute
 }
 export interface FileRouteTypes {
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/docs/design/material'
     | '/docs/design/roco-shape'
     | '/docs/overview/components'
+    | '/docs/overview/introduction'
     | '/docs/overview/roco-theme'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -276,6 +287,7 @@ export interface FileRouteTypes {
     | '/docs/design/material'
     | '/docs/design/roco-shape'
     | '/docs/overview/components'
+    | '/docs/overview/introduction'
     | '/docs/overview/roco-theme'
   id:
     | '__root__'
@@ -301,6 +313,7 @@ export interface FileRouteTypes {
     | '/docs/design/material'
     | '/docs/design/roco-shape'
     | '/docs/overview/components'
+    | '/docs/overview/introduction'
     | '/docs/overview/roco-theme'
   fileRoutesById: FileRoutesById
 }
@@ -359,6 +372,13 @@ declare module '@tanstack/react-router' {
       path: '/overview/roco-theme'
       fullPath: '/docs/overview/roco-theme'
       preLoaderRoute: typeof DocsOverviewRocoThemeRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/overview/introduction': {
+      id: '/docs/overview/introduction'
+      path: '/overview/introduction'
+      fullPath: '/docs/overview/introduction'
+      preLoaderRoute: typeof DocsOverviewIntroductionRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/overview/components': {
@@ -495,6 +515,7 @@ interface DocsRouteChildren {
   DocsDesignMaterialRoute: typeof DocsDesignMaterialRoute
   DocsDesignRocoShapeRoute: typeof DocsDesignRocoShapeRoute
   DocsOverviewComponentsRoute: typeof DocsOverviewComponentsRoute
+  DocsOverviewIntroductionRoute: typeof DocsOverviewIntroductionRoute
   DocsOverviewRocoThemeRoute: typeof DocsOverviewRocoThemeRoute
 }
 
@@ -517,6 +538,7 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsDesignMaterialRoute: DocsDesignMaterialRoute,
   DocsDesignRocoShapeRoute: DocsDesignRocoShapeRoute,
   DocsOverviewComponentsRoute: DocsOverviewComponentsRoute,
+  DocsOverviewIntroductionRoute: DocsOverviewIntroductionRoute,
   DocsOverviewRocoThemeRoute: DocsOverviewRocoThemeRoute,
 }
 

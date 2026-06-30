@@ -10,6 +10,10 @@ import {
 
 const overviewLinks = [
   {
+    label: '介绍',
+    to: '/docs/overview/introduction',
+  },
+  {
     label: '快速开始',
     to: '/docs',
   },
