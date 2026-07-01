@@ -12,72 +12,38 @@
   <img src="https://img.shields.io/badge/Radix_UI-%5E1.1.17-161618?style=flat-square&logo=radixui&logoColor=white" alt="Radix UI ^1.1.17" />
 </p>
 
-# Roco Kingdom UI
+# RocoKingdom UI
 
-Roco Kingdom UI 是面向洛克王国风格界面的前端 monorepo，包含 React 组件库、图标、设计 token、共享工具和官网示例应用。
+《洛克王国：世界》风格的 React 组件库。
 
-## 项目结构
-
-```txt
-apps/
-  website/          官网与组件示例
-packages/
-  ui/               React 组件库，包名 rocokingdom-ui
-  icons/            图标库，包名 @rocokingdom-ui/icons
-  tokens/           设计 token，包名 @rocokingdom-ui/tokens
-  shared/           共享基础能力
-  utils/            通用工具
-```
-
-## 技术栈
-
-- Vite+ 统一工具链
-- React
-- TypeScript
-- Tailwind CSS
-- Radix UI
-
-## 开发
-
-安装依赖：
+## 安装
 
 ```bash
-vp install
+pnpm add rocokingdom-ui
 ```
 
-启动官网开发服务：
+## 快速使用
 
-```bash
-vp run dev
+1. 在应用入口导入样式：
+
+```ts
+import 'rocokingdom-ui/style.css'
 ```
 
-检查、测试并构建整个 workspace：
+2. 导入组件：
 
-```bash
-vp run ready
+```tsx
+import { Button, RocoTheme } from 'rocokingdom-ui'
+
+export function App() {
+  return (
+    <RocoTheme>
+      <Button shadow>开始</Button>
+    </RocoTheme>
+  )
+}
 ```
 
-分别运行测试和构建：
+## 文档
 
-```bash
-vp run -r test
-vp run -r build
-```
-
-## 包命令
-
-组件库、图标库、tokens、shared 和 utils 包都遵循相同的 Vite+ 脚本：
-
-```bash
-vp run <package>#dev
-vp run <package>#check
-vp run <package>#test
-vp run <package>#build
-```
-
-例如：
-
-```bash
-vp run rocokingdom-ui#build
-vp run @rocokingdom-ui/icons#build
-```
+前往 https://rocokingdom-ui.vercel.app/ 以查阅文档
