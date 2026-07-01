@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+set -eu
+
+message_file="${1:-}"
+
+[ -f "$message_file" ] || exit 0
+
+subject="$(sed -n '1{/^#/d;p;q;}' "$message_file")"
+
+case "$subject" in
+  Merge\ *|Revert\ *|fixup!\ *|squash!\ *)
+    exit 0
+    ;;
+esac
+
+pattern='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z0-9._-]+\))?!?: .{1,72}$'
+
+if ! printf '%s\n' "$subject" | grep -Eq "$pattern"; then
+  cat <<'EOF'
+Invalid commit message.
+
+Use Conventional Commits:
+  feat: add button component
+  fix(ui): correct dialog spacing
+  ci!: require release workflow approval
+
+Allowed types: build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test
+EOF
+  exit 1
+fi
