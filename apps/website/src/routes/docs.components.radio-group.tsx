@@ -19,6 +19,76 @@ export function PetElementPicker() {
   )
 }`
 
+const radioBasicCode = `import { RadioGroup, RadioItem } from 'rocokingdom-ui'
+
+export function RadioBasicDemo() {
+  return (
+    <RadioGroup defaultValue="water" name="element">
+      <RadioItem activeMaterial="primaryStrong" value="water">
+        水系
+      </RadioItem>
+      <RadioItem activeMaterial="danger" value="fire">
+        火系
+      </RadioItem>
+      <RadioItem activeMaterial="success" value="grass">
+        草系
+      </RadioItem>
+      <RadioItem disabled value="dragon">
+        龙系
+      </RadioItem>
+    </RadioGroup>
+  )
+}`
+
+const radioControlledCode = `import { useState } from 'react'
+import { RadioGroup, RadioItem } from 'rocokingdom-ui'
+
+export function RadioControlledDemo() {
+  const [controlledValue, setControlledValue] = useState('normal')
+
+  return (
+    <div className="grid gap-5">
+      <RadioGroup
+        activeMaterial="primaryMuted"
+        inactiveMaterial="paper"
+        onValueChange={setControlledValue}
+        value={controlledValue}
+      >
+        <RadioItem value="normal">普通</RadioItem>
+        <RadioItem value="hard">困难</RadioItem>
+        <RadioItem value="nightmare">噩梦</RadioItem>
+      </RadioGroup>
+      <p>当前难度：{controlledValue}</p>
+    </div>
+  )
+}`
+
+const radioLayoutCode = `import { RadioGroup, RadioItem } from 'rocokingdom-ui'
+
+export function RadioLayoutDemo() {
+  return (
+    <div className="flex flex-wrap items-start gap-10">
+      <RadioGroup defaultValue="left" orientation="vertical" size="small">
+        <RadioItem value="left">左侧</RadioItem>
+        <RadioItem value="right">右侧</RadioItem>
+        <RadioItem value="top">顶部</RadioItem>
+      </RadioGroup>
+      <RadioGroup
+        activeMaterial="stone"
+        activeShadow
+        defaultValue="team"
+        inactiveMaterial="paper"
+        inactiveVariant="outline"
+        size="large"
+      >
+        <RadioItem value="solo">单人</RadioItem>
+        <RadioItem value="team">组队</RadioItem>
+        <RadioItem value="guild">公会</RadioItem>
+      </RadioGroup>
+    </div>
+  )
+}`
+
 function RadioGroupExamplePage() {
   const [controlledValue, setControlledValue] = useState('normal')
 
@@ -34,6 +104,7 @@ function RadioGroupExamplePage() {
       title="RadioGroup"
     >
       <ExampleSection
+        code={radioBasicCode}
         description="默认非受控用法会把当前值写入隐藏 input，适合表单提交。"
         title="基础单选组"
       >
@@ -55,7 +126,7 @@ function RadioGroupExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="受控值">
+      <ExampleSection code={radioControlledCode} title="受控值">
         <PreviewSurface>
           <div className="grid gap-5">
             <RadioGroup
@@ -75,7 +146,7 @@ function RadioGroupExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="垂直方向与尺寸">
+      <ExampleSection code={radioLayoutCode} title="垂直方向与尺寸">
         <PreviewSurface>
           <div className="flex flex-wrap items-start gap-10">
             <RadioGroup defaultValue="left" orientation="vertical" size="small">

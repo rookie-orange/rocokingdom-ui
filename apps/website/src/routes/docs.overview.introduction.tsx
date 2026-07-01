@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Panel, RuneText } from 'rocokingdom-ui'
+import { DocsPager } from '../docs/components'
 
 const introductionCards = [
   {
@@ -54,6 +55,7 @@ function DocsIntroductionPage() {
             ))}
           </div>
         </section>
+        <DocsPager />
       </div>
     </article>
   )

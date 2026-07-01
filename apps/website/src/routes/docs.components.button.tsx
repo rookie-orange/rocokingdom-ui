@@ -16,6 +16,77 @@ export function ActionBar() {
   )
 }`
 
+const buttonMaterialsCode = `import { Button } from 'rocokingdom-ui'
+
+const materials = [
+  'default',
+  'primary',
+  'primarySoft',
+  'primaryMuted',
+  'primaryStrong',
+  'paper',
+  'stone',
+  'success',
+  'danger',
+] as const
+
+export function ButtonMaterialsDemo() {
+  return (
+    <div className="grid gap-8">
+      {materials.map((material) => (
+        <div className="flex flex-wrap items-center gap-4" key={material}>
+          <span className="w-36 capitalize text-sm text-stone/60">{material}</span>
+          <Button material={material} shadow>
+            实心按钮
+          </Button>
+          <Button material={material} shadow variant="outline">
+            描边按钮
+          </Button>
+          <Button material={material} variant="text">
+            文本按钮
+          </Button>
+        </div>
+      ))}
+    </div>
+  )
+}`
+
+const buttonSizeCode = `import { Button } from 'rocokingdom-ui'
+
+export function ButtonSizeDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <Button material="stone" shadow size="small">
+        Small
+      </Button>
+      <Button material="default" shadow size="middle">
+        Middle
+      </Button>
+      <Button material="paper" shadow size="large">
+        Large
+      </Button>
+      <Button disabled material="stone" shadow>
+        Disabled
+      </Button>
+    </div>
+  )
+}`
+
+const buttonCompactCode = `import { Button } from 'rocokingdom-ui'
+
+export function CompactButtonDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <Button material="default" shadow size="small">
+        背包
+      </Button>
+      <Button material="stone" shadow size="small" variant="outline">
+        任务
+      </Button>
+    </div>
+  )
+}`
+
 function ButtonExamplePage() {
   const materials = [
     'default',
@@ -41,6 +112,7 @@ function ButtonExamplePage() {
       title="Button"
     >
       <ExampleSection
+        code={buttonMaterialsCode}
         description="常用动作按钮建议使用 solid + shadow，次级动作使用 outline 或 text。"
         title="材质与变体"
       >
@@ -64,7 +136,7 @@ function ButtonExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="尺寸与状态">
+      <ExampleSection code={buttonSizeCode} title="尺寸与状态">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-4">
             <Button material="stone" shadow size="small">
@@ -83,7 +155,11 @@ function ButtonExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection description="小尺寸按钮适合密集工具栏和紧凑操作区。" title="紧凑按钮">
+      <ExampleSection
+        code={buttonCompactCode}
+        description="小尺寸按钮适合密集工具栏和紧凑操作区。"
+        title="紧凑按钮"
+      >
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-4">
             <Button material="default" shadow size="small">

@@ -18,6 +18,89 @@ export function NoticeBadge() {
   )
 }`
 
+const rocoShapeVariantCode = `import { RocoShape } from 'rocokingdom-ui'
+
+export function RocoShapeVariantDemo() {
+  return (
+    <div className="grid gap-6">
+      <div className="flex flex-wrap items-center gap-5">
+        <RocoShape shadow style={{ color: 'var(--rk-primary)', height: 44, width: 180 }} />
+        <RocoShape style={{ color: 'var(--rk-stone)', height: 44, width: 180 }} />
+        <RocoShape
+          style={{ color: 'var(--rk-stone)', height: 44, width: 180 }}
+          variant="outline"
+        />
+      </div>
+      <div className="flex flex-wrap items-center gap-5">
+        <RocoShape shadow style={{ color: '#2f7dd1', height: 32, width: 120 }} />
+        <RocoShape shadow style={{ color: '#d94b4b', height: 52, width: 240 }} />
+      </div>
+    </div>
+  )
+}`
+
+const rocoShapeFixedCode = `import { RocoShape } from 'rocokingdom-ui'
+
+export function RocoShapeFixedDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-5">
+      <RocoShape shadow shape="circle" style={{ color: 'var(--rk-primary)', height: 56, width: 56 }} />
+      <RocoShape
+        shape="circle"
+        style={{ color: 'var(--rk-stone)', height: 56, width: 56 }}
+        variant="outline"
+      />
+      <RocoShape shadow shape="square" style={{ color: '#d94b4b', height: 56, width: 56 }} />
+      <RocoShape
+        shape="square"
+        style={{ color: '#2f7dd1', height: 56, width: 56 }}
+        variant="outline"
+      />
+    </div>
+  )
+}`
+
+const rocoShapeTextCode = `import { Material, RocoShape } from 'rocokingdom-ui'
+
+export function RocoShapeTextDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-5">
+      <Material asChild material="stone">
+        <RocoShape className="!h-[72px] !px-[42px] font-roco text-3xl" shadow>
+          今日活动
+        </RocoShape>
+      </Material>
+      <Material asChild material="paper">
+        <RocoShape className="!h-14 !px-[34px] font-roco text-2xl" shadow>
+          宠物档案
+        </RocoShape>
+      </Material>
+    </div>
+  )
+}`
+
+const rocoShapeMaterialCode = `import { Material, RocoShape } from 'rocokingdom-ui'
+
+export function RocoShapeMaterialDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-5">
+      <Material asChild material="paper">
+        <RocoShape className="!h-14 !px-[34px] font-roco text-2xl" shadow>
+          纸张表面
+        </RocoShape>
+      </Material>
+      <RocoShape
+        background="#2f7dd1"
+        className="!h-14 !px-[34px] font-roco text-2xl"
+        color="#f7fbff"
+        shadow
+      >
+        水系活动
+      </RocoShape>
+    </div>
+  )
+}`
+
 function RocoShapeExamplePage() {
   return (
     <ExampleShell
@@ -32,7 +115,7 @@ function RocoShapeExamplePage() {
       ]}
       title="RocoShape"
     >
-      <ExampleSection title="实心与描边">
+      <ExampleSection code={rocoShapeVariantCode} title="实心与描边">
         <PreviewSurface>
           <div className="grid gap-6">
             <div className="flex flex-wrap items-center gap-5">
@@ -51,7 +134,7 @@ function RocoShapeExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="圆形与正方形">
+      <ExampleSection code={rocoShapeFixedCode} title="圆形与正方形">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-5">
             <RocoShape
@@ -74,7 +157,7 @@ function RocoShapeExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="文字背景">
+      <ExampleSection code={rocoShapeTextCode} title="文字背景">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-5">
             <Material asChild material="stone">
@@ -91,7 +174,7 @@ function RocoShapeExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="材质与自定义颜色">
+      <ExampleSection code={rocoShapeMaterialCode} title="材质与自定义颜色">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-5">
             <Material asChild material="paper">

@@ -24,6 +24,7 @@ catalog:
   '@tanstack/router-plugin': ^1.168.18
   '@tailwindcss/vite': ^4.3.1
   tailwindcss: ^4.3.1
+  lucide-react: ^1.22.0
 overrides:
   vite: 'catalog:'
   vitest: 'catalog:'

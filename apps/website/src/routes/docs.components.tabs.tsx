@@ -24,6 +24,71 @@ export function PetTabs() {
   )
 }`
 
+const tabsBasicCode = `import { Tab, TabList, TabPanel, Tabs } from 'rocokingdom-ui'
+
+export function TabsBasicDemo() {
+  return (
+    <Tabs defaultValue="team" name="petSection">
+      <TabList>
+        <Tab value="team">队伍</Tab>
+        <Tab value="bag">背包</Tab>
+        <Tab value="quest">任务</Tab>
+        <Tab disabled value="arena">
+          竞技
+        </Tab>
+      </TabList>
+      <TabPanel value="team">查看当前上阵宠物、血量和携带技能。</TabPanel>
+      <TabPanel value="bag">整理宠物背包，快速筛选属性与等级。</TabPanel>
+      <TabPanel value="quest">跟踪每日任务、活动任务和奖励进度。</TabPanel>
+    </Tabs>
+  )
+}`
+
+const tabsControlledCode = `import { useState } from 'react'
+import { Tab, TabList, TabPanel, Tabs } from 'rocokingdom-ui'
+
+export function TabsControlledDemo() {
+  const [section, setSection] = useState('team')
+
+  return (
+    <div className="grid gap-5">
+      <Tabs
+        listMaterial="primarySoft"
+        onValueChange={setSection}
+        selectedMaterial="paper"
+        value={section}
+      >
+        <TabList>
+          <Tab value="team">今日队伍</Tab>
+          <Tab value="bag">宠物仓库</Tab>
+          <Tab value="quest">冒险任务</Tab>
+        </TabList>
+        <TabPanel value="team">队伍标签已激活。</TabPanel>
+        <TabPanel value="bag">仓库标签已激活。</TabPanel>
+        <TabPanel value="quest">任务标签已激活。</TabPanel>
+      </Tabs>
+      <p>当前标签：{section}</p>
+    </div>
+  )
+}`
+
+const tabsSizeCode = `import { Tab, TabList, TabPanel, Tabs } from 'rocokingdom-ui'
+
+export function TabsSizeDemo() {
+  return (
+    <Tabs defaultValue="map" listMaterial="stone" selectedMaterial="primaryStrong" size="large">
+      <TabList>
+        <Tab value="map">王国地图</Tab>
+        <Tab value="friend">好友列表</Tab>
+        <Tab value="shop">商店补给</Tab>
+      </TabList>
+      <TabPanel value="map">大尺寸标签会保留按钮同款拉伸底形。</TabPanel>
+      <TabPanel value="friend">好友状态、邀请和组队入口可以放在同一组标签页内。</TabPanel>
+      <TabPanel value="shop">大尺寸标签在操作型面板中更容易点击。</TabPanel>
+    </Tabs>
+  )
+}`
+
 function TabsExamplePage() {
   const [section, setSection] = useState('team')
 
@@ -39,6 +104,7 @@ function TabsExamplePage() {
       title="Tabs"
     >
       <ExampleSection
+        code={tabsBasicCode}
         description="默认外层使用浅石色底形，选中项使用默认主色实心底形。"
         title="基础标签页"
       >
@@ -71,7 +137,7 @@ function TabsExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="受控值与材质">
+      <ExampleSection code={tabsControlledCode} title="受控值与材质">
         <PreviewSurface>
           <div className="grid gap-5">
             <Tabs
@@ -102,7 +168,7 @@ function TabsExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="尺寸与紧凑间距">
+      <ExampleSection code={tabsSizeCode} title="尺寸与紧凑间距">
         <PreviewSurface>
           <Tabs
             defaultValue="map"

@@ -17,6 +17,84 @@ export function CustomTheme() {
   )
 }`
 
+const themeDefaultCode = `import { Button, Material, RuneText } from 'rocokingdom-ui'
+
+export function ThemeDefaultDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <Button material="default" shadow>
+        默认主色
+      </Button>
+      <Material className="rounded-lg p-4" material="stone">
+        石材表面
+      </Material>
+      <RuneText className="text-4xl leading-none text-primary">DEFAULT</RuneText>
+    </div>
+  )
+}`
+
+const themeRuntimeCode = `import { useState } from 'react'
+import { Button, Panel, RocoTheme, RuneText } from 'rocokingdom-ui'
+
+export function ThemeRuntimeDemo() {
+  const [customThemeEnabled, setCustomThemeEnabled] = useState(false)
+  const scopedTheme = customThemeEnabled
+    ? {
+        onPaper: '#182117',
+        onPrimary: '#10201a',
+        onStone: '#eef8ef',
+        paper: '#f0f6de',
+        primary: '#6ee7b7',
+        primaryStrong: '#276948',
+        stone: '#223529',
+      }
+    : undefined
+
+  return (
+    <RocoTheme colors={scopedTheme}>
+      <Panel material="stone">
+        <div className="grid gap-5">
+          <RuneText className="text-5xl leading-none text-primary">
+            {customThemeEnabled ? 'GREEN THEME' : 'DEFAULT THEME'}
+          </RuneText>
+          <Button material="default" onClick={() => setCustomThemeEnabled((enabled) => !enabled)} shadow>
+            {customThemeEnabled ? '恢复默认主题' : '启用绿色主题'}
+          </Button>
+        </div>
+      </Panel>
+    </RocoTheme>
+  )
+}`
+
+const themeNestedCode = `import { Button, RocoTheme } from 'rocokingdom-ui'
+
+export function ThemeNestedDemo() {
+  return (
+    <RocoTheme
+      className="grid gap-4"
+      colors={{
+        onPrimary: '#f8fbff',
+        primary: '#2f7dd1',
+        primarySoft: '#d9ebff',
+      }}
+    >
+      <div className="flex flex-wrap gap-4">
+        <Button material="default" shadow>
+          外层蓝色主题
+        </Button>
+        <RocoTheme colors={{ onPrimary: '#10201a', primary: '#34d399' }}>
+          <Button material="default" shadow>
+            内层绿色主题
+          </Button>
+        </RocoTheme>
+        <Button material="primarySoft" shadow>
+          回到外层浅蓝
+        </Button>
+      </div>
+    </RocoTheme>
+  )
+}`
+
 function RocoThemeExamplePage() {
   const [customThemeEnabled, setCustomThemeEnabled] = useState(false)
   const scopedTheme = customThemeEnabled
@@ -47,7 +125,7 @@ function RocoThemeExamplePage() {
       ]}
       title="RocoTheme"
     >
-      <ExampleSection title="默认主题">
+      <ExampleSection code={themeDefaultCode} title="默认主题">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-4">
             <Button material="default" shadow>
@@ -62,6 +140,7 @@ function RocoThemeExamplePage() {
       </ExampleSection>
 
       <ExampleSection
+        code={themeRuntimeCode}
         description="启用后，只有被 RocoTheme 包裹的面板读取新的 --rk-* 颜色；关闭后回到外层默认变量。"
         title="运行时主题切换"
       >
@@ -94,6 +173,7 @@ function RocoThemeExamplePage() {
       </ExampleSection>
 
       <ExampleSection
+        code={themeNestedCode}
         description="内层作用域只覆盖自己的子树，外层按钮继续读取蓝色变量。"
         title="嵌套主题"
       >

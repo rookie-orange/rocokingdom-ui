@@ -17,6 +17,70 @@ export function QuestCheckbox() {
   )
 }`
 
+const checkboxBasicCode = `import { Checkbox } from 'rocokingdom-ui'
+
+export function CheckboxBasicDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-6">
+      <Checkbox defaultChecked name="reward" value="coin">
+        金币
+      </Checkbox>
+      <Checkbox
+        boxMaterial="paperStrong"
+        checkMaterial="danger"
+        defaultChecked
+        name="reward"
+        value="badge"
+      >
+        徽章
+      </Checkbox>
+      <Checkbox disabled defaultChecked name="reward" value="locked">
+        已锁定
+      </Checkbox>
+    </div>
+  )
+}`
+
+const checkboxControlledCode = `import { useState } from 'react'
+import { Checkbox } from 'rocokingdom-ui'
+
+export function CheckboxControlledDemo() {
+  const [checked, setChecked] = useState(true)
+
+  return (
+    <div className="grid gap-5">
+      <Checkbox
+        boxMaterial="stoneStrong"
+        checked={checked}
+        checkMaterial="success"
+        onChange={(event) => setChecked(event.currentTarget.checked)}
+        shadow
+      >
+        开启每日提醒
+      </Checkbox>
+      <p>当前状态：{checked ? '已开启' : '已关闭'}</p>
+    </div>
+  )
+}`
+
+const checkboxSizesCode = `import { Checkbox } from 'rocokingdom-ui'
+
+export function CheckboxSizesDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-7">
+      <Checkbox boxMaterial="stone" checkMaterial="danger" defaultChecked size="small">
+        small
+      </Checkbox>
+      <Checkbox boxMaterial="primaryMuted" defaultChecked size="middle" variant="outline">
+        middle
+      </Checkbox>
+      <Checkbox boxMaterial="paperStrong" defaultChecked shadow size="large">
+        large
+      </Checkbox>
+    </div>
+  )
+}`
+
 function CheckboxExamplePage() {
   const [checked, setChecked] = useState(true)
 
@@ -32,6 +96,7 @@ function CheckboxExamplePage() {
       title="Checkbox"
     >
       <ExampleSection
+        code={checkboxBasicCode}
         description="默认会渲染隐藏的原生 checkbox input，外层 label 扩大点击区域。"
         title="基础多选框"
       >
@@ -56,7 +121,7 @@ function CheckboxExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="受控值">
+      <ExampleSection code={checkboxControlledCode} title="受控值">
         <PreviewSurface>
           <div className="grid gap-5">
             <Checkbox
@@ -75,7 +140,7 @@ function CheckboxExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="尺寸与描边">
+      <ExampleSection code={checkboxSizesCode} title="尺寸与描边">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-7">
             <Checkbox boxMaterial="stone" checkMaterial="danger" defaultChecked size="small">

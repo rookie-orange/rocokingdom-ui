@@ -12,6 +12,60 @@ export function ToolbarButton() {
   return <ButtonNormal material="stone">普通按钮</ButtonNormal>
 }`
 
+const buttonNormalMaterialsCode = `import { ButtonNormal } from 'rocokingdom-ui'
+
+const materials = [
+  'default',
+  'primary',
+  'primarySoft',
+  'primaryMuted',
+  'primaryStrong',
+  'paper',
+  'stone',
+  'success',
+  'danger',
+] as const
+
+export function ButtonNormalMaterialsDemo() {
+  return (
+    <div className="grid gap-6">
+      {materials.map((material) => (
+        <div className="flex flex-wrap items-center gap-4" key={material}>
+          <span className="w-36 text-sm capitalize text-stone/60">{material}</span>
+          <ButtonNormal material={material}>Solid</ButtonNormal>
+          <ButtonNormal material={material} variant="outline">
+            Outline
+          </ButtonNormal>
+          <ButtonNormal material={material} variant="text">
+            Text
+          </ButtonNormal>
+        </div>
+      ))}
+    </div>
+  )
+}`
+
+const buttonNormalSizesCode = `import { ButtonNormal } from 'rocokingdom-ui'
+
+export function ButtonNormalSizesDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <ButtonNormal material="stone" size="small">
+        Small
+      </ButtonNormal>
+      <ButtonNormal material="default" size="middle">
+        Middle
+      </ButtonNormal>
+      <ButtonNormal material="paper" size="large">
+        Large
+      </ButtonNormal>
+      <ButtonNormal disabled material="stone">
+        Disabled
+      </ButtonNormal>
+    </div>
+  )
+}`
+
 function ButtonNormalExamplePage() {
   const materials = [
     'default',
@@ -36,7 +90,7 @@ function ButtonNormalExamplePage() {
       ]}
       title="ButtonNormal"
     >
-      <ExampleSection title="材质与变体">
+      <ExampleSection code={buttonNormalMaterialsCode} title="材质与变体">
         <PreviewSurface>
           <div className="grid gap-6">
             {materials.map((material) => (
@@ -55,7 +109,7 @@ function ButtonNormalExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="尺寸与禁用状态">
+      <ExampleSection code={buttonNormalSizesCode} title="尺寸与禁用状态">
         <PreviewSurface>
           <div className="flex flex-wrap items-center gap-4">
             <ButtonNormal material="stone" size="small">

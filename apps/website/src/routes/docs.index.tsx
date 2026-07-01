@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { Input, Panel, Tab, TabList, TabPanel, Tabs } from 'rocokingdom-ui'
+import { DocsPager } from '../docs/components'
 
 const packageManagers = [
   {
@@ -250,6 +251,7 @@ function DocsOverviewPage() {
             ))}
           </div>
         </section>
+        <DocsPager />
       </div>
     </article>
   )

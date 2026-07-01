@@ -141,6 +141,77 @@ const materialFamilies: readonly MaterialFamily[] = [
   },
 ]
 
+const materialPresetsCode = `import { Material, type MaterialPreset } from 'rocokingdom-ui'
+
+const materialFamilies: readonly {
+  base: MaterialPreset
+  variants: readonly MaterialPreset[]
+}[] = [
+  { base: 'primary', variants: ['primarySoft', 'primaryMuted', 'primaryStrong'] },
+  { base: 'paper', variants: ['paperSoft', 'paperMuted', 'paperStrong'] },
+  { base: 'stone', variants: ['stoneSoft', 'stoneMuted', 'stoneStrong'] },
+]
+
+export function MaterialPresetsDemo() {
+  return (
+    <div className="grid gap-5">
+      {materialFamilies.map((family) => (
+        <section className="overflow-hidden rounded-lg border" key={family.base}>
+          <Material className="min-h-28 p-5" material={family.base}>
+            <p className="font-roco text-4xl leading-none">{family.base}</p>
+          </Material>
+          <div className="grid grid-cols-3">
+            {family.variants.map((material) => (
+              <Material className="min-h-24 p-4" key={material} material={material}>
+                <p className="font-roco text-3xl leading-none">{material}</p>
+              </Material>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  )
+}`
+
+const materialStateCode = `import { Material } from 'rocokingdom-ui'
+
+const stateMaterials = ['success', 'danger'] as const
+
+export function MaterialStateDemo() {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      {stateMaterials.map((material) => (
+        <Material className="min-h-28 rounded-lg p-5" key={material} material={material}>
+          <p className="font-roco text-3xl leading-none">{material}</p>
+        </Material>
+      ))}
+    </div>
+  )
+}`
+
+const materialCustomCode = `import { Material } from 'rocokingdom-ui'
+
+export function MaterialCustomDemo() {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      <Material
+        as="button"
+        background="#2f7dd1"
+        className="rounded-lg p-5 text-left"
+        color="#f7fbff"
+        type="button"
+      >
+        <span className="block font-roco text-2xl leading-none">水系活动</span>
+        <span className="mt-2 block text-sm opacity-80">as="button"</span>
+      </Material>
+      <Material as="article" background="#f7d56f" className="rounded-lg p-5" color="#2b2414">
+        <span className="block font-roco text-2xl leading-none">宠物档案</span>
+        <span className="mt-2 block text-sm opacity-75">自定义 foreground</span>
+      </Material>
+    </div>
+  )
+}`
+
 const stateMaterials: readonly MaterialVariant[] = [
   {
     label: 'success',
@@ -193,7 +264,7 @@ function MaterialExamplePage() {
       ]}
       title="Material"
     >
-      <ExampleSection title="预设材质">
+      <ExampleSection code={materialPresetsCode} title="预设材质">
         <PreviewSurface>
           <div className="grid gap-5">
             {materialFamilies.map((family) => (
@@ -227,7 +298,7 @@ function MaterialExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="状态材质">
+      <ExampleSection code={materialStateCode} title="状态材质">
         <PreviewSurface>
           <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
             {stateMaterials.map((material) => (
@@ -244,7 +315,7 @@ function MaterialExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="自定义表面">
+      <ExampleSection code={materialCustomCode} title="自定义表面">
         <PreviewSurface>
           <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
             <Material

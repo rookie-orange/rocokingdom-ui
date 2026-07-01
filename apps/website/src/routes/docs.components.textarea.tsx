@@ -19,6 +19,59 @@ export function QuestTextarea() {
   )
 }`
 
+const textareaBasicCode = `import { Textarea } from 'rocokingdom-ui'
+
+export function TextareaBasicDemo() {
+  return (
+    <div className="grid max-w-2xl gap-4">
+      <Textarea
+        defaultValue="今天在商店街遇到了新的任务线索。"
+        maxLength={120}
+        name="questNote"
+        placeholder="记录任务线索"
+        showCount
+      />
+      <Textarea material="paper" placeholder="写下宠物培养计划" />
+    </div>
+  )
+}`
+
+const textareaSizeCode = `import { Textarea } from 'rocokingdom-ui'
+
+export function TextareaSizeDemo() {
+  return (
+    <div className="flex flex-wrap items-start gap-5">
+      <Textarea
+        material="primarySoft"
+        placeholder="宽一点的记录面板"
+        resize="both"
+        style={{ minHeight: 164, width: 420 }}
+      />
+      <Textarea
+        material="stoneStrong"
+        placeholder="紧凑备注"
+        resize="none"
+        size="small"
+        style={{ minHeight: 112, width: 260 }}
+      />
+    </div>
+  )
+}`
+
+const textareaStateCode = `import { Textarea } from 'rocokingdom-ui'
+
+export function TextareaStateDemo() {
+  return (
+    <div className="grid max-w-2xl gap-4">
+      <Textarea material="success" placeholder="成功状态" shadow />
+      <Textarea material="danger" placeholder="危险状态" shadow />
+      <Textarea material="stone" placeholder="描边文本域" variant="outline" />
+      <Textarea disabled placeholder="禁用状态" />
+      <Textarea readOnly value="只读内容不可编辑" />
+    </div>
+  )
+}`
+
 function TextareaExamplePage() {
   return (
     <ExampleShell
@@ -32,6 +85,7 @@ function TextareaExamplePage() {
       title="Textarea"
     >
       <ExampleSection
+        code={textareaBasicCode}
         description="默认使用 stone 材质，适合浅色纸面上的任务记录、备注或长文本输入。"
         title="基础文本域"
       >
@@ -50,6 +104,7 @@ function TextareaExamplePage() {
       </ExampleSection>
 
       <ExampleSection
+        code={textareaSizeCode}
         description="可以通过 style 直接控制根容器宽高，四角不会被整块拉伸。"
         title="自由尺寸"
       >
@@ -72,7 +127,7 @@ function TextareaExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="状态与变体">
+      <ExampleSection code={textareaStateCode} title="状态与变体">
         <PreviewSurface>
           <div className="grid max-w-2xl gap-4">
             <Textarea material="success" placeholder="成功状态" shadow />

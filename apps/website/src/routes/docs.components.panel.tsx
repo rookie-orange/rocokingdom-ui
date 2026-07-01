@@ -16,6 +16,61 @@ export function QuestPanel() {
   )
 }`
 
+const panelBasicCode = `import { Panel } from 'rocokingdom-ui'
+
+export function PanelBasicDemo() {
+  return (
+    <div className="grid grid-cols-2 gap-5">
+      <Panel material="paper">
+        <p className="font-roco text-3xl leading-none">纸张面板</p>
+        <p>用于常规说明、表单区和轻量内容。</p>
+      </Panel>
+      <Panel material="stone">
+        <p className="font-roco text-3xl leading-none">石材面板</p>
+        <p>用于高对比导航、弹层内强调内容。</p>
+      </Panel>
+    </div>
+  )
+}`
+
+const panelCurveCode = `import { Panel } from 'rocokingdom-ui'
+
+export function PanelCurveDemo() {
+  return (
+    <div className="grid grid-cols-2 gap-5">
+      {(['left', 'right', 'both', 'none'] as const).map((curve) => (
+        <Panel
+          className="min-h-40"
+          contentClassName="grid content-center"
+          curve={curve}
+          key={curve}
+          material={curve === 'none' ? 'paper' : 'stone'}
+        >
+          <p className="font-roco text-3xl leading-none">curve={curve}</p>
+          <p className="mt-3 text-sm opacity-75">适配抽屉和侧栏场景。</p>
+        </Panel>
+      ))}
+    </div>
+  )
+}`
+
+const panelInsetCode = `import { Panel } from 'rocokingdom-ui'
+
+export function PanelInsetDemo() {
+  return (
+    <Panel
+      className="min-h-44 max-w-3xl"
+      contentClassName="grid content-center"
+      curve="both"
+      curveInset="120px"
+      material="paper"
+    >
+      <p className="font-roco text-3xl leading-none">curveInset="120px"</p>
+      <p>当面板较窄或内容较密时，可以显式增加文字区域与曲线边缘的距离。</p>
+    </Panel>
+  )
+}`
+
 function PanelExamplePage() {
   return (
     <ExampleShell
@@ -28,7 +83,7 @@ function PanelExamplePage() {
       ]}
       title="Panel"
     >
-      <ExampleSection title="基础容器">
+      <ExampleSection code={panelBasicCode} title="基础容器">
         <PreviewSurface>
           <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
             <Panel material="paper">
@@ -47,7 +102,7 @@ function PanelExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="曲线边缘">
+      <ExampleSection code={panelCurveCode} title="曲线边缘">
         <PreviewSurface>
           <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
             {(['left', 'right', 'both', 'none'] as const).map((curve) => (
@@ -66,7 +121,7 @@ function PanelExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="自定义曲线避让">
+      <ExampleSection code={panelInsetCode} title="自定义曲线避让">
         <PreviewSurface>
           <Panel
             className="min-h-44 max-w-3xl"

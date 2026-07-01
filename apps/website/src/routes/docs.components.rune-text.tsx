@@ -12,6 +12,55 @@ export function Mark() {
   return <RuneText as="strong">ROCO KINGDOM</RuneText>
 }`
 
+const runeTextSizeCode = `import { RuneText } from 'rocokingdom-ui'
+
+export function RuneTextSizeDemo() {
+  return (
+    <div className="grid gap-5">
+      <RuneText as="h2" className="text-6xl leading-none text-stone">
+        ROCO KINGDOM
+      </RuneText>
+      <RuneText className="text-4xl leading-none text-primary">MAGIC NOTICE</RuneText>
+      <RuneText className="text-2xl leading-none text-[#2f7dd1]">ELEMENT BADGE</RuneText>
+    </div>
+  )
+}`
+
+const runeTextFontCode = `import { RuneText } from 'rocokingdom-ui'
+
+export function RuneTextFontDemo() {
+  return (
+    <div className="grid gap-4">
+      <RuneText className="text-4xl leading-none text-stone">洛克王国</RuneText>
+      <RuneText font="rune" className="text-4xl leading-none text-primary">
+        ROCO KINGDOM
+      </RuneText>
+    </div>
+  )
+}`
+
+const runeTextBackgroundCode = `import { RuneText } from 'rocokingdom-ui'
+
+export function RuneTextBackgroundDemo() {
+  return (
+    <div className="relative overflow-hidden rounded-lg bg-stone p-8 text-on-stone">
+      <RuneText
+        aria-hidden="true"
+        className="absolute inset-x-6 top-4 text-7xl leading-none text-on-stone/10"
+        font="rune"
+      >
+        QUEST BOARD
+      </RuneText>
+      <div className="relative z-10">
+        <p className="font-roco text-4xl leading-none">任务公告</p>
+        <p className="mt-4 max-w-xl text-base leading-7 text-on-stone/75">
+          背景符文文本保留装饰性，不参与主要信息层级。
+        </p>
+      </div>
+    </div>
+  )
+}`
+
 function RuneTextExamplePage() {
   return (
     <ExampleShell
@@ -25,7 +74,7 @@ function RuneTextExamplePage() {
       ]}
       title="RuneText"
     >
-      <ExampleSection title="字号和颜色">
+      <ExampleSection code={runeTextSizeCode} title="字号和颜色">
         <PreviewSurface>
           <div className="grid gap-5">
             <RuneText as="h2" className="text-6xl leading-none text-stone max-sm:text-4xl">
@@ -39,7 +88,7 @@ function RuneTextExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="字体选择">
+      <ExampleSection code={runeTextFontCode} title="字体选择">
         <PreviewSurface>
           <div className="grid gap-4">
             <RuneText className="text-4xl leading-none text-stone max-sm:text-3xl">
@@ -52,7 +101,7 @@ function RuneTextExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="作为背景层">
+      <ExampleSection code={runeTextBackgroundCode} title="作为背景层">
         <PreviewSurface>
           <div className="relative overflow-hidden rounded-lg bg-stone p-8 text-on-stone">
             <RuneText

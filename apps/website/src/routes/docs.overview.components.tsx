@@ -1,5 +1,6 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { Checkbox, RuneText } from 'rocokingdom-ui'
+import { DocsPager } from '../docs/components'
 import { componentExamples, examples } from '../examples/catalog'
 
 interface ComponentTodoItem {
@@ -471,6 +472,7 @@ function DocsComponentsPage() {
             )
           })}
         </section>
+        <DocsPager />
       </div>
     </article>
   )

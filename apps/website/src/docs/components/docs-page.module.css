@@ -1,0 +1,20 @@
+.exampleTabs.exampleTabs {
+  justify-items: stretch;
+  width: 100%;
+}
+
+.exampleSection.exampleSection,
+.examplePanel.examplePanel {
+  min-width: 0;
+  width: 100%;
+}
+
+.exampleList.exampleList {
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  .exampleList.exampleList {
+    width: 100%;
+  }
+}

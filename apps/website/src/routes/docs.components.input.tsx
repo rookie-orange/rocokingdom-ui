@@ -12,6 +12,44 @@ export function SearchBox() {
   return <Input placeholder="搜索宠物或任务" />
 }`
 
+const inputBasicCode = `import { Input } from 'rocokingdom-ui'
+
+export function InputBasicDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <Input placeholder="搜索宠物或任务" />
+      <Input defaultValue="洛克王国" material="paper" placeholder="请输入名称" />
+      <Input material="primary" placeholder="金色高亮" />
+    </div>
+  )
+}`
+
+const inputAffixCode = `import { Input } from 'rocokingdom-ui'
+
+export function InputAffixDemo() {
+  return (
+    <div className="grid max-w-2xl gap-4">
+      <Input prefix="ID" placeholder="small" size="small" suffix="#" />
+      <Input prefix="Lv." placeholder="middle" suffix="/100" />
+      <Input prefix="Quest" placeholder="large" size="large" suffix="GO" />
+    </div>
+  )
+}`
+
+const inputStateCode = `import { Input } from 'rocokingdom-ui'
+
+export function InputStateDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <Input material="stone" placeholder="描边输入" variant="outline" />
+      <Input material="success" placeholder="成功状态" shadow />
+      <Input material="danger" placeholder="错误状态" shadow />
+      <Input disabled placeholder="禁用状态" />
+      <Input readOnly value="只读内容" />
+    </div>
+  )
+}`
+
 function InputExamplePage() {
   return (
     <ExampleShell
@@ -25,6 +63,7 @@ function InputExamplePage() {
       title="Input"
     >
       <ExampleSection
+        code={inputBasicCode}
         description="默认输入框使用 stone 材质，适合放在纸面或浅色面板上。"
         title="基础用法"
       >
@@ -37,7 +76,7 @@ function InputExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="尺寸与前后缀">
+      <ExampleSection code={inputAffixCode} title="尺寸与前后缀">
         <PreviewSurface>
           <div className="grid max-w-2xl gap-4">
             <Input prefix="ID" placeholder="small" size="small" suffix="#" />
@@ -48,6 +87,7 @@ function InputExamplePage() {
       </ExampleSection>
 
       <ExampleSection
+        code={inputStateCode}
         description="outline 适合低强调字段；状态色可以直接通过 material 切换。"
         title="状态与变体"
       >

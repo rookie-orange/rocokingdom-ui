@@ -35,6 +35,62 @@ const navItems: NavItem[] = [
   { disabled: true, icon: '●', label: '竞技场', value: 'arena' },
 ] as const
 
+const sideNavStackCode = `import { useState } from 'react'
+import { SideNav, SideNavHeader, SideNavItem, SideNavList } from 'rocokingdom-ui'
+
+const navItems = [
+  { icon: '★', label: '今日任务', value: 'quest' },
+  { badge: 3, icon: '✦', label: '宠物背包', value: 'bag' },
+  { icon: '◆', label: '活动中心', value: 'event' },
+  { disabled: true, icon: '●', label: '竞技场', value: 'arena' },
+] as const
+
+export function SideNavStackDemo() {
+  const [active, setActive] = useState('quest')
+
+  return (
+    <SideNav aria-label="王国菜单">
+      <SideNavHeader eyebrow="ROCO" icon="◆" title="王国菜单" />
+      <SideNavList>
+        {navItems.map((item) => (
+          <SideNavItem
+            active={active === item.value}
+            badge={item.badge}
+            disabled={item.disabled}
+            icon={item.icon}
+            key={item.value}
+            onClick={() => setActive(item.value)}
+          >
+            {item.label}
+          </SideNavItem>
+        ))}
+      </SideNavList>
+    </SideNav>
+  )
+}`
+
+const sideNavRailCode = `import { SideNav, SideNavHeader, SideNavItem, SideNavList } from 'rocokingdom-ui'
+
+export function SideNavRailDemo() {
+  return (
+    <SideNav aria-label="快捷入口" variant="rail">
+      <SideNavHeader icon="◆" title="菜单" />
+      <SideNavList>
+        <SideNavItem active icon="★">
+          任务
+        </SideNavItem>
+        <SideNavItem badge icon="✦">
+          背包
+        </SideNavItem>
+        <SideNavItem icon="◆">活动</SideNavItem>
+        <SideNavItem disabled icon="●">
+          竞技
+        </SideNavItem>
+      </SideNavList>
+    </SideNav>
+  )
+}`
+
 function SideNavExamplePage() {
   const [active, setActive] = useState('quest')
 
@@ -49,7 +105,7 @@ function SideNavExamplePage() {
       ]}
       title="SideNav"
     >
-      <ExampleSection title="堆叠导航">
+      <ExampleSection code={sideNavStackCode} title="堆叠导航">
         <PreviewSurface>
           <div className="rounded-lg bg-stone p-6">
             <SideNav aria-label="王国菜单">
@@ -73,7 +129,7 @@ function SideNavExamplePage() {
         </PreviewSurface>
       </ExampleSection>
 
-      <ExampleSection title="窄轨导航">
+      <ExampleSection code={sideNavRailCode} title="窄轨导航">
         <PreviewSurface>
           <div className="rounded-lg bg-stone p-6">
             <SideNav aria-label="快捷入口" variant="rail">
