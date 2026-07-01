@@ -93,14 +93,17 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '分割内容区块或菜单项。',
+        implementedSlug: 'divider',
         name: 'Divider 分割线',
       },
       {
         description: '标准化行列间距、堆叠和内联布局。',
+        implementedSlug: 'space',
         name: 'Space / Stack 间距',
       },
       {
         description: '页面骨架、栅格、两栏和响应式布局。',
+        implementedSlug: 'layout',
         name: 'Layout 布局',
       },
     ],

@@ -4,10 +4,33 @@ export { ButtonNormal, buttonNormalPrefixCls } from './button-normal'
 export type { ButtonNormalProps } from './button-normal'
 export { Checkbox, checkboxPrefixCls } from './checkbox'
 export type { CheckboxMaterial, CheckboxProps, CheckboxSize, CheckboxVariant } from './checkbox'
+export { Divider, dividerPrefixCls } from './divider'
+export type { DividerAlign, DividerOrientation, DividerProps, DividerVariant } from './divider'
 export { Drawer, DrawerClose, drawerPrefixCls } from './drawer'
 export type { DrawerCloseProps, DrawerProps, DrawerSide } from './drawer'
 export { Input, inputPrefixCls } from './input'
 export type { InputMaterial, InputProps, InputSize, InputVariant } from './input'
+export {
+  Layout,
+  LayoutContent,
+  LayoutFooter,
+  LayoutHeader,
+  LayoutSider,
+  layoutContentPrefixCls,
+  layoutFooterPrefixCls,
+  layoutHeaderPrefixCls,
+  layoutPrefixCls,
+  layoutSiderPrefixCls,
+} from './layout'
+export type {
+  LayoutContentProps,
+  LayoutDirection,
+  LayoutFooterProps,
+  LayoutHeaderProps,
+  LayoutMaterial,
+  LayoutProps,
+  LayoutSiderProps,
+} from './layout'
 export { Material, materialPrefixCls, resolveMaterial } from './material'
 export type {
   MaterialPreset,
@@ -34,6 +57,17 @@ export {
 export type { SelectItemProps, SelectMaterial, SelectOption, SelectProps } from './select'
 export { Switch, switchPrefixCls } from './switch'
 export type { SwitchMaterial, SwitchProps, SwitchSize } from './switch'
+export { Space, Stack, spacePrefixCls, stackPrefixCls } from './space'
+export type {
+  SpaceAlign,
+  SpaceDirection,
+  SpaceGap,
+  SpaceJustify,
+  SpaceProps,
+  SpaceSize,
+  SpaceSizePreset,
+  StackProps,
+} from './space'
 export {
   SideNav,
   SideNavHeader,

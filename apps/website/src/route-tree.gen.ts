@@ -24,14 +24,17 @@ import { Route as DocsComponentsToggleGroupRouteImport } from './routes/docs.com
 import { Route as DocsComponentsTextareaRouteImport } from './routes/docs.components.textarea'
 import { Route as DocsComponentsTabsRouteImport } from './routes/docs.components.tabs'
 import { Route as DocsComponentsSwitchRouteImport } from './routes/docs.components.switch'
+import { Route as DocsComponentsSpaceRouteImport } from './routes/docs.components.space'
 import { Route as DocsComponentsSideNavRouteImport } from './routes/docs.components.side-nav'
 import { Route as DocsComponentsSelectRouteImport } from './routes/docs.components.select'
 import { Route as DocsComponentsRuneTextRouteImport } from './routes/docs.components.rune-text'
 import { Route as DocsComponentsRadioGroupRouteImport } from './routes/docs.components.radio-group'
 import { Route as DocsComponentsPanelRouteImport } from './routes/docs.components.panel'
 import { Route as DocsComponentsModalRouteImport } from './routes/docs.components.modal'
+import { Route as DocsComponentsLayoutRouteImport } from './routes/docs.components.layout'
 import { Route as DocsComponentsInputRouteImport } from './routes/docs.components.input'
 import { Route as DocsComponentsDrawerRouteImport } from './routes/docs.components.drawer'
+import { Route as DocsComponentsDividerRouteImport } from './routes/docs.components.divider'
 import { Route as DocsComponentsCheckboxRouteImport } from './routes/docs.components.checkbox'
 import { Route as DocsComponentsButtonNormalRouteImport } from './routes/docs.components.button-normal'
 import { Route as DocsComponentsButtonRouteImport } from './routes/docs.components.button'
@@ -113,6 +116,11 @@ const DocsComponentsSwitchRoute = DocsComponentsSwitchRouteImport.update({
   path: '/components/switch',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsSpaceRoute = DocsComponentsSpaceRouteImport.update({
+  id: '/components/space',
+  path: '/components/space',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsSideNavRoute = DocsComponentsSideNavRouteImport.update({
   id: '/components/side-nav',
   path: '/components/side-nav',
@@ -144,6 +152,11 @@ const DocsComponentsModalRoute = DocsComponentsModalRouteImport.update({
   path: '/components/modal',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsLayoutRoute = DocsComponentsLayoutRouteImport.update({
+  id: '/components/layout',
+  path: '/components/layout',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsInputRoute = DocsComponentsInputRouteImport.update({
   id: '/components/input',
   path: '/components/input',
@@ -152,6 +165,11 @@ const DocsComponentsInputRoute = DocsComponentsInputRouteImport.update({
 const DocsComponentsDrawerRoute = DocsComponentsDrawerRouteImport.update({
   id: '/components/drawer',
   path: '/components/drawer',
+  getParentRoute: () => DocsRoute,
+} as any)
+const DocsComponentsDividerRoute = DocsComponentsDividerRouteImport.update({
+  id: '/components/divider',
+  path: '/components/divider',
   getParentRoute: () => DocsRoute,
 } as any)
 const DocsComponentsCheckboxRoute = DocsComponentsCheckboxRouteImport.update({
@@ -181,14 +199,17 @@ export interface FileRoutesByFullPath {
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
+  '/docs/components/divider': typeof DocsComponentsDividerRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/layout': typeof DocsComponentsLayoutRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/space': typeof DocsComponentsSpaceRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
   '/docs/components/textarea': typeof DocsComponentsTextareaRoute
@@ -208,14 +229,17 @@ export interface FileRoutesByTo {
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
+  '/docs/components/divider': typeof DocsComponentsDividerRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/layout': typeof DocsComponentsLayoutRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/space': typeof DocsComponentsSpaceRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
   '/docs/components/textarea': typeof DocsComponentsTextareaRoute
@@ -237,14 +261,17 @@ export interface FileRoutesById {
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
+  '/docs/components/divider': typeof DocsComponentsDividerRoute
   '/docs/components/drawer': typeof DocsComponentsDrawerRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/layout': typeof DocsComponentsLayoutRoute
   '/docs/components/modal': typeof DocsComponentsModalRoute
   '/docs/components/panel': typeof DocsComponentsPanelRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/space': typeof DocsComponentsSpaceRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
   '/docs/components/textarea': typeof DocsComponentsTextareaRoute
@@ -267,14 +294,17 @@ export interface FileRouteTypes {
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
+    | '/docs/components/divider'
     | '/docs/components/drawer'
     | '/docs/components/input'
+    | '/docs/components/layout'
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/space'
     | '/docs/components/switch'
     | '/docs/components/tabs'
     | '/docs/components/textarea'
@@ -294,14 +324,17 @@ export interface FileRouteTypes {
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
+    | '/docs/components/divider'
     | '/docs/components/drawer'
     | '/docs/components/input'
+    | '/docs/components/layout'
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/space'
     | '/docs/components/switch'
     | '/docs/components/tabs'
     | '/docs/components/textarea'
@@ -322,14 +355,17 @@ export interface FileRouteTypes {
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
+    | '/docs/components/divider'
     | '/docs/components/drawer'
     | '/docs/components/input'
+    | '/docs/components/layout'
     | '/docs/components/modal'
     | '/docs/components/panel'
     | '/docs/components/radio-group'
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/space'
     | '/docs/components/switch'
     | '/docs/components/tabs'
     | '/docs/components/textarea'
@@ -454,6 +490,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsSwitchRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/space': {
+      id: '/docs/components/space'
+      path: '/components/space'
+      fullPath: '/docs/components/space'
+      preLoaderRoute: typeof DocsComponentsSpaceRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/components/side-nav': {
       id: '/docs/components/side-nav'
       path: '/components/side-nav'
@@ -496,6 +539,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsModalRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/layout': {
+      id: '/docs/components/layout'
+      path: '/components/layout'
+      fullPath: '/docs/components/layout'
+      preLoaderRoute: typeof DocsComponentsLayoutRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/components/input': {
       id: '/docs/components/input'
       path: '/components/input'
@@ -508,6 +558,13 @@ declare module '@tanstack/react-router' {
       path: '/components/drawer'
       fullPath: '/docs/components/drawer'
       preLoaderRoute: typeof DocsComponentsDrawerRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/components/divider': {
+      id: '/docs/components/divider'
+      path: '/components/divider'
+      fullPath: '/docs/components/divider'
+      preLoaderRoute: typeof DocsComponentsDividerRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/components/checkbox': {
@@ -540,14 +597,17 @@ interface DocsRouteChildren {
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
   DocsComponentsButtonNormalRoute: typeof DocsComponentsButtonNormalRoute
   DocsComponentsCheckboxRoute: typeof DocsComponentsCheckboxRoute
+  DocsComponentsDividerRoute: typeof DocsComponentsDividerRoute
   DocsComponentsDrawerRoute: typeof DocsComponentsDrawerRoute
   DocsComponentsInputRoute: typeof DocsComponentsInputRoute
+  DocsComponentsLayoutRoute: typeof DocsComponentsLayoutRoute
   DocsComponentsModalRoute: typeof DocsComponentsModalRoute
   DocsComponentsPanelRoute: typeof DocsComponentsPanelRoute
   DocsComponentsRadioGroupRoute: typeof DocsComponentsRadioGroupRoute
   DocsComponentsRuneTextRoute: typeof DocsComponentsRuneTextRoute
   DocsComponentsSelectRoute: typeof DocsComponentsSelectRoute
   DocsComponentsSideNavRoute: typeof DocsComponentsSideNavRoute
+  DocsComponentsSpaceRoute: typeof DocsComponentsSpaceRoute
   DocsComponentsSwitchRoute: typeof DocsComponentsSwitchRoute
   DocsComponentsTabsRoute: typeof DocsComponentsTabsRoute
   DocsComponentsTextareaRoute: typeof DocsComponentsTextareaRoute
@@ -565,14 +625,17 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,
   DocsComponentsButtonNormalRoute: DocsComponentsButtonNormalRoute,
   DocsComponentsCheckboxRoute: DocsComponentsCheckboxRoute,
+  DocsComponentsDividerRoute: DocsComponentsDividerRoute,
   DocsComponentsDrawerRoute: DocsComponentsDrawerRoute,
   DocsComponentsInputRoute: DocsComponentsInputRoute,
+  DocsComponentsLayoutRoute: DocsComponentsLayoutRoute,
   DocsComponentsModalRoute: DocsComponentsModalRoute,
   DocsComponentsPanelRoute: DocsComponentsPanelRoute,
   DocsComponentsRadioGroupRoute: DocsComponentsRadioGroupRoute,
   DocsComponentsRuneTextRoute: DocsComponentsRuneTextRoute,
   DocsComponentsSelectRoute: DocsComponentsSelectRoute,
   DocsComponentsSideNavRoute: DocsComponentsSideNavRoute,
+  DocsComponentsSpaceRoute: DocsComponentsSpaceRoute,
   DocsComponentsSwitchRoute: DocsComponentsSwitchRoute,
   DocsComponentsTabsRoute: DocsComponentsTabsRoute,
   DocsComponentsTextareaRoute: DocsComponentsTextareaRoute,

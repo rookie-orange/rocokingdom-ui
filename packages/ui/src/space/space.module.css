@@ -1,0 +1,50 @@
+.space {
+  --rk-space-align: center;
+  --rk-space-column-gap: 16px;
+  --rk-space-justify: flex-start;
+  --rk-space-row-gap: 16px;
+
+  align-items: var(--rk-space-align);
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: var(--rk-space-row-gap) var(--rk-space-column-gap);
+  justify-content: var(--rk-space-justify);
+  max-width: 100%;
+  min-width: 0;
+}
+
+.block {
+  display: flex;
+  width: 100%;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.stack {
+  --rk-space-align: stretch;
+}
+
+.split {
+  color: color-mix(in srgb, currentColor 42%, transparent);
+  display: inline-flex;
+  flex: 0 0 auto;
+  line-height: 1;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.vertical .split {
+  align-self: stretch;
+  justify-content: center;
+}

@@ -1,0 +1,77 @@
+.divider {
+  --rk-divider-color: color-mix(in srgb, currentColor 18%, transparent);
+  --rk-divider-line-style: solid;
+  --rk-divider-thickness: 1px;
+
+  box-sizing: border-box;
+  color: inherit;
+  flex: 0 0 auto;
+}
+
+.horizontal {
+  border-block-start: var(--rk-divider-thickness) var(--rk-divider-line-style)
+    var(--rk-divider-color);
+  display: block;
+  height: 0;
+  margin-block: 16px;
+  min-width: 0;
+  width: 100%;
+}
+
+.vertical {
+  align-self: stretch;
+  border-inline-start: var(--rk-divider-thickness) var(--rk-divider-line-style)
+    var(--rk-divider-color);
+  display: inline-block;
+  margin-inline: 8px;
+  min-height: 1em;
+  vertical-align: middle;
+}
+
+.solid {
+  --rk-divider-line-style: solid;
+}
+
+.dashed {
+  --rk-divider-line-style: dashed;
+}
+
+.dotted {
+  --rk-divider-line-style: dotted;
+}
+
+.labeled {
+  align-items: center;
+  border-block-start: 0;
+  display: flex;
+  gap: 12px;
+  height: auto;
+}
+
+.labeled::before,
+.labeled::after {
+  border-block-start: var(--rk-divider-thickness) var(--rk-divider-line-style)
+    var(--rk-divider-color);
+  content: '';
+  flex: 1 1 0;
+  min-inline-size: 16px;
+}
+
+.start::before {
+  flex-grow: 0.12;
+}
+
+.end::after {
+  flex-grow: 0.12;
+}
+
+.label {
+  color: color-mix(in srgb, currentColor 72%, transparent);
+  flex: 0 1 auto;
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
+  font-size: calc(var(--rk-font-size-base, 16px) - 2px);
+  line-height: 1.4;
+  max-width: min(100%, 32rem);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
