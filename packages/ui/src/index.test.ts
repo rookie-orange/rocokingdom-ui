@@ -34,5 +34,7 @@ test('only exposes root components and manual style/font entries', () => {
 test('uses radix dialog as the modal interaction primitive', () => {
   expect(packageJson.dependencies).toMatchObject({
     '@radix-ui/react-dialog': 'catalog:',
+    '@radix-ui/react-radio-group': 'catalog:',
+    '@radix-ui/react-slider': 'catalog:',
   })
 })

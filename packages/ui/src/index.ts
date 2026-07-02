@@ -2,6 +2,39 @@ export { Button, buttonPrefixCls } from './button'
 export type { ButtonProps } from './button'
 export { ButtonNormal, buttonNormalPrefixCls } from './button-normal'
 export type { ButtonNormalProps } from './button-normal'
+export { Badge, BadgeIndicator, badgeIndicatorPrefixCls, badgePrefixCls } from './badge'
+export type {
+  BadgeIndicatorProps,
+  BadgeMaterial,
+  BadgeProps,
+  BadgeSize,
+  BadgeVariant,
+} from './badge'
+export {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  breadcrumbEllipsisPrefixCls,
+  breadcrumbItemPrefixCls,
+  breadcrumbLinkPrefixCls,
+  breadcrumbListPrefixCls,
+  breadcrumbPagePrefixCls,
+  breadcrumbPrefixCls,
+  breadcrumbSeparatorPrefixCls,
+} from './breadcrumb'
+export type {
+  BreadcrumbEllipsisProps,
+  BreadcrumbItemProps,
+  BreadcrumbLinkProps,
+  BreadcrumbListProps,
+  BreadcrumbPageProps,
+  BreadcrumbProps,
+  BreadcrumbSeparatorProps,
+} from './breadcrumb'
 export { Checkbox, checkboxPrefixCls } from './checkbox'
 export type { CheckboxMaterial, CheckboxProps, CheckboxSize, CheckboxVariant } from './checkbox'
 export { Divider, dividerPrefixCls } from './divider'
@@ -55,6 +88,15 @@ export {
   selectPrefixCls,
 } from './select'
 export type { SelectItemProps, SelectMaterial, SelectOption, SelectProps } from './select'
+export {
+  Slider,
+  SliderRange,
+  SliderRoot,
+  SliderThumb,
+  SliderTrack,
+  sliderPrefixCls,
+} from './slider'
+export type { SliderMaterial, SliderProps, SliderSize } from './slider'
 export { Switch, switchPrefixCls } from './switch'
 export type { SwitchMaterial, SwitchProps, SwitchSize } from './switch'
 export { Space, Stack, spacePrefixCls, stackPrefixCls } from './space'
@@ -113,7 +155,14 @@ export type {
 } from './textarea'
 export { Modal, ModalClose, modalPrefixCls } from './modal'
 export type { ModalClosePosition, ModalCloseProps, ModalProps } from './modal'
-export { RadioGroup, RadioItem, radioGroupPrefixCls, radioItemPrefixCls } from './radio-group'
+export {
+  RadioGroup,
+  RadioGroupRoot,
+  RadioIndicator,
+  RadioItem,
+  radioGroupPrefixCls,
+  radioItemPrefixCls,
+} from './radio-group'
 export type {
   RadioItemProps,
   RadioGroupMaterial,

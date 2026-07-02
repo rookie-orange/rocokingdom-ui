@@ -1,0 +1,87 @@
+.badge {
+  box-sizing: border-box;
+  display: inline-flex;
+  position: relative;
+  vertical-align: middle;
+}
+
+.withChildren {
+  line-height: 1;
+}
+
+.standalone {
+  align-items: center;
+}
+
+.indicator {
+  --rk-badge-height: 20px;
+  --rk-badge-dot-size: 8px;
+  --rk-badge-offset-x: 0px;
+  --rk-badge-offset-y: 0px;
+
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  font-family: var(--rk-font-family-base, inherit);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  min-width: var(--rk-badge-height);
+  padding: 0 7px;
+  white-space: nowrap;
+}
+
+.indicator.indicator {
+  height: var(--rk-badge-height);
+  min-height: var(--rk-badge-height);
+  padding-block: 0;
+}
+
+.small {
+  --rk-badge-height: 16px;
+  --rk-badge-dot-size: 6px;
+
+  font-size: 10px;
+  padding-inline: 6px;
+}
+
+.middle {
+  --rk-badge-height: 20px;
+}
+
+.large {
+  --rk-badge-height: 24px;
+  --rk-badge-dot-size: 10px;
+
+  font-size: 13px;
+  padding-inline: 8px;
+}
+
+.dot {
+  min-width: var(--rk-badge-dot-size);
+  padding: 0;
+}
+
+.dot.dot {
+  height: var(--rk-badge-dot-size);
+  min-height: var(--rk-badge-dot-size);
+  min-width: var(--rk-badge-dot-size);
+  width: var(--rk-badge-dot-size);
+}
+
+.count {
+  min-width: var(--rk-badge-height);
+}
+
+.content {
+  font: inherit;
+  line-height: 1;
+  min-width: 0;
+}
+
+.floating {
+  position: absolute;
+  right: var(--rk-badge-offset-x);
+  top: var(--rk-badge-offset-y);
+  transform: translate(50%, -50%);
+  z-index: 1;
+}

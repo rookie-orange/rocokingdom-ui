@@ -2,30 +2,31 @@ import { readFileSync } from 'node:fs'
 import { createElement } from 'react'
 import { renderToString } from 'react-dom/server'
 import { expect, test } from 'vite-plus/test'
-import { RadioGroup, RadioItem, radioGroupPrefixCls, radioItemPrefixCls } from './index'
+import {
+  RadioGroup,
+  RadioGroupRoot,
+  RadioIndicator,
+  RadioItem,
+  radioGroupPrefixCls,
+  radioItemPrefixCls,
+} from './index'
 
 const radioGroupCss = readFileSync(new URL('./radio-group.module.css', import.meta.url), 'utf8')
 const radioGroupSource = readFileSync(new URL('./index.tsx', import.meta.url), 'utf8')
 
-test('exports prefix classes', () => {
+test('exports prefix classes and radix primitives', () => {
   expect(radioGroupPrefixCls).toBe('rk-radio-group')
   expect(radioItemPrefixCls).toBe('rk-radio-item')
+  expect(RadioGroupRoot).toBeTruthy()
+  expect(RadioIndicator).toBeTruthy()
 })
 
-test('supports semantic materials for lightweight controls', () => {
-  expect(radioGroupSource).toContain("import { Material, type MaterialPreset } from '../material'")
-  expect(radioGroupSource).toContain('<Material asChild material={resolvedMaterial}>')
-  expect(radioGroupCss).not.toContain('--rk-material-background')
-  expect(radioGroupCss).not.toContain('--rk-material-color')
-  expect(radioGroupCss).not.toContain('--rk-radio-item-material')
-  expect(radioGroupCss).not.toContain('--rk-radio-item-on-material')
-})
-
-test('renders a compound radio group with default active and inactive materials', () => {
+test('renders a radix-backed circular radio group with form semantics', () => {
   const html = renderToString(
     createElement(
       RadioGroup,
       {
+        activeMaterial: 'paper',
         className: 'custom-radio-group',
         name: 'pet',
         rootClassName: 'app-radio-group',
@@ -55,6 +56,7 @@ test('renders a compound radio group with default active and inactive materials'
   expect(html).toContain('role="radiogroup"')
   expect(html).toContain('rk-radio-group')
   expect(html).toContain('rk-radio-item')
+  expect(html).toContain('rk-roco-shape')
   expect(html).toContain('app-radio-group')
   expect(html).toContain('custom-radio-group')
   expect(html).toContain('role="radio"')
@@ -63,21 +65,22 @@ test('renders a compound radio group with default active and inactive materials'
   expect(html).toContain('selected-item')
   expect(html).toContain('idle-item')
   expect(html).toContain('option-item')
-  expect(html).not.toContain('rk-button')
-  expect(html).toContain('paper')
-  expect(html).toContain('stone')
-  expect(html).toContain('type="hidden"')
+  expect(html).toContain('type="radio"')
   expect(html).toContain('name="pet"')
   expect(html).toContain('value="paper"')
+  expect(html).toContain('var(--rk-paper)')
+  expect(html).toContain('var(--rk-stone)')
+  expect(html).not.toContain('type="hidden"')
+  expect(html).not.toContain('rk-button')
 })
 
-test('lets radio group item styles be customized', () => {
+test('lets radio item styles be customized', () => {
   const html = renderToString(
     createElement(
       RadioGroup,
       {
         activeMaterial: 'default',
-        activeVariant: 'outline',
+        activeVariant: 'solid',
         inactiveMaterial: 'paper',
         inactiveVariant: 'text',
         value: 'fire',
@@ -95,27 +98,34 @@ test('lets radio group item styles be customized', () => {
     ),
   )
 
-  expect(html).toContain('default')
-  expect(html).toContain('outline')
-  expect(html).toContain('stone')
-  expect(html).toContain('text')
+  expect(html).toContain('var(--rk-primary)')
+  expect(html).toContain('var(--rk-stone)')
   expect(html).toContain('water-item')
   expect(html).toContain('min-width:96px')
 })
 
-test('implements radio items without the shared button component', () => {
-  expect(radioGroupSource).not.toContain("from '../button'")
-  expect(radioGroupSource).toContain("import { RocoShape } from '../roco-shape'")
-  expect(radioGroupSource).toContain('export function RadioItem')
+test('uses radix radio group instead of handwritten roving focus', () => {
+  expect(radioGroupSource).toContain(
+    "import * as RadixRadioGroup from '@radix-ui/react-radio-group'",
+  )
+  expect(radioGroupSource).toContain('export const RadioGroupRoot = RadixRadioGroup.Root')
+  expect(radioGroupSource).toContain('export const RadioIndicator = RadixRadioGroup.Indicator')
+  expect(radioGroupSource).toContain('<RadixRadioGroup.Root')
+  expect(radioGroupSource).toContain('<RadixRadioGroup.Item')
+  expect(radioGroupSource).toContain('<RadixRadioGroup.Indicator')
+  expect(radioGroupSource).toContain('shape="circle"')
+  expect(radioGroupSource).not.toContain('getRadioItems')
+  expect(radioGroupSource).not.toContain("event.key === 'ArrowLeft'")
+  expect(radioGroupSource).not.toContain('role="radio"')
 })
 
-test('animates the selected radio item with the modal spring scale', () => {
-  expect(radioGroupCss).toContain('@keyframes rk-radio-item-spring-scale')
-  expect(radioGroupCss).toContain('animation: rk-radio-item-spring-scale 260ms linear;')
-  expect(radioGroupCss).toContain('transform: scale(0.9);')
-  expect(radioGroupCss).toContain('transform: scaleY(0.9) scaleX(1.2);')
-  expect(radioGroupCss).toContain('transform: scaleY(1.1) scaleX(0.9);')
-  expect(radioGroupCss).toContain('transform: scale(1.08);')
-  expect(radioGroupCss).not.toContain('--rk-radio-')
-  expect(radioGroupCss).toContain('@media (prefers-reduced-motion: reduce)')
+test('styles radio items as stable circular controls', () => {
+  expect(radioGroupCss).toContain('--rk-radio-control-size: 22px;')
+  expect(radioGroupCss).toContain('--rk-radio-dot-size: 10px;')
+  expect(radioGroupCss).toContain('.indicatorDot')
+  expect(radioGroupCss).toContain(".item[data-state='checked'] .indicatorDot")
+  expect(radioGroupCss).toContain('animation: rk-radio-control-pop 220ms linear;')
+  expect(radioGroupCss).not.toContain('padding: 2px var(--rk-control-padding-inline-middle')
+  expect(radioGroupCss).not.toContain('scale(1.08)')
+  expect(radioGroupCss).not.toContain('--rk-radio-item-material')
 })

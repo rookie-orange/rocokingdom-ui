@@ -1,0 +1,201 @@
+.slider {
+  --rk-slider-root-size: 56px;
+  --rk-slider-track-size: 8px;
+  --rk-slider-track-cap-size: 28px;
+  --rk-slider-cap-width: calc(var(--rk-slider-track-size) * 1.35);
+  --rk-slider-thumb-width: calc(var(--rk-slider-track-cap-size) * 0.5);
+  --rk-slider-thumb-height: var(--rk-slider-track-cap-size);
+
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: var(--rk-slider-root-size);
+  min-width: 120px;
+  position: relative;
+  touch-action: none;
+  user-select: none;
+  width: min(100%, 320px);
+}
+
+.small {
+  --rk-slider-root-size: 42px;
+  --rk-slider-track-size: 6px;
+  --rk-slider-track-cap-size: 22px;
+}
+
+.middle {
+  --rk-slider-root-size: 56px;
+}
+
+.large {
+  --rk-slider-root-size: 64px;
+  --rk-slider-track-size: 10px;
+  --rk-slider-track-cap-size: 34px;
+}
+
+.slider[data-orientation='vertical'] {
+  flex-direction: column;
+  height: 180px;
+  min-height: 120px;
+  min-width: var(--rk-slider-root-size);
+  width: var(--rk-slider-root-size);
+}
+
+.track {
+  background: var(--rk-material-background);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16);
+  display: block;
+  flex: 1 1 auto;
+  height: var(--rk-slider-track-size);
+  min-width: 0;
+  overflow: visible;
+  position: relative;
+}
+
+.track::before,
+.track::after {
+  background: inherit;
+  border-radius: 999px;
+  content: '';
+  height: var(--rk-slider-track-cap-size);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--rk-slider-cap-width);
+  z-index: 0;
+}
+
+.track::before {
+  left: calc(var(--rk-slider-track-size) * -0.35);
+}
+
+.track::after {
+  right: calc(var(--rk-slider-track-size) * -0.35);
+}
+
+.range {
+  background: var(--rk-material-background);
+  border-radius: 999px;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+.range::before {
+  background: inherit;
+  border-radius: 999px;
+  content: '';
+  position: absolute;
+}
+
+.range::before {
+  height: var(--rk-slider-track-cap-size);
+  left: calc(var(--rk-slider-track-size) * -0.35);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--rk-slider-cap-width);
+}
+
+.slider > span:has(.thumb) {
+  z-index: 2;
+}
+
+.thumb {
+  background: var(--rk-material-background);
+  border: 0;
+  border-radius: 999px;
+  box-shadow:
+    0 3px 0 var(--rk-shadow-color),
+    inset 0 1px 0 rgb(255 255 255 / 0.38);
+  cursor: grab;
+  display: block;
+  height: var(--rk-slider-thumb-height);
+  outline: none;
+  position: relative;
+  transition:
+    filter 160ms ease,
+    transform 140ms ease;
+  width: var(--rk-slider-thumb-width);
+  z-index: 2;
+}
+
+.thumb:hover {
+  filter: brightness(1.04);
+}
+
+.thumb:active {
+  cursor: grabbing;
+  filter: brightness(0.98);
+  transform: scale(0.96);
+}
+
+.thumb:focus-visible {
+  outline: 2px solid var(--rk-primary);
+  outline-offset: 4px;
+}
+
+.slider[data-orientation='vertical'] .track {
+  flex: 1 1 auto;
+  height: 100%;
+  width: var(--rk-slider-track-size);
+}
+
+.slider[data-orientation='vertical'] .track::before,
+.slider[data-orientation='vertical'] .track::after {
+  height: calc(var(--rk-slider-track-size) * 1.35);
+  left: 50%;
+  top: auto;
+  transform: translateX(-50%);
+  width: var(--rk-slider-track-cap-size);
+}
+
+.slider[data-orientation='vertical'] .track::before {
+  bottom: calc(var(--rk-slider-track-size) * -0.35);
+}
+
+.slider[data-orientation='vertical'] .track::after {
+  top: calc(var(--rk-slider-track-size) * -0.35);
+}
+
+.slider[data-orientation='vertical'] .range {
+  bottom: 0;
+  height: auto;
+  width: 100%;
+}
+
+.slider[data-orientation='vertical'] .range::before {
+  bottom: calc(var(--rk-slider-track-size) * -0.35);
+  height: calc(var(--rk-slider-track-size) * 1.35);
+  left: 50%;
+  top: auto;
+  transform: translateX(-50%);
+  width: var(--rk-slider-track-cap-size);
+}
+
+.slider[data-orientation='vertical'] .thumb {
+  height: var(--rk-slider-thumb-width);
+  width: var(--rk-slider-thumb-height);
+}
+
+.disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  opacity: 0.48;
+}
+
+.disabled .thumb {
+  cursor: not-allowed;
+}
+
+.disabled .thumb:hover,
+.disabled .thumb:active {
+  filter: none;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumb {
+    transition-duration: 1ms;
+  }
+}

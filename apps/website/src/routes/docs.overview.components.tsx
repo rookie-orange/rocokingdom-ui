@@ -143,6 +143,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '范围选择、步进值和标记刻度。',
+        implementedSlug: 'slider',
         name: 'Slider 滑块',
       },
       {
@@ -190,6 +191,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '当前位置层级和返回上级入口。',
+        implementedSlug: 'breadcrumb',
         name: 'Breadcrumb 面包屑',
       },
       {
@@ -282,6 +284,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '计数、状态点和角标。',
+        implementedSlug: 'badge',
         name: 'Badge 徽标',
       },
       {

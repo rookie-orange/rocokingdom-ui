@@ -95,24 +95,22 @@ function RadioGroupExamplePage() {
   return (
     <ExampleShell
       code={radioGroupCode}
-      description="RadioGroup 是自绘单选组，支持受控与非受控值、方向、材质、尺寸、禁用和键盘切换。"
+      description="RadioGroup 基于 Radix RadioGroup 封装，使用圆形 radio 控件承载互斥选择，并保留受控、非受控、表单和键盘语义。"
       highlights={[
         'defaultValue 与 value/onValueChange 两种模式都可用。',
         'orientation 覆盖 horizontal、vertical。',
-        'active/inactive 的 material、variant、shadow 可分别配置。',
+        'active/inactive 的 material、variant、shadow 可分别配置圆形控件。',
       ]}
       title="RadioGroup"
     >
       <ExampleSection
         code={radioBasicCode}
-        description="默认非受控用法会把当前值写入隐藏 input，适合表单提交。"
+        description="默认非受控用法会通过 Radix 的 radio input 保留表单提交能力。"
         title="基础单选组"
       >
         <PreviewSurface>
           <RadioGroup defaultValue="water" name="element">
-            <RadioItem activeMaterial="primaryStrong" value="water">
-              水系
-            </RadioItem>
+            <RadioItem value="water">水系</RadioItem>
             <RadioItem activeMaterial="danger" value="fire">
               火系
             </RadioItem>
@@ -132,6 +130,7 @@ function RadioGroupExamplePage() {
             <RadioGroup
               activeMaterial="primaryMuted"
               inactiveMaterial="paper"
+              inactiveVariant="outline"
               onValueChange={setControlledValue}
               value={controlledValue}
             >
@@ -155,10 +154,10 @@ function RadioGroupExamplePage() {
               <RadioItem value="top">顶部</RadioItem>
             </RadioGroup>
             <RadioGroup
-              activeMaterial="stone"
+              activeMaterial="primaryStrong"
               activeShadow
               defaultValue="team"
-              inactiveMaterial="paper"
+              inactiveMaterial="stone"
               inactiveVariant="outline"
               size="large"
             >

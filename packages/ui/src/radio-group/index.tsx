@@ -1,22 +1,20 @@
-import type {
-  ButtonHTMLAttributes,
-  HTMLAttributes,
-  KeyboardEvent,
-  MouseEvent,
-  ReactNode,
-} from 'react'
+import * as RadixRadioGroup from '@radix-ui/react-radio-group'
+import type { ComponentPropsWithoutRef, ReactNode, Ref } from 'react'
 import { createContext, useContext, useState } from 'react'
 import { clsx } from 'clsx'
 import { Material, type MaterialPreset } from '../material'
-import { RocoShape } from '../roco-shape'
+import { RocoShape, type RocoShapeVariant } from '../roco-shape'
 import styles from './radio-group.module.css'
 
 export const radioGroupPrefixCls = 'rk-radio-group'
 export const radioItemPrefixCls = 'rk-radio-item'
 
+export const RadioGroupRoot = RadixRadioGroup.Root
+export const RadioIndicator = RadixRadioGroup.Indicator
+
 export type RadioGroupMaterial = MaterialPreset
 export type RadioGroupSize = 'small' | 'middle' | 'large'
-export type RadioGroupVariant = 'solid' | 'outline' | 'text'
+export type RadioGroupVariant = RocoShapeVariant
 export type RadioGroupOrientation = 'horizontal' | 'vertical'
 
 interface RadioGroupContextValue<Value extends string = string> {
@@ -27,50 +25,53 @@ interface RadioGroupContextValue<Value extends string = string> {
   inactiveMaterial: RadioGroupMaterial
   inactiveShadow: boolean
   inactiveVariant: RadioGroupVariant
-  onValueChange: (value: Value) => void
   selectedValue: Value | undefined
   size: RadioGroupSize
 }
 
 const RadioGroupContext = createContext<RadioGroupContextValue | null>(null)
 
+type RadixRadioGroupRootProps = ComponentPropsWithoutRef<typeof RadixRadioGroup.Root>
+type RadixRadioGroupItemProps = ComponentPropsWithoutRef<typeof RadixRadioGroup.Item>
+
 export interface RadioGroupProps<Value extends string = string> extends Omit<
-  HTMLAttributes<HTMLDivElement>,
-  'defaultValue' | 'onChange'
+  RadixRadioGroupRootProps,
+  'defaultValue' | 'onValueChange' | 'orientation' | 'value'
 > {
   activeMaterial?: RadioGroupMaterial
   activeShadow?: boolean
   activeVariant?: RadioGroupVariant
   children?: ReactNode
   defaultValue?: Value
-  disabled?: boolean
   inactiveMaterial?: RadioGroupMaterial
   inactiveShadow?: boolean
   inactiveVariant?: RadioGroupVariant
-  name?: string
   onValueChange?: (value: Value) => void
   orientation?: RadioGroupOrientation
   prefixCls?: string
+  ref?: Ref<HTMLDivElement>
   rootClassName?: string
   size?: RadioGroupSize
   value?: Value
 }
 
 export interface RadioItemProps<Value extends string = string> extends Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'aria-checked' | 'aria-disabled' | 'role' | 'tabIndex' | 'type' | 'value'
+  RadixRadioGroupItemProps,
+  'asChild' | 'children' | 'className' | 'value'
 > {
   activeClassName?: string
   activeMaterial?: RadioGroupMaterial
   activeShadow?: boolean
   activeVariant?: RadioGroupVariant
   children?: ReactNode
+  className?: string
   inactiveClassName?: string
   inactiveMaterial?: RadioGroupMaterial
   inactiveShadow?: boolean
   inactiveVariant?: RadioGroupVariant
   material?: RadioGroupMaterial
   prefixCls?: string
+  ref?: Ref<HTMLButtonElement>
   rootClassName?: string
   shadow?: boolean
   size?: RadioGroupSize
@@ -78,28 +79,21 @@ export interface RadioItemProps<Value extends string = string> extends Omit<
   variant?: RadioGroupVariant
 }
 
-function getRadioItems(root: HTMLElement) {
-  return Array.from(root.querySelectorAll<HTMLButtonElement>('[data-rk-radio-item="true"]')).filter(
-    (item) => !item.disabled && item.getAttribute('aria-disabled') !== 'true',
-  )
-}
-
 export function RadioGroup<Value extends string = string>({
-  activeMaterial = 'paper',
+  activeMaterial = 'primary',
   activeShadow = false,
-  activeVariant = 'solid',
+  activeVariant = 'outline',
   children,
   className,
   defaultValue,
   disabled = false,
   inactiveMaterial = 'stone',
   inactiveShadow = false,
-  inactiveVariant = 'solid',
-  name,
-  onKeyDown,
+  inactiveVariant = 'outline',
   onValueChange,
   orientation = 'horizontal',
   prefixCls = radioGroupPrefixCls,
+  ref,
   rootClassName,
   size = 'middle',
   value,
@@ -108,64 +102,6 @@ export function RadioGroup<Value extends string = string>({
   const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue)
   const selectedValue = value ?? uncontrolledValue
   const isControlled = value !== undefined
-
-  function selectValue(nextValue: Value) {
-    if (nextValue === selectedValue) {
-      return
-    }
-
-    if (!isControlled) {
-      setUncontrolledValue(nextValue)
-    }
-
-    onValueChange?.(nextValue)
-  }
-
-  function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
-    onKeyDown?.(event)
-
-    if (event.defaultPrevented) {
-      return
-    }
-
-    const isPreviousKey = event.key === 'ArrowLeft' || event.key === 'ArrowUp'
-    const isNextKey = event.key === 'ArrowRight' || event.key === 'ArrowDown'
-    const isBoundaryKey = event.key === 'Home' || event.key === 'End'
-
-    if (!isPreviousKey && !isNextKey && !isBoundaryKey) {
-      return
-    }
-
-    const enabledItems = getRadioItems(event.currentTarget)
-
-    if (enabledItems.length === 0) {
-      return
-    }
-
-    const selectedIndex = enabledItems.findIndex(
-      (item) => item.getAttribute('aria-checked') === 'true',
-    )
-    const focusedIndex =
-      event.target instanceof HTMLButtonElement ? enabledItems.indexOf(event.target) : -1
-    const currentIndex = selectedIndex >= 0 ? selectedIndex : focusedIndex
-
-    let nextIndex = 0
-
-    if (event.key === 'End') {
-      nextIndex = enabledItems.length - 1
-    } else if (isPreviousKey) {
-      nextIndex = currentIndex <= 0 ? enabledItems.length - 1 : currentIndex - 1
-    } else if (isNextKey) {
-      nextIndex = currentIndex >= enabledItems.length - 1 ? 0 : currentIndex + 1
-    }
-
-    event.preventDefault()
-
-    const nextItem = enabledItems[nextIndex]
-    selectValue(nextItem.value as Value)
-    nextItem.focus()
-  }
-
   const resolvedClassName = clsx(
     prefixCls,
     styles.group,
@@ -173,6 +109,16 @@ export function RadioGroup<Value extends string = string>({
     rootClassName,
     className,
   )
+
+  function handleValueChange(nextValue: string) {
+    const typedValue = nextValue as Value
+
+    if (!isControlled) {
+      setUncontrolledValue(typedValue)
+    }
+
+    onValueChange?.(typedValue)
+  }
 
   return (
     <RadioGroupContext.Provider
@@ -184,24 +130,23 @@ export function RadioGroup<Value extends string = string>({
         inactiveMaterial,
         inactiveShadow,
         inactiveVariant,
-        onValueChange: selectValue as RadioGroupContextValue['onValueChange'],
         selectedValue,
         size,
       }}
     >
-      <div
+      <RadixRadioGroup.Root
         {...props}
         aria-disabled={disabled || undefined}
-        aria-orientation={orientation}
         className={resolvedClassName}
-        onKeyDown={handleKeyDown}
-        role="radiogroup"
+        defaultValue={defaultValue}
+        disabled={disabled}
+        onValueChange={handleValueChange}
+        orientation={orientation}
+        ref={ref}
+        value={value}
       >
-        {name && selectedValue !== undefined ? (
-          <input disabled={disabled} name={name} type="hidden" value={selectedValue} />
-        ) : null}
         {children}
-      </div>
+      </RadixRadioGroup.Root>
     </RadioGroupContext.Provider>
   )
 }
@@ -219,8 +164,8 @@ export function RadioItem<Value extends string = string>({
   inactiveShadow,
   inactiveVariant,
   material,
-  onClick,
   prefixCls = radioItemPrefixCls,
+  ref,
   rootClassName,
   shadow,
   size,
@@ -237,7 +182,6 @@ export function RadioItem<Value extends string = string>({
   const radioGroup = context
   const isDisabled = radioGroup.disabled || disabled
   const isSelected = radioGroup.selectedValue === value
-  const isTabbable = !isDisabled && (isSelected || radioGroup.selectedValue === undefined)
   const resolvedMaterial =
     (isSelected ? activeMaterial : inactiveMaterial) ??
     material ??
@@ -255,45 +199,34 @@ export function RadioItem<Value extends string = string>({
     prefixCls,
     styles.item,
     styles[resolvedSize],
-    styles[resolvedVariant],
     isSelected ? styles.active : styles.inactive,
     rootClassName,
     className,
     isSelected ? activeClassName : inactiveClassName,
   )
 
-  function handleClick(event: MouseEvent<HTMLButtonElement>) {
-    onClick?.(event)
-
-    if (event.defaultPrevented || isDisabled) {
-      return
-    }
-
-    radioGroup.onValueChange(value)
-  }
-
   return (
-    <Material asChild material={resolvedMaterial}>
-      <RocoShape
-        {...props}
-        aria-checked={isSelected}
-        aria-disabled={isDisabled || undefined}
-        as="button"
-        className={resolvedClassName}
-        data-rk-radio-item="true"
-        data-state={isSelected ? 'checked' : 'unchecked'}
-        disabled={isDisabled}
-        onClick={handleClick}
-        role="radio"
-        shadow={resolvedVariant === 'text' ? false : resolvedShadow}
-        tabIndex={isTabbable ? 0 : -1}
-        type="button"
-        value={value}
-        variant={resolvedVariant}
-        contentClassName={styles.itemContent}
-      >
-        {children}
-      </RocoShape>
-    </Material>
+    <RadixRadioGroup.Item
+      {...props}
+      className={resolvedClassName}
+      disabled={isDisabled}
+      ref={ref}
+      value={value}
+    >
+      <Material asChild material={resolvedMaterial}>
+        <RocoShape
+          aria-hidden="true"
+          className={styles.control}
+          shadow={resolvedVariant === 'text' ? false : resolvedShadow}
+          shape="circle"
+          variant={resolvedVariant}
+        >
+          <RadixRadioGroup.Indicator className={styles.indicator} forceMount>
+            <span className={styles.indicatorDot} />
+          </RadixRadioGroup.Indicator>
+        </RocoShape>
+      </Material>
+      {children ? <span className={styles.label}>{children}</span> : null}
+    </RadixRadioGroup.Item>
   )
 }

@@ -25,6 +25,7 @@ import { Route as DocsComponentsTextareaRouteImport } from './routes/docs.compon
 import { Route as DocsComponentsTabsRouteImport } from './routes/docs.components.tabs'
 import { Route as DocsComponentsSwitchRouteImport } from './routes/docs.components.switch'
 import { Route as DocsComponentsSpaceRouteImport } from './routes/docs.components.space'
+import { Route as DocsComponentsSliderRouteImport } from './routes/docs.components.slider'
 import { Route as DocsComponentsSideNavRouteImport } from './routes/docs.components.side-nav'
 import { Route as DocsComponentsSelectRouteImport } from './routes/docs.components.select'
 import { Route as DocsComponentsRuneTextRouteImport } from './routes/docs.components.rune-text'
@@ -38,6 +39,8 @@ import { Route as DocsComponentsDividerRouteImport } from './routes/docs.compone
 import { Route as DocsComponentsCheckboxRouteImport } from './routes/docs.components.checkbox'
 import { Route as DocsComponentsButtonNormalRouteImport } from './routes/docs.components.button-normal'
 import { Route as DocsComponentsButtonRouteImport } from './routes/docs.components.button'
+import { Route as DocsComponentsBreadcrumbRouteImport } from './routes/docs.components.breadcrumb'
+import { Route as DocsComponentsBadgeRouteImport } from './routes/docs.components.badge'
 
 const ExamplesRoute = ExamplesRouteImport.update({
   id: '/examples',
@@ -121,6 +124,11 @@ const DocsComponentsSpaceRoute = DocsComponentsSpaceRouteImport.update({
   path: '/components/space',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsSliderRoute = DocsComponentsSliderRouteImport.update({
+  id: '/components/slider',
+  path: '/components/slider',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsSideNavRoute = DocsComponentsSideNavRouteImport.update({
   id: '/components/side-nav',
   path: '/components/side-nav',
@@ -188,6 +196,17 @@ const DocsComponentsButtonRoute = DocsComponentsButtonRouteImport.update({
   path: '/components/button',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsBreadcrumbRoute =
+  DocsComponentsBreadcrumbRouteImport.update({
+    id: '/components/breadcrumb',
+    path: '/components/breadcrumb',
+    getParentRoute: () => DocsRoute,
+  } as any)
+const DocsComponentsBadgeRoute = DocsComponentsBadgeRouteImport.update({
+  id: '/components/badge',
+  path: '/components/badge',
+  getParentRoute: () => DocsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -196,6 +215,8 @@ export interface FileRoutesByFullPath {
   '/docs/icon': typeof DocsIconRoute
   '/examples/$slug': typeof ExamplesSlugRoute
   '/docs/': typeof DocsIndexRoute
+  '/docs/components/badge': typeof DocsComponentsBadgeRoute
+  '/docs/components/breadcrumb': typeof DocsComponentsBreadcrumbRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
@@ -209,6 +230,7 @@ export interface FileRoutesByFullPath {
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/slider': typeof DocsComponentsSliderRoute
   '/docs/components/space': typeof DocsComponentsSpaceRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
@@ -226,6 +248,8 @@ export interface FileRoutesByTo {
   '/docs/icon': typeof DocsIconRoute
   '/examples/$slug': typeof ExamplesSlugRoute
   '/docs': typeof DocsIndexRoute
+  '/docs/components/badge': typeof DocsComponentsBadgeRoute
+  '/docs/components/breadcrumb': typeof DocsComponentsBreadcrumbRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
@@ -239,6 +263,7 @@ export interface FileRoutesByTo {
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/slider': typeof DocsComponentsSliderRoute
   '/docs/components/space': typeof DocsComponentsSpaceRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
@@ -258,6 +283,8 @@ export interface FileRoutesById {
   '/docs/icon': typeof DocsIconRoute
   '/examples/$slug': typeof ExamplesSlugRoute
   '/docs/': typeof DocsIndexRoute
+  '/docs/components/badge': typeof DocsComponentsBadgeRoute
+  '/docs/components/breadcrumb': typeof DocsComponentsBreadcrumbRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-normal': typeof DocsComponentsButtonNormalRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
@@ -271,6 +298,7 @@ export interface FileRoutesById {
   '/docs/components/rune-text': typeof DocsComponentsRuneTextRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
+  '/docs/components/slider': typeof DocsComponentsSliderRoute
   '/docs/components/space': typeof DocsComponentsSpaceRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/tabs': typeof DocsComponentsTabsRoute
@@ -291,6 +319,8 @@ export interface FileRouteTypes {
     | '/docs/icon'
     | '/examples/$slug'
     | '/docs/'
+    | '/docs/components/badge'
+    | '/docs/components/breadcrumb'
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
@@ -304,6 +334,7 @@ export interface FileRouteTypes {
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/slider'
     | '/docs/components/space'
     | '/docs/components/switch'
     | '/docs/components/tabs'
@@ -321,6 +352,8 @@ export interface FileRouteTypes {
     | '/docs/icon'
     | '/examples/$slug'
     | '/docs'
+    | '/docs/components/badge'
+    | '/docs/components/breadcrumb'
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
@@ -334,6 +367,7 @@ export interface FileRouteTypes {
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/slider'
     | '/docs/components/space'
     | '/docs/components/switch'
     | '/docs/components/tabs'
@@ -352,6 +386,8 @@ export interface FileRouteTypes {
     | '/docs/icon'
     | '/examples/$slug'
     | '/docs/'
+    | '/docs/components/badge'
+    | '/docs/components/breadcrumb'
     | '/docs/components/button'
     | '/docs/components/button-normal'
     | '/docs/components/checkbox'
@@ -365,6 +401,7 @@ export interface FileRouteTypes {
     | '/docs/components/rune-text'
     | '/docs/components/select'
     | '/docs/components/side-nav'
+    | '/docs/components/slider'
     | '/docs/components/space'
     | '/docs/components/switch'
     | '/docs/components/tabs'
@@ -497,6 +534,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsSpaceRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/slider': {
+      id: '/docs/components/slider'
+      path: '/components/slider'
+      fullPath: '/docs/components/slider'
+      preLoaderRoute: typeof DocsComponentsSliderRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/components/side-nav': {
       id: '/docs/components/side-nav'
       path: '/components/side-nav'
@@ -588,12 +632,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsButtonRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/breadcrumb': {
+      id: '/docs/components/breadcrumb'
+      path: '/components/breadcrumb'
+      fullPath: '/docs/components/breadcrumb'
+      preLoaderRoute: typeof DocsComponentsBreadcrumbRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/components/badge': {
+      id: '/docs/components/badge'
+      path: '/components/badge'
+      fullPath: '/docs/components/badge'
+      preLoaderRoute: typeof DocsComponentsBadgeRouteImport
+      parentRoute: typeof DocsRoute
+    }
   }
 }
 
 interface DocsRouteChildren {
   DocsIconRoute: typeof DocsIconRoute
   DocsIndexRoute: typeof DocsIndexRoute
+  DocsComponentsBadgeRoute: typeof DocsComponentsBadgeRoute
+  DocsComponentsBreadcrumbRoute: typeof DocsComponentsBreadcrumbRoute
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
   DocsComponentsButtonNormalRoute: typeof DocsComponentsButtonNormalRoute
   DocsComponentsCheckboxRoute: typeof DocsComponentsCheckboxRoute
@@ -607,6 +667,7 @@ interface DocsRouteChildren {
   DocsComponentsRuneTextRoute: typeof DocsComponentsRuneTextRoute
   DocsComponentsSelectRoute: typeof DocsComponentsSelectRoute
   DocsComponentsSideNavRoute: typeof DocsComponentsSideNavRoute
+  DocsComponentsSliderRoute: typeof DocsComponentsSliderRoute
   DocsComponentsSpaceRoute: typeof DocsComponentsSpaceRoute
   DocsComponentsSwitchRoute: typeof DocsComponentsSwitchRoute
   DocsComponentsTabsRoute: typeof DocsComponentsTabsRoute
@@ -622,6 +683,8 @@ interface DocsRouteChildren {
 const DocsRouteChildren: DocsRouteChildren = {
   DocsIconRoute: DocsIconRoute,
   DocsIndexRoute: DocsIndexRoute,
+  DocsComponentsBadgeRoute: DocsComponentsBadgeRoute,
+  DocsComponentsBreadcrumbRoute: DocsComponentsBreadcrumbRoute,
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,
   DocsComponentsButtonNormalRoute: DocsComponentsButtonNormalRoute,
   DocsComponentsCheckboxRoute: DocsComponentsCheckboxRoute,
@@ -635,6 +698,7 @@ const DocsRouteChildren: DocsRouteChildren = {
   DocsComponentsRuneTextRoute: DocsComponentsRuneTextRoute,
   DocsComponentsSelectRoute: DocsComponentsSelectRoute,
   DocsComponentsSideNavRoute: DocsComponentsSideNavRoute,
+  DocsComponentsSliderRoute: DocsComponentsSliderRoute,
   DocsComponentsSpaceRoute: DocsComponentsSpaceRoute,
   DocsComponentsSwitchRoute: DocsComponentsSwitchRoute,
   DocsComponentsTabsRoute: DocsComponentsTabsRoute,
