@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Outlet, createFileRoute, useNavigate, useRouterState } from '@tanstack/react-router'
 import { Button, Input, Panel, ToggleGroup, ToggleItem } from 'rocokingdom-ui'
-import { docsNavSections, docsSearchLinks, type DocsNavLink } from '../docs/registry'
+import { docsNavSections, docsSearchLinks, type DocsNavLink } from '../docs/content/registry'
 
 interface DocsSidebarSectionProps {
   links: readonly DocsNavLink[]

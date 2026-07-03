@@ -5,7 +5,9 @@ import { Material, RuneText, Tab, TabList, TabPanel, Tabs } from 'rocokingdom-ui
 import { DocsCodeBlock } from './docs-code-block'
 import { DocsPager } from './docs-pager'
 import { DocsPropTable } from './docs-prop-table'
-import { getDocByPath, getDocByTitle } from '../registry'
+import { getDocByPath, getDocByTitle } from '../content/registry'
+import { getDocsExample } from '../examples/registry'
+import { getDocsPageSpec } from '../content/pages'
 import styles from './docs-page.module.css'
 
 const highlightMarkers = [
@@ -21,13 +23,17 @@ export interface DocsPageProps {
   code?: string
   description: string
   highlights?: readonly string[]
+  source?: string
+  sourceId?: string
   title: string
 }
 
 interface DocsExampleProps {
-  children: ReactNode
+  children?: ReactNode
   code?: string
   description?: string
+  source?: string
+  sourceId?: string
   title: string
 }
 
@@ -39,7 +45,23 @@ export function PreviewSurface({ children }: { children: ReactNode }) {
   )
 }
 
-export function DocsExample({ children, code, description, title }: DocsExampleProps) {
+export function DocsExample({
+  children,
+  code,
+  description,
+  source,
+  sourceId,
+  title,
+}: DocsExampleProps) {
+  const example = sourceId ? getDocsExample(sourceId) : undefined
+  const sourceCode = source ?? example?.source ?? code
+  const preview = example ? (
+    <PreviewSurface>
+      <example.Component />
+    </PreviewSurface>
+  ) : (
+    children
+  )
   const sectionHeader = (
     <div>
       <p className="text-sm text-primary-strong">Example</p>
@@ -52,11 +74,11 @@ export function DocsExample({ children, code, description, title }: DocsExampleP
     </div>
   )
 
-  if (!code) {
+  if (!sourceCode) {
     return (
       <section className="grid gap-5">
         {sectionHeader}
-        {children}
+        {preview}
       </section>
     )
   }
@@ -78,24 +100,34 @@ export function DocsExample({ children, code, description, title }: DocsExampleP
         </div>
 
         <TabPanel className={`${styles.examplePanel} focus:outline-none`} value="preview">
-          {children}
+          {preview}
         </TabPanel>
         <TabPanel
           className={`${styles.examplePanel} focus:outline-none`}
           forceMount={false}
           value="code"
         >
-          <DocsCodeBlock code={code} label={title} />
+          <DocsCodeBlock code={sourceCode} label={title} />
         </TabPanel>
       </section>
     </Tabs>
   )
 }
 
-export function DocsPage({ children, description, highlights = [], title }: DocsPageProps) {
+export function DocsPage({
+  children,
+  code,
+  description,
+  highlights = [],
+  source,
+  sourceId,
+  title,
+}: DocsPageProps) {
   const pathname = useRouterState({ select: (state) => state.location.pathname })
   const doc = useMemo(() => getDocByPath(pathname) ?? getDocByTitle(title), [pathname, title])
+  const example = sourceId ? getDocsExample(sourceId) : undefined
   const props = doc?.props ?? []
+  const sourceCode = source ?? example?.source ?? code
   const titleHighlights = highlights.length > 0 ? highlights : (doc?.notes ?? [])
 
   return (
@@ -143,7 +175,18 @@ export function DocsPage({ children, description, highlights = [], title }: Docs
           </Material>
         </section>
 
-        <div className="grid gap-12">{children}</div>
+        <div className="grid gap-12">
+          {sourceCode ? (
+            <section className="grid gap-5">
+              <div>
+                <p className="text-sm text-primary-strong">Usage</p>
+                <h2 className="mt-2 font-roco text-3xl leading-none text-on-paper">基础用法</h2>
+              </div>
+              <DocsCodeBlock code={sourceCode} label={`${title} usage`} />
+            </section>
+          ) : null}
+          {children}
+        </div>
 
         <section className="grid gap-5">
           <div>
@@ -160,5 +203,31 @@ export function DocsPage({ children, description, highlights = [], title }: Docs
         <DocsPager />
       </div>
     </article>
+  )
+}
+
+export function DocsComponentPage({ path }: { path: string }) {
+  const page = getDocsPageSpec(path)
+
+  if (!page) {
+    throw new Error(`No docs page spec found for "${path}".`)
+  }
+
+  return (
+    <DocsPage
+      description={page.description}
+      highlights={page.highlights}
+      sourceId={page.sourceId}
+      title={page.title}
+    >
+      {page.examples.map((example) => (
+        <DocsExample
+          description={example.description}
+          key={example.sourceId}
+          sourceId={example.sourceId}
+          title={example.title}
+        />
+      ))}
+    </DocsPage>
   )
 }

@@ -1,4 +1,4 @@
-import type { DocsProp } from '../registry'
+import type { DocsProp } from '../content/registry'
 
 interface DocsPropTableProps {
   props: readonly DocsProp[]

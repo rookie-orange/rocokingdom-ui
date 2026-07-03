@@ -5,7 +5,7 @@ import {
   iconDocs,
   overviewDocs,
   type DocsCategory,
-} from '../docs/registry'
+} from '../docs/content/registry'
 
 export type ExampleCategory = DocsCategory
 
