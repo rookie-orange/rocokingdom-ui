@@ -11,8 +11,9 @@ const moduleFiles = import.meta.glob<ExampleModule>(['./**/*.tsx', '!./registry.
   eager: true,
 })
 const sourceFiles = import.meta.glob(['./**/*.tsx', '!./registry.tsx'], {
-  as: 'raw',
   eager: true,
+  import: 'default',
+  query: '?raw',
 })
 
 function normalizeExampleId(path: string) {

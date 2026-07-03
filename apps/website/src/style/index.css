@@ -51,52 +51,419 @@
 }
 
 @layer components {
+  .home-page {
+    background: #eaf2f6;
+    box-sizing: border-box;
+    color: var(--rk-on-paper);
+    height: 100svh;
+    max-height: 100svh;
+    min-height: 0;
+    overflow: hidden;
+    padding: clamp(1rem, 3vw, 3rem) 0 clamp(1rem, 3vw, 3rem) clamp(1rem, 4.8vw, 4.5rem);
+    position: relative;
+    width: 100%;
+  }
+
+  .home-shell {
+    align-items: center;
+    display: grid;
+    gap: clamp(2rem, 5.2vw, 5.6rem);
+    grid-template-columns: minmax(22rem, 31vw) minmax(0, 1fr);
+    height: 100%;
+    min-width: 0;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .home-hero {
+    align-items: start;
+    display: grid;
+    gap: clamp(1rem, 2.4vh, 1.8rem);
+    justify-items: start;
+    max-width: 34rem;
+    min-width: 0;
+  }
+
+  .home-logo-wrap {
+    margin-left: clamp(-0.75rem, -1.2vw, 0rem);
+    width: min(100%, clamp(16rem, 27vw, 30rem));
+  }
+
+  .home-logo {
+    display: block;
+    filter: drop-shadow(0 18px 18px rgb(36 38 40 / 0.14)) saturate(1.16) contrast(1.06);
+    height: auto;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .home-hero__copy {
+    color: color-mix(in srgb, var(--rk-stone) 68%, transparent);
+    font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 32rem;
+  }
+
+  .home-actions {
+    align-items: stretch;
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: minmax(0, 1fr) minmax(9rem, 0.42fr);
+    min-width: 0;
+    width: 100%;
+  }
+
+  .home-install-input {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .home-install-input__control {
+    cursor: pointer;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.92rem;
+    min-width: 0;
+  }
+
+  .home-doc-button {
+    justify-content: center;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .home-actions > .home-install-input.home-install-input,
+  .home-actions > .home-doc-button.home-doc-button {
+    min-width: 0;
+    width: 100% !important;
+  }
+
+  .home-showcase {
+    align-items: start;
+    display: grid;
+    gap: clamp(1.15rem, 1.55vw, 1.55rem);
+    grid-template-columns: clamp(25rem, 29vw, 36rem) clamp(18rem, 19.5vw, 23rem) clamp(
+        16rem,
+        18vw,
+        20rem
+      );
+    justify-self: start;
+    margin-left: clamp(0rem, 1vw, 1rem);
+    min-width: max-content;
+    transform: translateY(clamp(-0.75rem, -1vh, -0.25rem));
+    width: max-content;
+  }
+
+  .home-showcase__column {
+    display: grid;
+    gap: clamp(1rem, 1.45vw, 1.35rem);
+    min-width: 0;
+  }
+
+  .home-showcase__column--right {
+    padding-top: clamp(0.2rem, 4vh, 2.2rem);
+  }
+
+  .home-showcase__column--edge {
+    padding-top: clamp(0.1rem, 1.5vh, 1rem);
+  }
+
+  .home-demo-panel {
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.9) inset,
+      0 22px 48px rgb(36 38 40 / 0.13);
+    min-width: 0;
+    width: 100%;
+  }
+
+  .home-demo-panel .rk-panel-content {
+    padding: clamp(1rem, 1.35vw, 1.35rem);
+  }
+
+  .home-demo-panel :is(h2, h3, p) {
+    margin: 0;
+  }
+
+  .home-panel-heading {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .home-panel-heading h2,
+  .home-demo-panel--paid h2 {
+    font-family: var(--rk-font-family-base);
+    font-size: clamp(1.35rem, 1.7vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .home-panel-heading p,
+  .home-demo-panel--paid p,
+  .home-notification-row p {
+    color: color-mix(in srgb, var(--rk-stone) 56%, transparent);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .home-demo-panel--team .rk-panel-content {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .home-team-invite {
+    display: grid;
+    gap: 0.7rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .home-team-invite .rk-input {
+    width: 100%;
+  }
+
+  .home-team-list {
+    display: grid;
+  }
+
+  .home-team-row {
+    align-items: center;
+    border-top: 1px solid color-mix(in srgb, var(--rk-stone) 12%, transparent);
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: auto minmax(5rem, 0.75fr) minmax(0, 1fr);
+    min-height: 3rem;
+  }
+
+  .home-team-row strong {
+    color: var(--rk-primary-strong);
+    font-weight: 800;
+  }
+
+  .home-team-row span:last-child {
+    color: color-mix(in srgb, var(--rk-stone) 54%, transparent);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .home-demo-panel--notifications .rk-panel-content {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .home-notification-row {
+    align-items: center;
+    border-top: 1px solid color-mix(in srgb, var(--rk-stone) 12%, transparent);
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-top: 0.9rem;
+  }
+
+  .home-notification-row strong,
+  .home-form-field span,
+  .home-field > span {
+    color: var(--rk-on-paper);
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .home-demo-panel--signup .rk-panel-content,
+  .home-demo-panel--card .rk-panel-content {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .home-form-field,
+  .home-field {
+    display: grid;
+    gap: 0.45rem;
+    min-width: 0;
+  }
+
+  .home-form-field .rk-input,
+  .home-field .rk-select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .home-signup-input.home-signup-input {
+    max-width: 100%;
+    min-width: 0;
+    width: 100% !important;
+  }
+
+  .home-signup-input > [aria-hidden='true'] {
+    color: var(--rk-paper) !important;
+  }
+
+  .home-signup-input > [aria-hidden='true'] > span {
+    background: var(--rk-paper) !important;
+    color: var(--rk-paper) !important;
+  }
+
+  .home-form-field .rk-input-control {
+    background: transparent;
+    min-width: 0;
+  }
+
+  .home-signup-input__control {
+    cursor: default;
+    min-width: 0;
+  }
+
+  .home-form-actions {
+    align-items: center;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .home-action-button {
+    justify-content: center;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .home-purple-card {
+    background: linear-gradient(135deg, rgb(255 198 95 / 0.24), transparent 46%), var(--rk-stone);
+    border-radius: 0.75rem;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+    color: var(--rk-on-stone);
+    display: grid;
+    gap: 0.8rem;
+    min-height: 7.6rem;
+    padding: 1.1rem;
+  }
+
+  .home-purple-card span {
+    align-self: end;
+    color: var(--rk-primary);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+  }
+
+  .home-purple-card small {
+    color: color-mix(in srgb, var(--rk-on-stone) 82%, transparent);
+  }
+
+  .home-demo-panel--paid .rk-panel-content {
+    align-items: center;
+    display: grid;
+    gap: 0.55rem;
+    justify-items: center;
+    min-height: 9rem;
+    text-align: center;
+  }
+
+  .home-demo-panel--finance .rk-panel-content {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .home-price {
+    font-size: clamp(2rem, 3vw, 3rem);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .home-demo-panel--select .rk-panel-content {
+    align-items: center;
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: minmax(10rem, 1fr) auto;
+  }
+
+  .home-tabs-strip {
+    min-width: 0;
+  }
+
+  .home-tabs-strip .rk-tab-list {
+    width: 100%;
+  }
+
+  .home-tabs-strip .rk-tab-panel {
+    color: color-mix(in srgb, var(--rk-stone) 62%, transparent);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    padding: 0.65rem 0.2rem 0;
+  }
+
+  .home-demo-panel--slider .rk-panel-content {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .home-temperature {
+    color: var(--rk-primary-strong);
+    display: flex;
+    font-weight: 800;
+    justify-content: space-between;
+  }
+
+  .home-drawer-content {
+    color: var(--rk-on-stone);
+    display: grid;
+    gap: 0.65rem;
+    line-height: 1.5;
+  }
+
+  .home-drawer-content p,
+  .home-modal-copy {
+    margin: 0;
+  }
+
   .home-bird-flight {
-    --bird-frame-width: clamp(3.1rem, 6.2vw, 6.5rem);
+    --bird-frame-width: clamp(2.8rem, 5.8vw, 6.1rem);
     --bird-frame-height: calc(var(--bird-frame-width) * 105 / 65);
 
-    position: absolute;
     inset: 0;
     pointer-events: none;
+    position: absolute;
+    z-index: 4;
   }
 
   .home-bird {
-    position: absolute;
-    width: var(--bird-frame-width);
-    height: var(--bird-frame-height);
-    overflow: hidden;
-    opacity: 0;
-    transform-origin: 50% 50%;
-    z-index: 1;
-    will-change: transform, opacity;
     animation: home-bird-fly 7.8s linear infinite;
+    height: var(--bird-frame-height);
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    transform-origin: 50% 50%;
+    width: var(--bird-frame-width);
+    will-change: transform, opacity;
+    z-index: 1;
   }
 
   .home-bird__sprite {
+    animation: home-bird-flap 4.588s steps(77, end) infinite;
     display: block;
-    width: calc(var(--bird-frame-width) * 78);
     height: var(--bird-frame-height);
     max-width: none;
     user-select: none;
+    width: calc(var(--bird-frame-width) * 78);
     will-change: transform;
-    animation: home-bird-flap 4.588s steps(77, end) infinite;
   }
 
   .home-bird--one {
-    --bird-start-x: 8vw;
-    --bird-start-y: 31vh;
-    --bird-end-x: 88vw;
-    --bird-end-y: -5vh;
+    --bird-start-x: 5vw;
+    --bird-start-y: 20vh;
+    --bird-end-x: 82vw;
+    --bird-end-y: -8vh;
     animation-delay: -1.5s;
   }
 
   .home-bird--two {
-    --bird-start-x: -20vw;
-    --bird-start-y: 78vh;
-    --bird-end-x: 89vw;
-    --bird-end-y: 17vh;
-    z-index: 20;
+    --bird-start-x: -18vw;
+    --bird-start-y: 76vh;
+    --bird-end-x: 94vw;
+    --bird-end-y: 22vh;
     animation-delay: -0.7s;
+    z-index: 20;
   }
 
   .home-bird--two .home-bird__sprite {
@@ -105,9 +472,9 @@
 
   .home-bird--three {
     --bird-start-x: -4vw;
-    --bird-start-y: 68vh;
-    --bird-end-x: 84vw;
-    --bird-end-y: 25vh;
+    --bird-start-y: 59vh;
+    --bird-end-x: 90vw;
+    --bird-end-y: 15vh;
     animation-delay: -1s;
   }
 
@@ -137,7 +504,126 @@
   }
 }
 
+@media (max-height: 760px) and (min-width: 1025px) {
+  .home-logo-wrap {
+    width: min(100%, 24rem);
+  }
+
+  .home-showcase {
+    gap: 1rem;
+    transform: translateY(-0.35rem) scale(0.92);
+    transform-origin: left center;
+  }
+
+  .home-demo-panel .rk-panel-content {
+    padding: 0.95rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .home-page {
+    padding: 1rem;
+  }
+
+  .home-shell {
+    align-content: center;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .home-hero {
+    justify-items: center;
+    max-width: 42rem;
+    text-align: center;
+  }
+
+  .home-logo-wrap {
+    margin-left: 0;
+    width: min(100%, 24rem);
+  }
+
+  .home-actions {
+    grid-template-columns: minmax(0, 1fr) minmax(8.5rem, 0.4fr);
+    max-width: 34rem;
+  }
+
+  .home-showcase {
+    bottom: 0.75rem;
+    grid-template-columns: 18rem 16rem 13rem;
+    left: 50%;
+    margin-left: 0;
+    opacity: 0.88;
+    position: absolute;
+    transform: translate(-44%, 58%) scale(0.82);
+  }
+
+  .home-demo-panel--team,
+  .home-demo-panel--notifications {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
+  .home-page {
+    padding: 0.85rem;
+  }
+
+  .home-shell {
+    gap: 0;
+  }
+
+  .home-hero {
+    gap: 0.7rem;
+  }
+
+  .home-logo-wrap {
+    width: min(100%, 19rem);
+  }
+
+  .home-hero__copy {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    max-width: 22rem;
+  }
+
+  .home-actions {
+    grid-template-columns: minmax(0, 1fr) minmax(7rem, 0.46fr);
+    width: 100%;
+  }
+
+  .home-install-input {
+    width: 100%;
+  }
+
+  .home-install-input__control {
+    font-size: 0.78rem;
+  }
+
+  .home-doc-button {
+    min-width: 0;
+  }
+
+  .home-showcase {
+    bottom: 0;
+    grid-template-columns: 15rem 13rem 11rem;
+    transform: translate(-45%, 71%) scale(0.72);
+  }
+
+  .home-demo-panel--card,
+  .home-demo-panel--paid,
+  .home-demo-panel--finance {
+    display: none;
+  }
+
+  .home-demo-panel .rk-panel-content {
+    padding: 0.9rem;
+  }
+
+  .home-demo-panel--select .rk-panel-content {
+    align-items: center;
+    grid-template-columns: 1fr;
+  }
+
   .home-bird-flight {
     --bird-frame-width: clamp(2.6rem, 13vw, 4rem);
   }
