@@ -232,6 +232,7 @@ function ComponentShowcase() {
               aria-label="角色名称"
               inputClassName="home-signup-input__control"
               readOnly
+              material="stone"
               rootClassName="home-signup-input"
               shadow
               value="洛克训练师"
@@ -243,6 +244,7 @@ function ComponentShowcase() {
               aria-label="初始区域"
               inputClassName="home-signup-input__control"
               readOnly
+              material="stone"
               rootClassName="home-signup-input"
               shadow
               value="魔法学院"

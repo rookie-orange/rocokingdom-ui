@@ -290,26 +290,6 @@
     width: 100%;
   }
 
-  .home-signup-input.home-signup-input {
-    max-width: 100%;
-    min-width: 0;
-    width: 100% !important;
-  }
-
-  .home-signup-input > [aria-hidden='true'] {
-    color: var(--rk-paper) !important;
-  }
-
-  .home-signup-input > [aria-hidden='true'] > span {
-    background: var(--rk-paper) !important;
-    color: var(--rk-paper) !important;
-  }
-
-  .home-form-field .rk-input-control {
-    background: transparent;
-    min-width: 0;
-  }
-
   .home-signup-input__control {
     cursor: default;
     min-width: 0;
