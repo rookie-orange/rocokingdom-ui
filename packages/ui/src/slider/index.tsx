@@ -1,7 +1,13 @@
 import * as RadixSlider from '@radix-ui/react-slider'
-import type { ComponentPropsWithoutRef, ReactNode, Ref } from 'react'
+import {
+  useState,
+  type ComponentPropsWithoutRef,
+  type CSSProperties,
+  type ReactNode,
+  type Ref,
+} from 'react'
 import { clsx } from 'clsx'
-import { Material, type MaterialPreset } from '../material'
+import { Material, resolveMaterial, type MaterialPreset } from '../material'
 import styles from './slider.module.css'
 
 export const sliderPrefixCls = 'rk-slider'
@@ -47,6 +53,14 @@ function getThumbAriaLabel(label: SliderProps['thumbAriaLabel'], index: number) 
   return label ?? 'Slider value'
 }
 
+function getInitialSliderValues(defaultValue: number[] | undefined, min: number) {
+  return defaultValue ?? [min]
+}
+
+function valueIncludesEdge(values: number[], edge: number) {
+  return values.some((item) => item === edge)
+}
+
 export function Slider({
   children,
   className,
@@ -65,8 +79,49 @@ export function Slider({
   trackClassName,
   trackMaterial = 'stoneMuted',
   value,
+  max = 100,
+  min = 0,
+  inverted = false,
+  dir,
+  onValueChange,
+  style,
   ...props
 }: SliderProps) {
+  const [internalValue, setInternalValue] = useState(() =>
+    getInitialSliderValues(defaultValue, min),
+  )
+  const sliderValues = value ?? internalValue
+  const rangeTouchesMin = sliderValues.length <= 1 || valueIncludesEdge(sliderValues, min)
+  const rangeTouchesMax = valueIncludesEdge(sliderValues, max)
+  const isHorizontal = orientation === 'horizontal'
+  const isRtl = dir === 'rtl'
+  const isSlidingFromLeft = isRtl ? inverted : !inverted
+  const beforeCapUsesRange = isHorizontal
+    ? isSlidingFromLeft
+      ? rangeTouchesMin
+      : rangeTouchesMax
+    : inverted
+      ? rangeTouchesMax
+      : rangeTouchesMin
+  const afterCapUsesRange = isHorizontal
+    ? isSlidingFromLeft
+      ? rangeTouchesMax
+      : rangeTouchesMin
+    : inverted
+      ? rangeTouchesMin
+      : rangeTouchesMax
+  const rangeMaterialValue = resolveMaterial({ material: rangeMaterial })
+  const sliderStyle = {
+    '--rk-slider-range-background': rangeMaterialValue.background,
+    ...style,
+  } as CSSProperties
+  const handleValueChange = (nextValue: number[]) => {
+    if (value === undefined) {
+      setInternalValue(nextValue)
+    }
+
+    onValueChange?.(nextValue)
+  }
   const resolvedClassName = clsx(
     prefixCls,
     styles.slider,
@@ -83,9 +138,17 @@ export function Slider({
       className={resolvedClassName}
       defaultValue={defaultValue}
       disabled={disabled}
+      dir={dir}
+      inverted={inverted}
+      max={max}
+      min={min}
       orientation={orientation}
+      onValueChange={handleValueChange}
       ref={ref}
+      style={sliderStyle}
       value={value}
+      data-after-cap={afterCapUsesRange ? 'range' : 'track'}
+      data-before-cap={beforeCapUsesRange ? 'range' : 'track'}
     >
       {children ?? (
         <>

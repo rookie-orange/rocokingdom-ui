@@ -39,14 +39,46 @@ test('renders a radix-backed slider with styled track, range and thumb', () => {
   expect(html).toContain('right:58%')
   expect(html).toContain('<input')
   expect(html).toContain('name="volume"')
+  expect(html).toContain('data-before-cap="range"')
+  expect(html).toContain('data-after-cap="track"')
+  expect(html).toContain('--rk-slider-range-background:var(--rk-primary)')
   expect(html).toContain('var(--rk-primary)')
   expect(html).toContain('material="paper"')
   expect(html).toContain('var(--rk-stone-muted)')
 })
 
+test('keeps range caps on the real track endpoints only', () => {
+  const rangeHtml = renderToString(
+    createElement(Slider, {
+      defaultValue: [24, 72],
+      max: 100,
+      min: 0,
+      rangeMaterial: 'success',
+      thumbAriaLabel: '范围',
+    }),
+  )
+  const fullRangeHtml = renderToString(
+    createElement(Slider, {
+      defaultValue: [0, 100],
+      max: 100,
+      min: 0,
+      rangeMaterial: 'success',
+      thumbAriaLabel: '范围',
+    }),
+  )
+
+  expect(rangeHtml).toContain('data-before-cap="track"')
+  expect(rangeHtml).toContain('data-after-cap="track"')
+  expect(rangeHtml).toContain('--rk-slider-range-background:var(--rk-success)')
+  expect(fullRangeHtml).toContain('data-before-cap="range"')
+  expect(fullRangeHtml).toContain('data-after-cap="range"')
+})
+
 test('uses radix slider and material-backed pieces', () => {
   expect(sliderSource).toContain("import * as RadixSlider from '@radix-ui/react-slider'")
-  expect(sliderSource).toContain("import { Material, type MaterialPreset } from '../material'")
+  expect(sliderSource).toContain(
+    "import { Material, resolveMaterial, type MaterialPreset } from '../material'",
+  )
   expect(sliderSource).toContain('export const SliderRoot = RadixSlider.Root')
   expect(sliderSource).toContain('export const SliderTrack = RadixSlider.Track')
   expect(sliderSource).toContain('export const SliderRange = RadixSlider.Range')
@@ -60,17 +92,43 @@ test('uses radix slider and material-backed pieces', () => {
   expect(sliderSource).toContain('<Material asChild key={index} material={thumbMaterial}>')
 })
 
-test('matches the reference slider proportions with caps and a pill thumb', () => {
-  expect(sliderCss).toContain('--rk-slider-track-size: 8px;')
-  expect(sliderCss).toContain('--rk-slider-track-cap-size: 28px;')
-  expect(sliderCss).toContain('--rk-slider-cap-width: calc(var(--rk-slider-track-size) * 1.35);')
-  expect(sliderCss).toContain(
-    '--rk-slider-thumb-width: calc(var(--rk-slider-track-cap-size) * 0.82);',
-  )
-  expect(sliderCss).toContain('--rk-slider-thumb-height: var(--rk-slider-track-cap-size);')
+test('matches the reference slider proportions with aligned caps and thumb', () => {
+  expect(sliderCss).toContain('height: 56px;')
+  expect(sliderCss).toContain('height: 8px;')
+  expect(sliderCss).toContain('height: 28px;')
+  expect(sliderCss).toContain('width: 11px;')
+  expect(sliderCss).toContain('height: 22px;')
+  expect(sliderCss).toContain('width: 8px;')
+  expect(sliderCss).toContain('height: 34px;')
+  expect(sliderCss).toContain('width: 14px;')
   expect(sliderCss).toContain('.track::before')
   expect(sliderCss).toContain('.track::after')
-  expect(sliderCss).toContain('.range::before')
+  expect(sliderCss).toContain(`.thumb {
+  background: var(--rk-material-background);
+  border: 0;
+  border-radius: 999px;
+  box-shadow:
+    0 3px 0 var(--rk-shadow-color),
+    inset 0 1px 0 rgb(255 255 255 / 0.38);
+  cursor: grab;
+  display: block;
+  height: 28px;`)
+  expect(sliderCss).toContain(`.small .thumb {
+  height: 22px;
+  width: 8px;
+}`)
+  expect(sliderCss).toContain(`.large .thumb {
+  height: 34px;
+  width: 14px;
+}`)
+  expect(sliderCss).toContain('left: 0;')
+  expect(sliderCss).toContain('right: 0;')
+  expect(sliderCss).toContain("[data-before-cap='range']")
+  expect(sliderCss).toContain("[data-after-cap='range']")
+  expect(sliderCss).not.toContain('.range::before')
+  expect(sliderCss).not.toContain('--rk-slider-thumb-track-offset')
+  expect(sliderCss).not.toContain("style*='right")
+  expect(sliderCss).not.toContain("style*='top")
   expect(sliderCss).not.toContain('.range::after')
   expect(sliderCss).not.toContain('--rk-slider-range-cover-extra')
   expect(sliderCss).toContain('.slider > span:has(.thumb)')
