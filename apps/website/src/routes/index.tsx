@@ -1,22 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { BadgeIndicator, Button, Input } from 'rocokingdom-ui'
 import {
-  BadgeIndicator,
-  Button,
-  Checkbox,
-  Drawer,
-  Input,
-  Modal,
-  ModalClose,
-  Panel,
-  Select,
-  Slider,
-  Switch,
-  Tab,
-  TabList,
-  TabPanel,
-  Tabs,
-} from 'rocokingdom-ui'
+  FinanceCard,
+  KingdomPassCard,
+  NotificationsCard,
+  RegionSelectCard,
+  SettlementCard,
+  SignupCard,
+  TabsCard,
+  TeamCard,
+  TemperatureCard,
+  type RegionOption,
+} from '../cards'
 import birdFlightUrl from '../assets/roco-bird-flight.png'
 import logoUrl from '../assets/roco-kingdom-logo.png'
 
@@ -26,10 +22,28 @@ export const Route = createFileRoute('/')({
 
 const installCommand = 'npm install rocokingdom-ui'
 
-const birdClassNames = [
-  'home-bird home-bird--one',
-  'home-bird home-bird--two',
-  'home-bird home-bird--three',
+const birdFrameClassName =
+  'absolute z-[1] h-[var(--bird-frame-height)] w-[var(--bird-frame-width)] origin-center overflow-hidden opacity-0 will-change-[transform,opacity] motion-reduce:hidden [animation:home-bird-fly_7.8s_linear_infinite]'
+
+const birdSpriteClassName =
+  'block h-[var(--bird-frame-height)] w-[calc(var(--bird-frame-width)*78)] max-w-none select-none will-change-transform [animation:home-bird-flap_4.588s_steps(77,end)_infinite]'
+
+const birdFlights = [
+  {
+    frameClassName:
+      '[--bird-start-x:5vw] [--bird-start-y:20vh] [--bird-end-x:82vw] [--bird-end-y:-8vh] [animation-delay:-1.5s] max-sm:[--bird-start-x:6vw] max-sm:[--bird-start-y:34vh] max-sm:[--bird-end-x:99vw] max-sm:[--bird-end-y:4vh]',
+    spriteClassName: '',
+  },
+  {
+    frameClassName:
+      'z-20 [--bird-start-x:-18vw] [--bird-start-y:76vh] [--bird-end-x:94vw] [--bird-end-y:22vh] [animation-delay:-0.7s] max-sm:[--bird-start-x:-30vw] max-sm:[--bird-start-y:78vh] max-sm:[--bird-end-x:103vw] max-sm:[--bird-end-y:26vh]',
+    spriteClassName: '[animation-delay:-1.18s]',
+  },
+  {
+    frameClassName:
+      '[--bird-start-x:-4vw] [--bird-start-y:59vh] [--bird-end-x:90vw] [--bird-end-y:15vh] [animation-delay:-1s] max-sm:[--bird-start-x:-8vw] max-sm:[--bird-start-y:66vh] max-sm:[--bird-end-x:95vw] max-sm:[--bird-end-y:38vh]',
+    spriteClassName: '[animation-delay:-2.65s]',
+  },
 ] as const
 
 const regionOptions = [
@@ -37,7 +51,7 @@ const regionOptions = [
   { label: '宠物园', value: 'garden' },
   { label: '魔法学院', value: 'academy' },
   { label: '雷霆峡谷', value: 'thunder' },
-] as const
+] as const satisfies readonly RegionOption[]
 
 async function copyText(text: string) {
   try {
@@ -98,30 +112,40 @@ function HomePage() {
   }
 
   return (
-    <main className="home-page">
+    <main className="relative box-border h-svh max-h-svh min-h-0 w-full overflow-hidden bg-[#eaf2f6] py-[clamp(1rem,3vw,3rem)] pr-0 pl-[clamp(1rem,4.8vw,4.5rem)] text-on-paper max-lg:p-4 max-sm:p-[0.85rem]">
       <BirdFlight />
 
-      <section aria-label="Rocokingdom UI" className="home-shell">
-        <div className="home-hero">
+      <section
+        aria-label="Rocokingdom UI"
+        className="relative z-10 grid h-full w-full min-w-0 grid-cols-[minmax(22rem,31vw)_minmax(0,1fr)] items-center gap-[clamp(2rem,5.2vw,5.6rem)] max-lg:grid-cols-1 max-lg:content-center max-lg:justify-items-center max-sm:gap-0"
+      >
+        <div className="grid min-w-0 max-w-[34rem] justify-items-start gap-[clamp(1rem,2.4vh,1.8rem)] max-lg:max-w-[42rem] max-lg:justify-items-center max-lg:text-center max-sm:gap-[0.7rem]">
           <BadgeIndicator material="primarySoft" shadow>
             阅读 Rocokingdom UI
           </BadgeIndicator>
-          <div className="home-logo-wrap">
-            <img alt="洛克王国 UI" className="home-logo" src={logoUrl} />
+          <div className="ml-[clamp(-0.75rem,-1.2vw,0rem)] w-[min(100%,clamp(16rem,27vw,30rem))] [@media_(max-height:760px)_and_(min-width:1025px)]:w-[min(100%,24rem)] max-lg:ml-0 max-lg:w-[min(100%,24rem)] max-sm:w-[min(100%,19rem)]">
+            <img
+              alt="洛克王国 UI"
+              className="block h-auto w-full object-contain [filter:drop-shadow(0_18px_18px_rgb(36_38_40_/_0.14))_saturate(1.16)_contrast(1.06)]"
+              src={logoUrl}
+            />
           </div>
-          <p className="home-hero__copy">
+          <p className="m-0 max-w-[32rem] text-[clamp(0.95rem,1.25vw,1.25rem)] leading-[1.55] text-stone/70 max-sm:max-w-[22rem] max-sm:text-[0.9rem] max-sm:leading-[1.45]">
             一套带有洛克王国气质的 React 组件库。导入样式，组合组件，就能快速搭建有角色感的界面。
           </p>
 
-          <div className="home-actions" aria-label="安装与文档">
+          <div
+            aria-label="安装与文档"
+            className="grid w-full min-w-0 grid-cols-[minmax(0,1fr)_minmax(9rem,0.42fr)] items-stretch gap-[0.85rem] max-lg:max-w-[34rem] max-lg:grid-cols-[minmax(0,1fr)_minmax(8.5rem,0.4fr)] max-sm:grid-cols-[minmax(0,1fr)_minmax(7rem,0.46fr)]"
+          >
             <Input
               aria-label={`${copiedInstallCommand ? '已复制' : '复制'} ${installCommand}`}
-              inputClassName="home-install-input__control"
+              inputClassName="min-w-0 cursor-pointer font-mono text-[0.92rem] max-sm:text-[0.78rem]"
               material="stone"
               onClick={handleInstallCommandCopy}
               prefix="$"
               readOnly
-              rootClassName="home-install-input"
+              rootClassName="!w-full !min-w-0 max-w-full"
               shadow
               size="large"
               title={copiedInstallCommand ? '已复制安装命令' : '点击复制安装命令'}
@@ -130,7 +154,7 @@ function HomePage() {
             <Button
               material="paper"
               onClick={() => navigate({ to: '/docs' })}
-              rootClassName="home-doc-button font-roco text-lg"
+              rootClassName="!w-full !min-w-0 justify-center font-roco text-lg"
               shadow
               size="large"
             >
@@ -147,10 +171,18 @@ function HomePage() {
 
 function BirdFlight() {
   return (
-    <div aria-hidden="true" className="home-bird-flight">
-      {birdClassNames.map((className) => (
-        <span className={className} key={className}>
-          <img alt="" className="home-bird__sprite" draggable="false" src={birdFlightUrl} />
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-[4] [--bird-frame-width:clamp(2.8rem,5.8vw,6.1rem)] [--bird-frame-height:calc(var(--bird-frame-width)*105/65)] max-sm:[--bird-frame-width:clamp(2.6rem,13vw,4rem)]"
+    >
+      {birdFlights.map(({ frameClassName, spriteClassName }) => (
+        <span className={`${birdFrameClassName} ${frameClassName}`} key={frameClassName}>
+          <img
+            alt=""
+            className={`${birdSpriteClassName} ${spriteClassName}`}
+            draggable="false"
+            src={birdFlightUrl}
+          />
         </span>
       ))}
     </div>
@@ -158,262 +190,30 @@ function BirdFlight() {
 }
 
 function ComponentShowcase() {
-  const [notifyEnabled, setNotifyEnabled] = useState(true)
-  const [dailyChecked, setDailyChecked] = useState(true)
   const [region, setRegion] = useState('academy')
+  const regionLabel = regionOptions.find((option) => option.value === region)?.label
 
   return (
-    <aside aria-label="组件集合" className="home-showcase">
-      <div className="home-showcase__column home-showcase__column--left">
-        <Panel className="home-demo-panel home-demo-panel--team" material="paperSoft">
-          <div className="home-panel-heading">
-            <h2>王国队伍</h2>
-            <p>邀请并管理你的冒险伙伴。</p>
-          </div>
-          <div className="home-team-invite">
-            <Input material="paper" placeholder="输入伙伴邮箱" readOnly />
-            <Button material="primary" shadow>
-              邀请
-            </Button>
-          </div>
-          <div className="home-team-list">
-            {['迪莫', '喵喵', '水蓝蓝', '火花'].map((name, index) => (
-              <div className="home-team-row" key={name}>
-                <BadgeIndicator material={index % 2 === 0 ? 'primarySoft' : 'paperStrong'} shadow>
-                  {name.slice(0, 1)}
-                </BadgeIndicator>
-                <strong>{name}</strong>
-                <span>{name.toLowerCase()}@kingdom.ui</span>
-              </div>
-            ))}
-          </div>
-        </Panel>
-
-        <Panel className="home-demo-panel home-demo-panel--notifications" material="paperSoft">
-          <div className="home-panel-heading">
-            <h2>消息提醒</h2>
-            <p>管理任务、收藏和协作通知。</p>
-          </div>
-          <div className="home-notification-row">
-            <div>
-              <strong>评论提醒</strong>
-              <p>有人提到你时及时收到提醒。</p>
-            </div>
-            <Switch checked={notifyEnabled} onCheckedChange={setNotifyEnabled}>
-              推送
-            </Switch>
-          </div>
-          <div className="home-notification-row">
-            <div>
-              <strong>收藏更新</strong>
-              <p>追踪已收藏组件的状态变化。</p>
-            </div>
-            <Checkbox
-              boxMaterial="stoneStrong"
-              checked={dailyChecked}
-              checkMaterial="primary"
-              onChange={(event) => setDailyChecked(event.currentTarget.checked)}
-              shadow
-            >
-              邮件
-            </Checkbox>
-          </div>
-        </Panel>
+    <aside
+      aria-label="组件集合"
+      className="grid w-max min-w-max translate-y-[clamp(-0.75rem,-1vh,-0.25rem)] grid-cols-[clamp(25rem,29vw,36rem)_clamp(18rem,19.5vw,23rem)_clamp(16rem,18vw,20rem)] items-start gap-[clamp(1.15rem,1.55vw,1.55rem)] justify-self-start [@media_(max-height:760px)_and_(min-width:1025px)]:origin-left [@media_(max-height:760px)_and_(min-width:1025px)]:translate-y-[-0.35rem] [@media_(max-height:760px)_and_(min-width:1025px)]:scale-[0.92] [@media_(max-height:760px)_and_(min-width:1025px)]:gap-4 max-lg:absolute max-lg:bottom-3 max-lg:left-1/2 max-lg:translate-x-[-44%] max-lg:translate-y-[58%] max-lg:scale-[0.82] max-lg:grid-cols-[18rem_16rem_13rem] max-lg:opacity-[0.88] max-sm:bottom-0 max-sm:translate-x-[-45%] max-sm:translate-y-[71%] max-sm:scale-[0.72] max-sm:grid-cols-[15rem_13rem_11rem]"
+    >
+      <div className="grid min-w-0 gap-[clamp(1rem,1.45vw,1.35rem)]">
+        <TeamCard className="max-lg:hidden" />
+        <NotificationsCard className="max-lg:hidden" />
       </div>
 
-      <div className="home-showcase__column home-showcase__column--right">
-        <Panel className="home-demo-panel home-demo-panel--signup" material="paperSoft">
-          <div className="home-panel-heading">
-            <h2>注册账号</h2>
-          </div>
-          <div className="home-form-field">
-            <span>角色名称</span>
-            <Input
-              aria-label="角色名称"
-              inputClassName="home-signup-input__control"
-              readOnly
-              material="stone"
-              rootClassName="home-signup-input"
-              shadow
-              value="洛克训练师"
-            />
-          </div>
-          <div className="home-form-field">
-            <span>初始区域</span>
-            <Input
-              aria-label="初始区域"
-              inputClassName="home-signup-input__control"
-              readOnly
-              material="stone"
-              rootClassName="home-signup-input"
-              shadow
-              value="魔法学院"
-            />
-          </div>
-          <div className="home-form-actions">
-            <Modal
-              description="确认后会创建一个可复用的组件配方。"
-              footer={
-                <>
-                  <ModalClose asChild>
-                    <Button material="paper" shadow>
-                      取消
-                    </Button>
-                  </ModalClose>
-                  <ModalClose asChild>
-                    <Button material="primary" shadow>
-                      开始
-                    </Button>
-                  </ModalClose>
-                </>
-              }
-              headerRuneText="弹窗"
-              title="创建组件"
-              trigger={
-                <Button material="paper" rootClassName="home-action-button" shadow>
-                  弹窗
-                </Button>
-              }
-            >
-              <p className="home-modal-copy">选择主题、组合组件，然后导出你的王国界面。</p>
-            </Modal>
-            <Button material="primary" rootClassName="home-action-button" shadow>
-              登录
-            </Button>
-          </div>
-        </Panel>
-
-        <Panel className="home-demo-panel home-demo-panel--card" material="paperSoft">
-          <div className="home-panel-heading">
-            <h2>王国通行卡</h2>
-            <p>查看并管理你的组件通行证。</p>
-          </div>
-          <div className="home-purple-card">
-            <strong>洛克王国 UI</strong>
-            <span>4929 3849 5027 1846</span>
-            <small>01 / 27 · 999</small>
-          </div>
-          <div className="home-form-actions">
-            <Modal
-              description="弹窗组件适合确认危险操作、展示说明或承载短流程。"
-              footer={
-                <>
-                  <ModalClose asChild>
-                    <Button material="paper" shadow>
-                      取消
-                    </Button>
-                  </ModalClose>
-                  <ModalClose asChild>
-                    <Button material="primary" shadow>
-                      确认
-                    </Button>
-                  </ModalClose>
-                </>
-              }
-              headerRuneText="弹窗"
-              title="弹窗预览"
-              trigger={
-                <Button material="paper" rootClassName="home-action-button" shadow>
-                  弹窗
-                </Button>
-              }
-            >
-              <p className="home-modal-copy">这里展示的是来自 rocokingdom-ui 的弹窗组件。</p>
-            </Modal>
-            <Drawer
-              description="抽屉适合承载区域设置、任务简报和侧边详情。"
-              overlay
-              side="right"
-              size={420}
-              title="抽屉预览"
-              trigger={
-                <Button material="primary" rootClassName="home-action-button" shadow>
-                  抽屉
-                </Button>
-              }
-            >
-              <div className="home-drawer-content">
-                <span>✓</span>
-                <p>当前选择：{regionOptions.find((option) => option.value === region)?.label}。</p>
-                <p>抽屉内容可以继续组合按钮、表单和状态提示。</p>
-              </div>
-            </Drawer>
-          </div>
-        </Panel>
-
-        <Panel className="home-demo-panel home-demo-panel--paid" material="paperSoft">
-          <BadgeIndicator material="success" shadow>
-            ✓
-          </BadgeIndicator>
-          <h2>奖励已结算</h2>
-          <p>你已完成今日任务奖励结算。</p>
-        </Panel>
+      <div className="grid min-w-0 gap-[clamp(1rem,1.45vw,1.35rem)] pt-[clamp(0.2rem,4vh,2.2rem)]">
+        <SignupCard />
+        <KingdomPassCard className="max-sm:hidden" regionLabel={regionLabel} />
+        <SettlementCard />
       </div>
 
-      <div className="home-showcase__column home-showcase__column--edge">
-        <Panel className="home-demo-panel home-demo-panel--finance" material="paperSoft">
-          <div className="home-panel-heading">
-            <h2>王国资产</h2>
-            <p>查看今日组件收益。</p>
-          </div>
-          <strong className="home-price">$35.8K</strong>
-          <BadgeIndicator material="success" shadow size="small">
-            +3.4%
-          </BadgeIndicator>
-        </Panel>
-
-        <Panel className="home-demo-panel home-demo-panel--select" material="paperSoft">
-          <label className="home-field">
-            <span>传送点</span>
-            <Select
-              ariaLabel="选择传送点"
-              material="stone"
-              onValueChange={setRegion}
-              options={regionOptions}
-              placeholder="选择传送点"
-              value={region}
-            />
-          </label>
-          <BadgeIndicator material="primaryStrong" shadow>
-            已选择
-          </BadgeIndicator>
-        </Panel>
-
-        <Panel className="home-demo-panel home-demo-panel--tabs" material="paperSoft">
-          <Tabs
-            defaultValue="team"
-            listMaterial="stone"
-            rootClassName="home-tabs-strip"
-            selectedMaterial="primaryStrong"
-            size="small"
-          >
-            <TabList>
-              <Tab value="team">队伍</Tab>
-              <Tab value="bag">背包</Tab>
-              <Tab value="quest">任务</Tab>
-            </TabList>
-            <TabPanel value="team">三只宠物已就绪。</TabPanel>
-            <TabPanel value="bag">补给与技能石充足。</TabPanel>
-            <TabPanel value="quest">今日任务进度 82%。</TabPanel>
-          </Tabs>
-        </Panel>
-
-        <Panel className="home-demo-panel home-demo-panel--slider" material="paperSoft">
-          <div className="home-temperature">
-            <span>20°C</span>
-            <span>50°C</span>
-            <span>80°C</span>
-          </div>
-          <Slider
-            defaultValue={[35, 65]}
-            max={100}
-            min={0}
-            rangeMaterial="primary"
-            thumbAriaLabel={(index) => `温度值 ${index + 1}`}
-            thumbMaterial="primary"
-            trackMaterial="paperStrong"
-          />
-        </Panel>
+      <div className="grid min-w-0 gap-[clamp(1rem,1.45vw,1.35rem)] pt-[clamp(0.1rem,1.5vh,1rem)]">
+        <FinanceCard />
+        <RegionSelectCard onRegionChange={setRegion} options={regionOptions} region={region} />
+        <TabsCard />
+        <TemperatureCard />
       </div>
     </aside>
   )
