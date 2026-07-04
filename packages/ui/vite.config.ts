@@ -1,6 +1,13 @@
 import { defineConfig } from 'vite-plus'
 
+const iconsSource = new URL('../icons/src/index.ts', import.meta.url).pathname
+
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@rocokingdom-ui/icons': iconsSource,
+    },
+  },
   pack: {
     entry: {
       index: 'src/index.ts',

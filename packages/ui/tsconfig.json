@@ -7,6 +7,9 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "types": ["node"],
+    "paths": {
+      "@rocokingdom-ui/icons": ["../icons/src/index.ts"]
+    },
     "strict": true,
     "noUnusedLocals": true,
     "declaration": true,
