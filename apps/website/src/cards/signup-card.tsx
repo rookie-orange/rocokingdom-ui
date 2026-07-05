@@ -1,4 +1,4 @@
-import { Button, Input, Modal, ModalClose } from 'rocokingdom-ui'
+import { Button, Input, Modal, ModalClose, RadioGroup, RadioItem } from 'rocokingdom-ui'
 import {
   actionButtonClassName,
   CardActions,
@@ -14,36 +14,45 @@ interface SignupCardProps {
 
 export function SignupCard({ className }: SignupCardProps) {
   return (
-    <HomeCard className={className} contentClassName="grid gap-4">
-      <CardHeading title="注册账号" />
+    <HomeCard className={className} contentClassName="flex h-full min-h-0 flex-col gap-3 sm:gap-4">
+      <CardHeading description="填写角色、队伍和性别，再确认创建。" title="冒险等级" />
 
       <CardField label="角色名称">
         <Input
           aria-label="角色名称"
-          inputClassName="min-w-0 cursor-default"
+          inputClassName="min-w-0"
           material="stone"
-          readOnly
           rootClassName="!w-full !min-w-0"
           shadow
-          value="洛克训练师"
+          defaultValue="洛克训练师"
         />
       </CardField>
 
-      <CardField label="初始区域">
+      <CardField label="队伍代号">
         <Input
-          aria-label="初始区域"
-          inputClassName="min-w-0 cursor-default"
+          aria-label="队伍代号"
+          inputClassName="min-w-0"
           material="stone"
-          readOnly
           rootClassName="!w-full !min-w-0"
           shadow
-          value="魔法学院"
+          defaultValue="星辉巡游队"
         />
       </CardField>
 
-      <CardActions>
+      <CardField label="性别">
+        <RadioGroup defaultValue="girl" name="gender" size="small">
+          <RadioItem activeMaterial="primaryStrong" value="girl">
+            女生
+          </RadioItem>
+          <RadioItem activeMaterial="stone" value="boy">
+            男生
+          </RadioItem>
+        </RadioGroup>
+      </CardField>
+
+      <CardActions className="mt-auto">
         <Modal
-          description="确认后会创建一个可复用的组件配方。"
+          description="确认后会生成一份当前界面的搭建草稿。"
           footer={
             <>
               <ModalClose asChild>
@@ -59,17 +68,17 @@ export function SignupCard({ className }: SignupCardProps) {
             </>
           }
           headerRuneText="弹窗"
-          title="创建组件"
+          title="确认登记"
           trigger={
             <Button material="paper" rootClassName={actionButtonClassName} shadow>
-              弹窗
+              预览
             </Button>
           }
         >
-          <p className={modalCopyClassName}>选择主题、组合组件，然后导出你的王国界面。</p>
+          <p className={modalCopyClassName}>角色、队伍和主题会一起写入本次界面草稿。</p>
         </Modal>
         <Button material="primary" rootClassName={actionButtonClassName} shadow>
-          登录
+          创建
         </Button>
       </CardActions>
     </HomeCard>

@@ -10,7 +10,7 @@ export function SettlementCard({ className }: SettlementCardProps) {
   return (
     <HomeCard
       className={cn('max-sm:hidden', className)}
-      contentClassName="grid min-h-36 items-center justify-items-center gap-[0.55rem] text-center"
+      contentClassName="grid min-h-36 items-center justify-items-center gap-2 text-center"
     >
       <BadgeIndicator material="success" shadow>
         ✓

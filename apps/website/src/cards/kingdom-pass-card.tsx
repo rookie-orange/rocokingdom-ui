@@ -17,9 +17,9 @@ export function KingdomPassCard({ className, regionLabel }: KingdomPassCardProps
     <HomeCard className={className} contentClassName="grid gap-4">
       <CardHeading description="查看并管理你的组件通行证。" title="王国通行卡" />
 
-      <div className="grid min-h-[7.6rem] gap-[0.8rem] rounded-xl bg-[linear-gradient(135deg,rgb(255_198_95_/_0.24),transparent_46%),var(--rk-stone)] p-[1.1rem] text-on-stone shadow-[inset_0_1px_0_rgb(255_255_255_/_0.12)]">
+      <div className="grid min-h-32 gap-3 rounded-xl bg-stone p-4 text-on-stone">
         <strong>洛克王国 UI</strong>
-        <span className="self-end font-mono text-[0.95rem] text-primary">4929 3849 5027 1846</span>
+        <span className="self-end font-mono text-sm text-primary">4929 3849 5027 1846</span>
         <small className="text-on-stone/80">01 / 27 · 999</small>
       </div>
 
@@ -54,7 +54,6 @@ export function KingdomPassCard({ className, regionLabel }: KingdomPassCardProps
           description="抽屉适合承载区域设置、任务简报和侧边详情。"
           overlay
           side="right"
-          size={420}
           title="抽屉预览"
           trigger={
             <Button material="primary" rootClassName={actionButtonClassName} shadow>
@@ -62,7 +61,7 @@ export function KingdomPassCard({ className, regionLabel }: KingdomPassCardProps
             </Button>
           }
         >
-          <div className="grid gap-[0.65rem] text-on-stone leading-normal">
+          <div className="grid gap-3 text-on-stone leading-normal">
             <span>✓</span>
             <p className="m-0">当前选择：{regionLabel}。</p>
             <p className="m-0">抽屉内容可以继续组合按钮、表单和状态提示。</p>

@@ -5,7 +5,7 @@ interface TabsCardProps {
   className?: string
 }
 
-const panelClassName = 'px-[0.2rem] pt-[0.65rem] text-[0.9rem] leading-[1.45] text-stone/60'
+const panelClassName = 'px-1 pt-2 text-sm leading-6 text-stone/60'
 
 export function TabsCard({ className }: TabsCardProps) {
   return (

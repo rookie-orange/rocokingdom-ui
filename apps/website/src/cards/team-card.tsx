@@ -12,7 +12,7 @@ export function TeamCard({ className }: TeamCardProps) {
     <HomeCard className={className} contentClassName="grid gap-4">
       <CardHeading description="邀请并管理你的冒险伙伴。" title="王国队伍" />
 
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-[0.7rem]">
+      <div className="grid grid-cols-2 gap-2">
         <Input material="paper" placeholder="输入伙伴邮箱" readOnly rootClassName="!w-full" />
         <Button material="primary" shadow>
           邀请
@@ -22,7 +22,7 @@ export function TeamCard({ className }: TeamCardProps) {
       <div className="grid">
         {teamMembers.map((name, index) => (
           <div
-            className="grid min-h-12 grid-cols-[auto_minmax(5rem,0.75fr)_minmax(0,1fr)] items-center gap-3 border-t border-stone/15"
+            className="grid min-h-12 grid-cols-3 items-center gap-3 border-t border-stone/15"
             key={name}
           >
             <BadgeIndicator material={index % 2 === 0 ? 'primarySoft' : 'paperStrong'} shadow>

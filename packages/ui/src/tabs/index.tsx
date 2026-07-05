@@ -57,6 +57,7 @@ export interface TabListProps extends Omit<
   'aria-disabled' | 'role'
 > {
   children?: ReactNode
+  contentClassName?: string
   material?: TabsMaterial
   prefixCls?: string
   rootClassName?: string
@@ -171,6 +172,7 @@ export function Tabs<Value extends string = string>({
 export function TabList({
   children,
   className,
+  contentClassName,
   material,
   onKeyDown,
   prefixCls = tabListPrefixCls,
@@ -238,7 +240,7 @@ export function TabList({
         aria-disabled={tabs.disabled || undefined}
         as="div"
         className={resolvedClassName}
-        contentClassName={styles.listContent}
+        contentClassName={clsx(styles.listContent, contentClassName)}
         onKeyDown={handleKeyDown}
         role="tablist"
         variant="solid"
