@@ -43,7 +43,8 @@ test('renders a radix-backed slider with styled track, range and thumb', () => {
   expect(html).toContain('data-after-cap="track"')
   expect(html).toContain('--rk-slider-range-background:var(--rk-primary)')
   expect(html).toContain('var(--rk-primary)')
-  expect(html).toContain('material="paper"')
+  expect(html).not.toContain('material="paper"')
+  expect(html).toContain('--rk-slider-thumb-background:var(--rk-paper)')
   expect(html).toContain('var(--rk-stone-muted)')
 })
 
@@ -104,7 +105,7 @@ test('matches the reference slider proportions with aligned caps and thumb', () 
   expect(sliderCss).toContain('.track::before')
   expect(sliderCss).toContain('.track::after')
   expect(sliderCss).toContain(`.thumb {
-  background: var(--rk-material-background);
+  background: var(--rk-slider-thumb-background);
   border: 0;
   border-radius: 999px;
   box-shadow:

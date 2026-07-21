@@ -111,8 +111,10 @@ export function Slider({
       ? rangeTouchesMin
       : rangeTouchesMax
   const rangeMaterialValue = resolveMaterial({ material: rangeMaterial })
+  const thumbMaterialValue = resolveMaterial({ material: thumbMaterial })
   const sliderStyle = {
     '--rk-slider-range-background': rangeMaterialValue.background,
+    '--rk-slider-thumb-background': thumbMaterialValue.background,
     ...style,
   } as CSSProperties
   const handleValueChange = (nextValue: number[]) => {

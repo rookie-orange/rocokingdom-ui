@@ -1,0 +1,557 @@
+.tableRoot {
+  background: var(--rk-material-background);
+  color: var(--rk-material-color);
+  overflow: hidden;
+}
+
+.tableBordered {
+  border: 1px solid color-mix(in srgb, var(--rk-material-color) 18%, transparent);
+  border-radius: var(--rk-radius, 8px);
+  box-shadow: 0 7px 0 var(--rk-shadow-soft-color);
+}
+
+.tableScroller {
+  overflow: auto;
+  width: 100%;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 100%;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  background: var(--rk-material-background);
+  border-bottom: 1px solid color-mix(in srgb, var(--rk-material-color) 12%, transparent);
+  box-sizing: border-box;
+  min-width: var(--rk-table-column-width, 120px);
+  padding: 12px 14px;
+  width: var(--rk-table-column-width, auto);
+}
+
+.table th {
+  background: color-mix(in srgb, var(--rk-material-background) 86%, var(--rk-stone) 14%);
+  font-size: 12px;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.table td {
+  font-size: 13px;
+}
+
+.tableStriped tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--rk-material-background) 94%, var(--rk-stone) 6%);
+}
+
+.table tbody tr:hover td {
+  background: color-mix(in srgb, var(--rk-primary-soft) 56%, var(--rk-material-background));
+}
+
+.tableHeaderCell {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: inherit;
+}
+
+.tableHeaderCell button {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 700;
+  gap: 6px;
+  padding: 0;
+  text-transform: inherit;
+}
+
+.tableHeaderCell button:focus-visible,
+.tableHeaderCell select:focus-visible {
+  outline: 2px solid var(--rk-primary-strong);
+  outline-offset: 2px;
+}
+
+.tableHeaderCell svg {
+  height: 13px;
+  width: 13px;
+}
+
+.tableHeaderCell select {
+  background: var(--rk-paper);
+  border: 1px solid color-mix(in srgb, var(--rk-stone) 20%, transparent);
+  border-radius: 4px;
+  color: var(--rk-on-paper);
+  font: inherit;
+  margin-left: auto;
+  max-width: 90px;
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.fixed-left {
+  left: 0;
+  position: sticky;
+  z-index: 1;
+}
+
+.fixed-right {
+  position: sticky;
+  right: 0;
+  z-index: 1;
+}
+
+.small .table th,
+.small .table td {
+  padding: 8px 10px;
+}
+
+.large .table th,
+.large .table td {
+  padding: 16px 18px;
+}
+
+.tableEmpty {
+  opacity: 0.58;
+  padding-block: 34px !important;
+  text-align: center;
+}
+
+.accordion {
+  background: var(--rk-material-background);
+  border: 1px solid color-mix(in srgb, var(--rk-material-color) 16%, transparent);
+  border-radius: var(--rk-radius, 8px);
+  color: var(--rk-material-color);
+  overflow: hidden;
+}
+
+.accordionItem + .accordionItem {
+  border-top: 1px solid color-mix(in srgb, var(--rk-material-color) 12%, transparent);
+}
+
+.accordionHeader {
+  margin: 0;
+}
+
+.accordionTrigger {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  min-height: 48px;
+  padding: 2px 18px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.accordionTrigger:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.accordionTrigger:focus-visible {
+  outline: 2px solid var(--rk-primary-strong);
+  outline-offset: -3px;
+}
+
+.accordionTriggerContent {
+  align-items: center;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.accordionTriggerContent > span {
+  font-size: 12px;
+  opacity: 0.58;
+}
+
+.accordionTriggerContent svg {
+  height: 18px;
+  transition: transform 160ms ease;
+  width: 18px;
+}
+
+.accordionTrigger[data-state='open'] .accordionTriggerContent svg {
+  transform: rotate(180deg);
+}
+
+.accordionShape {
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 160ms ease;
+}
+
+.accordionTrigger[data-state='open'] .accordionShape {
+  opacity: 1;
+}
+
+.accordionContent {
+  overflow: hidden;
+}
+
+.accordionPanel {
+  font-size: 14px;
+  line-height: 1.65;
+  padding: 4px 18px 18px;
+}
+
+.tree {
+  font-size: 14px;
+}
+
+.treeLevel {
+  display: grid;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.treeLevel .treeLevel {
+  margin-left: 15px;
+  padding-left: 13px;
+  position: relative;
+}
+
+.treeLine .treeLevel .treeLevel::before {
+  background: color-mix(in srgb, var(--rk-stone) 16%, transparent);
+  bottom: 8px;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.treeNodeRow {
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  min-height: 34px;
+  padding-right: 8px;
+}
+
+.treeNodeRow:hover,
+.treeNodeSelected {
+  background: var(--rk-primary-soft);
+  color: var(--rk-on-primary-soft);
+}
+
+.treeToggle,
+.treeCheck,
+.treeLabel {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.treeToggle {
+  align-items: center;
+  display: inline-flex;
+  height: 28px;
+  justify-content: center;
+  padding: 0;
+  width: 28px;
+}
+
+.treeToggle svg {
+  height: 16px;
+  transition: transform 160ms ease;
+  width: 16px;
+}
+
+.treeNode[aria-expanded='true'] > .treeNodeRow .treeToggle svg {
+  transform: rotate(90deg);
+}
+
+.treeToggleEmpty {
+  opacity: 0;
+}
+
+.treeCheck {
+  height: 24px;
+  padding: 2px;
+  width: 24px;
+}
+
+.treeCheckMaterial {
+  background: transparent;
+  height: 20px;
+  width: 20px;
+}
+
+.treeCheckMaterial :global(.rk-roco-shape) {
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.treeCheckMaterial svg {
+  height: 12px;
+  width: 12px;
+}
+
+.treeLabel {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  gap: 7px;
+  min-height: 32px;
+  padding: 0 4px;
+  text-align: left;
+}
+
+.treeLabel:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.treeLabel > span,
+.treeLabel > span svg {
+  height: 17px;
+  width: 17px;
+}
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.carouselViewport {
+  cursor: grab;
+  overflow: hidden;
+  touch-action: pan-y pinch-zoom;
+  width: 100%;
+}
+
+.carouselViewport:active {
+  cursor: grabbing;
+}
+
+.carouselTrack {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+}
+
+.carouselSlide {
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.carouselButton {
+  height: 38px;
+  min-height: 38px;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  z-index: 2;
+}
+
+.carouselButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.36;
+}
+
+.carouselButton:not(:disabled) {
+  cursor: pointer;
+}
+
+.carouselButton svg {
+  height: 18px;
+  width: 18px;
+}
+
+.carouselPrevious {
+  left: 12px;
+}
+
+.carouselNext {
+  right: 12px;
+}
+
+.carouselIndicators {
+  align-items: center;
+  bottom: 12px;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.carouselIndicators button {
+  appearance: none;
+  background: var(--rk-paper);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
+  cursor: pointer;
+  height: 6px;
+  padding: 0;
+  transition: width 160ms ease;
+  width: 14px;
+}
+
+.carouselIndicators button[aria-pressed='true'] {
+  background: var(--rk-primary);
+  width: 28px;
+}
+
+.imageRoot {
+  display: inline-flex;
+  min-height: 48px;
+  min-width: 48px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.imageTrigger {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: zoom-in;
+  display: block;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+.imageTrigger:focus-visible {
+  outline: 3px solid var(--rk-primary-strong);
+  outline-offset: -3px;
+}
+
+.imagePlaceholder,
+.imageFallback {
+  align-items: center;
+  background: var(--rk-paper-muted);
+  color: var(--rk-on-paper-muted);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+}
+
+.imageFallback {
+  flex-direction: column;
+  font-size: 12px;
+  gap: 7px;
+}
+
+.imageFallback svg {
+  height: 24px;
+  opacity: 0.6;
+  width: 24px;
+}
+
+.imagePreviewOverlay {
+  background: rgb(21 21 21 / 0.9);
+  inset: 0;
+  position: fixed;
+  z-index: 1300;
+}
+
+.imagePreview {
+  align-items: center;
+  cursor: default;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  z-index: 1;
+}
+
+.imagePreview > img {
+  max-height: calc(100vh - 120px);
+  max-width: calc(100vw - 48px);
+  object-fit: contain;
+  transition: transform 180ms ease;
+}
+
+.imageToolbar {
+  align-items: center;
+  bottom: 22px;
+  display: flex;
+  gap: 8px;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.imageTool {
+  height: 38px;
+  min-height: 38px;
+  padding: 0;
+  width: 38px;
+}
+
+.imageTool svg {
+  height: 18px;
+  width: 18px;
+}
+
+.visuallyHidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carouselTrack,
+  .imagePreview > img {
+    transition: none;
+  }
+}

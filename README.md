@@ -44,6 +44,16 @@ export function App() {
 }
 ```
 
+## 组件
+
+- 基础与布局：`Button`、`ButtonNormal`、`Material`、`RocoShape`、`RocoTheme`、`RuneText`、`Panel`、`Divider`、`Space`、`Stack`、`Layout`
+- 表单与输入：`Input`、`Textarea`、`Select`、`Checkbox`、`RadioGroup`、`Switch`、`Slider`、`InputNumber`、`DatePicker`、`TimePicker`、`Upload`、`Form`、`Autocomplete`
+- 导航：`SideNav`、`Menu`、`Tabs`、`Breadcrumb`、`Pagination`、`Steps`、`Anchor`、`Command`
+- 反馈与浮层：`Modal`、`Drawer`、`Tooltip`、`Popover`、`Message`、`Notification`、`Alert`、`Spin`、`Skeleton`、`Progress`、`Empty`、`Result`
+- 数据展示：`Table`、`List`、`Descriptions`、`Avatar`、`Badge`、`Tag`、`Accordion`、`Tree`、`Timeline`、`Carousel`、`Image`、`Statistic`
+
+组件视觉以 `RocoShape` 负责轮廓、`Material` 负责表面与前景色。弹窗、菜单、提示、消息等复杂交互基于 Radix Primitives，并保留键盘操作、焦点管理和无障碍语义。
+
 ## 文档
 
-前往 https://rocokingdom-ui.vercel.app/ 以查阅文档
+前往 [RocoKingdom UI 文档](https://rocokingdom-ui.vercel.app/) 查看每个组件的交互示例、属性和源码入口。

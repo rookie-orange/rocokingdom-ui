@@ -1,0 +1,85 @@
+.root {
+  align-items: center;
+  background: transparent;
+  color: var(--rk-material-color);
+  display: inline-grid;
+  font-family: var(--rk-font-family-base, inherit);
+  grid-template-columns: var(--rk-input-number-height) minmax(56px, 1fr) var(
+      --rk-input-number-height
+    );
+  height: var(--rk-input-number-height);
+  min-width: 152px;
+  width: 196px;
+}
+
+.small {
+  --rk-input-number-height: var(--rk-control-height-small, 24px);
+  font-size: 12px;
+}
+
+.middle {
+  --rk-input-number-height: var(--rk-control-height-middle, 32px);
+  font-size: 14px;
+}
+
+.large {
+  --rk-input-number-height: var(--rk-control-height-large, 40px);
+  font-size: 16px;
+}
+
+.control {
+  align-self: stretch;
+  appearance: textfield;
+  background: color-mix(in srgb, var(--rk-material-background) 88%, transparent);
+  border: 0;
+  border-block: 1px solid color-mix(in srgb, var(--rk-material-color) 24%, transparent);
+  box-sizing: border-box;
+  color: inherit;
+  font: inherit;
+  min-width: 0;
+  outline: none;
+  padding: 0 8px;
+  text-align: center;
+}
+
+.outline .control {
+  background: transparent;
+}
+
+.control:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--rk-primary);
+}
+
+.stepper {
+  align-items: center;
+  align-self: stretch;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}
+
+.stepper:focus-visible {
+  outline: 2px solid var(--rk-primary-strong);
+  outline-offset: 2px;
+}
+
+.stepper:disabled,
+.root[data-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.icon {
+  height: 48%;
+  pointer-events: none;
+  position: relative;
+  stroke-width: 2.5;
+  width: 48%;
+  z-index: 1;
+}

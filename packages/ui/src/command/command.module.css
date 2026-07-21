@@ -1,0 +1,203 @@
+.commandOverlay {
+  background: rgb(21 21 21 / 0.58);
+  inset: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.commandPanel {
+  background: var(--rk-material-background);
+  border: 1px solid color-mix(in srgb, var(--rk-material-color) 18%, transparent);
+  border-radius: var(--rk-radius, 8px);
+  box-shadow: 0 18px 48px rgb(0 0 0 / 0.28);
+  color: var(--rk-material-color);
+  left: 50%;
+  max-height: min(72vh, 620px);
+  overflow: hidden;
+  position: fixed;
+  top: min(18vh, 140px);
+  transform: translateX(-50%);
+  width: min(calc(100% - 36px), 620px);
+  z-index: 1001;
+}
+
+.commandPanel:focus {
+  outline: none;
+}
+
+.commandRoot {
+  background: transparent;
+}
+
+.commandHeader {
+  align-items: center;
+  background: var(--rk-stone);
+  color: var(--rk-on-stone);
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  min-height: 48px;
+  padding: 0 12px 0 16px;
+}
+
+.commandHeader > svg {
+  color: var(--rk-primary);
+  height: 20px;
+  width: 20px;
+}
+
+.commandHeader button {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  height: 32px;
+  justify-content: center;
+  padding: 0;
+  width: 32px;
+}
+
+.commandHeader button:focus-visible {
+  outline: 2px solid var(--rk-primary);
+}
+
+.commandHeader button svg {
+  height: 18px;
+  width: 18px;
+}
+
+.commandSearch {
+  align-items: center;
+  border-bottom: 1px solid color-mix(in srgb, var(--rk-material-color) 12%, transparent);
+  display: flex;
+  gap: 10px;
+  margin: 0 14px;
+  padding: 13px 2px;
+}
+
+.commandSearch > svg {
+  flex: 0 0 auto;
+  height: 18px;
+  opacity: 0.55;
+  width: 18px;
+}
+
+.commandInput {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  flex: 1 1 auto;
+  font: inherit;
+  min-width: 0;
+  outline: none;
+}
+
+.commandInput::placeholder {
+  color: currentColor;
+  opacity: 0.42;
+}
+
+.commandList {
+  display: grid;
+  gap: 3px;
+  max-height: min(52vh, 440px);
+  overflow: auto;
+  padding: 0 8px 10px;
+}
+
+.commandGroupSection {
+  display: contents;
+}
+
+.commandGroupSection [cmdk-group-heading] {
+  font-size: 11px;
+  opacity: 0.48;
+  padding: 12px 10px 5px;
+  text-transform: uppercase;
+}
+
+.commandGroupSection [cmdk-group-items] {
+  display: grid;
+  gap: 3px;
+}
+
+.commandItem {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  min-height: 42px;
+  padding: 2px 14px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.commandItem[data-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.commandItem:focus-visible {
+  outline: 2px solid var(--rk-primary-strong);
+  outline-offset: -2px;
+}
+
+.commandItemContent {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.commandItemShape {
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 120ms ease;
+}
+
+.commandItem[data-selected='true'] {
+  color: var(--rk-on-primary);
+}
+
+.commandItem[data-selected='true'] .commandItemShape {
+  opacity: 1;
+}
+
+.commandItemIcon,
+.commandItemIcon svg {
+  height: 18px;
+  width: 18px;
+}
+
+.commandItem kbd {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  border-radius: 4px;
+  font: inherit;
+  font-size: 11px;
+  padding: 2px 6px;
+}
+
+.commandEmpty {
+  opacity: 0.58;
+  padding: 28px 14px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .commandPanel {
+    top: 7vh;
+  }
+}

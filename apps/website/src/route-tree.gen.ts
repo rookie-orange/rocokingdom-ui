@@ -41,6 +41,7 @@ import { Route as DocsComponentsButtonNormalRouteImport } from './routes/docs.co
 import { Route as DocsComponentsButtonRouteImport } from './routes/docs.components.button'
 import { Route as DocsComponentsBreadcrumbRouteImport } from './routes/docs.components.breadcrumb'
 import { Route as DocsComponentsBadgeRouteImport } from './routes/docs.components.badge'
+import { Route as DocsComponentsSlugRouteImport } from './routes/docs.components.$slug'
 
 const ExamplesRoute = ExamplesRouteImport.update({
   id: '/examples',
@@ -207,6 +208,11 @@ const DocsComponentsBadgeRoute = DocsComponentsBadgeRouteImport.update({
   path: '/components/badge',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsComponentsSlugRoute = DocsComponentsSlugRouteImport.update({
+  id: '/components/$slug',
+  path: '/components/$slug',
+  getParentRoute: () => DocsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -215,6 +221,7 @@ export interface FileRoutesByFullPath {
   '/docs/icon': typeof DocsIconRoute
   '/examples/$slug': typeof ExamplesSlugRoute
   '/docs/': typeof DocsIndexRoute
+  '/docs/components/$slug': typeof DocsComponentsSlugRoute
   '/docs/components/badge': typeof DocsComponentsBadgeRoute
   '/docs/components/breadcrumb': typeof DocsComponentsBreadcrumbRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
@@ -248,6 +255,7 @@ export interface FileRoutesByTo {
   '/docs/icon': typeof DocsIconRoute
   '/examples/$slug': typeof ExamplesSlugRoute
   '/docs': typeof DocsIndexRoute
+  '/docs/components/$slug': typeof DocsComponentsSlugRoute
   '/docs/components/badge': typeof DocsComponentsBadgeRoute
   '/docs/components/breadcrumb': typeof DocsComponentsBreadcrumbRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
@@ -283,6 +291,7 @@ export interface FileRoutesById {
   '/docs/icon': typeof DocsIconRoute
   '/examples/$slug': typeof ExamplesSlugRoute
   '/docs/': typeof DocsIndexRoute
+  '/docs/components/$slug': typeof DocsComponentsSlugRoute
   '/docs/components/badge': typeof DocsComponentsBadgeRoute
   '/docs/components/breadcrumb': typeof DocsComponentsBreadcrumbRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
@@ -319,6 +328,7 @@ export interface FileRouteTypes {
     | '/docs/icon'
     | '/examples/$slug'
     | '/docs/'
+    | '/docs/components/$slug'
     | '/docs/components/badge'
     | '/docs/components/breadcrumb'
     | '/docs/components/button'
@@ -352,6 +362,7 @@ export interface FileRouteTypes {
     | '/docs/icon'
     | '/examples/$slug'
     | '/docs'
+    | '/docs/components/$slug'
     | '/docs/components/badge'
     | '/docs/components/breadcrumb'
     | '/docs/components/button'
@@ -386,6 +397,7 @@ export interface FileRouteTypes {
     | '/docs/icon'
     | '/examples/$slug'
     | '/docs/'
+    | '/docs/components/$slug'
     | '/docs/components/badge'
     | '/docs/components/breadcrumb'
     | '/docs/components/button'
@@ -646,12 +658,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsBadgeRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/components/$slug': {
+      id: '/docs/components/$slug'
+      path: '/components/$slug'
+      fullPath: '/docs/components/$slug'
+      preLoaderRoute: typeof DocsComponentsSlugRouteImport
+      parentRoute: typeof DocsRoute
+    }
   }
 }
 
 interface DocsRouteChildren {
   DocsIconRoute: typeof DocsIconRoute
   DocsIndexRoute: typeof DocsIndexRoute
+  DocsComponentsSlugRoute: typeof DocsComponentsSlugRoute
   DocsComponentsBadgeRoute: typeof DocsComponentsBadgeRoute
   DocsComponentsBreadcrumbRoute: typeof DocsComponentsBreadcrumbRoute
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
@@ -683,6 +703,7 @@ interface DocsRouteChildren {
 const DocsRouteChildren: DocsRouteChildren = {
   DocsIconRoute: DocsIconRoute,
   DocsIndexRoute: DocsIndexRoute,
+  DocsComponentsSlugRoute: DocsComponentsSlugRoute,
   DocsComponentsBadgeRoute: DocsComponentsBadgeRoute,
   DocsComponentsBreadcrumbRoute: DocsComponentsBreadcrumbRoute,
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,

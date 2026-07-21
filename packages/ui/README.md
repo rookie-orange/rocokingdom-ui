@@ -2,7 +2,84 @@
 
 Rocokingdom UI components.
 
-## Button
+## Installation
+
+```bash
+pnpm add rocokingdom-ui
+```
+
+Import the base stylesheet once at the application entry. Fonts are optional.
+
+```ts
+import 'rocokingdom-ui/style.css'
+import 'rocokingdom-ui/font.css'
+```
+
+## Component catalog
+
+| Group                 | Components                                                                                                                                                                          |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Foundations           | `Button`, `ButtonNormal`, `Material`, `RocoShape`, `RocoTheme`, `RuneText`, `Panel`, `Divider`, `Space`, `Stack`, `Layout`                                                          |
+| Forms                 | `Input`, `Textarea`, `Select`, `Checkbox`, `RadioGroup`, `Switch`, `Slider`, `InputNumber`, `DatePicker`, `TimePicker`, `Upload`, `Form`, `FormItem`, `Autocomplete`, `ToggleGroup` |
+| Navigation            | `SideNav`, `Menu`, `Tabs`, `Breadcrumb`, `Pagination`, `Steps`, `Anchor`, `Command`                                                                                                 |
+| Feedback and overlays | `Modal`, `Drawer`, `Tooltip`, `Popover`, `Message`, `Toast`, `Notification`, `Alert`, `Spin`, `Skeleton`, `Progress`, `Empty`, `Result`                                             |
+| Data display          | `Table`, `List`, `Descriptions`, `Avatar`, `Badge`, `Tag`, `Accordion`, `Collapse`, `Tree`, `Timeline`, `Carousel`, `Image`, `Statistic`                                            |
+
+The documentation website contains an interactive example, API summary, and source link for every catalog entry.
+
+## Shape and material
+
+`RocoShape` owns the silhouette, including the stretched capsule and fixed circle or square shapes. `Material` owns the semantic surface and foreground color. Components compose both primitives so that geometry, colors, borders, and shadows remain independently configurable.
+
+Use `Material asChild` when a custom composition should apply a material without adding a DOM wrapper:
+
+```tsx
+<Material asChild material="paper">
+  <RocoShape shadow>今日活动</RocoShape>
+</Material>
+```
+
+Prefer semantic presets such as `paper`, `stone`, `primary`, `success`, and `danger`. Use explicit `background` and `color` only for one-off surfaces.
+
+## Radix-backed interactions
+
+`Select`, `RadioGroup`, `Slider`, `Modal`, `Drawer`, `Menu`, `Tooltip`, `Popover`, `Message`, `Notification`, `Avatar`, `Progress`, and `Accordion` use Radix Primitives for the relevant behavior. Rocokingdom UI supplies the shape, material, and package API while Radix handles focus, keyboard navigation, portals, live-region announcements, and interaction state.
+
+The complex controls use the same mature primitives used by shadcn-style components:
+
+- `DatePicker` composes Radix Popover with `react-day-picker` and `date-fns`. It keeps the string API (`yyyy-MM-dd`), supports single/range selection, month navigation, `min`/`max`, custom disabled matchers, and hidden form values.
+- `TimePicker` uses Radix Popover and Radix Select for hour/minute/second columns. `showSeconds`, `minuteStep`, ranges, bounds, presets, and Clear/Done actions are available without a browser-native time input.
+- `Autocomplete` uses `cmdk` for filtering and keyboard selection inside a Radix Popover. `filterOption`, disabled options, controlled values, and listbox semantics remain part of the public API.
+- `Command` uses `cmdk` inside the package's Radix Dialog wrapper. Command/Ctrl + K, grouped items, keywords, looped navigation, Escape, focus trapping, and selection callbacks are handled by the primitives.
+- `Carousel` uses `embla-carousel-react` for pointer dragging, inertial scrolling, looping, scroll snapshots, indicators, and autoplay while keeping the existing `items` and controlled `index` API.
+
+These dependencies are runtime dependencies of the UI package; consumers do not need to install separate Radix, calendar, command, or carousel packages.
+
+Global messages and notifications require their providers near the application root:
+
+```tsx
+import { Button, MessageProvider, NotificationProvider, useMessage } from 'rocokingdom-ui'
+
+function SaveButton() {
+  const message = useMessage()
+
+  return <Button onClick={() => message.success('保存成功')}>保存</Button>
+}
+
+export function App() {
+  return (
+    <MessageProvider>
+      <NotificationProvider>
+        <SaveButton />
+      </NotificationProvider>
+    </MessageProvider>
+  )
+}
+```
+
+Portal-based components recreate the active `RocoTheme` scope inside portal content, so locally scoped colors continue to apply.
+
+## Quick example
 
 ```ts
 import 'rocokingdom-ui/style.css'

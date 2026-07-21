@@ -1,3 +1,5 @@
+import { completedComponentRecords } from './completed-components'
+
 export type DocsCategory = 'components' | 'design' | 'icon' | 'overview'
 
 export interface DocsProp {
@@ -46,6 +48,7 @@ const classNameNote =
   '覆盖组件内部 class 前缀或追加根节点 class，通常只在主题集成和样式调试时使用。'
 
 export const docsRecords: readonly DocsRecord[] = [
+  ...completedComponentRecords,
   {
     category: 'overview',
     description: '从安装、样式引入到第一个 Rocokingdom UI 组件的最短路径。',

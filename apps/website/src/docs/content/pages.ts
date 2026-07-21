@@ -1,3 +1,5 @@
+import { completedComponentPages } from './completed-components'
+
 export interface DocsExampleSpec {
   description?: string
   sourceId: string
@@ -14,6 +16,7 @@ export interface DocsPageSpec {
 }
 
 export const docsPages = [
+  ...completedComponentPages,
   {
     path: '/docs/components/badge',
     title: 'Badge',

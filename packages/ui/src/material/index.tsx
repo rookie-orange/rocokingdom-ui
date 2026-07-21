@@ -152,8 +152,11 @@ export function resolveMaterial({
 }
 
 export function Material<As extends ElementType = 'div'>(props: MaterialProps<As>) {
-  const { background, color, material = 'paper' } = props
-  const materialValue = resolveMaterial({ background, color, material })
+  const materialValue = resolveMaterial({
+    background: props.background,
+    color: props.color,
+    material: props.material,
+  })
 
   if (typeof props.render === 'function') {
     return props.render(materialValue)
@@ -162,13 +165,17 @@ export function Material<As extends ElementType = 'div'>(props: MaterialProps<As
   const {
     as,
     asChild,
+    background,
     children,
     className,
+    color,
+    material,
     prefixCls = materialPrefixCls,
     rootClassName,
     style,
     ...elementProps
   } = props
+  void material
   const Tag = asChild ? Slot.Root : (as ?? 'div')
   const materialStyle: MaterialStyle = { ...materialValue.style, ...style }
 

@@ -1,0 +1,330 @@
+.menu {
+  background: var(--rk-material-background);
+  color: var(--rk-material-color);
+  padding: 8px;
+}
+
+.menuList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vertical .menuList {
+  flex-direction: column;
+}
+
+.horizontal .menuList {
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.menuItem {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  min-height: 36px;
+  padding: 2px 16px;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+}
+
+.menuItemContent {
+  align-items: center;
+  display: inline-flex;
+  gap: 10px;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.menuItemShape {
+  inset: 0;
+  position: absolute;
+}
+
+.menuIcon,
+.menuIcon svg {
+  height: 18px;
+  width: 18px;
+}
+
+.menuItem:hover:not(.menuItemDisabled) {
+  color: var(--rk-primary-muted);
+}
+
+.menuItemActive {
+  color: var(--rk-on-primary);
+}
+
+.menuItemDisabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.menuItem:focus-visible {
+  outline: 2px solid var(--rk-primary);
+  outline-offset: 2px;
+}
+
+.menuGroupLabel {
+  font-size: 11px;
+  letter-spacing: 0;
+  opacity: 0.48;
+  padding: 12px 16px 6px;
+  text-transform: uppercase;
+}
+
+.pagination {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.paginationButton {
+  height: 34px;
+  min-height: 34px;
+  min-width: 34px;
+  padding: 0;
+  width: 34px;
+}
+
+.paginationButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
+.paginationButton:not(:disabled) {
+  cursor: pointer;
+}
+
+.paginationButton:focus-visible {
+  outline: 2px solid var(--rk-primary-strong);
+  outline-offset: 2px;
+}
+
+.paginationButton svg,
+.paginationEllipsis svg {
+  height: 16px;
+  width: 16px;
+}
+
+.paginationEllipsis {
+  align-items: center;
+  display: inline-flex;
+  height: 34px;
+  justify-content: center;
+  opacity: 0.54;
+  width: 28px;
+}
+
+.paginationJump {
+  align-items: center;
+  display: inline-flex;
+  font-size: 13px;
+  gap: 6px;
+  margin-left: 6px;
+}
+
+.paginationJump input {
+  border: 1px solid color-mix(in srgb, var(--rk-stone) 22%, transparent);
+  border-radius: 4px;
+  font: inherit;
+  height: 30px;
+  text-align: center;
+  width: 52px;
+}
+
+.steps {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.steps.horizontal {
+  align-items: flex-start;
+  width: 100%;
+}
+
+.step {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+}
+
+.steps.horizontal .step:not(:last-child)::after {
+  background: color-mix(in srgb, var(--rk-stone) 18%, transparent);
+  content: '';
+  height: 2px;
+  left: 42px;
+  position: absolute;
+  right: 10px;
+  top: 16px;
+}
+
+.steps.horizontal .step.finish:not(:last-child)::after {
+  background: var(--rk-success);
+}
+
+.stepButton {
+  align-items: flex-start;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  display: flex;
+  gap: 10px;
+  padding: 0 12px 0 0;
+  text-align: left;
+  width: 100%;
+}
+
+.stepButton:not(:disabled) {
+  cursor: pointer;
+}
+
+.stepButton:focus-visible {
+  outline: 2px solid var(--rk-primary-strong);
+  outline-offset: 3px;
+}
+
+.stepMarker {
+  background: transparent;
+  flex: 0 0 auto;
+  height: 34px;
+  position: relative;
+  width: 34px;
+  z-index: 1;
+}
+
+.stepMarker :global(.rk-roco-shape) {
+  font-size: 13px;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.stepMarker svg {
+  height: 16px;
+  width: 16px;
+}
+
+.stepCopy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding-top: 3px;
+}
+
+.stepCopy strong {
+  font-size: 14px;
+}
+
+.stepCopy span {
+  font-size: 12px;
+  opacity: 0.58;
+}
+
+.steps.vertical {
+  flex-direction: column;
+}
+
+.steps.vertical .step {
+  min-height: 72px;
+}
+
+.steps.vertical .step:not(:last-child)::after {
+  background: color-mix(in srgb, var(--rk-stone) 18%, transparent);
+  bottom: 4px;
+  content: '';
+  left: 16px;
+  position: absolute;
+  top: 38px;
+  width: 2px;
+}
+
+.steps.small .stepMarker {
+  height: 26px;
+  width: 26px;
+}
+
+.anchor {
+  border-left: 2px solid color-mix(in srgb, var(--rk-stone) 14%, transparent);
+  padding: 4px 0;
+}
+
+.anchorList {
+  display: grid;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.anchorList .anchorList {
+  margin-left: 14px;
+}
+
+.anchorLink {
+  color: inherit;
+  display: block;
+  font-size: 13px;
+  padding: 7px 12px;
+  position: relative;
+  text-decoration: none;
+}
+
+.anchorLink::before {
+  background: transparent;
+  bottom: 4px;
+  content: '';
+  left: -2px;
+  position: absolute;
+  top: 4px;
+  width: 2px;
+}
+
+.anchorLink:hover {
+  color: var(--rk-primary-strong);
+}
+
+.anchorLinkActive {
+  color: var(--rk-primary-strong);
+  font-weight: 700;
+}
+
+.anchorLinkActive::before {
+  background: var(--rk-primary-strong);
+}
+
+@media (max-width: 640px) {
+  .steps.horizontal {
+    flex-direction: column;
+  }
+
+  .steps.horizontal .step {
+    min-height: 68px;
+    width: 100%;
+  }
+
+  .steps.horizontal .step:not(:last-child)::after {
+    bottom: 4px;
+    height: auto;
+    left: 16px;
+    right: auto;
+    top: 38px;
+    width: 2px;
+  }
+}

@@ -24,6 +24,7 @@ function DocsSidebarSection({ links, onNavigate, pathname, title }: DocsSidebarS
     const activeItem = scrollerRef.current?.querySelector<HTMLElement>(
       '[data-docs-nav-active="true"]',
     )
+    const sidebarScroller = activeItem?.closest<HTMLElement>('[data-docs-sidebar-scroll]')
 
     if (!scroller || !activeItem) {
       return
@@ -34,6 +35,12 @@ function DocsSidebarSection({ links, onNavigate, pathname, title }: DocsSidebarS
 
     scroller.scrollLeft +=
       activeRect.left - scrollerRect.left - (scrollerRect.width - activeRect.width) / 2
+
+    if (sidebarScroller) {
+      const sidebarRect = sidebarScroller.getBoundingClientRect()
+      sidebarScroller.scrollTop +=
+        activeRect.top - sidebarRect.top - (sidebarRect.height - activeRect.height) / 2
+    }
   }, [pathname])
 
   return (
@@ -214,7 +221,10 @@ function DocsLayout() {
             curveInset="var(--docs-sidebar-curve-inset)"
             material="stoneSoft"
           >
-            <div className="box-border scrollbar-none h-full w-[calc(100%-var(--docs-sidebar-curve-inset))] min-w-0 overflow-y-auto px-6 py-8 max-[980px]:px-5 max-[980px]:py-5">
+            <div
+              className="box-border scrollbar-none h-full w-[calc(100%-var(--docs-sidebar-curve-inset))] min-w-0 overflow-y-auto px-6 py-8 max-[980px]:px-5 max-[980px]:py-5"
+              data-docs-sidebar-scroll
+            >
               <nav className="grid gap-7 max-[980px]:gap-5">
                 {docsNavSections.map((section) => (
                   <DocsSidebarSection

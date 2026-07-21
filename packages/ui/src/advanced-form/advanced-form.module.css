@@ -1,0 +1,688 @@
+.picker,
+.pickerRange,
+.pickerPresets {
+  align-items: center;
+  display: flex;
+}
+
+.picker {
+  gap: 8px;
+}
+
+.pickerField {
+  cursor: pointer;
+  min-width: 168px;
+  width: max-content;
+}
+
+.pickerField.small {
+  height: var(--rk-control-height-small, 24px);
+  padding-inline: var(--rk-control-padding-inline-small, 14px);
+}
+
+.pickerField.large {
+  height: var(--rk-control-height-large, 40px);
+  padding-inline: var(--rk-control-padding-inline-large, 22px);
+}
+
+.pickerContent {
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
+}
+
+.pickerIcon,
+.pickerIcon svg,
+.pickerChevron {
+  flex: 0 0 auto;
+  height: 16px;
+  width: 16px;
+}
+
+.pickerIcon {
+  align-items: center;
+  display: inline-flex;
+  opacity: 0.72;
+}
+
+.pickerValue {
+  flex: 1 1 auto;
+  max-width: 160px;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pickerPlaceholder {
+  opacity: 0.56;
+}
+
+.pickerSeparator {
+  font-size: 12px;
+  opacity: 0.52;
+}
+
+.picker[data-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.46;
+}
+
+.pickerStack {
+  display: inline-grid;
+  gap: 8px;
+}
+
+.pickerPresets {
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.pickerPopup {
+  color: var(--rk-material-color);
+  max-width: calc(100vw - 24px);
+  max-height: var(--radix-popover-content-available-height);
+  outline: none;
+  z-index: 1100;
+}
+
+.pickerPopupShape {
+  align-items: flex-start;
+  aspect-ratio: auto;
+  background: var(--rk-material-background);
+  display: block;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 0;
+  max-height: var(--radix-popover-content-available-height);
+  overflow: auto;
+  padding: 0;
+  width: 100%;
+}
+
+.pickerPopupContent {
+  display: block;
+  padding: 14px;
+}
+
+.calendar {
+  --calendar-cell-size: 34px;
+}
+
+.calendarMonths {
+  display: flex;
+  gap: 20px;
+}
+
+.calendarMonth {
+  min-width: calc(var(--calendar-cell-size) * 7);
+  position: relative;
+}
+
+.calendarMonthCaption {
+  align-items: center;
+  display: flex;
+  height: 34px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.calendarCaption {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.calendarNav {
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 14px;
+  z-index: 1;
+}
+
+.calendarNavButton {
+  align-items: center;
+  appearance: none;
+  background: var(--rk-stone-soft);
+  border: 0;
+  border-radius: 50%;
+  color: var(--rk-on-stone-soft);
+  cursor: pointer;
+  display: inline-flex;
+  height: 30px;
+  justify-content: center;
+  padding: 0;
+  pointer-events: auto;
+  width: 30px;
+}
+
+.calendarNavButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.calendarGrid {
+  border-collapse: collapse;
+}
+
+.calendarWeekdays,
+.calendarWeek {
+  display: grid;
+  grid-template-columns: repeat(7, var(--calendar-cell-size));
+}
+
+.calendarWeekday {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.45;
+  padding-block: 5px;
+  text-align: center;
+}
+
+.calendarDay {
+  height: var(--calendar-cell-size);
+  position: relative;
+  width: var(--calendar-cell-size);
+}
+
+.calendarDayButton {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  height: 100%;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.calendarDayButton:hover,
+.calendarDayButton:focus-visible {
+  background: var(--rk-primary-soft);
+  color: var(--rk-on-primary-soft);
+  outline: none;
+}
+
+.calendarDaySelected .calendarDayButton,
+.calendarRangeStart .calendarDayButton,
+.calendarRangeEnd .calendarDayButton {
+  background: var(--rk-primary);
+  color: var(--rk-on-primary);
+}
+
+.calendarRangeMiddle {
+  background: var(--rk-primary-soft);
+  color: var(--rk-on-primary-soft);
+}
+
+.calendarToday .calendarDayButton {
+  box-shadow: inset 0 0 0 2px var(--rk-primary-strong);
+  font-weight: 700;
+}
+
+.calendarDayOutside {
+  opacity: 0.3;
+}
+
+.calendarDayDisabled {
+  cursor: not-allowed;
+  opacity: 0.22;
+}
+
+.timePanel {
+  align-items: flex-start;
+  aspect-ratio: auto;
+  background: var(--rk-material-background);
+  display: block;
+  height: auto;
+  justify-content: flex-start;
+  max-height: var(--radix-popover-content-available-height);
+  min-width: 258px;
+  overflow: auto;
+  padding: 0;
+}
+
+.timePanelContent {
+  display: grid;
+  gap: 16px;
+  padding: 14px;
+}
+
+.timeUnits {
+  align-items: end;
+  display: grid;
+  gap: 7px;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+}
+
+.timeUnits > label {
+  display: grid;
+  gap: 5px;
+}
+
+.timeUnits > label > span {
+  font-size: 10px;
+  font-weight: 700;
+  opacity: 0.52;
+  text-transform: uppercase;
+}
+
+.timeUnits > span {
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+.timeUnitTrigger {
+  cursor: pointer;
+  min-height: 34px;
+  min-width: 64px;
+  padding: 0 8px;
+}
+
+.timeUnitTriggerContent {
+  justify-content: space-between;
+  width: 100%;
+}
+
+.timeUnitTriggerContent svg {
+  height: 14px;
+  width: 14px;
+}
+
+.timeUnitPopup {
+  background: var(--rk-material-background);
+  border: 1px solid color-mix(in srgb, var(--rk-material-color) 16%, transparent);
+  border-radius: 6px;
+  box-shadow: 0 10px 24px var(--rk-shadow-color);
+  color: var(--rk-material-color);
+  max-height: min(260px, var(--radix-select-content-available-height));
+  overflow: hidden;
+  z-index: 1200;
+}
+
+.timeUnitViewport {
+  padding: 5px;
+}
+
+.timeUnitOption {
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+  display: grid;
+  font-size: 13px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: 30px;
+  outline: none;
+  padding: 3px 7px;
+}
+
+.timeUnitOption[data-highlighted],
+.timeUnitOption[data-state='checked'] {
+  background: var(--rk-primary-soft);
+  color: var(--rk-on-primary-soft);
+}
+
+.timeUnitOption svg {
+  height: 13px;
+  width: 13px;
+}
+
+.timePanelFooter {
+  align-items: center;
+  border-top: 1px solid color-mix(in srgb, var(--rk-material-color) 12%, transparent);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.visuallyHidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.autoFocusHint {
+  display: none;
+}
+
+.upload {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+
+.uploadInput {
+  display: none;
+}
+
+.uploadDrop {
+  align-items: center;
+  background: var(--rk-material-background);
+  border: 2px dashed color-mix(in srgb, var(--rk-material-color) 28%, transparent);
+  border-radius: var(--rk-radius, 8px);
+  box-sizing: border-box;
+  color: var(--rk-material-color);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  justify-content: center;
+  min-height: 150px;
+  padding: 24px;
+  text-align: center;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+  width: min(100%, 520px);
+}
+
+.uploadDrop:hover,
+.uploadDropActive {
+  border-color: var(--rk-primary-strong);
+  transform: translateY(-2px);
+}
+
+.uploadDrop:focus-visible {
+  outline: 2px solid var(--rk-primary-strong);
+  outline-offset: 3px;
+}
+
+.uploadDrop[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.46;
+  transform: none;
+}
+
+.uploadDrop svg {
+  height: 30px;
+  width: 30px;
+}
+
+.uploadDrop span {
+  font-size: 12px;
+  opacity: 0.58;
+}
+
+.uploadList {
+  display: grid;
+  gap: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: min(100%, 520px);
+}
+
+.uploadList li {
+  align-items: center;
+  background: var(--rk-paper);
+  border: 1px solid color-mix(in srgb, var(--rk-stone) 12%, transparent);
+  border-radius: 5px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  min-height: 34px;
+  padding: 5px 8px;
+}
+
+.uploadList li > svg {
+  color: var(--rk-success);
+  height: 16px;
+  width: 16px;
+}
+
+.uploadList li > span {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uploadList button {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  height: 26px;
+  justify-content: center;
+  padding: 0;
+  width: 26px;
+}
+
+.uploadList button svg {
+  height: 15px;
+  width: 15px;
+}
+
+.form > fieldset {
+  border: 0;
+  display: grid;
+  gap: 18px;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+.form.inline > fieldset {
+  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formItem {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.form.horizontal .formItem {
+  align-items: start;
+  grid-template-columns: minmax(96px, 0.35fr) minmax(0, 1fr);
+}
+
+.formLabel {
+  align-items: center;
+  display: inline-flex;
+  font-size: 13px;
+  gap: 4px;
+  min-height: 32px;
+}
+
+.formLabel > span {
+  color: var(--rk-danger);
+}
+
+.formControl {
+  min-width: 0;
+}
+
+.formControl > * {
+  max-width: 100%;
+}
+
+.formHelp,
+.formExtra {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.formHelp {
+  opacity: 0.68;
+}
+
+.formExtra {
+  opacity: 0.5;
+}
+
+.form.horizontal .formHelp,
+.form.horizontal .formExtra {
+  grid-column: 2;
+}
+
+.formItem.error .formHelp {
+  color: var(--rk-danger);
+  opacity: 1;
+}
+
+.formItem.success .formHelp {
+  color: var(--rk-success);
+  opacity: 1;
+}
+
+.formItem.warning .formHelp {
+  color: var(--rk-primary-strong);
+  opacity: 1;
+}
+
+.autocomplete {
+  display: inline-block;
+}
+
+.autocompleteControl {
+  min-width: 220px;
+  width: 100%;
+}
+
+.autocompleteControl.small {
+  height: var(--rk-control-height-small, 24px);
+  padding-inline: var(--rk-control-padding-inline-small, 14px);
+}
+
+.autocompleteControl.large {
+  height: var(--rk-control-height-large, 40px);
+  padding-inline: var(--rk-control-padding-inline-large, 22px);
+}
+
+.autocompleteControlContent {
+  gap: 8px;
+  width: 100%;
+}
+
+.autocompleteControlContent > svg {
+  flex: 0 0 auto;
+  height: 16px;
+  opacity: 0.62;
+  width: 16px;
+}
+
+.autocompleteInput {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  flex: 1 1 auto;
+  font: inherit;
+  min-width: 0;
+  outline: none;
+}
+
+.autocompleteInput::placeholder {
+  color: currentColor;
+  opacity: 0.48;
+}
+
+.autocompletePopup {
+  background: var(--rk-material-background);
+  border: 1px solid color-mix(in srgb, var(--rk-material-color) 18%, transparent);
+  border-radius: var(--rk-radius, 8px);
+  box-shadow: 0 10px 24px var(--rk-shadow-color);
+  box-sizing: border-box;
+  color: var(--rk-material-color);
+  max-height: min(256px, var(--radix-popover-content-available-height));
+  min-width: var(--radix-popover-trigger-width);
+  overflow: hidden;
+  width: max(var(--radix-popover-trigger-width), max-content);
+  z-index: 1100;
+}
+
+.autocompleteList {
+  display: grid;
+  gap: 3px;
+  max-height: inherit;
+  overflow: auto;
+  padding: 6px;
+}
+
+.autocompleteOption {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  gap: 16px;
+  justify-content: space-between;
+  min-height: 34px;
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.autocompleteOption[data-selected='true'] {
+  background: var(--rk-primary-soft);
+  color: var(--rk-on-primary-soft);
+}
+
+.autocompleteOption[data-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.autocompleteOption svg {
+  color: var(--rk-success);
+  height: 16px;
+  width: 16px;
+}
+
+.autocompleteEmpty {
+  font-size: 13px;
+  opacity: 0.58;
+  padding: 10px;
+}
+
+@media (max-width: 640px) {
+  .pickerRange {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .pickerField {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .calendarMonths {
+    display: block;
+  }
+
+  .calendarMonth:nth-child(n + 2) {
+    display: none;
+  }
+
+  .form.horizontal .formItem {
+    grid-template-columns: 1fr;
+  }
+
+  .form.horizontal .formHelp,
+  .form.horizontal .formExtra {
+    grid-column: 1;
+  }
+}

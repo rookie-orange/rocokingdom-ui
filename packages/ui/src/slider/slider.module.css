@@ -111,7 +111,7 @@
 }
 
 .thumb {
-  background: var(--rk-material-background);
+  background: var(--rk-slider-thumb-background);
   border: 0;
   border-radius: 999px;
   box-shadow:

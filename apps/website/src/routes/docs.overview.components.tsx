@@ -148,26 +148,32 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '数字输入、步进器和数值格式化。',
+        implementedSlug: 'input-number',
         name: 'InputNumber 数字输入',
       },
       {
         description: '日期、日期范围和日历面板。',
+        implementedSlug: 'date-picker',
         name: 'DatePicker 日期选择',
       },
       {
         description: '时间、时间范围和快捷选项。',
+        implementedSlug: 'time-picker',
         name: 'TimePicker 时间选择',
       },
       {
         description: '文件选择、拖拽上传和上传列表。',
+        implementedSlug: 'upload',
         name: 'Upload 上传',
       },
       {
         description: '字段布局、校验信息和提交状态。',
+        implementedSlug: 'form',
         name: 'Form 表单',
       },
       {
         description: '搜索建议、过滤和键盘选择。',
+        implementedSlug: 'autocomplete',
         name: 'Autocomplete 自动完成',
       },
     ],
@@ -182,6 +188,7 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '顶部或上下文菜单，支持分组和激活态。',
+        implementedSlug: 'menu',
         name: 'Menu 菜单',
       },
       {
@@ -196,18 +203,22 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '列表分页、页码、跳转和每页数量。',
+        implementedSlug: 'pagination',
         name: 'Pagination 分页',
       },
       {
         description: '流程步骤、当前步骤和完成状态。',
+        implementedSlug: 'steps',
         name: 'Steps 步骤条',
       },
       {
         description: '锚点导航和滚动定位。',
+        implementedSlug: 'anchor',
         name: 'Anchor 锚点',
       },
       {
         description: '命令搜索、快捷操作和键盘导航。',
+        implementedSlug: 'command',
         name: 'Command 命令面板',
       },
     ],
@@ -227,38 +238,47 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '短文本提示、延迟展示和定位策略。',
+        implementedSlug: 'tooltip',
         name: 'Tooltip 文字提示',
       },
       {
         description: '轻量浮层内容和可交互弹出面板。',
+        implementedSlug: 'popover',
         name: 'Popover 气泡卡片',
       },
       {
         description: '全局轻提示和短时反馈。',
+        implementedSlug: 'message',
         name: 'Toast / Message 消息',
       },
       {
         description: '通知列表、手动关闭和异步反馈。',
+        implementedSlug: 'notification',
         name: 'Notification 通知',
       },
       {
         description: '页面内警告、成功、错误和信息提示。',
+        implementedSlug: 'alert',
         name: 'Alert 警告提示',
       },
       {
         description: '加载状态、遮罩和内联忙碌反馈。',
+        implementedSlug: 'spin',
         name: 'Spin / Loading 加载',
       },
       {
         description: '等待内容时的占位骨架。',
+        implementedSlug: 'skeleton',
         name: 'Skeleton 骨架屏',
       },
       {
         description: '线性、环形进度和步骤进度。',
+        implementedSlug: 'progress',
         name: 'Progress 进度条',
       },
       {
         description: '空数据、错误结果和完成结果展示。',
+        implementedSlug: 'result',
         name: 'Empty / Result 结果',
       },
     ],
@@ -268,18 +288,22 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
     items: [
       {
         description: '表格、排序、筛选、固定列和空状态。',
+        implementedSlug: 'table',
         name: 'Table 表格',
       },
       {
         description: '列表项、操作区、分割线和加载更多。',
+        implementedSlug: 'list',
         name: 'List 列表',
       },
       {
         description: '键值信息、详情字段和紧凑布局。',
+        implementedSlug: 'descriptions',
         name: 'Descriptions 描述列表',
       },
       {
         description: '用户或角色头像、占位和组合头像。',
+        implementedSlug: 'avatar',
         name: 'Avatar 头像',
       },
       {
@@ -289,30 +313,37 @@ const componentTodoGroups: readonly ComponentTodoGroup[] = [
       },
       {
         description: '分类、状态和可关闭标签。',
+        implementedSlug: 'tag',
         name: 'Tag / Chip 标签',
       },
       {
         description: '折叠内容区块和手风琴模式。',
+        implementedSlug: 'accordion',
         name: 'Accordion / Collapse 折叠面板',
       },
       {
         description: '层级数据、展开收起和选择状态。',
+        implementedSlug: 'tree',
         name: 'Tree 树',
       },
       {
         description: '时间轴、事件状态和纵向叙事。',
+        implementedSlug: 'timeline',
         name: 'Timeline 时间轴',
       },
       {
         description: '轮播展示、指示器和切换控制。',
+        implementedSlug: 'carousel',
         name: 'Carousel 轮播',
       },
       {
         description: '图片预览、缩放和占位状态。',
+        implementedSlug: 'image',
         name: 'Image 图片',
       },
       {
         description: '数字指标、趋势和强调数值。',
+        implementedSlug: 'statistic',
         name: 'Statistic 统计数值',
       },
     ],

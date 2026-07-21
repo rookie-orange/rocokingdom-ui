@@ -1,0 +1,340 @@
+.alert {
+  min-height: 64px;
+  padding: 12px 20px;
+  width: min(100%, 640px);
+}
+
+.alertContent {
+  align-items: center;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  text-align: left;
+  width: 100%;
+}
+
+.alertIcon,
+.resultIcon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.alertIcon svg {
+  height: 24px;
+  width: 24px;
+}
+
+.alertCopy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.alertTitle {
+  font-family: var(--rk-font-family-base, inherit);
+  font-size: 15px;
+}
+
+.alertDescription {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.76;
+}
+
+.alertAction {
+  align-items: center;
+  display: inline-flex;
+}
+
+.close {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  height: 28px;
+  justify-content: center;
+  opacity: 0.72;
+  padding: 0;
+  width: 28px;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.close:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.close svg {
+  height: 18px;
+  width: 18px;
+}
+
+.spinStandalone,
+.spinOverlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.spinContainer {
+  position: relative;
+}
+
+.spinOverlay {
+  background: color-mix(in srgb, var(--rk-paper) 72%, transparent);
+  inset: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.spinContentBusy {
+  opacity: 0.46;
+  pointer-events: none;
+}
+
+.spinIndicator {
+  --rk-spin-size: 32px;
+  background: transparent;
+  color: var(--rk-material-color);
+  height: var(--rk-spin-size);
+  position: relative;
+  width: var(--rk-spin-size);
+}
+
+.spinIndicator.small {
+  --rk-spin-size: 20px;
+}
+
+.spinIndicator.large {
+  --rk-spin-size: 48px;
+}
+
+.spinShape {
+  animation: rk-spin 920ms cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: var(--rk-spin-delay, 0ms);
+  display: block;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.spinShape::after {
+  background: var(--rk-paper);
+  border-radius: 50%;
+  content: '';
+  height: 30%;
+  position: absolute;
+  right: 7%;
+  top: 7%;
+  width: 30%;
+  z-index: 1;
+}
+
+.srOnly {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skeleton {
+  background: var(--rk-material-background);
+  display: inline-block;
+  height: var(--rk-skeleton-height, 16px);
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+  width: var(--rk-skeleton-width, 100%);
+}
+
+.skeleton.round {
+  border-radius: var(--rk-radius, 8px);
+}
+
+.skeleton.circle {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  width: var(--rk-skeleton-width, var(--rk-skeleton-height, 40px));
+}
+
+.skeleton.square {
+  border-radius: 2px;
+}
+
+.skeletonActive::after {
+  animation: rk-skeleton 1.4s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.48), transparent);
+  content: '';
+  inset: 0;
+  position: absolute;
+  transform: translateX(-100%);
+}
+
+.progressLine {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-width: 160px;
+  width: 100%;
+}
+
+.progressTrack {
+  background: var(--rk-material-background);
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressLine.small .progressTrack {
+  height: 6px;
+}
+
+.progressLine.large .progressTrack {
+  height: 14px;
+}
+
+.progressStroke {
+  background: transparent;
+  height: 100%;
+  transition: width 240ms ease;
+  width: var(--rk-progress-percent);
+}
+
+.progressInfo {
+  font-size: 13px;
+  min-width: 3em;
+  text-align: end;
+}
+
+.progressCircle {
+  align-items: center;
+  display: inline-flex;
+  height: 104px;
+  justify-content: center;
+  position: relative;
+  width: 104px;
+}
+
+.progressCircle.small {
+  height: 72px;
+  width: 72px;
+}
+
+.progressCircle.large {
+  height: 144px;
+  width: 144px;
+}
+
+.progressCircleMaterial {
+  background: transparent;
+  height: 100%;
+  width: 100%;
+}
+
+.progressCircle svg {
+  display: block;
+  height: 100%;
+  transform: rotate(-90deg);
+  width: 100%;
+}
+
+.progressCircleTrail,
+.progressCircleStroke {
+  fill: none;
+  stroke-width: 9;
+}
+
+.progressCircleTrail {
+  stroke: var(--rk-paper-muted);
+}
+
+.progressCircleStroke {
+  stroke: var(--rk-material-background);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 240ms ease;
+}
+
+.progressCircleInfo {
+  font-size: 14px;
+  font-weight: 700;
+  position: absolute;
+}
+
+.result {
+  align-items: center;
+  background: var(--rk-material-background);
+  border: 1px solid color-mix(in srgb, var(--rk-material-color) 16%, transparent);
+  border-radius: var(--rk-radius, 8px);
+  box-shadow: 0 8px 0 var(--rk-shadow-soft-color);
+  color: var(--rk-material-color);
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  text-align: center;
+}
+
+.resultIcon {
+  background: transparent;
+  height: 64px;
+  width: 64px;
+}
+
+.resultIcon svg {
+  height: 28px;
+  width: 28px;
+}
+
+.resultTitle {
+  font-family: var(--rk-font-family-rune, inherit);
+  font-size: 24px;
+  line-height: 1.2;
+  margin-top: 18px;
+}
+
+.resultDescription {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 8px 0 0;
+  max-width: 480px;
+  opacity: 0.68;
+}
+
+.resultExtra {
+  margin-top: 20px;
+}
+
+.emptyMark {
+  font-family: var(--rk-font-family-rune, inherit);
+  font-size: 26px;
+}
+
+@keyframes rk-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rk-skeleton {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinShape,
+  .skeletonActive::after {
+    animation: none;
+  }
+}
