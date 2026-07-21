@@ -1,0 +1,72 @@
+.content {
+  --rk-floating-content-x: 0;
+  --rk-floating-content-y: 0;
+
+  transform-origin: var(
+    --radix-popover-content-transform-origin,
+    var(
+      --radix-tooltip-content-transform-origin,
+      var(--radix-select-content-transform-origin, center)
+    )
+  );
+  will-change: opacity, transform;
+}
+
+.content[data-side='top'] {
+  --rk-floating-content-y: 6px;
+}
+
+.content[data-side='right'] {
+  --rk-floating-content-x: -6px;
+}
+
+.content[data-side='bottom'] {
+  --rk-floating-content-y: -6px;
+}
+
+.content[data-side='left'] {
+  --rk-floating-content-x: 6px;
+}
+
+.content[data-state='open'],
+.content[data-state='delayed-open'],
+.content[data-state='instant-open'] {
+  animation: rk-floating-content-in 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content[data-state='closed'] {
+  animation: rk-floating-content-out 120ms ease-in forwards;
+}
+
+@keyframes rk-floating-content-in {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--rk-floating-content-x), var(--rk-floating-content-y), 0)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes rk-floating-content-out {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(var(--rk-floating-content-x), var(--rk-floating-content-y), 0)
+      scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content[data-state] {
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+  }
+}

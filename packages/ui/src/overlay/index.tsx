@@ -5,8 +5,10 @@ import * as RadixToast from '@radix-ui/react-toast'
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 import { Check, CircleAlert, Info, X, XCircle } from 'lucide-react'
 import { clsx } from 'clsx'
+import { floatingContentClassName } from '../floating-content'
 import { Material, type MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
+import { RocoTheme } from '../theme'
 import styles from './overlay.module.css'
 
 export const tooltipPrefixCls = 'rk-tooltip'
@@ -68,19 +70,21 @@ export function Tooltip({
             <span className={styles.overlayTrigger}>{children}</span>
           </RadixTooltip.Trigger>
           <RadixTooltip.Portal>
-            <Material asChild material={material}>
-              <RadixTooltip.Content
-                align={position.align}
-                className={styles.tooltipContent}
-                side={position.side}
-                sideOffset={8}
-              >
-                <RocoShape className={styles.tooltipShape} shadow>
-                  {content}
-                </RocoShape>
-                <RadixTooltip.Arrow className={styles.overlayArrow} />
-              </RadixTooltip.Content>
-            </Material>
+            <RocoTheme asChild>
+              <Material asChild material={material}>
+                <RadixTooltip.Content
+                  align={position.align}
+                  className={clsx(floatingContentClassName, styles.tooltipContent)}
+                  side={position.side}
+                  sideOffset={8}
+                >
+                  <RocoShape className={styles.tooltipShape} shadow>
+                    {content}
+                  </RocoShape>
+                  <RadixTooltip.Arrow className={styles.overlayArrow} />
+                </RadixTooltip.Content>
+              </Material>
+            </RocoTheme>
           </RadixTooltip.Portal>
         </RadixTooltip.Root>
       </RadixTooltip.Provider>
@@ -124,27 +128,29 @@ export function Popover({
           <span className={styles.overlayTrigger}>{trigger}</span>
         </RadixPopover.Trigger>
         <RadixPopover.Portal>
-          <Material asChild material={material}>
-            <RadixPopover.Content
-              align={position.align}
-              className={styles.popoverContent}
-              side={position.side}
-              sideOffset={8}
-            >
-              {title ? (
-                <header className={styles.popoverHeader}>
-                  <strong>{title}</strong>
-                  <RadixPopover.Close asChild>
-                    <button aria-label="Close popover" type="button">
-                      <X aria-hidden="true" />
-                    </button>
-                  </RadixPopover.Close>
-                </header>
-              ) : null}
-              <div className={styles.popoverBody}>{content}</div>
-              <RadixPopover.Arrow className={styles.overlayArrow} />
-            </RadixPopover.Content>
-          </Material>
+          <RocoTheme asChild>
+            <Material asChild material={material}>
+              <RadixPopover.Content
+                align={position.align}
+                className={clsx(floatingContentClassName, styles.popoverContent)}
+                side={position.side}
+                sideOffset={8}
+              >
+                {title ? (
+                  <header className={styles.popoverHeader}>
+                    <strong>{title}</strong>
+                    <RadixPopover.Close asChild>
+                      <button aria-label="Close popover" type="button">
+                        <X aria-hidden="true" />
+                      </button>
+                    </RadixPopover.Close>
+                  </header>
+                ) : null}
+                <div className={styles.popoverBody}>{content}</div>
+                <RadixPopover.Arrow className={styles.overlayArrow} />
+              </RadixPopover.Content>
+            </Material>
+          </RocoTheme>
         </RadixPopover.Portal>
       </RadixPopover.Root>
     </span>

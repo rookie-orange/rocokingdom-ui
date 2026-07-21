@@ -11,6 +11,8 @@
 
 .pickerField {
   cursor: pointer;
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
+  font-size: calc(var(--rk-font-size-base, 16px) - 2px);
   min-width: 168px;
   width: max-content;
 }
@@ -80,25 +82,26 @@
 }
 
 .pickerPopup {
-  color: var(--rk-material-color);
+  background: transparent;
   max-width: calc(100vw - 24px);
   max-height: var(--radix-popover-content-available-height);
   outline: none;
   z-index: 1100;
 }
 
-.pickerPopupShape {
-  align-items: flex-start;
-  aspect-ratio: auto;
+.pickerPopupSurface {
   background: var(--rk-material-background);
-  display: block;
-  justify-content: flex-start;
-  height: auto;
-  min-height: 0;
+  border: 1px solid color-mix(in srgb, var(--rk-material-color) 16%, transparent);
+  border-radius: calc(var(--rk-radius, 8px) + 4px);
+  color: var(--rk-material-color);
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
   max-height: var(--radix-popover-content-available-height);
   overflow: auto;
-  padding: 0;
-  width: 100%;
+  width: max-content;
+}
+
+.pickerPopupSurfaceShadow {
+  box-shadow: 0 12px 32px var(--rk-shadow-color);
 }
 
 .pickerPopupContent {
@@ -108,11 +111,21 @@
 
 .calendar {
   --calendar-cell-size: 34px;
+
+  box-sizing: border-box;
+  color: inherit;
+  position: relative;
+}
+
+.calendar * {
+  box-sizing: border-box;
 }
 
 .calendarMonths {
+  align-items: flex-start;
   display: flex;
   gap: 20px;
+  position: relative;
 }
 
 .calendarMonth {
@@ -126,11 +139,14 @@
   height: 34px;
   justify-content: center;
   margin-bottom: 8px;
+  padding-inline: 38px;
 }
 
 .calendarCaption {
-  font-size: 13px;
+  color: inherit;
+  font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .calendarNav {
@@ -140,33 +156,54 @@
   pointer-events: none;
   position: absolute;
   right: 0;
-  top: 14px;
+  top: 2px;
   z-index: 1;
 }
 
 .calendarNavButton {
-  align-items: center;
   appearance: none;
-  background: var(--rk-stone-soft);
   border: 0;
-  border-radius: 50%;
-  color: var(--rk-on-stone-soft);
   cursor: pointer;
-  display: inline-flex;
   height: 30px;
-  justify-content: center;
+  min-height: 0;
+  min-width: 30px;
   padding: 0;
   pointer-events: auto;
+  position: absolute;
+  top: 2px;
   width: 30px;
+  z-index: 2;
 }
 
-.calendarNavButton:disabled {
+.calendarNavButtonPrevious {
+  left: 0;
+}
+
+.calendarNavButtonNext {
+  right: 0;
+}
+
+.calendarNavButtonContent {
+  height: 100%;
+  width: 100%;
+}
+
+.calendarChevron {
+  fill: currentColor;
+  height: 16px;
+  width: 16px;
+}
+
+.calendarNavButton:disabled,
+.calendarNavButton[aria-disabled='true'] {
   cursor: not-allowed;
   opacity: 0.3;
 }
 
 .calendarGrid {
+  border: 0;
   border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .calendarWeekdays,
@@ -176,6 +213,7 @@
 }
 
 .calendarWeekday {
+  color: inherit;
   font-size: 11px;
   font-weight: 600;
   opacity: 0.45;
@@ -211,7 +249,8 @@
   outline: none;
 }
 
-.calendarDaySelected .calendarDayButton,
+.calendarDaySelected:not(.calendarRangeStart):not(.calendarRangeMiddle):not(.calendarRangeEnd)
+  .calendarDayButton,
 .calendarRangeStart .calendarDayButton,
 .calendarRangeEnd .calendarDayButton {
   background: var(--rk-primary);
@@ -223,7 +262,35 @@
   color: var(--rk-on-primary-soft);
 }
 
+.calendarRangeMiddle .calendarDayButton {
+  border-radius: 0;
+}
+
+.calendarRangeStart:not(.calendarRangeEnd):not(:last-child) {
+  background: linear-gradient(90deg, transparent 50%, var(--rk-primary-soft) 50%);
+}
+
+.calendarRangeEnd:not(.calendarRangeStart):not(:first-child) {
+  background: linear-gradient(90deg, var(--rk-primary-soft) 50%, transparent 50%);
+}
+
+.calendarWeek > .calendarRangeMiddle:first-child,
+.calendarWeek > .calendarRangeMiddle:last-child {
+  overflow: hidden;
+}
+
+.calendarWeek > .calendarRangeMiddle:first-child {
+  border-end-start-radius: 5px;
+  border-start-start-radius: 5px;
+}
+
+.calendarWeek > .calendarRangeMiddle:last-child {
+  border-end-end-radius: 5px;
+  border-start-end-radius: 5px;
+}
+
 .calendarToday .calendarDayButton {
+  border-radius: 5px;
   box-shadow: inset 0 0 0 2px var(--rk-primary-strong);
   font-weight: 700;
 }
@@ -238,16 +305,14 @@
 }
 
 .timePanel {
-  align-items: flex-start;
-  aspect-ratio: auto;
   background: var(--rk-material-background);
-  display: block;
-  height: auto;
-  justify-content: flex-start;
+  border: 1px solid color-mix(in srgb, var(--rk-material-color) 16%, transparent);
+  border-radius: var(--rk-radius, 8px);
+  color: var(--rk-material-color);
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
   max-height: var(--radix-popover-content-available-height);
   min-width: 258px;
   overflow: auto;
-  padding: 0;
 }
 
 .timePanelContent {
@@ -303,6 +368,7 @@
   border-radius: 6px;
   box-shadow: 0 10px 24px var(--rk-shadow-color);
   color: var(--rk-material-color);
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
   max-height: min(260px, var(--radix-select-content-available-height));
   overflow: hidden;
   z-index: 1200;
@@ -554,6 +620,7 @@
 }
 
 .autocompleteControl {
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
   min-width: 220px;
   width: 100%;
 }
@@ -603,6 +670,7 @@
   box-shadow: 0 10px 24px var(--rk-shadow-color);
   box-sizing: border-box;
   color: var(--rk-material-color);
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
   max-height: min(256px, var(--radix-popover-content-available-height));
   min-width: var(--radix-popover-trigger-width);
   overflow: hidden;

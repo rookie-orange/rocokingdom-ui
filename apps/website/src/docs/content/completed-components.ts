@@ -52,9 +52,9 @@ export const completedComponentDefinitions = [
     source: 'packages/ui/src/advanced-form',
     description: '基于 Radix Popover 与 react-day-picker 的日期选择器，覆盖单值与日期范围。',
     highlights: [
-      'mode="range" 渲染起止日期。',
+      'mode="range" 渲染连续范围带，仅每行边界与起止日期保留圆角，今天标记也使用圆角描边。',
       'DayPicker 提供月份导航、范围选择、禁用日期与键盘能力。',
-      '尺寸、材质和描边可组合。',
+      '触发器使用 Roco 字体，加大圆角的 Material 浮层提供方向动画并避免内容拉伸 shape。',
     ],
     props: [
       controlledProp('string | readonly [string, string]'),
@@ -80,7 +80,7 @@ export const completedComponentDefinitions = [
     highlights: [
       'Radix Select 提供小时、分钟、秒的可键盘时间面板。',
       'presets 提供常用时间快捷入口。',
-      'range 模式自动约束结束时间。',
+      'range 模式自动约束结束时间，浮层复用统一的方向动画和 Material 表面。',
     ],
     props: [
       controlledProp('string | readonly [string, string]'),
@@ -149,7 +149,7 @@ export const completedComponentDefinitions = [
     description: '带延迟过滤、键盘高亮和 listbox 语义的搜索建议输入。',
     highlights: [
       'cmdk 负责候选过滤、活动项与键盘选择。',
-      'Radix Popover 管理定位、Escape 与焦点回归。',
+      'Radix Popover 管理定位、Escape、焦点回归与统一浮层动画。',
       '支持自定义过滤函数。',
     ],
     props: [
@@ -254,7 +254,7 @@ export const completedComponentDefinitions = [
     highlights: [
       'Radix 管理悬停、焦点与 Portal。',
       '内容使用 RocoShape 与 Material。',
-      '支持八个常用方位。',
+      '支持八个常用方位，并根据实际方向播放进入与退出动画。',
     ],
     props: [
       { name: 'content', type: 'ReactNode', required: true, description: '提示内容。' },
@@ -269,7 +269,8 @@ export const completedComponentDefinitions = [
     description: '基于 Radix Popover 的交互浮层，支持标题、关闭、定位与外部点击。',
     highlights: [
       'Radix 负责焦点、Escape 和碰撞定位。',
-      '内容表面读取 Material。',
+      '圆角内容表面读取 Material，并在 Portal 内恢复局部主题。',
+      '所有方位共享进入、退出和 reduced-motion 动画规则。',
       '可受控或非受控打开。',
     ],
     props: [

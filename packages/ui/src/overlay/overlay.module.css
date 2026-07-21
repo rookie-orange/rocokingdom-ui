@@ -9,6 +9,7 @@
 
 .tooltipContent,
 .popoverContent {
+  font-family: var(--rk-font-family-base, system-ui, sans-serif);
   z-index: 200;
 }
 
@@ -75,6 +76,7 @@
   border: 1px solid color-mix(in srgb, var(--rk-material-color) 18%, transparent);
   border-radius: var(--rk-radius, 8px);
   box-shadow: 0 12px 32px var(--rk-shadow-color);
+  box-sizing: border-box;
   color: var(--rk-material-color);
   min-width: 240px;
   overflow: hidden;

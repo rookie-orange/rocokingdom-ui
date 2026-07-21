@@ -5,6 +5,7 @@ import { expect, test } from 'vite-plus/test'
 import { Message, MessageProvider, Notification, Popover, Tooltip } from './index'
 
 const overlaySource = readFileSync(new URL('./index.tsx', import.meta.url), 'utf8')
+const overlayCss = readFileSync(new URL('./overlay.module.css', import.meta.url), 'utf8')
 
 test('renders tooltip and popover content with accessible relationships', () => {
   const tooltip = renderToString(
@@ -27,6 +28,10 @@ test('renders tooltip and popover content with accessible relationships', () => 
   expect(popover).toContain('aria-expanded="true"')
   expect(overlaySource).toContain("import * as RadixTooltip from '@radix-ui/react-tooltip'")
   expect(overlaySource).toContain("import * as RadixPopover from '@radix-ui/react-popover'")
+  expect(overlaySource).toContain("import { floatingContentClassName } from '../floating-content'")
+  expect(overlaySource).toContain("import { RocoTheme } from '../theme'")
+  expect(overlaySource.match(/<RocoTheme asChild>/g)).toHaveLength(2)
+  expect(overlayCss).toContain('font-family: var(--rk-font-family-base, system-ui, sans-serif);')
 })
 
 test('renders direct message and notification feedback', () => {

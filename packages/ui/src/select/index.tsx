@@ -2,6 +2,7 @@ import * as RadixSelect from '@radix-ui/react-select'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 import { clsx } from 'clsx'
+import { floatingContentClassName } from '../floating-content'
 import { Material, type MaterialPreset } from '../material'
 import { RocoTheme } from '../theme'
 import { RocoShape } from '../roco-shape'
@@ -92,7 +93,13 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(func
       <RadixSelect.Content
         {...props}
         align={props.align ?? 'start'}
-        className={clsx(`${prefixCls}-content`, styles.content, rootClassName, contentClassName)}
+        className={clsx(
+          `${prefixCls}-content`,
+          floatingContentClassName,
+          styles.content,
+          rootClassName,
+          contentClassName,
+        )}
         position={props.position ?? 'popper'}
         ref={forwardedRef}
         side={props.side ?? 'bottom'}

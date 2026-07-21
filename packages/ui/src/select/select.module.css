@@ -80,18 +80,6 @@
   width: 100%;
 }
 
-.content[data-state='open'] .contentShell {
-  animation: rk-select-content-in 140ms ease-out;
-}
-
-.content[data-state='closed'] {
-  animation: rk-select-content-presence-out 100ms ease-in;
-}
-
-.content[data-state='closed'] .contentShell {
-  animation: rk-select-content-out 100ms ease-in forwards;
-}
-
 .viewport {
   max-height: min(var(--radix-select-content-available-height), 320px);
   padding: 8px;
@@ -139,40 +127,4 @@
   height: 12px;
   transform: rotate(45deg) translateY(-2px);
   width: 7px;
-}
-
-@keyframes rk-select-content-in {
-  from {
-    transform: scaleY(0);
-  }
-
-  to {
-    transform: scaleY(1);
-  }
-}
-
-@keyframes rk-select-content-out {
-  from {
-    transform: scaleY(1);
-  }
-
-  to {
-    transform: scaleY(0);
-  }
-}
-
-@keyframes rk-select-content-presence-out {
-  from,
-  to {
-    visibility: visible;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .content[data-state='closed'],
-  .content[data-state='open'] .contentShell,
-  .content[data-state='closed'] .contentShell {
-    animation-duration: 1ms;
-    animation-timing-function: linear;
-  }
 }

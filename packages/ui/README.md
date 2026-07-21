@@ -53,6 +53,8 @@ The complex controls use the same mature primitives used by shadcn-style compone
 - `Command` uses `cmdk` inside the package's Radix Dialog wrapper. Command/Ctrl + K, grouped items, keywords, looped navigation, Escape, focus trapping, and selection callbacks are handled by the primitives.
 - `Carousel` uses `embla-carousel-react` for pointer dragging, inertial scrolling, looping, scroll snapshots, indicators, and autoplay while keeping the existing `items` and controlled `index` API.
 
+Popover, Tooltip, Select, DatePicker, TimePicker, and Autocomplete content share the same directional scale/fade motion. Closing motion is preserved through Radix presence state, and `prefers-reduced-motion` reduces it to a single frame. Large picker panels use a Material-backed rounded rectangle because the fixed square RocoShape artwork is intended for square controls, not resizable content surfaces. Date range backgrounds stay continuous within each week: only the visible row edges and selected endpoints are rounded, while today's marker keeps a rounded inset outline in every selection state. Picker triggers and portalled content explicitly use `--rk-font-family-base`.
+
 These dependencies are runtime dependencies of the UI package; consumers do not need to install separate Radix, calendar, command, or carousel packages.
 
 Global messages and notifications require their providers near the application root:
@@ -260,9 +262,10 @@ rendering the default `div`.
 
 `RocoTheme` also keeps the merged theme in React context. Use `useRocoTheme`
 when React code needs the current theme values. Portal-based components such as
-`Modal`, `Drawer`, and `Select` recreate the current theme scope inside their
-portal content, so local themes continue to apply even when the DOM is mounted
-outside the theme subtree.
+`Modal`, `Drawer`, `Select`, `Tooltip`, `Popover`, `DatePicker`, `TimePicker`, and
+`Autocomplete` recreate the current theme scope inside their portal content, so
+local themes continue to apply even when the DOM is mounted outside the theme
+subtree.
 
 Fonts are opt-in. The base style entry defines font variables with system
 fallbacks, but it does not load font files.

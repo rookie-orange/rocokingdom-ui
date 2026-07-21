@@ -6,6 +6,7 @@ import { Autocomplete, DatePicker, Form, FormItem, TimePicker, Upload } from './
 
 const pickerSource = readFileSync(new URL('./pickers.tsx', import.meta.url), 'utf8')
 const advancedFormSource = readFileSync(new URL('./index.tsx', import.meta.url), 'utf8')
+const advancedFormCss = readFileSync(new URL('./advanced-form.module.css', import.meta.url), 'utf8')
 
 test('renders single and range pickers with shape fields', () => {
   const date = renderToString(createElement(DatePicker, { defaultValue: '2026-07-21' }))
@@ -19,6 +20,20 @@ test('renders single and range pickers with shape fields', () => {
   expect(pickerSource).toContain("from 'react-day-picker'")
   expect(pickerSource).toContain("from '@radix-ui/react-popover'")
   expect(pickerSource).toContain("from '@radix-ui/react-select'")
+  expect(pickerSource).toContain("import { floatingContentClassName } from '../floating-content'")
+  expect(pickerSource).not.toContain('shape="square"')
+  expect(pickerSource).toContain('styles.pickerPopupSurface,')
+  expect(pickerSource).toContain('shadow && styles.pickerPopupSurfaceShadow')
+  expect(advancedFormCss).toContain(
+    'font-family: var(--rk-font-family-base, system-ui, sans-serif);',
+  )
+  expect(advancedFormCss).toContain('border-radius: calc(var(--rk-radius, 8px) + 4px);')
+  expect(advancedFormCss).toContain('.calendarNavButtonPrevious')
+  expect(advancedFormCss).toContain('.calendarNavButtonNext')
+  expect(advancedFormCss).toContain('.calendarRangeMiddle .calendarDayButton')
+  expect(advancedFormCss).toContain('.calendarWeek > .calendarRangeMiddle:first-child')
+  expect(advancedFormCss).toContain('.calendarWeek > .calendarRangeMiddle:last-child')
+  expect(advancedFormCss).toContain('.calendarToday .calendarDayButton {\n  border-radius: 5px;')
 })
 
 test('renders upload trigger and form field semantics', () => {
@@ -42,4 +57,7 @@ test('renders autocomplete as an accessible combobox', () => {
   expect(html).toContain('cmdk-input')
   expect(advancedFormSource).toContain("from 'cmdk'")
   expect(advancedFormSource).toContain("from '@radix-ui/react-popover'")
+  expect(advancedFormSource).toContain(
+    "import { floatingContentClassName } from '../floating-content'",
+  )
 })

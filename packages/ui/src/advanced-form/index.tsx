@@ -13,6 +13,7 @@ import * as RadixPopover from '@radix-ui/react-popover'
 import { Command as CommandPrimitive } from 'cmdk'
 import { Check, FileUp, Search, Trash2 } from 'lucide-react'
 import { clsx } from 'clsx'
+import { floatingContentClassName } from '../floating-content'
 import { Button } from '../button'
 import { Material, type MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
@@ -391,7 +392,7 @@ export function Autocomplete({
             <Material asChild material="paper">
               <RadixPopover.Content
                 align="start"
-                className={styles.autocompletePopup}
+                className={clsx(floatingContentClassName, styles.autocompletePopup)}
                 collisionPadding={12}
                 onOpenAutoFocus={(event: Event) => event.preventDefault()}
                 sideOffset={6}

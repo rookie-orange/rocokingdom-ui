@@ -7,6 +7,7 @@ import { CalendarDays, Check, ChevronDown, Clock } from 'lucide-react'
 import { DayPicker, type DateRange, type Matcher } from 'react-day-picker'
 import { clsx } from 'clsx'
 import { Button } from '../button'
+import { floatingContentClassName } from '../floating-content'
 import { Material, type MaterialPreset } from '../material'
 import { RocoShape } from '../roco-shape'
 import { RocoTheme } from '../theme'
@@ -140,6 +141,31 @@ function PickerTrigger({
   )
 }
 
+function CalendarNavigationButton({
+  children,
+  className,
+  ...props
+}: ComponentPropsWithRef<'button'>) {
+  return (
+    <Material asChild material="stoneSoft">
+      <RocoShape
+        {...props}
+        as="button"
+        className={clsx(styles.calendarNavButton, className)}
+        contentClassName={styles.calendarNavButtonContent}
+        shape="circle"
+      >
+        {children}
+      </RocoShape>
+    </Material>
+  )
+}
+
+const calendarComponents = {
+  NextMonthButton: CalendarNavigationButton,
+  PreviousMonthButton: CalendarNavigationButton,
+}
+
 function PickerHiddenInputs({
   disabled,
   mode,
@@ -269,22 +295,24 @@ export function DatePicker({
         </RadixPopover.Trigger>
         <RadixPopover.Portal>
           <RocoTheme asChild>
-            <Material asChild material="paper">
-              <RadixPopover.Content
-                align="start"
-                className={styles.pickerPopup}
-                collisionPadding={12}
-                sideOffset={8}
+            <RadixPopover.Content
+              align="start"
+              className={clsx(floatingContentClassName, styles.pickerPopup)}
+              collisionPadding={12}
+              sideOffset={8}
+            >
+              <Material
+                className={clsx(
+                  styles.pickerPopupSurface,
+                  shadow && styles.pickerPopupSurfaceShadow,
+                )}
+                material="paper"
               >
-                <RocoShape
-                  className={styles.pickerPopupShape}
-                  contentClassName={styles.pickerPopupContent}
-                  shape="square"
-                  shadow
-                >
+                <div className={styles.pickerPopupContent}>
                   {mode === 'range' ? (
                     <DayPicker
                       classNames={calendarClassNames}
+                      components={calendarComponents}
                       defaultMonth={selectedRange.from ?? minDate}
                       disabled={disabledMatchers}
                       fixedWeeks
@@ -306,6 +334,7 @@ export function DatePicker({
                   ) : (
                     <DayPicker
                       classNames={calendarClassNames}
+                      components={calendarComponents}
                       defaultMonth={selectedSingle ?? minDate}
                       disabled={disabledMatchers}
                       fixedWeeks
@@ -321,9 +350,9 @@ export function DatePicker({
                       weekStartsOn={weekStartsOn}
                     />
                   )}
-                </RocoShape>
-              </RadixPopover.Content>
-            </Material>
+                </div>
+              </Material>
+            </RadixPopover.Content>
           </RocoTheme>
         </RadixPopover.Portal>
       </RadixPopover.Root>
@@ -342,9 +371,10 @@ export function DatePicker({
 }
 
 const calendarClassNames = {
-  button_next: styles.calendarNavButton,
-  button_previous: styles.calendarNavButton,
+  button_next: styles.calendarNavButtonNext,
+  button_previous: styles.calendarNavButtonPrevious,
   caption_label: styles.calendarCaption,
+  chevron: styles.calendarChevron,
   day: styles.calendarDay,
   day_button: styles.calendarDayButton,
   disabled: styles.calendarDayDisabled,
@@ -431,7 +461,11 @@ function TimeUnitSelect({
       <RadixSelect.Portal>
         <RocoTheme asChild>
           <Material asChild material="paper">
-            <RadixSelect.Content className={styles.timeUnitPopup} position="popper" sideOffset={5}>
+            <RadixSelect.Content
+              className={clsx(floatingContentClassName, styles.timeUnitPopup)}
+              position="popper"
+              sideOffset={5}
+            >
               <RadixSelect.Viewport className={styles.timeUnitViewport}>
                 {options.map((option) => (
                   <RadixSelect.Item className={styles.timeUnitOption} key={option} value={option}>
@@ -503,20 +537,18 @@ function TimePickerField({
       </RadixPopover.Trigger>
       <RadixPopover.Portal>
         <RocoTheme asChild>
-          <Material asChild material="paper">
-            <RadixPopover.Content
-              align="start"
-              className={styles.pickerPopup}
-              collisionPadding={12}
-              side="top"
-              sideOffset={8}
+          <RadixPopover.Content
+            align="start"
+            className={clsx(floatingContentClassName, styles.pickerPopup)}
+            collisionPadding={12}
+            side="top"
+            sideOffset={8}
+          >
+            <Material
+              className={clsx(styles.timePanel, shadow && styles.pickerPopupSurfaceShadow)}
+              material="paper"
             >
-              <RocoShape
-                className={styles.timePanel}
-                contentClassName={styles.timePanelContent}
-                shape="square"
-                shadow
-              >
+              <div className={styles.timePanelContent}>
                 <div className={styles.timeUnits}>
                   <label>
                     <span>Hour</span>
@@ -560,9 +592,9 @@ function TimePickerField({
                     Done
                   </Button>
                 </footer>
-              </RocoShape>
-            </RadixPopover.Content>
-          </Material>
+              </div>
+            </Material>
+          </RadixPopover.Content>
         </RocoTheme>
       </RadixPopover.Portal>
     </RadixPopover.Root>
